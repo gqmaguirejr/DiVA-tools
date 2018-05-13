@@ -131,9 +131,6 @@ for year in range(starting_year,ending_year+1):
         print "year " + str(year)
 
     quoted_year = '"' + str(year) + '"'
-    argument_string = "'" + 'http://kth.diva-portal.org/smash/export.jsf?format=mods&aq=[[]]&aqe=[]&aq2=[[{"dateIssued":{"from":' + quoted_year + ',"to":' + quoted_year + '}},{"publicationTypeCode":["studentThesis"]}]]&onlyFullText=false&noOfRows=5000&sortOrder=title_sort_asc' + "'"  +" -O "+str(year)+".mods"
-#    print argument_string
-#    call(["wget", argument_string])
 
     try:
         url = 'http://kth.diva-portal.org/smash/export.jsf?format=mods&aq=[[]]&aqe=[]&aq2=[[{"dateIssued":{"from":' + quoted_year + ',"to":' + quoted_year + '}},{"publicationTypeCode":["studentThesis"]}]]&onlyFullText=false&noOfRows=5000&sortOrder=title_sort_asc'

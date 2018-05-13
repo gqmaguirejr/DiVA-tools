@@ -2,23 +2,23 @@
 # -*- coding: utf-8 -*-
 # the above encoding information is as per http://www.python.org/dev/peps/pep-0263/
 #
-# Purpose: To fetch and process publication information from DiVA for an author
+# Purpose: To fetch and process thesis information from DiVA for an examiner
 #
-# Input: ./diva-get_bibmods.py KTHID_of_user
+# Input: ./diva-get_bibmods_theses.py KTHID_of_user
 #
-# Output: outputs user_name.mods
+# Output: outputs user_name_theses.mods
 #
 # note that spaces in the user's name are converted to "_"
 #
-# Example: ./diva-get_bibmods.py u1d13i2c
+# Example: ./diva-get_bibmods_theses.py u1d13i2c
 #
 # You can convert the MODS file to BibTeX, for example:
-#    xml2bib < Maguire_Jr.mods >Maguire_Jr.bib
+#    xml2bib < Maguire_Jr_theses.mods >Maguire_Jr_theses.bib
 #
 # xml2bib is available from https://sourceforge.net/projects/bibutils/
 #
 # Author: Gerald Q. Maguire Jr.
-# 2018.05.13
+# 2018.05.14
 #
 #
 
@@ -119,10 +119,10 @@ def main():
 
     try:
 
-        url='http://kth.diva-portal.org/smash/export.jsf?format=mods&addFilename=true&aq=[[{"personId":"' + users_kthid +'"}]]&aqe=[]&aq2=[[{"dateIssued":{"from":"1900","to":"3000"}},{"publicationTypeCode":["bookReview","review","article","artisticOutput","book","chapter","manuscript","collection","other","conferencePaper","patent","conferenceProceedings","report","dataset","dissertation","comprehensiveDoctoralThesis","monographDoctoralThesis","comprehensiveLicentiateThesis","monographLicentiateThesis","studentThesis"]}]]&onlyFullText=false&noOfRows=50000&sortOrder=title_sort_asc&sortOrder2=title_sort_asc'
+        url='http://kth.diva-portal.org/smash/export.jsf?format=mods&addFilename=true&aq=[[{"examinerId":"' + users_kthid +'"}]]&aqe=[]&aq2=[[{"dateIssued":{"from":"1900","to":"3000"}},{"publicationTypeCode":["dissertation","comprehensiveDoctoralThesis","monographDoctoralThesis","comprehensiveLicentiateThesis","monographLicentiateThesis","studentThesis"]}]]&onlyFullText=false&noOfRows=50000&sortOrder=title_sort_asc&sortOrder2=title_sort_asc'
 
         print url
-        urllib.urlretrieve(url, users_name+".mods")
+        urllib.urlretrieve(url, users_name+"_theses.mods")
     except Exception as e:
         print(str(e))
 
