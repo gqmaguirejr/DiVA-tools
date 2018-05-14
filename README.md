@@ -1,6 +1,6 @@
 # DiVA-tools
 A set of tools for working with DiVA (specifically the KTH Publication
-Database instance of DiVA <img width="24" height="24" src="DiVA-star_green-web.jpg">
+Database instance of DiVA <img width="48" height="48" src="DiVA-star_green-web.jpg">
 
 DiVA contains publications produced by the researchers and students and is
 used by quite a number of universities, university colleges, and research
@@ -10,7 +10,10 @@ interface it is also possible to create feeds in a variety of formats.
 
 An interface to more DiVA functionality can be found at [https://kth.diva-portal.org/dream/info.jsf](https://kth.diva-portal.org/dream/info.jsf).
 
-DiVA can import and export references in a number of formats, one of these is The Library of Congress's [Metadata Object Description Schema (MODS) XML format](http://www.loc.gov/standards/mods/).
+DiVA can import and export references in a number of formats, one of these is
+The Library of Congress's [Metadata Object Description Schema (MODS) XML
+format](http://www.loc.gov/standards/mods/). Documentation for importing
+references is in [Import References to DiVA](http://www.ub.umu.se/sites/default/files/dokument/import_references_to_diva.pdf).
 
 You can find the description of DiVA's MODS format at [
 https://wiki.epc.ub.uu.se/display/divainfo/Formatspecifikation+och+systembeskrivning](https://wiki.epc.ub.uu.se/display/divainfo/Formatspecifikation+och+systembeskrivning)
