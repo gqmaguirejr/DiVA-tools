@@ -1,6 +1,6 @@
 # DiVA-tools
 A set of tools for working with DiVA (specifically the KTH Publication
-Database instance of DiVA ![DiVA web logo](DiVA-star_green-web.jpg width=24)).
+Database instance of DiVA <img width="24" height="24" src="DiVA-star_green-web.jpg">
 
 DiVA contains publications produced by the researchers and students and is
 used by quite a number of universities, university colleges, and research
