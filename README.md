@@ -2,6 +2,19 @@
 A set of tools for working with DiVA (specifically the KTH Publication
 Database instance of DiVA).
 
+DiVA contains publications produced by the researchers and students and is
+used by quite a number of universities, university colleges, and research
+institutes. The search interface for KTH's DiVA portal is
+[http://kth.diva-portal.org](http://kth.diva-portal.org). Via this web
+interface it is also possible to create feeds in a variety of formats.
+
+An interface to more DiVA functionality can be found at [https://kth.diva-portal.org/dream/info.jsf](https://kth.diva-portal.org/dream/info.jsf).
+
+DiVA can import and export references in a number of formats, one of these is The Library of Congress's [Metadata Object Description Schema (MODS) XML format](http://www.loc.gov/standards/mods/).
+
+You can find the description of DiVA's MODS format at [
+https://wiki.epc.ub.uu.se/display/divainfo/Formatspecifikation+och+systembeskrivning](https://wiki.epc.ub.uu.se/display/divainfo/Formatspecifikation+och+systembeskrivning)
+
 ======================================================================
 ## diva-get_bibmods.py
 
