@@ -17,7 +17,7 @@ Example: ./diva-get_bibmods.py u1d13i2c
 You can convert the MODS file to BibTeX, for example:
     xml2bib < Maguire_Jr.mods >Maguire_Jr.bib
 
-    xml2bib is available from [bibutils](https://sourceforge.net/projects/bibutils/)
+xml2bib is available from [https://sourceforge.net/projects/bibutils/](https://sourceforge.net/projects/bibutils/)
 ----------------------------------------------------------------------
 ## diva-get_bibmods_theses.py
 
@@ -59,9 +59,11 @@ Purpose: To summarize the data from theses_XXXX.csv for yearA to yearB
             (To collect information about keywords and abstracts)
 
 reads a csv file with lines of the form:
-#Year,School,Thesis_count,Abstracts_eng_swe,Abstracts_eng,Abstracts_swe,Abstracts_missing,Abstracts_nor,Abstracts_ger,Keywords_eng_swe,Keywords_eng,Keywords_swe,Keywords_missing
+```
+Year,School,Thesis_count,Abstracts_eng_swe,Abstracts_eng,Abstracts_swe,Abstracts_missing,Abstracts_nor,Abstracts_ger,Keywords_eng_swe,Keywords_eng,Keywords_swe,Keywords_missing
 #2010,"KTH,Skolan för arkitektur och samhällsbyggnad (ABE)",1,0,1,0,0,0,0,0,1,0,0
-#...
+...
+```
 
 Input: ./summarize_year.py --start yearA --end yearB
 Output: outputs a spreadhseet of the information
