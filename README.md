@@ -7,52 +7,75 @@ Database instance of DiVA).
 
 Purpose: To fetch and process publication information from DiVA for an author
 
-Input: ./diva-get_bibmods.py KTHID_of_user
+Input:
+```
+./diva-get_bibmods.py KTHID_of_user
+```
+
 Output: outputs user_name.mods
 
 Note that spaces in the user's name are converted to "_"
 
-Example: ./diva-get_bibmods.py u1d13i2c
+Example:
+```
+./diva-get_bibmods.py u1d13i2c
+```
 
 You can convert the MODS file to BibTeX, for example:
-    xml2bib < Maguire_Jr.mods >Maguire_Jr.bib
+```
+xml2bib < Maguire_Jr.mods >Maguire_Jr.bib
+```
 
 xml2bib is available from [https://sourceforge.net/projects/bibutils/](https://sourceforge.net/projects/bibutils/)
-----------------------------------------------------------------------
+
 ## diva-get_bibmods_theses.py
 
 Purpose: To fetch and process thesis information from DiVA for an examiner
 
-Input: ./diva-get_bibmods_theses.py KTHID_of_user
+Input:
+```
+./diva-get_bibmods_theses.py KTHID_of_user
+```
+
 Output: outputs user_name_theses.mods
 
 Note that spaces in the user's name are converted to "_".
 
-Example: ./diva-get_bibmods_theses.py u1d13i2c
-----------------------------------------------------------------------
+Example:
+```
+./diva-get_bibmods_theses.py u1d13i2c
+```
+
 ## diva-mods-maguire-topics.py
 
 Purpose: To parse and extract information from MODS files from DiVA
           specifically information about the abstracts and their language
-Input: ./diva-mods-maguire-topics.py -i xxxx.mods > xxxx.mods.a.csv
+
+Input:
+```
+./diva-mods-maguire-topics.py -i xxxx.mods > xxxx.mods.a.csv
+```
 Output: outputs a spreadhseet of the information and another spreadsheet named thesis_YEAR.csv
 
 Note that you have to manually set "year" to the year as dddd - to get the correct output file.
  
 Note that the "-v" (verbose) argument will generate a lot of output.
 
-----------------------------------------------------------------------
+
 ## diva-theses-year-range.py
 
 Purpose: To fetch and process thesis information from DiVA for yearA to yearB
             (To get information about keywords and abstracts)
 
-Input: ./diva-theses-year-range.py --start yearA --end yearB
+Input:
+```
+./diva-theses-year-range.py --start yearA --end yearB
+```
 
 Output: outputs a spreadhseet of the information
 
 Note that "year" should be in the form dddd
-----------------------------------------------------------------------
+
 ## summarize_year.py
 
 Purpose: To summarize the data from theses_XXXX.csv for yearA to yearB
@@ -65,11 +88,15 @@ Year,School,Thesis_count,Abstracts_eng_swe,Abstracts_eng,Abstracts_swe,Abstracts
 ...
 ```
 
-Input: ./summarize_year.py --start yearA --end yearB
+Input:
+```
+./summarize_year.py --start yearA --end yearB
+```
+
 Output: outputs a spreadhseet of the information
 
 Note that "year" should be in the form dddd
-----------------------------------------------------------------------
+
 ## do_mods.bash
 
 A simple bash script to iterate calling one of the programs
@@ -80,5 +107,3 @@ do
    ./diva-mods-maguire-topics.py -y $i -i $i.mods > $i.mods.a.csv
 done
 ```
-----------------------------------------------------------------------
-
