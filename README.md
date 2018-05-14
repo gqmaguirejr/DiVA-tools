@@ -1,8 +1,6 @@
 # DiVA-tools
 A set of tools for working with DiVA (specifically the KTH Publication
-Database instance of DiVA <img width="48" height="48"
-src="DiVA-star_green-web.jpg">
-The DiVA-logga grön webb logo appears under CC Attribution-NonCommercial 3.0 Unported (CC BY-NC 3.0).
+Database instance of DiVA. The DiVA-logga grön webb logo <img width="48" height="48" src="DiVA-star_green-web.jpg"> appears under CC Attribution-NonCommercial 3.0 Unported (CC BY-NC 3.0).
 
 DiVA contains publications produced by the researchers and students and is
 used by quite a number of universities, university colleges, and research
