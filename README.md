@@ -78,7 +78,7 @@ Output: outputs org_id_theses-YYYY-YYYY.mods
 Example:
 ```
 ./diva-get_bibmods_theses_school.py EECS 2015
-
+```
 You can convert the MODS file to BibTeX, for example:
 ```
 xml2bib xml2bib EECS_theses-2015-2015.mods > EECS_theses-2015-2015.bib
