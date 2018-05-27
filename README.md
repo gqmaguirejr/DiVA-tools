@@ -71,7 +71,7 @@ Purpose: To fetch and process thesis information from DiVA for a school
 
 Input
 ```
-./diva-get_bibmods_theses_school.py org_id
+./diva-get_bibmods_theses_school.py org_id [start_year] [end_year]
 ```
 Output: outputs org_id_theses-YYYY-YYYY.mods
 
@@ -83,6 +83,25 @@ You can convert the MODS file to BibTeX, for example:
 ```
 xml2bib xml2bib EECS_theses-2015-2015.mods > EECS_theses-2015-2015.bib
 ```
+
+## diva-get_bibmods_school.py
+Purpose: To fetch and process publication information from DiVA for a school
+
+Input
+```
+./diva-get_bibmods_school.py org_id [start_year] [end_year]
+```
+Output: outputs org_id_YYYY-YYYY.mods
+
+Example:
+```
+./diva-get_bibmods_school.py EECS 2018
+```
+You can convert the MODS file to BibTeX, for example:
+```
+xml2bib EECS_2018-2018.mods > EECS_2018-2018.bib
+```
+
 
 ## diva-mods-maguire-topics.py
 
