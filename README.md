@@ -18,6 +18,10 @@ references is in [Import References to DiVA](http://www.ub.umu.se/sites/default/
 You can find the description of DiVA's MODS format at [
 https://wiki.epc.ub.uu.se/display/divainfo/Formatspecifikation+och+systembeskrivning](https://wiki.epc.ub.uu.se/display/divainfo/Formatspecifikation+och+systembeskrivning)
 
+The Library of Congress » Standards » MODS Official Web Site
+Metadata Object Description Schema: Official Web Site: [MARC 21 to MODS 3.6
+Mapping, March 2016](http://www.loc.gov/standards/mods/mods-mapping.html).
+
 ======================================================================
 ## diva-get_bibmods.py
 
