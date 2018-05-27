@@ -82,6 +82,7 @@ Example:
 You can convert the MODS file to BibTeX, for example:
 ```
 xml2bib xml2bib EECS_theses-2015-2015.mods > EECS_theses-2015-2015.bib
+```
 
 ## diva-mods-maguire-topics.py
 
