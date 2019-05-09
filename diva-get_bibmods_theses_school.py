@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 # the above encoding information is as per http://www.python.org/dev/peps/pep-0263/
 #
@@ -18,53 +18,26 @@
 # Author: Gerald Q. Maguire Jr.
 # 2018.05.27
 #
+# Updated 2019.05.09 to support python3
+#
 #
 
-import csv, codecs, cStringIO
+import csv
+#import codecs, cStringIO
 import time
 import datetime
 
 #from subprocess import call
-import urllib
+#import urllib
+import urllib3
+
+# import the shutil library to have optimized copy of file like objects
+import shutil
 
 import optparse
 import sys
 
 import requests
-
-# import the following to be able to redirect stdout output to a file
-#   while avoiding problems with unicode
-import codecs, locale
-
-class UnicodeWriter:
-    """
-    A CSV writer which will write rows to CSV file "f",
-    which is encoded in the given encoding.
-    """
-
-    def __init__(self, f, dialect=csv.excel, encoding="utf-8", **kwds):
-        # Redirect output to a queue
-        self.queue = cStringIO.StringIO()
-        self.writer = csv.writer(self.queue, dialect=dialect, **kwds)
-        self.stream = f
-        self.encoder = codecs.getincrementalencoder(encoding)()
-
-    def writerow(self, row):
-        self.writer.writerow([s.encode("utf-8") for s in row])
-        # Fetch UTF-8 output from the queue ...
-        data = self.queue.getvalue()
-        data = data.decode("utf-8")
-        # ... and reencode it into the target encoding
-        data = self.encoder.encode(data)
-        # write to the target stream
-        self.stream.write(data)
-        # empty queue
-        self.queue.truncate(0)
-
-    def writerows(self, rows):
-        for row in rows:
-            self.writerow(row)
-
 
 def empty_school_tuple():
     return {'Thesis_count': 0, 'Abstracts_eng_swe': 0, 'Abstracts_eng': 0, 'Abstracts_swe': 0, 'Abstracts_missing': 0,}
@@ -97,9 +70,9 @@ def main():
 
     Verbose_Flag=options.verbose
     if Verbose_Flag:
-        print 'ARGV      :', sys.argv[1:]
-        print 'VERBOSE   :', options.verbose
-        print 'REMAINING :', remainder
+        print('ARGV      :{0}'.format(sys.argv[1:]))
+        print('VERBOSE   :{0}'.format(options.verbose))
+        print('REMAINING :{0}'.format(remainder))
 
     school_ids = {
         'KTH': 177,
@@ -160,8 +133,12 @@ def main():
 
         url='http://kth.diva-portal.org/smash/export.jsf?format=mods&addFilename=true&aq=[[]]&aqe=[]&aq2=[[{"dateIssued":{"from":"' + str(start_year) + '","to":"' + str(end_year) + '"}},{"organisationId":' + str(org_id) + ',"organisationId-Xtra":true},{"publicationTypeCode":["dissertation","comprehensiveDoctoralThesis","monographDoctoralThesis","comprehensiveLicentiateThesis","monographLicentiateThesis","studentThesis"]}]]&onlyFullText=false&noOfRows=50000&sortOrder=title_sort_asc&sortOrder2=title_sort_asc'
 
-        print url
-        urllib.urlretrieve(url, original_org_id+'_theses-'+str(start_year)+ '-' + str(end_year) + '.mods')
+        print('url={}'.format(url))
+        path=original_org_id+'_theses-'+str(start_year)+ '-' + str(end_year) + '.mods'
+        http = urllib3.PoolManager()
+        with http.request('GET', url, preload_content=False) as r, open(path, 'wb') as out_file:       
+            shutil.copyfileobj(r, out_file)
+
     except Exception as e:
         print(str(e))
 
