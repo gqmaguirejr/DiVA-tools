@@ -212,6 +212,8 @@ def main():
 
         cat_list=[]
         cat1=row['Categories']
+        if (not isinstance(cat1, str)) or len(cat1) < 1: # if there is no category info just loop again
+            continue
         # extract the numbers in the field
         cat=extract_numbers(cat1)
         if len(cat) > 0:

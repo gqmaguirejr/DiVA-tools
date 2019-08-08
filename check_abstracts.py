@@ -1,21 +1,18 @@
 #!/usr/bin/python3
 #
-# ./nation_subject_test.py spreadsheet.xlsx
+# ./check_abstracts.py spreadsheet.xlsx
 #
 # G. Q. Maguire Jr.
 #
-# 2019.08.06
+# 2019.08.08
 #
-# for each thesis in the spreadsheet, the program sends the abstract to Linköping University Electronic Press called: “Find a Detailed-level National Subject Area”
-# see http://www.ep.liu.se/hsv_categories/index.en.asp 
+# for each thesis in the spreadsheet check the abstracts for LaTeX and other errors creaping in
 #
 
 import requests, time
 from pprint import pprint
 import optparse
 import sys
-# import xml.etree.ElementTree as ET
-from bs4 import BeautifulSoup
 
 from io import StringIO, BytesIO
 
@@ -36,6 +33,7 @@ import math
 
 # to normalize unicoded strings
 import unicodedata
+
 #############################
 ###### EDIT THIS STUFF ######
 #############################
@@ -43,92 +41,6 @@ global baseUrl	# the base URL used for access to Canvas
 global header	# the header for all HTML requests
 global payload	# place to store additionally payload when needed for options to HTML requests
 
-# HTTP POST "abstract", "issn", "language" (the latter "en" or "sv") and "subjectlevel" (the latter a "2" or "3") to 
-def get_categories2(abstract, lang):
-    page_response=''
-    url='http://www.ep.liu.se/subject_categories/Default.aspx'
-    payload={'abstract': abstract,
-             'issn': "",
-             'language': lang,
-             'subjectlevel': 2
-    }
-
-    r = requests.post(url, data=payload)
-
-    if r.status_code == requests.codes.ok:
-        page_response=r.text
-    else:
-        if Verbose_Flag:
-            print("r.status_code is {0} and r.text is {1}".format(r.status_code, r.text))
-    return page_response
-
-def get_categories3(abstract, lang):
-    page_response=''
-    url='http://www.ep.liu.se/subject_categories/Default.aspx'
-    payload={'abstract': abstract,
-             'issn': "",
-             'language': lang,
-             'subjectlevel': 3
-    }
-
-    r = requests.post(url, data=payload)
-
-    if r.status_code == requests.codes.ok:
-        page_response=r.text
-    else:
-        if Verbose_Flag:
-            print("r.status_code is {0} and r.text is {1}".format(r.status_code, r.text))
-    return page_response
-
-def get_codes_and_scores(response):
-    # r1.text is <results>
-    # <hsv-all>
-    #   <subject>
-    #     <code>207</code>
-    #     <topic>Medical Engineering</topic>
-    #     <score>0,07210935</score>
-    #   </subject>
-    #   <subject>
-    #     <code>202</code>
-    #     <topic>Electrical Engineering, Electronic Engineering, Information Engineering</topic>
-    #     <score>0,06453624</score>
-    #   </subject>
-    #   <subject>
-    #     <code>211</code>
-    #     <topic>Other Engineering and Technologies</topic>
-    #     <score>0,05474341</score>
-    #   </subject>
-    #   <subject>
-    #     <code>201</code>
-    #     <topic>Civil Engineering</topic>
-    #     <score>0,0422397</score>
-    #   </subject>
-    #   <subject>
-    #     <code>203</code>
-    #     <topic>Mechanical Engineering</topic>
-    #     <score>0,04139797</score>
-    #   </subject>
-    # </hsv-all>
-    # <Message> Invalid ISSN.</Message>
-    # </results>
-
-    v1=dict()
-
-    if (not response):  # there was an error in the response, so ignore this entry
-        return v1
-    parsed_xml=BeautifulSoup(response, 'lxml-xml')
-    if Verbose_Flag:
-        print("parsed_xml = {}".format(parsed_xml.prettify()))
-    subjects=parsed_xml.find_all("subject")
-    if Verbose_Flag:
-        print("subjects = {}".format(subjects))
-
-    for s in subjects:
-        v1[s.code.text]={'topic': s.topic.text, 'score': s.score.text}
-
-    if Verbose_Flag:
-        print("v1 is {}".format(v1))
-    return v1
 
 StopWords=[
     u'a',
@@ -724,6 +636,20 @@ def clean_text_of_some_HTML(txt):
     p = re.compile('|'.join(map(re.escape, to_remove))) # escape to handle metachars
     return p.sub('', txt)
 
+def extract_numbers(cat):
+    pattern = re.compile(r"\((\d+)\)")
+    return pattern.findall(cat)
+
+def get_json_conditional(s):
+    if isinstance(s, str) and len(s) > 0:
+        return json.loads(s)
+    return []
+
+def corrected_abstract(str1):
+    str1=unicodedata.normalize('NFC',str1)
+    return str1
+
+
 def main():
     global Verbose_Flag
 
@@ -759,18 +685,20 @@ def main():
     print("file_name='{0}'".format(spreadsheet_file))
 
     # read the lines from the spreadsheet
-    diva_df = pd.read_excel(open(spreadsheet_file, 'rb')) # skip sheet_name='EECS-2018'
+    diva_df = pd.read_excel(open(spreadsheet_file, 'rb'))
     #if Verbose_Flag:
     #    print("diva_df={}".format(diva_df))
-
-    diva_df['LiU category2_en']="" # add an empty column to put data into
-    diva_df['LiU category2_sv']="" # add an empty column to put data into
-    diva_df['LiU category3_en']="" # add an empty column to put data into
-    diva_df['LiU category3_sv']="" # add an empty column to put data into
-    
+   
     for index, row in diva_df.iterrows():
         pid=row['PID']
         print("pid is {}".format(pid))
+
+        cat_list=[]
+        cat1=row['Categories']
+        if (not isinstance(cat1, str)) or len(cat1) < 1: # if there is no category info just loop again
+            nbn=row['NBN']
+            print("document with PID {0} {1} is missing Categories information".format(pid, nbn))
+            continue
 
         abstract=row['Abstract']
         if (not isinstance(abstract, str)) or len(abstract) < 1: # if there is no abstract just loop again
@@ -779,32 +707,24 @@ def main():
         abstracts=abstract.split('</p>;')
         for ab in abstracts[:2]:                 # just process the first two abstracts
             abstract=clean_text_of_some_HTML(ab)     # remove the '<p>'
-            abstract=unicodedata.normalize('NFC',abstract) # normalize to avoid the combining characters
             if len(abstract) > 0:
                 if Verbose_Flag:
                     print("abstract is {}".format(abstract))
                 lang=guess_language(abstract)
                 print("lang is {0}".format(lang))
-                response=get_categories2(abstract, lang)
-                if (len(response) > 0):
-                    if Verbose_Flag:
-                        print("response={0}".format(response))
-                    entry='LiU category2'+'_'+lang
-                    diva_df.loc[diva_df['PID'] == row['PID'], entry]=json.dumps(get_codes_and_scores(response))
+                new_abstract=corrected_abstract(abstract)
+                if len(new_abstract) != len(abstract):
+                    nbn=row['NBN']
+                    print("The {0} abstract for pid {1} {2} could be normalized".format(lang, pid, nbn))
+                    entry='corrected_abstract'+'_'+lang
+                    diva_df.loc[diva_df['PID'] == row['PID'], entry]=new_abstract
 
-                response=get_categories3(abstract, lang)
-                if (len(response) > 0):
-                    if Verbose_Flag:
-                        print("response={0}".format(response))
-                    entry='LiU category3'+'_'+lang
-                    diva_df.loc[diva_df['PID'] == row['PID'], entry]=json.dumps(get_codes_and_scores(response))
-
-        if (index > 3):
-             break;
+        # if (index > 40):
+        #     break;
             
         # set up the output write
-        writer = pd.ExcelWriter(spreadsheet_file+'_with_LiU_scores.xlsx', engine='xlsxwriter')
-        diva_df.to_excel(writer, sheet_name='new_codes')
+        writer = pd.ExcelWriter(spreadsheet_file[:-5]+'_corrected_abstracts.xlsx', engine='xlsxwriter')
+        diva_df.to_excel(writer, sheet_name='corrected_abstracts')
         writer.save()
               
 if __name__ == "__main__": main()

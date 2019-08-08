@@ -164,3 +164,36 @@ do
    ./diva-mods-maguire-topics.py -y $i -i $i.mods > $i.mods.a.csv
 done
 ```
+
+## compare-scores.py
+
+Purpose: To compare the manually assigned national subject categories with those computed by LiUä's tools
+
+
+Input:
+```
+./compare-scores.py input_spreadsheet
+```
+
+Output: outputs a spreadhseet augmented with the information
+
+## check_abstracts.py
+
+Purpose: To compare the manually assigned national subject categories with those computed by LiUä's tools
+
+
+Input:
+```
+./check_abstracts.py spreadsheet.xlsx
+```
+
+Output: outputs a new spreadhseet augmented with the normalized text for the abstracts
+and outputs lines such as:
+
+The sv abstract for pid 1202682 urn:nbn:se:kth:diva-226955 could be normalized
+document with PID 1203913 urn:nbn:se:kth:diva-227247 is missing Categories information
+
+Note that it only guesses the language correctly for English and Swedish.
+
+
+
