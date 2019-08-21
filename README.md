@@ -195,5 +195,34 @@ document with PID 1203913 urn:nbn:se:kth:diva-227247 is missing Categories infor
 
 Note that it only guesses the language correctly for English and Swedish.
 
+## nation_subject_test-a.py
+
+Purpose: To augment a spreadsheet of DiVA data with the Linköping University server's sujects and scores data
+
+
+Input:
+```
+./nation_subject_test-a.py input_spreadsheet.csv
+or
+./nation_subject_test-a.py input_spreadsheet.xlsx
+```
+
+Output: outputs a spreadhseet augmented with the information
+
+## Putting together a set of commands to process DiVA records for National Subject Categories
+
+Use the DiVA GUI to create a feed of type "CSV all meta data version 2".
+
+
+```
+Use wget -O filename.csv feed_string
+
+./nation_subject_test-a.py filename.csv
+The above outputs filename-_with_LiU_scores.xlsx
+
+./compare-scores.py  filename_with_LiU_scores.xlsx
+The above outputs filename_with_LiU_scores_compared.xlsx
+
+```
 
 

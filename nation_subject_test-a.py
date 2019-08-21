@@ -697,6 +697,137 @@ SwedishStopWords=[
     u'vill',
     ]
 
+NorwegianStopwords=[
+    u'å',
+    u'alle',
+    u'andre',
+    u'arbeid',
+    u'av',
+    u'begge',
+    u'bort',
+    u'bra',
+    u'bruke',
+    u'da',
+    u'denne',
+    u'der',
+    u'deres',
+    u'derfor',
+    u'det',
+    u'dette',
+    u'din',
+    u'disse',
+    u'du',
+    u'eller',
+    u'en',
+    u'ene',
+    u'eneste',
+    u'enhver',
+    u'enn',
+    u'er',
+    u'et',
+    u'få',
+    u'folk',
+    u'for',
+    u'fordi',
+    u'forsûke',
+    u'fra',
+    u'fûr',
+    u'fûrst',
+    u'gå',
+    u'gjennom',
+    u'gjorde',
+    u'gjøre',
+    u'god',
+    u'ha',
+    u'hadde',
+    u'han',
+    u'hans',
+    u'hennes',
+    u'her',
+    u'hva',
+    u'hvem',
+    u'hver',
+    u'hvilken',
+    u'hvis',
+    u'hvor',
+    u'hvordan',
+    u'hvorfor',
+    u'i',
+    u'ikke',
+    u'inn',
+    u'innen',
+    u'jeg',
+    u'kan',
+    u'kunne',
+    u'lage',
+    u'lang',
+    u'lik',
+    u'like',
+    u'må',
+    u'makt',
+    u'mange',
+    u'måte',
+    u'med',
+    u'meg',
+    u'meget',
+    u'mellom',
+    u'men',
+    u'mens',
+    u'mer',
+    u'mest',
+    u'min',
+    u'mye',
+    u'nå',
+    u'når',
+    u'navn',
+    u'nei',
+    u'ny',
+    u'og',
+    u'også',
+    u'om',
+    u'opp',
+    u'oss',
+    u'over',
+    u'på',
+    u'part',
+    u'punkt',
+    u'rett',
+    u'riktig',
+    u'så',
+    u'samme',
+    u'sant',
+    u'si',
+    u'siden',
+    u'sist',
+    u'skulle',
+    u'slik',
+    u'slutt',
+    u'som',
+    u'start',
+    u'stille',
+    u'tid',
+    u'til',
+    u'tilbake',
+    u'tilstand',
+    u'ulike',
+    u'under',
+    u'ut',
+    u'uten',
+    u'var',
+    u'vår',
+    u'ved',
+    u'verdi',
+    u'vei',
+    u'vein',
+    u'vi',
+    u'vil',
+    u'ville',
+    u'vite',
+    u'være',
+    u'vært',
+    u'videregående'
+    ]
+
 def split_into_words(txt):
     return re.findall(r"[\w']+", txt)
 #
@@ -714,10 +845,16 @@ def guess_language(abstract):
     words=split_into_words(abstract)
     c1=count_stop_words(words, StopWords)
     c2=count_stop_words(words, SwedishStopWords)
-    if c2 > c1:
+    c3=count_stop_words(words, NorwegianStopwords)
+    print("c1: {0}   c2: {1}   c3: {2}".format(c1, c2, c3))
+    if (c2 > c1) and (c2 > c3):
         return 'sv'
+    if (c3 > c1) and (c3 > c2):
+        return 'no'
     else:
         return 'en'
+
+
 
 def clean_text_of_some_HTML(txt):
     to_remove = ['<p>', '</p>', '<P>', '</P>']
@@ -759,7 +896,11 @@ def main():
     print("file_name='{0}'".format(spreadsheet_file))
 
     # read the lines from the spreadsheet
-    diva_df = pd.read_excel(open(spreadsheet_file, 'rb')) # skip sheet_name='EECS-2018'
+    if spreadsheet_file.endswith('.xlsx'):
+        diva_df = pd.read_excel(open(spreadsheet_file, 'rb')) # skip sheet_name='EECS-2018'
+    else:
+        diva_df = pd.read_csv(spreadsheet_file)
+
     #if Verbose_Flag:
     #    print("diva_df={}".format(diva_df))
 
@@ -799,11 +940,11 @@ def main():
                     entry='LiU category3'+'_'+lang
                     diva_df.loc[diva_df['PID'] == row['PID'], entry]=json.dumps(get_codes_and_scores(response))
 
-        if (index > 3):
-             break;
+        # if (index > 3):
+        #      break;
             
-        # set up the output write
-        writer = pd.ExcelWriter(spreadsheet_file+'_with_LiU_scores.xlsx', engine='xlsxwriter')
+        # Set up the output write
+        writer = pd.ExcelWriter(spreadsheet_file[:-5]+'_with_LiU_scores.xlsx', engine='xlsxwriter')
         diva_df.to_excel(writer, sheet_name='new_codes')
         writer.save()
               

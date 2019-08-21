@@ -37,122 +37,6 @@ global baseUrl	# the base URL used for access to Canvas
 global header	# the header for all HTML requests
 global payload	# place to store additionally payload when needed for options to HTML requests
 
-# HTTP POST "abstract", "issn", "language" (the latter "en" or "sv") and "subjectlevel" (the latter a "2" or "3") to 
-def get_categories2(abstract, lang):
-    page_response=''
-    url='http://www.ep.liu.se/subject_categories/Default.aspx'
-    payload={'abstract': abstract,
-             'issn': "",
-             'language': lang,
-             'subjectlevel': 2
-    }
-
-    r = requests.post(url, data=payload)
-
-    if r.status_code == requests.codes.ok:
-        page_response=r.text
-    else:
-        if Verbose_Flag:
-            print("r.status_code is {0} and r.text is {1}".format(r.status_code, r.text))
-    return page_response
-
-def get_categories3(abstract, lang):
-    page_response=''
-    url='http://www.ep.liu.se/subject_categories/Default.aspx'
-    payload={'abstract': abstract,
-             'issn': "",
-             'language': lang,
-             'subjectlevel': 3
-    }
-
-    r = requests.post(url, data=payload)
-
-    if r.status_code == requests.codes.ok:
-        page_response=r.text
-    else:
-        if Verbose_Flag:
-            print("r.status_code is {0} and r.text is {1}".format(r.status_code, r.text))
-    return page_response
-
-def get_codes_and_scores(response):
-    # r1.text is <results>
-    # <hsv-all>
-    #   <subject>
-    #     <code>207</code>
-    #     <topic>Medical Engineering</topic>
-    #     <score>0,07210935</score>
-    #   </subject>
-    #   <subject>
-    #     <code>202</code>
-    #     <topic>Electrical Engineering, Electronic Engineering, Information Engineering</topic>
-    #     <score>0,06453624</score>
-    #   </subject>
-    #   <subject>
-    #     <code>211</code>
-    #     <topic>Other Engineering and Technologies</topic>
-    #     <score>0,05474341</score>
-    #   </subject>
-    #   <subject>
-    #     <code>201</code>
-    #     <topic>Civil Engineering</topic>
-    #     <score>0,0422397</score>
-    #   </subject>
-    #   <subject>
-    #     <code>203</code>
-    #     <topic>Mechanical Engineering</topic>
-    #     <score>0,04139797</score>
-    #   </subject>
-    # </hsv-all>
-    # <Message> Invalid ISSN.</Message>
-    # </results>
-
-    v1=dict()
-
-    if (not response):  # there was an error in the response, so ignore this entry
-        return v1
-    parsed_xml=BeautifulSoup(response, 'lxml-xml')
-    if Verbose_Flag:
-        print("parsed_xml = {}".format(parsed_xml.prettify()))
-    subjects=parsed_xml.find_all("subject")
-    if Verbose_Flag:
-        print("subjects = {}".format(subjects))
-
-    for s in subjects:
-        v1[s.code.text]={'topic': s.topic.text, 'score': s.score.text}
-
-    if Verbose_Flag:
-        print("v1 is {}".format(v1))
-    return v1
-
-
-
-def split_into_words(txt):
-    return re.findall(r"[\w']+", txt)
-#
-def count_stop_words(words, stop_words):
-    sum=0
-    for w in words:
-        # ignore acronyms
-        if w.isupper():
-            continue
-        if w.lower() in stop_words:
-            sum=sum+1
-    return sum
-
-def guess_language(abstract):
-    words=split_into_words(abstract)
-    c1=count_stop_words(words, StopWords)
-    c2=count_stop_words(words, SwedishStopWords)
-    if c2 > c1:
-        return 'sv'
-    else:
-        return 'en'
-
-def clean_text_of_some_HTML(txt):
-    to_remove = ['<p>', '</p>', '<P>', '</P>']
-    p = re.compile('|'.join(map(re.escape, to_remove))) # escape to handle metachars
-    return p.sub('', txt)
-
 def extract_numbers(cat):
     pattern = re.compile(r"\((\d+)\)")
     return pattern.findall(cat)
@@ -265,7 +149,7 @@ def main():
         #     break;
             
         # set up the output write
-        writer = pd.ExcelWriter('output2.xlsx', engine='xlsxwriter')
+        writer = pd.ExcelWriter(spreadsheet_file[:-5]+'_compared.xlsx', engine='xlsxwriter')
         diva_df.to_excel(writer, sheet_name='new_codes')
         writer.save()
               
