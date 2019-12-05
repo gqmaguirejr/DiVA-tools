@@ -47,6 +47,7 @@ xml2bib < Maguire_Jr.mods >Maguire_Jr.bib
 ```
 
 xml2bib is available from [https://sourceforge.net/projects/bibutils/](https://sourceforge.net/projects/bibutils/)
+alternatively a version adapted for English and Swedish at [https://github.com/gqmaguirejr/bibutils_6.2_for_DiVA](https://github.com/gqmaguirejr/bibutils_6.2_for_DiVA)
 
 ## diva-get_bibmods_theses.py
 
