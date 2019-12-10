@@ -279,14 +279,14 @@ Saving to: ‘/tmp/theses/2019/thesis-247301.pdf’
 
 # pub_language.py
 
-Purpose: reads in xlsx file and processes each publication, then outputs a dictionary with some statistical data about the use languages for each type of document
+Purpose: reads in xlsx file (exported from DiVA in CSV with all meta data; converted to XLSX) and processes each publication
 
 Input:
 ```
 ./pub_language.py xxxx.xlsx
 ```
 
-Output: outputs a spreadhseet (in the above case the file will be called "all_student_theses_kth.augmented.xlsx") augmented with the information that has been added and outputs text that was computed
+Output: , then outputs a dictionary with some statistical data about the use languages for each type of document
 
 Example:
 ```
@@ -343,6 +343,23 @@ dictionaries={
 
 ```
 
+# pub_language_theses.py
+
+Purpose: reads in xlsx file (exported from DiVA in CSV with all meta data; converted to XLSX) and processes each publication
+
+Input:
+```
+./pub_language_theses.py xxxx.xlsx
+```
+
+Output: a dictionary with some statistical data about the use languages for each type of thesis
+
+Example:
+```
+./pub_language_theses.py ~/Working/E-learning/all_student_theses_kth.xlsx
+number of columns is 68
+dictionaries={'Självständigt arbete på avancerad nivå (yrkesexamen)': {'20 poäng / 30 hp': {'eng': 1089, 'swe': 602}, '10 poäng / 15 hp': {'swe': 201, 'eng': 105}, '300 hp': {'eng': 2, 'swe': 2}, '30 poäng / 45 hp': {'eng': 3, 'swe': 8}, '40 poäng / 60 hp': {'eng': 1}}, 'Självständigt arbete på avancerad nivå (magisterexamen)': {'10 poäng / 15 hp': {'eng': 325, 'swe': 174, 'nor': 2}, '20 poäng / 30 hp': {'eng': 234, 'swe': 68}, '15 poäng / 22,5 hp': {'eng': 15, 'swe': 2}, '40 poäng / 60 hp': {'eng': 23, 'swe': 8}, '12 poäng / 18 hp': {'eng': 1}, '60 poäng / 90 hp': {'eng': 7}, '5 poäng / 7,5 hp': {'eng': 1}, '30 poäng / 45 hp': {'eng': 9, 'swe': 1}, '180 hp': {'eng': 2}}, 'Självständigt arbete på avancerad nivå (masterexamen)': {'20 poäng / 30 hp': {'swe': 1845, 'eng': 11279, 'fre': 1, 'ita': 1}, '80 poäng / 120 hp': {'eng': 122, 'swe': 1}, '30 poäng / 45 hp': {'eng': 67, 'swe': 3}, '300 hp': {'eng': 19, 'swe': 5}, '10 poäng / 15 hp': {'eng': 81, 'swe': 15}, '25 poäng / 37,5 hp': {'eng': 2, 'swe': 1}, '330 hp': {'eng': 1}, '20hp': {'eng': 13, 'swe': 1}, '10 hp': {'eng': 1}, '40 poäng / 60 hp': {'eng': 6}, '5 hp': {'eng': 3}, '180 hp': {'eng': 3}, '10,5 poäng / 16 hp': {'eng': 1}, '60 poäng / 90 hp': {'eng': 4}}, 'Självständigt arbete på grundnivå (kandidatexamen)': {'20 poäng / 30 hp': {'eng': 33, 'swe': 4}, '10 poäng / 15 hp': {'eng': 2518, 'swe': 3258, 'nor': 1}, '15 poäng / 22,5 hp': {'eng': 2, 'swe': 1}, '80 poäng / 120 hp': {'swe': 1}, '180 hp': {'swe': 1}, '12 poäng / 18 hp': {'swe': 1}, '5 poäng / 7,5 hp': {'swe': 1}, '10,5 poäng / 16 hp': {'eng': 2}, '10 hp': {'eng': 1}}, 'Studentarbete övrigt': {'5 poäng / 7,5 hp': {'eng': 1}, '10 poäng / 15 hp': {'eng': 1, 'swe': 2}, '20 poäng / 30 hp': {'eng': 78, 'swe': 1}}, 'Självständigt arbete på grundnivå (yrkesexamen)': {'20 poäng / 30 hp': {'eng': 57, 'swe': 65}, '10 poäng / 15 hp': {'eng': 126, 'swe': 326}, '30 poäng / 45 hp': {'swe': 9, 'eng': 2}, '180 hp': {'swe': 1}, '12 poäng / 18 hp': {'swe': 1}, '5 poäng / 7,5 hp': {'swe': 1}}, 'Självständigt arbete på grundnivå (högskoleexamen)': {'10 poäng / 15 hp': {'swe': 1132, 'eng': 108}, '20 poäng / 30 hp': {'swe': 34, 'eng': 27}, '5 poäng / 7,5 hp': {'swe': 69, 'eng': 4}, '12 hp': {'swe': 2}, '15 poäng / 22,5 hp': {'swe': 1, 'eng': 1}, '180 hp': {'swe': 3}, '80 poäng / 120 hp': {'swe': 1}}, 'Självständigt arbete på avancerad nivå (masterexamen);Självständigt arbete på avancerad nivå (masterexamen)': {'20 poäng / 30 hp;20 poäng / 30 hp': {'eng': 38, 'swe': 9}, '80 poäng / 120 hp;80 poäng / 120 hp': {'eng': 1}}, 'Självständigt arbete på avancerad nivå (masterexamen);Självständigt arbete på avancerad nivå (yrkesexamen)': {'20 poäng / 30 hp;20 poäng / 30 hp': {'eng': 13}}, 'Självständigt arbete på avancerad nivå (yrkesexamen);Självständigt arbete på avancerad nivå (masterexamen)': {'20 poäng / 30 hp;20 poäng / 30 hp': {'eng': 26, 'swe': 1}}, 'Självständigt arbete på grundnivå (kandidatexamen);Självständigt arbete på grundnivå (yrkesexamen)': {'10 poäng / 15 hp;10 poäng / 15 hp': {'eng': 2, 'swe': 1}}, 'Självständigt arbete på grundnivå (högskoleexamen);Självständigt arbete på grundnivå (högskoleexamen)': {'10 poäng / 15 hp;10 poäng / 15 hp': {'swe': 3, 'eng': 1}}, 'Självständigt arbete på grundnivå (kandidatexamen);Självständigt arbete på grundnivå (kandidatexamen)': {'10 poäng / 15 hp;10 poäng / 15 hp': {'swe': 5, 'eng': 3}, '10 poäng / 15 hp;12 poäng / 18 hp': {'swe': 1}}, 'Självständigt arbete på grundnivå (konstnärlig högskoleexamen)': {'20 poäng / 30 hp': {'eng': 1}, '10 poäng / 15 hp': {'swe': 2}}, 'Självständigt arbete på avancerad nivå (masterexamen);Självständigt arbete på avancerad nivå (magisterexamen)': {'20 poäng / 30 hp;20 poäng / 30 hp': {'eng': 1}}, 'Studentarbete andra termin': {'20 poäng / 30 hp': {'eng': 5}}, 'Självständigt arbete på avancerad nivå (masterexamen);Självständigt arbete på avancerad nivå (masterexamen);Självständigt arbete på avancerad nivå (masterexamen)': {'20 poäng / 30 hp;20 poäng / 30 hp;20 poäng / 30 hp': {'eng': 1}}, 'Självständigt arbete på grundnivå (konstnärlig kandidatexamen)': {'10 poäng / 15 hp': {'swe': 1}}, 'Självständigt arbete på avancerad nivå (masterexamen);': {'20 poäng / 30 hp;': {'eng': 1}}, 'Studentarbete första termin': {'20 poäng / 30 hp': {'eng': 1}}, 'Självständigt arbete på grundnivå (yrkesexamen);Självständigt arbete på grundnivå (kandidatexamen)': {'10 poäng / 15 hp;10 poäng / 15 hp': {'swe': 1}}}
+```
 
 
 
