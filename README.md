@@ -277,6 +277,71 @@ Saving to: ‘/tmp/theses/2019/thesis-247301.pdf’
 ...
 ```
 
+# pub_language.py
+
+Purpose: reads in xlsx file and processes each publication, then outputs a dictionary with some statistical data about the use languages for each type of document
+
+Input:
+```
+./pub_language.py xxxx.xlsx
+```
+
+Output: outputs a spreadhseet (in the above case the file will be called "all_student_theses_kth.augmented.xlsx") augmented with the information that has been added and outputs text that was computed
+
+Example:
+```
+./pub_language.py /tmp/KTH-2012-2019-pub-excluding-theses-and-disserations.xlsx
+dictionaries={
+'Artikel i tidskrift': {
+	  'Övrig (populärvetenskap, debatt, mm)': {'dan': 3, 'eng': 37, 'est': 2, 'fin': 2, 'nor': 3, 'spa': 1, 'swe': 231},
+	  'Övrigt vetenskapligt': {'eng': 1049, 'fre': 1, 'swe': 44},
+	  'Refereegranskat': {'chi': 5, 'dut': 2, 'eng': 22623, 'est': 1, 'ger': 11, 'por': 2, 'spa': 1, 'swe': 48, 'tur': 1}},
+'Artikel, forskningsöversikt': {
+	  'Övrig (populärvetenskap, debatt, mm)': {'eng': 3, 'swe': 6},
+	  'Övrigt vetenskapligt': {'eng': 6, 'swe': 2},
+	  'Refereegranskat': {'eng': 416, 'swe': 2}},
+'Artikel, recension': {
+	  'Övrig (populärvetenskap, debatt, mm)': {'eng': 3, 'nor': 1, 'swe': 28},
+	  'Övrigt vetenskapligt': {'eng': 77, 'ger': 1, 'swe': 9},
+	  'Refereegranskat': {'eng': 16, 'swe': 2}},
+'Bok': {
+          'Övrig (populärvetenskap, debatt, mm)': {'eng': 5, 'ita': 1, 'swe': 18},
+          'Övrigt vetenskapligt': {'dan': 1, 'dut': 1, 'eng': 64, 'swe': 34},
+          'Refereegranskat': {'eng': 43, 'ger': 1, 'nor': 1, 'swe': 10}},
+'Kapitel i bok, del av antologi': {
+          'Övrig (populärvetenskap, debatt, mm)': {'eng': 18, 'ita': 1, 'swe': 43},
+          'Övrigt vetenskapligt': {'dan': 1, 'eng': 462, 'fre': 2, 'ger': 5, 'ita': 3, 'nor': 1, 'por': 1, 'swe': 108},
+          'Refereegranskat': {'chi': 2, 'dan': 1, 'eng': 744, 'est': 1, 'ita': 1, 'jpn': 1, 'nor': 1, 'por': 1, 'swe': 28}},
+'Konferensbidrag': {
+          'Övrig (populärvetenskap, debatt, mm)': {'eng': 33, 'ger': 2, 'jpn': 2, 'swe': 42},
+	  'Övrigt vetenskapligt': {'eng': 834, 'fre': 1, 'ger': 5, 'spa': 2, 'swe': 82},
+	  'Refereegranskat': {'eng': 10651, 'est': 1, 'fre': 1, 'ger': 7, 'ita': 1, 'pol': 1, 'spa': 5, 'swe': 61}},
+'Konstnärlig output': {
+	  'Granskad': {'eng': 5, 'swe': 3},
+	  'Ogranskad': {'eng': 13, 'swe': 2}},
+'Manuskript (preprint)': {
+	  'Övrig (populärvetenskap, debatt, mm)': {'eng': 1},
+	  'Övrigt vetenskapligt': {'eng': 105}},
+'Övrigt': {
+	  'Övrig (populärvetenskap, debatt, mm)': {'dut': 3, 'eng': 41, 'fin': 1, 'fre': 1, 'ita': 2, 'nor': 4, 'swe': 97},
+	  'Övrigt vetenskapligt': {'eng': 48, 'ita': 1, 'swe': 13},
+	  'Refereegranskat': {'eng': 10}},
+'Patent': {'Övrig (populärvetenskap, debatt, mm)': {'eng': 55, 'rus': 2, 'swe': 3}},
+'Proceedings (redaktörskap)': {
+          'Övrig (populärvetenskap, debatt, mm)': {'eng': 2, 'swe': 1},
+	  'Övrigt vetenskapligt': {'eng': 16, 'swe': 1},
+	  'Refereegranskat': {'eng': 39}},
+'Rapport': {
+	  'Övrig (populärvetenskap, debatt, mm)': {'eng': 27, 'spa': 1, 'swe': 79},
+	  'Övrigt vetenskapligt': {'eng': 484, 'fre': 1, 'nor': 4, 'swe': 273},
+	  'Refereegranskat': {'eng': 60, 'swe': 11}},
+'Samlingsverk (redaktörskap)': {
+          'Övrig (populärvetenskap, debatt, mm)': {'eng': 2, 'swe': 4},
+	  'Övrigt vetenskapligt': {'eng': 32, 'swe': 12},
+	  'Refereegranskat': {'eng': 56, 'ger': 1, 'swe': 3}}
+}
+
+```
 
 
 
