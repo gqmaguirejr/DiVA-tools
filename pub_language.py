@@ -7,14 +7,14 @@
 #
 # G. Q. Maguire Jr.
 #
-# 2019.12.10
+# 2019.12.15
 #
 # example:
 # ./pub_language.py /tmp/KTH-2012-2019-pub-excluding-theses-and-disserations.xlsx
 #
 
 import csv, requests, time
-from pprint import pprint
+import pprint
 import optparse
 import sys
 
@@ -66,6 +66,7 @@ def main():
               print("Insuffient arguments\n must provide input_file\n")
        else:
               input_file=remainder[0]
+              pp = pprint.PrettyPrinter(indent=4) # configure prettyprinter
 
               # read the sheet of publications
               pubs_df = pd.read_excel(open(input_file, 'rb'))
@@ -102,6 +103,8 @@ def main():
                             increment_dict(pub_lang, dictionaries[pub_type][pub_content_type])
               
               print("dictionaries={0}".format(dictionaries))
+              # prettyprint the dictionaries
+              pp.pprint(dictionaries)
               
 if __name__ == "__main__": main()
 
