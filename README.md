@@ -362,4 +362,38 @@ dictionaries={'Självständigt arbete på avancerad nivå (yrkesexamen)': {'20 p
 ```
 
 
+# process_diva_export_xlsx.py
 
+Purpose: reads in xlsx file (exported from DiVA in CSV with all meta data; converted to XLSX) and processes each publication.
+It processes each entry and updates a spreadsheet
+
+Input:
+```
+./process_diva_export_xlsx.py all_student_theses_kth.xlsx
+```
+
+Output: an augmented XLSX file
+
+Example:
+```
+./process_diva_export_xlsx.py /tmp/all_student_theses_kth_sorted.xlsx
+
+produces /tmp/all_student_theses_kth_sorted.augmented.xlsx
+```
+
+# process_diva_export_xlsx_files.py 
+
+Purpose: reads in xlsx file (exported from DiVA in CSV with all meta data; converted to XLSX) and processes each publication.
+It gets each of the full-text files and saves them locally in the working_directory (default is '/tmp/theses')
+
+Input:
+```
+./process_diva_export_xlsx_files.py all_student_theses_kth.xlsx [working_directory]
+```
+
+Output: a tree of files
+
+Example:
+```
+./process_diva_export_xlsx_files.py ~/Working/E-learning/all_student_theses_kth.xlsx '/tmp/test_theses'
+```

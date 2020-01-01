@@ -3,7 +3,7 @@
 # ./process_diva_export_xlsx_files.py all_student_theses_kth.xlsx [working_directory]
 #
 # reads in xlsx file and processes each publication
-# outputs a new spreadsheet with some data calculated based on the publications
+# gets each of the full-text files and saves them locally in the working_directory (default is '/tmp/theses')
 #
 # G. Q. Maguire Jr.
 #
