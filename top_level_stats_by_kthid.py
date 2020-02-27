@@ -148,7 +148,20 @@ def get_stats(kthid,pubs_df):
                     pub_type=pub_type+'-'+content_type
                     count_for_type=stats_for_author.get(pub_type,0)
                     stats_for_author[pub_type]=count_for_type+1
-        #else:
+
+        else:                   # some artistic works, books, etc. do not have an author by have contributors
+            name_entry=row['Contributor']
+            if  type(name_entry) == str and len(name_entry) > 0:
+                names=name_entry.split(';')
+                for n in names:
+                    match_string="[{}]".format(kthid)
+                    #print("match_string={}".format(match_string=))
+                    if n.find(match_string) >=0:
+                        pub_type=row['PublicationType']
+                        content_type=row['ContentType']
+                        pub_type=pub_type+'-'+content_type
+                        count_for_type=stats_for_author.get(pub_type,0)
+                        stats_for_author[pub_type]=count_for_type+1
         #    print("index={0}, PID={1}, name_entry={2} and is of type {3}".format(index, row['PID'], name_entry, type(name_entry)))
 
     return stats_for_author
