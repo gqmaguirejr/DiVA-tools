@@ -166,6 +166,51 @@ def get_stats(kthid,pubs_df):
 
     return stats_for_author
 
+def kthids_per_division(df):
+    division_authors=dict()
+    for index, row in df.iterrows():
+        division=row['Division']
+        if division == 'Date-info':
+            continue
+        if  type(division) == str and len(division) > 0:
+            list_for_division=division_authors.get(division,[])
+            list_for_division.append(row['KTHID'])
+            division_authors[division]=list_for_division
+
+    return division_authors
+
+def get_df_for_matching_IDS(id_list,pubs_df,division_df):
+    print("id_list is {}".format(id_list))
+    for index, row in pubs_df.iterrows():
+        name_entry=row['Name']
+        matching_pub=False
+        if  type(name_entry) == str and len(name_entry) > 0:
+            names=name_entry.split(';')
+            for n in names:
+                for id in id_list:
+                    match_string="[{}]".format(id)
+                    #print("match_string={}".format(match_string=))
+                    if n.find(match_string) >=0:
+                        matching_pub=True
+        else:                   # some artistic works, books, etc. do not have an author by have contributors
+            name_entry=row['Contributor']
+            if  type(name_entry) == str and len(name_entry) > 0:
+                names=name_entry.split(';')
+                for n in names:
+                    for id in id_list:
+                        match_string="[{}]".format(id)
+                        #print("match_string={}".format(match_string=))
+                        if n.find(match_string) >=0:
+                            matching_pub=True
+
+        if matching_pub:
+            # copy the row
+            division_df.loc[len(division_df)] = row
+
+    return division_df
+
+    
+
 def diff_pubs(pubs_df1, pubs_df2):
     # list the entries of the first that are not in the 2nd
     len1=len(pubs_df1)
@@ -225,6 +270,9 @@ def main():
     #    print("diva_df={}".format(diva_df))
     pubs_df = pd.read_excel(open(spreadsheet_file, 'rb'), sheet_name='Pubs')
 
+    division_info=kthids_per_division(diva_df)
+    print("division_info={}".format(division_info))
+
     new_column_name=[
         'Artikel, forskningsöversikt-Övrig (populärvetenskap, debatt, mm)',
         'Artikel, forskningsöversikt-Övrigt vetenskapligt',
@@ -281,6 +329,17 @@ def main():
     # set up the output write
     writer = pd.ExcelWriter(spreadsheet_file[:-5]+'_with_stats.xlsx', engine='xlsxwriter')
     diva_df.to_excel(writer, sheet_name='Stats')
+
+    # create a dictionary with data frames for each division
+    division_sheets=dict()
+    for div in division_info:
+        division_sheets[div]=pd.DataFrame(columns=pubs_df.columns)
+
+    for div in division_info:
+        division_sheets[div]=get_df_for_matching_IDS(division_info[div],pubs_df,division_sheets[div])
+        division_sheets[div].to_excel(writer, sheet_name=div)
+    # 
+
     writer.save()
               
 if __name__ == "__main__": main()
