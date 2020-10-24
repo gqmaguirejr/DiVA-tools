@@ -362,7 +362,7 @@ dictionaries={'Självständigt arbete på avancerad nivå (yrkesexamen)': {'20 p
 ```
 # top_level_stats_by_kthid.py
 
-Purpose: 
+Purpose: compute top-level statistics from a spreadsheet of DiVA data
 
 Input:
 ```
@@ -374,4 +374,18 @@ Output: A new file with the name suffixed by '_with_stats' with the statistics a
 Example:
 ```
 ./top_level_stats_by_kthid.py ~/Working/RAE-2020/cst_citations-augmented.xlsx 
+```
+
+# preprocess_for_corpus.py
+Purpose: reads in a spreaadsheet of DiVA entries and generates and
+	 output a file (targets.json) containing JSON with entries containing:
+	    PID, Name, Title, Year, DOI, PMID
+
+Input:
+```
+./preprocess_for_corpus.py spreadsheet.xlsx
+```
+ExampleL
+```
+./preprocess_for_corpus.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019.xlsx
 ```
