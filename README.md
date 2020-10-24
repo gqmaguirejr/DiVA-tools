@@ -389,3 +389,23 @@ ExampleL
 ```
 ./preprocess_for_corpus.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019.xlsx
 ```
+
+# find_in_corpus.py
+
+Purpose: using the information from the output of preprocess_for_corpus.py (information extracted from DiVA), find the publications that exist in a particulare shard of the Semantic Scholar (s2)  corpus and outputs a reduced version of the file of informaiton from DiVA.
+
+Input:
+```
+./find_in_corpus.py targets.json shard_number path_to_distroy_with_corpus
+```
+
+The shard number N (is the digits indicating the piece of the corpus) - for the file s2-corpus-186 N is 186
+The program outputs the following files:
+  matches_corpus_N.json - this contains JSON entries of the form:
+                          PID, Name, DOI, PMID, S2_publication_ID, S2_authors
+  remaining_targets.json - this contains entries of the same form as the input file (having removed the matched entries)
+
+Example:
+```
+ ./find_in_corpus.py targets.json  186 /z3/maguire/SemanticScholar/SS_corpus_2020-05-27
+```
