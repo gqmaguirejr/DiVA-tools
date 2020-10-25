@@ -147,6 +147,28 @@ def find_s2_name_in_diva_name(s2_name, diva_name):
                 return n_dict
         return False
 
+def split_name_on_semicolon(name_str):
+    new_names=[]
+    for i in range(0, name_str.count(',')):
+        first_semicolon=name_str.find(';')
+        if first_semicolon < 0:
+            new_names.append(name_str)
+            return new_names
+        else:
+            first_left_paren=name_str.find('(')
+            if (0 <= first_semicolon ) and (first_semicolon < first_left_paren):
+                new_names.append(name_str[:first_semicolon-1])
+                name_str=name_str[first_semicolon+1:]
+    #
+    return new_names
+
+def split_names_on_semicolon(names):
+    wn=[]
+    for n in names:
+        wn.extend(split_name_on_semicolon(n))
+    return wn
+
+
 def main():
     global Verbose_Flag
 
@@ -220,11 +242,26 @@ def main():
             if diva_name.find(');') >=0:
                 names=diva_name.split(');')
             else:
-                names=list(diva_name)
+                names=diva_name
+            names=split_names_on_semicolon(names)
 
         if len(s2_authors) !=  len(names):
             print("len(s2_authors={0}, length of split names={1}, diva_name={2}".format(len(s2_authors), len(names), diva_name))
             pp.pprint(s2_authors)
+        else:
+            for i in range(0, len(names)):
+                found_name=find_s2_name_in_diva_name(s2_authors[i]['name'], names[i])
+                if found_name:
+                    print("found s2_author id: {0} for {1}".format(s2_authors[i]['ids'], s2_authors[i]['name']))
+                    found_name['S2_author_ID']=s2_authors[i]['ids']
+                    found_name['PID']=int(m['PID'])
+                    name_info.append(found_name)
+                    continue
+                else:
+                    print("not found s2_author id: {0} for {1}".format(s2_authors[0]['ids'], s2_authors[0]['name']))
+                    continue
+
+                
 
     print("length of name_info={}".format(len(name_info)))
     names_outputfile="names.json"
