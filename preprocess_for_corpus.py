@@ -170,7 +170,7 @@ def main():
     print("Finished reading spreadsheet")
 
     output_filename='targets.json'
-    with open(output_filename, 'w') as output_FH:
+    with open(output_filename, 'w', encoding='utf-8') as output_FH:
         for index, row in diva_df.iterrows():
             if Verbose_Flag:
                 print("row={}".format(row))

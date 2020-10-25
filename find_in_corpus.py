@@ -152,14 +152,14 @@ def main():
             remove_diva_entry_pid(targets, j_dict['PID'])
 
     matches_filename="matches_corpus_{}.json".format(shard_number)
-    with open(matches_filename, 'w') as matches_FH:
+    with open(matches_filename, 'w', encoding='utf-8') as matches_FH:
         for m in matches_corpus_json:
             j_as_string = json.dumps(m)
             print(j_as_string, file=matches_FH)
 
     print("length of remaining targets={}".format(len(targets)))
     remaining_outputfile="remaining_targets.json"
-    with open(remaining_outputfile, 'w') as remaining_FH:
+    with open(remaining_outputfile, 'w', encoding='utf-8') as remaining_FH:
         for t in targets:
             j_as_string = json.dumps(t)
             print(j_as_string, file=remaining_FH)
