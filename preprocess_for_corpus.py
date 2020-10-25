@@ -187,7 +187,7 @@ def main():
             # as either of the following two might be empty, check before including them
             if isinstance(row['DOI'], str):
                 j_dict['DOI']=row['DOI']
-            if isinstance(row['PMID'], str):
+            if isinstance(row['PMID'], int):
                 j_dict['PMID']=row['PMID']
 
             # j_as_string = json.dumps(j_dict, indent=4)
