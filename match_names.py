@@ -104,7 +104,6 @@ def damerau_levenshtein_distance(s1, s2):
     #
     return d[lenstr1-1,lenstr2-1]
 
-
 def find_s2_name_in_diva_name(s2_name, diva_name):
     global Verbose_Flag
 
@@ -122,7 +121,8 @@ def find_s2_name_in_diva_name(s2_name, diva_name):
         look_for_kthid=pattern.match(diva_name,first_left_bracket+1)
         if look_for_kthid:
             kthid=look_for_kthid.group(0)[:-1]
-            print("kthid={}".format(kthid))
+            if Verbose_Flag:
+                print("kthid={}".format(kthid))
 
         trimmed_diva_name=diva_name[:first_left_bracket-1].strip()
         split_diva_name=trimmed_diva_name.split(',')
@@ -138,14 +138,48 @@ def find_s2_name_in_diva_name(s2_name, diva_name):
                     n_dict['kthid']=kthid
                 return n_dict
             # if the names are close, then guess that they are the same
-            if damerau_levenshtein_distance(reordered_diva_name, s2_name) < 2:
+            str_difference = damerau_levenshtein_distance(reordered_diva_name, s2_name) 
+            if str_difference < 2:
                 n_dict=dict()
                 n_dict['diva_name']=reordered_diva_name
                 n_dict['S2_author_name']=s2_name
                 if kthid:
                     n_dict['kthid']=kthid
+                if str_difference != 0:
+                    n_dict['partial match']=str_difference
                 return n_dict
-        return False
+
+            else:
+                print("string difference between {0} and {1} is {2}".format(reordered_diva_name, s2_name, str_difference))
+                return False
+        else:
+            length_difference=len(reordered_diva_name) - len(s2_name)
+            if length_difference < 3:
+                # if the names are close, then guess that they are the same
+                str_difference = damerau_levenshtein_distance(reordered_diva_name, s2_name) 
+                if kthid or str_difference < 4:
+                    n_dict=dict()
+                    n_dict['diva_name']=reordered_diva_name
+                    n_dict['S2_author_name']=s2_name
+                    if kthid:
+                        n_dict['kthid']=kthid
+                    if str_difference != 0:
+                        n_dict['partial match']=str_difference
+                        if str_difference > (len(reordered_diva_name)/2):
+                            n_dict['unlikey match']="{}%".format(str_difference/len(reordered_diva_name)*100.0)
+                        return n_dict
+                else:
+                    print("string difference between {0} and {1} is {2}".format(reordered_diva_name, s2_name, str_difference))
+                    return False
+            print("length difference between {0} and {1} is {2}".format(reordered_diva_name, s2_name, length_difference))
+            return False            
+            return False
+
+    if diva_name.find('(KTH') > 0:
+        print("Unhandled case in find_s2_name_in_diva_name for {0} and {1}".format(diva_name, s2_name))
+    else:
+        print("Ignoring non-KTH case in find_s2_name_in_diva_name for {0} and {1}".format(diva_name, s2_name))
+    return False
 
 def split_name_on_semicolon(name_str):
     new_names=[]
@@ -159,6 +193,14 @@ def split_name_on_semicolon(name_str):
             if (0 <= first_semicolon ) and (first_semicolon < first_left_paren):
                 new_names.append(name_str[:first_semicolon-1])
                 name_str=name_str[first_semicolon+1:]
+            elif first_left_paren < 0:
+                sn=name_str.split(';')
+                new_names.extend(sn)
+                return new_names
+            else:
+                new_names.append(name_str)
+                return new_names
+    #
     #
     return new_names
 
@@ -235,18 +277,19 @@ def main():
                 name_info.append(found_name)
                 continue
             else:
-                print("not found s2_author id: {0} for {1}".format(s2_authors[0]['ids'], s2_authors[0]['name']))
+                print("not found s2_author: {0} for {1}".format(diva_name,s2_authors))
                 continue
 
         if len(s2_authors) > 1:
             if diva_name.find(');') >=0:
                 names=diva_name.split(');')
+                names=split_names_on_semicolon(names)
             else:
-                names=diva_name
-            names=split_names_on_semicolon(names)
+                names=split_name_on_semicolon(diva_name)
+
 
         if len(s2_authors) !=  len(names):
-            print("len(s2_authors={0}, length of split names={1}, diva_name={2}".format(len(s2_authors), len(names), diva_name))
+            print("***** len(s2_authors={0}, length of split names={1}, diva_name={2} for m['PID']={3}, S2_publication_ID={4}".format(len(s2_authors), len(names), diva_name, int(m['PID']), m['S2_publication_ID']))
             pp.pprint(s2_authors)
         else:
             for i in range(0, len(names)):
@@ -258,13 +301,19 @@ def main():
                     name_info.append(found_name)
                     continue
                 else:
-                    print("not found s2_author id: {0} for {1}".format(s2_authors[0]['ids'], s2_authors[0]['name']))
+                    print("not found s2_author {0} for {1}".format(names[i], s2_authors[i]['name']))
                     continue
 
                 
 
     print("length of name_info={}".format(len(name_info)))
-    names_outputfile="names.json"
+
+    shard_number_str=matches_corpus_file[len('matches_corpus_'):]
+    shard_number_str=shard_number_str[:-len('.json_')+1:]
+    if len(shard_number_str) >=0 :
+        names_outputfile="names-{}.json".format(shard_number_str)
+    else:
+        names_outputfile="names.json"
     with open(names_outputfile, 'w', encoding='utf-8') as name_FH:
         for n in name_info:
             j_as_string = json.dumps(n)
