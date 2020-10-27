@@ -104,6 +104,33 @@ def damerau_levenshtein_distance(s1, s2):
     #
     return d[lenstr1-1,lenstr2-1]
 
+def split_names(names):
+    name_list=[]
+    working_name=''
+    paren_count=0
+    #
+    if names.find(';') < 0:     # if there is no semicolon, it is only one name - simply return it in a list
+        name_list.append(names)
+        return name_list
+    #
+    for c in names:
+        if c == '(':
+            paren_count=paren_count+1
+        if c == ')':
+            paren_count=paren_count-1
+        if c == '"':
+            continue
+        if (c == ';') and (paren_count == 0):
+            name_list.append(working_name)
+            working_name=''
+            continue
+        working_name=working_name+c
+    #
+    # add last instance of name to the list
+    name_list.append(working_name)
+    #
+    return name_list
+
 def find_s2_name_in_diva_name(s2_name, diva_name):
     global Verbose_Flag
 
@@ -181,34 +208,34 @@ def find_s2_name_in_diva_name(s2_name, diva_name):
         print("Ignoring non-KTH case in find_s2_name_in_diva_name for {0} and {1}".format(diva_name, s2_name))
     return False
 
-def split_name_on_semicolon(name_str):
-    new_names=[]
-    for i in range(0, name_str.count(',')):
-        first_semicolon=name_str.find(';')
-        if first_semicolon < 0:
-            new_names.append(name_str)
-            return new_names
-        else:
-            first_left_paren=name_str.find('(')
-            if (0 <= first_semicolon ) and (first_semicolon < first_left_paren):
-                new_names.append(name_str[:first_semicolon-1])
-                name_str=name_str[first_semicolon+1:]
-            elif first_left_paren < 0:
-                sn=name_str.split(';')
-                new_names.extend(sn)
-                return new_names
-            else:
-                new_names.append(name_str)
-                return new_names
-    #
-    #
-    return new_names
+# def split_name_on_semicolon(name_str):
+#     new_names=[]
+#     for i in range(0, name_str.count(',')):
+#         first_semicolon=name_str.find(';')
+#         if first_semicolon < 0:
+#             new_names.append(name_str)
+#             return new_names
+#         else:
+#             first_left_paren=name_str.find('(')
+#             if (0 <= first_semicolon ) and (first_semicolon < first_left_paren):
+#                 new_names.append(name_str[:first_semicolon-1])
+#                 name_str=name_str[first_semicolon+1:]
+#             elif first_left_paren < 0:
+#                 sn=name_str.split(';')
+#                 new_names.extend(sn)
+#                 return new_names
+#             else:
+#                 new_names.append(name_str)
+#                 return new_names
+#     #
+#     #
+#     return new_names
 
-def split_names_on_semicolon(names):
-    wn=[]
-    for n in names:
-        wn.extend(split_name_on_semicolon(n))
-    return wn
+# def split_names_on_semicolon(names):
+#     wn=[]
+#     for n in names:
+#         wn.extend(split_name_on_semicolon(n))
+#     return wn
 
 
 def main():
@@ -281,12 +308,7 @@ def main():
                 continue
 
         if len(s2_authors) > 1:
-            if diva_name.find(');') >=0:
-                names=diva_name.split(');')
-                names=split_names_on_semicolon(names)
-            else:
-                names=split_name_on_semicolon(diva_name)
-
+            names=split_names(diva_name)
 
         if len(s2_authors) !=  len(names):
             print("***** len(s2_authors={0}, length of split names={1}, diva_name={2} for m['PID']={3}, S2_publication_ID={4}".format(len(s2_authors), len(names), diva_name, int(m['PID']), m['S2_publication_ID']))

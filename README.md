@@ -409,3 +409,27 @@ Example:
 ```
  ./find_in_corpus.py targets.json  186 /z3/maguire/SemanticScholar/SS_corpus_2020-05-27
 ```
+
+# Adding_Semantic_Scholar_data_to_KTH_ÅBU.docx
+Adding_Semantic_Scholar_data_to_KTH_ÅBU.docx provides information about my experiments regarding S2 information
+
+# get_pid_and_names.py
+Purpose: using the information from the output of preprocess_for_corpus.py (information extracted from DiVA), find the publications that exist in a particulare shard of the Semantic Scholar (s2)  corpus and outputs a reduced version of the file of informaiton from DiVA.
+
+Input:
+```
+./get_pid_and_names.py spreadsheet.csv
+```
+
+
+The program outputs the following files:
+
+Example:
+```
+./get_pid_and_names.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019.csv 
+```
+
+Produces the files:
+* kth-exluding-theses-all-level2-2012-2019_pid_name_aliases.JSON
+* kth-exluding-theses-all-level2-2012-2019_pid_name.csv
+* kth-exluding-theses-all-level2-2012-2019_pid_name.JSON
