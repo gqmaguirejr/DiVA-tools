@@ -156,15 +156,18 @@ def main():
         for name in names:
             kthid=False
             orcid=False
+            kth_affiliation=False
 
-            kth_affiliation=name.find('(KTH') # look for affiliations and skip them
-            if kth_affiliation < 0:
+            kth_affiliation_flag=name.find('(KTH') # look for affiliations and skip them
+            if kth_affiliation_flag < 0:
                 continue
 
             first_left_paren=name.find('(KTH') # look for affiliations and remove them
             if first_left_paren> 0:
+                kth_affiliation=name[first_left_paren-1:] # save the affiliation information
                 name=name[0:first_left_paren-1]
-                
+
+
             all_left_brackets=[x.start() for x in re.finditer('\[', name)] # find offset of all left square brackets, note quote the bracket
             if len(all_left_brackets) > 0:
                 first_left_bracket=all_left_brackets[0]
@@ -195,13 +198,13 @@ def main():
                 name=name[0:all_left_brackets[0]-1].strip()
 
             if kthid and orcid:
-                augmentred_pid_and_authors[pid]={'Name': name, 'kthid': kthid, 'orcid': orcid}
+                augmentred_pid_and_authors[pid]={'Name': name, 'kthid': kthid, 'orcid': orcid, 'kth': kth_affiliation}
             elif kthid:
-                augmentred_pid_and_authors[pid]={'Name': name, 'kthid': kthid}
+                augmentred_pid_and_authors[pid]={'Name': name, 'kthid': kthid, 'kth': kth_affiliation}
             elif orcid:
-                augmentred_pid_and_authors[pid]={'Name': name, 'orcid': orcid}
+                augmentred_pid_and_authors[pid]={'Name': name, 'orcid': orcid, 'kth': kth_affiliation}
             else:
-                augmentred_pid_and_authors[pid]={'Name': name}
+                augmentred_pid_and_authors[pid]={'Name': name, 'kth': kth_affiliation}
 
     output_filename=spreadsheet_file[:-4]+'_pid_name.JSON'
     with open(output_filename, 'w', encoding='utf-8') as output_FH:
@@ -223,11 +226,13 @@ def main():
         name=entry['Name']
         kthid=entry.get('kthid', False)
         orcid=entry.get('orcid', False)
+        kth_affiliation=entry.get('kth', False)
         if kthid:
             existing_entry=kthid_dict.get(kthid, False)
             if not existing_entry:
                 kthid_dict[kthid]=dict()
                 kthid_dict[kthid]['orcid']=orcid
+                kthid_dict[kthid]['kth']=kth_affiliation
                 kthid_dict[kthid]['aliases']=list()
                 kthid_dict[kthid]['aliases'].append({'Name': name, 'PID': [key]})
             else:
@@ -245,10 +250,12 @@ def main():
         else:
             existing_entry=missing_kthid_records.get(name, False)
             if not existing_entry:
-                missing_kthid_records[name]={'orcid': orcid, 'PIDs': [key]}
+                missing_kthid_records[name]={'orcid': orcid, 'PIDs': [key], 'kth': kth_affiliation}
             else:
-                if orcid and not existing_entry['orcid']: #  if not orcid stored, then store the one you just got
-                    missing_kthid_records[name]['orcid']
+                if orcid and not existing_entry['orcid']: #  if no orcid stored, then store the one you just got
+                    missing_kthid_records[name]['orcid']=orcid
+                if kth_affiliation and not existing_entry['kth']: #  if no affiliation store, then store the one you just got
+                    missing_kthid_records[name]['kth']=kth_affiliation
 
                 missing_kthid_records[name]['PIDs'].append(key)
 
@@ -269,16 +276,33 @@ def main():
     print("Number of KTH authors without KTHIDs={}".format(len(missing_kthid_records)))
     output_filename=spreadsheet_file[:-4]+'_missing_kthids.csv'
     with open(output_filename, 'w', encoding='utf-8') as output_FH:
-        output_FH.write('Sep=\t\n')
+        #output_FH.write('Sep=\\t\n')
         outline="Name\tORCID\tPIDs missing KTHIDs for named person\n"
         output_FH.write(outline)
         for entry in sorted(missing_kthid_records.keys()):
             orcid=missing_kthid_records[entry].get('orcid', False)
             if orcid:
-                outline="{0}\t[{1}]\t{2}\n".format(entry, orcid, missing_kthid_records[entry]['PIDs'])
-            else:
-                outline="{0}\t\t{1}\n".format(entry, missing_kthid_records[entry]['PIDs'])
+                outline="{0}\t[{1}]\t{2}\t{3}\n".format(entry, orcid, missing_kthid_records[entry]['PIDs'], missing_kthid_records[entry]['kth'])
                 output_FH.write(outline)
+            else:
+                outline="{0}\t\t{1}\t{2}\n".format(entry, missing_kthid_records[entry]['PIDs'], missing_kthid_records[entry]['kth'])
+                output_FH.write(outline)
+
+        output_FH.write('---------\n')
+        number_of_aliases_with_fake_kthids=0
+        for kthid in kthid_dict: # add the fake KTHID entries to the missing set
+            if kthid.find('PI0') == 0:
+                outline="----{}-----\n".format(kthid)
+                output_FH.write(outline)
+                orcid=kthid_dict[kthid].get('orcid', False)
+                aliases=kthid_dict[kthid].get('aliases', False)
+                #print("kthid={0}, aliases={1}".format(kthid, aliases))
+                for alias in aliases:
+                    outline="{0}\t\t{1}\n".format(alias['Name'], alias['PID'])
+                    output_FH.write(outline)
+                    number_of_aliases_with_fake_kthids=number_of_aliases_with_fake_kthids+1
+
         output_FH.close()
+        print("number of aliases with fake kthids={}".format(number_of_aliases_with_fake_kthids))
 
 if __name__ == "__main__": main()
