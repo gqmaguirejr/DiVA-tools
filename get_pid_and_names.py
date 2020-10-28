@@ -67,8 +67,64 @@ def split_names(names):
     #
     return name_list
 
+def try_to_lookup_orcid(orcid_to_lookfor):
+    global augmented_pid_and_authors
+
+    #print("try_to_lookup_orcid orcid_to_lookfor={}:".format(orcid_to_lookfor))
+
+    possible_kthid=False
+    for key in sorted(augmented_pid_and_authors.keys()):
+        entry=augmented_pid_and_authors[key]
+        name=entry['Name']
+        kthid=entry.get('kthid', False)
+        orcid=entry.get('orcid', False)
+        kth_affiliation=entry.get('kth', False)
+        if kthid and kthid.find('PI0') == 0 :
+            continue
+
+        if orcid:
+            if orcid == orcid_to_lookfor:
+                return kthid
+
+    return possible_kthid
+
+def try_to_lookup_name(name_to_lookfor):
+    global kthid_dict
+    global augmented_pid_and_authors
+    global pp
+
+    possible_kthid=False
+
+    #print("try_to_lookup_name ={}:".format(name_to_lookfor))
+
+    possible_kthid=False
+    for key in sorted(augmented_pid_and_authors.keys()):
+        entry=augmented_pid_and_authors[key]
+        name=entry['Name']
+        kthid=entry.get('kthid', False)
+        orcid=entry.get('orcid', False)
+        kth_affiliation=entry.get('kth', False)
+        if not kthid:           #  of there is no kthid, then skip
+            continue
+        if kthid and kthid.find('PI0') == 0 :
+            continue
+
+
+        current_aliases=kthid_dict[kthid].get('aliases', False)
+        if not current_aliases:
+            print("kthid without aliases={}".format())
+        for alias in current_aliases:
+            if alias['Name'] == name_to_lookfor:
+                return kthid
+
+    return possible_kthid
+
+
 def main():
     global Verbose_Flag
+    global augmented_pid_and_authors
+    global kthid_dict
+    global pp
 
     parser = optparse.OptionParser()
 
@@ -146,7 +202,7 @@ def main():
 
     # get KTHIDs and ORCID if they exist, output as JSON
     # also keeo track of the alternative names and on which publication they are used
-    augmentred_pid_and_authors=dict()
+    augmented_pid_and_authors=dict()
     for pna in pid_and_authors:
         pid_str=pna['PID']
         pid = int(pid_str[1:-1])
@@ -189,7 +245,7 @@ def main():
                     second_left_bracket=second_left_bracket+1
                     closing_bracket=name.find(']', second_left_bracket)
                     if closing_bracket > 0:
-                        second_substring=name[second_left_bracket+1:closing_bracket-1]
+                        second_substring=name[second_left_bracket:closing_bracket]
                         orcid=second_substring
                     else:
                         print("No closing right bracket in {}".format(name))
@@ -198,20 +254,20 @@ def main():
                 name=name[0:all_left_brackets[0]-1].strip()
 
             if kthid and orcid:
-                augmentred_pid_and_authors[pid]={'Name': name, 'kthid': kthid, 'orcid': orcid, 'kth': kth_affiliation}
+                augmented_pid_and_authors[pid]={'Name': name, 'kthid': kthid, 'orcid': orcid, 'kth': kth_affiliation}
             elif kthid:
-                augmentred_pid_and_authors[pid]={'Name': name, 'kthid': kthid, 'kth': kth_affiliation}
+                augmented_pid_and_authors[pid]={'Name': name, 'kthid': kthid, 'kth': kth_affiliation}
             elif orcid:
-                augmentred_pid_and_authors[pid]={'Name': name, 'orcid': orcid, 'kth': kth_affiliation}
+                augmented_pid_and_authors[pid]={'Name': name, 'orcid': orcid, 'kth': kth_affiliation}
             else:
-                augmentred_pid_and_authors[pid]={'Name': name, 'kth': kth_affiliation}
+                augmented_pid_and_authors[pid]={'Name': name, 'kth': kth_affiliation}
 
     output_filename=spreadsheet_file[:-4]+'_pid_name.JSON'
     with open(output_filename, 'w', encoding='utf-8') as output_FH:
-        for key in sorted(augmentred_pid_and_authors.keys()):
+        for key in sorted(augmented_pid_and_authors.keys()):
             j_dict=dict()
             j_dict['PID']=key
-            j_dict['entry']=augmentred_pid_and_authors[key]
+            j_dict['entry']=augmented_pid_and_authors[key]
             j_as_string = json.dumps(j_dict, indent=4)
             print(j_as_string, file=output_FH)
 
@@ -221,8 +277,8 @@ def main():
     kthid_dict=dict()
     missing_kthid_records=dict()
 
-    for key in sorted(augmentred_pid_and_authors.keys()):
-        entry=augmentred_pid_and_authors[key]
+    for key in sorted(augmented_pid_and_authors.keys()):
+        entry=augmented_pid_and_authors[key]
         name=entry['Name']
         kthid=entry.get('kthid', False)
         orcid=entry.get('orcid', False)
@@ -277,15 +333,24 @@ def main():
     output_filename=spreadsheet_file[:-4]+'_missing_kthids.csv'
     with open(output_filename, 'w', encoding='utf-8') as output_FH:
         #output_FH.write('Sep=\\t\n')
-        outline="Name\tORCID\tPIDs missing KTHIDs for named person\n"
+        outline="Name\tKTHID\tORCID\tPIDs missing KTHIDs for named person\n"
         output_FH.write(outline)
         for entry in sorted(missing_kthid_records.keys()):
             orcid=missing_kthid_records[entry].get('orcid', False)
             if orcid:
-                outline="{0}\t[{1}]\t{2}\t{3}\n".format(entry, orcid, missing_kthid_records[entry]['PIDs'], missing_kthid_records[entry]['kth'])
+                possible_kthid=False
+                possible_kthid=try_to_lookup_orcid(orcid)
+                #print("found orcid={0} possible_kthid={1}".format(orcid, possible_kthid))
+                if not possible_kthid:
+                    possible_kthid=try_to_lookup_name(entry)
+
+                if possible_kthid:
+                    outline="{0}\t{1}\t[{2}]\t{3}\t{4}\n".format(entry, possible_kthid, orcid, missing_kthid_records[entry]['PIDs'], missing_kthid_records[entry]['kth'])
+                else:
+                    outline="{0}\t\t[{1}]\t{2}\t{3}\n".format(entry, orcid, missing_kthid_records[entry]['PIDs'], missing_kthid_records[entry]['kth'])
                 output_FH.write(outline)
             else:
-                outline="{0}\t\t{1}\t{2}\n".format(entry, missing_kthid_records[entry]['PIDs'], missing_kthid_records[entry]['kth'])
+                outline="{0}\t\t\t{1}\t{2}\n".format(entry, missing_kthid_records[entry]['PIDs'], missing_kthid_records[entry]['kth'])
                 output_FH.write(outline)
 
         output_FH.write('---------\n')
@@ -298,7 +363,18 @@ def main():
                 aliases=kthid_dict[kthid].get('aliases', False)
                 #print("kthid={0}, aliases={1}".format(kthid, aliases))
                 for alias in aliases:
-                    outline="{0}\t\t{1}\n".format(alias['Name'], alias['PID'])
+                    possible_kthid=False
+                    possible_kthid=try_to_lookup_name(alias['Name'])
+                        
+                    if not possible_kthid:
+                        outline="{0}\t\t\t{1}\n".format(alias['Name'], alias['PID'])
+                    else:
+                        orcid=kthid_dict[possible_kthid].get('orcid', False)
+                        if orcid:
+                            outline="{0}\t{1}\t[{2}\t{3}\n".format(alias['Name'], possible_kthid, orcid, alias['PID'])
+                        else:
+                            outline="{0}\t{1}\t\t{2}\n".format(alias['Name'], possible_kthid, alias['PID'])
+
                     output_FH.write(outline)
                     number_of_aliases_with_fake_kthids=number_of_aliases_with_fake_kthids+1
 
