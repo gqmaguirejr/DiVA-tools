@@ -1651,48 +1651,32 @@ forskningsämnen 2011 (Updated August 2016)
 |----------------------|----------------------|----------------------|
 | **Naturvetenskap**   |                      |                      |
 |----------------------|----------------------|----------------------|
-| 1                    | Naturvetenskap       | Natural sciences     |
+| 1| Naturvetenskap| Natural sciences|
 |----------------------|----------------------|----------------------|
-| 101                  | Matematik            | Mathematics          |
+| 101| Matematik| Mathematics|
 |----------------------|----------------------|----------------------|
-| 10101                | Matematisk analys    | Mathematical         |
-|                      |                      | Analysis             |
+| 10101| Matematisk analys| Mathematical Analysis|
 |----------------------|----------------------|----------------------|
-| 10102                | Geometri             | Geometry             |
+| 10102| Geometri| Geometry|
 |----------------------|----------------------|----------------------|
-| 10103                | Algebra och logik    | Algebra and Logic    |
+| 10103| Algebra och logik| Algebra and Logic|
 |----------------------|----------------------|----------------------|
-| 10104                | Diskret matematik    | Discrete Mathematics |
+| 10104| Diskret matematik| Discrete Mathematics |
 |----------------------|----------------------|----------------------|
-| 10105                | Beräkningsmatematik  | Computational        |
-|                      |                      | Mathematics          |
+| 10105| Beräkningsmatematik  | Computational Mathematics|
 |----------------------|----------------------|----------------------|
-| 10106                | Sannolikhetsteori    | Probability Theory   |
-|                      | och statistik        | and Statistics       |
+| 10106| Sannolikhetsteori och statistik | Probability Theory and Statistics       |
 |----------------------|----------------------|----------------------|
-| 10199                | Annan matematik      | Other Mathematics    |
+| 10199| Annan matematik| Other Mathematics|
 |----------------------|----------------------|----------------------|
-| 102                  | Data- och            | Computer and         |
-|                      | i                    | Information Sciences |
-|                      | nformationsvetenskap |                      |
-|                      | (Datateknik)         |                      |
+| 102| Data- och informationsvetenskap  (Datateknik)| Computer and Information Sciences |
 |----------------------|----------------------|----------------------|
-| 10201                | Datavetenskap        | Computer Sciences    |
-|                      | (datalogi)           |                      |
+| 10201| Datavetenskap (datalogi) | Computer Sciences|
 |----------------------|----------------------|----------------------|
-| 10202                | Systemvetenskap,     | Information Systems  |
-|                      | informationssystem   | (Social aspects to   |
-|                      | och informatik       | be 50804)            |
-|                      | (                    |                      |
-|                      | samhällsvetenskaplig |                      |
-|                      | inriktning under     |                      |
-|                      | 50804)               |                      |
+| 10202| Systemvetenskap, informationssystem och informatik (samhällsvetenskaplig inriktning under 50804)   | Information Systems (Social aspects to be 50804)|
 |----------------------|----------------------|----------------------|
-| 10203                | Bioinformatik        | Bioinformatics       |
-|                      | (beräkningsbiologi)  | (Computational       |
-|                      | (tillämpningar under | Biology)             |
-|                      | 10610)               | (applications to be  |
-|                      |                      | 10610)               |
+| 10203| Bioinformatik (beräkningsbiologi)       | Bioinformatics (Computational Biology)|
+|      | (tillämpningar under 10610) | (applications to be 10610)|
 |----------------------|----------------------|----------------------|
 | 10204                | Männi                | Human Computer       |
 |                      | ska-datorinteraktion | Interaction (Social  |
