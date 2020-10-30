@@ -32,58 +32,58 @@ Contents {#contents .Unnumbered-heading-1}
 [2 Start of collection: \<modsCollection ...\>
 5](#start-of-collection-modscollection)
 
-[3 Item~n~: \<mods ...\> 5](#itemn-mods)
+[3 Item<sub>n~</sub>: \<mods ...\> 5](#itemn-mods)
 
-[4 Genre~n~: \<genre ...\> 5](#genren-genre)
+[4 Genre<sub>n</sub>: \<genre ...\> 5](#genren-genre)
 
-[5 Author~n,i~: \<name ...\> 5](#authorni-name)
+[5 Author<sub>n,i</sub>: \<name ...\> 5](#authorni-name)
 
-[6 Adviser~n,i~: \<name ...\> 7](#adviserni-name)
+[6 Adviser<sub>n,i</sub>: \<name ...\> 7](#adviserni-name)
 
-[7 Publisher~n~ : \<name ...\> 7](#publishern-name)
+[7 Publisher<sub>n</sub> : \<name ...\> 7](#publishern-name)
 
-[8 Examiner~n~: \<name ...\> 8](#examinern-name)
+[8 Examiner<sub>n</sub>: \<name ...\> 8](#examinern-name)
 
 [9 PublisherCorp: \<name ...\> 8](#publishercorp-name)
 
-[10 Title and subtitle~n~: \<titleInfo ...\>
+[10 Title and subtitle<sub>n</sub>: \<titleInfo ...\>
 13](#title-and-subtitlen-titleinfo)
 
-[11 Keywords~n~: \<subject ...\> 14](#keywordsn-subject)
+[11 Keywords<sub>n</sub>: \<subject ...\> 14](#keywordsn-subject)
 
-[12 Abstract~n~: \<abstract ...\> 15](#abstractn-abstract)
+[12 Abstract<sub>n</sub>: \<abstract ...\> 15](#abstractn-abstract)
 
 [13 Degree related information 16](#degree-related-information)
 
-[13.1 Level~n~: which degree is this thesis for?
+[13.1 Level<sub>n</sub>: which degree is this thesis for?
 16](#leveln-which-degree-is-this-thesis-for)
 
-[13.2 Credits~n~ :Number of university creidt for degree project
+[13.2 Credits<sub>n</sub> :Number of university creidt for degree project
 16](#creditsn-number-of-university-creidt-for-degree-project)
 
 [13.3 Program: Educational program 17](#program-educational-program)
 
-[13.4 Course~n~: Subject/Course 20](#coursen-subjectcourse)
+[13.4 Course<sub>n</sub>: Subject/Course 20](#coursen-subjectcourse)
 
 [13.5 The results of all of these degree related elements
 25](#the-results-of-all-of-these-degree-related-elements)
 
-[14 National subject category~n~: Using HSV codes
+[14 National subject category<sub>n</sub>: Using HSV codes
 26](#national-subject-categoryn-using-hsv-codes)
 
 [15 Oral presentation (defense) related information
 41](#oral-presentation-defense-related-information)
 
-[15.1 Defense language~n~ 41](#defense-languagen)
+[15.1 Defense language<sub>n</sub> 41](#defense-languagen)
 
-[15.2 Defense venue~n~ 41](#defense-venuen)
+[15.2 Defense venue<sub>n</sub> 41](#defense-venuen)
 
-[15.3 Origin~n~ 41](#originn)
+[15.3 Origin<sub>n</sub> 41](#originn)
 
-[16 physicalDescription~n~ : The physical description of the book
+[16 physicalDescription<sub>n</sub> : The physical description of the book
 42](#physicaldescriptionn-the-physical-description-of-the-book)
 
-[17 relatedItem~n~: Information about the series and the number of the
+[17 relatedItem<sub>n</sub>: Information about the series and the number of the
 publication within this series
 42](#relateditemn-information-about-the-series-and-the-number-of-the-publication-within-this-series)
 
@@ -162,12 +162,12 @@ Example MODS file
 To help others understand how to create a MODS record for a student
 thesis we will look at an example of such a record (see Table 1) and
 analyze each part of it. This example is based upon what the MODS file
-would contain for the 1^st^ cycle degree project by Qi Li
+would contain for the 1<sup>st</sup> cycle degree project by Qi Li
 \<<qi5@kth.se>\> and Shiva Besharat Pour \<<shivabp@kth.se>\> entitled:
 *Connecting Silos: Automation system for thesis processing in Canvas and
 DiVA*, June 2018.
 
-[]{#_Ref516924899 .anchor}Table : Example of a MODS file for a 1^st^
+[]{#_Ref516924899 .anchor}Table : Example of a MODS file for a 1<sup>st</sup>
 cycle student thesis with two authors (Note that the logical are simply
 labels for the purpose of annotation in this explanation and *only* the
 contents of MODS elements actually exist in the file.)
@@ -209,7 +209,7 @@ contents of MODS elements actually exist in the file.)
 |                      | c.gov/standards/mods |                      |
 |                      | /v3/mods-3-2.xsd\"\> |                      |
 +----------------------+----------------------+----------------------+
-| Genre~n~             | \<genre              | This element         |
+| Genre<sub>n</sub>             | \<genre              | This element         |
 |                      | authority=\"diva\"   | identifies that the  |
 |                      | type=\"public        | item is a student    |
 |                      | ationTypeCode\"\>stu | thesis.              |
