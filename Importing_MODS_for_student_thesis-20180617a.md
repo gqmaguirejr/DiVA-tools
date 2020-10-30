@@ -1181,150 +1181,150 @@ Technology\</topic\>
 project (The values are from the Javascript file: ImportForm.jsf.)
 
   Option code in DiVA GUI   Value of the element
-  ------------------------- -----------------------------------------------------------------------------------------------------------------------
-  10520                     Arkitektexamen
-  9558                      Arkitektexamen - Arkitektur
-  10500                     Civilingenjörsexamen
-  9871                      Civilingenjörsexamen - Bioteknik
-  9973                      Civilingenjörsexamen - Civilingenjör och lärare
-  9889                      Civilingenjörsexamen - Datateknik
-  9942                      Civilingenjörsexamen - Design och produktframtagning
-  9905                      Civilingenjörsexamen - Elektroteknik
-  9943                      Civilingenjörsexamen - Energi och miljö
-  9974                      Civilingenjörsexamen - Farkostteknik
-  9944                      Civilingenjörsexamen - Industriell ekonomi
-  9918                      Civilingenjörsexamen - Informationsteknik
-  9878                      Civilingenjörsexamen - Kemivetenskap
-  9945                      Civilingenjörsexamen - Maskinteknik
-  9946                      Civilingenjörsexamen - Materialdesign
-  9987                      Civilingenjörsexamen - Medicinsk teknik
-  9890                      Civilingenjörsexamen - Medieteknik
-  9919                      Civilingenjörsexamen - Mikroelektronik
-  10526                     Civilingenjörsexamen - Samhällsbyggnad
-  9975                      Civilingenjörsexamen - Teknisk fysik
-  10521                     Högskoleexamen
-  9802                      Högskoleexamen - Byggproduktion
-  9803                      Högskoleexamen - Byggteknik och fastighetsförmedling
-  10522                     Högskoleingenjörsexamen
-  9800                      Högskoleingenjörsexamen - Byggteknik och design
-  9801                      Högskoleingenjörsexamen - Byggteknik och ekonomi
-  10751                     Högskoleingenjörsexamen - Byggteknik och hälsa
-  9989                      Högskoleingenjörsexamen - Datateknik och ekonomi
-  9921                      Högskoleingenjörsexamen - Datateknik
-  9990                      Högskoleingenjörsexamen - Datateknik
-  9922                      Högskoleingenjörsexamen - Elektronik och datorteknik
-  9949                      Högskoleingenjörsexamen - Elektroteknik och ekonomi
-  9907                      Högskoleingenjörsexamen - Elektroteknik
-  9948                      Högskoleingenjörsexamen - Elektroteknik
-  9880                      Högskoleingenjörsexamen - Kemiteknik
-  9951                      Högskoleingenjörsexamen - Maskinteknik och ekonomi
-  9950                      Högskoleingenjörsexamen - Maskinteknik
-  9991                      Högskoleingenjörsexamen - Medicinsk teknik
-  9992                      Högskoleingenjörsexamen - Teknik och ekonomi
-  10523                     Teknologie kandidatexamen
-  9924                      Teknologie kandidatexamen - Affärssystem
-  10950                     Teknologie kandidatexamen - Arkitektur
-  17650                     Teknologie kandidatexamen - Energi och miljö
-  9804                      Teknologie kandidatexamen - Fastighet och finans
-  9805                      Teknologie kandidatexamen - Fastighetsutveckling med fastighetsförmedling
-  9925                      Teknologie kandidatexamen - Informations- och kommunikationsteknik
-  9994                      Teknologie kandidatexamen - Medicinsk informatik
-  9892                      Teknologie kandidatexamen - Simuleringsteknik och virtuell design
-  10524                     Teknologie magisterexamen
-  9996                      Teknologie magisterexamen - Arbete och hälsa
-  9997                      Teknologie magisterexamen - Datornätverk
-  9858                      Teknologie magisterexamen - Design och byggande
-  9953                      Teknologie magisterexamen - Entreprenörskap och innovationsledning
-  9998                      Teknologie magisterexamen - Ergonomi och Människa-Teknik-Organisation
-  9999                      Teknologie magisterexamen - Ljusdesign
-  9954                      Teknologie magisterexamen - Produktframtagning
-  9955                      Teknologie magisterexamen - Projektledning och verksamhetsutveckling
-  14553                     Teknologie magisterexamen - Teknik, hälsa och arbetsmiljöutveckling
-  9956                      Teknologie magisterexamen - Tillämpad logistik
-  10525                     Teknologie masterexamen
-  9970                      Teknologie masterexamen - Aeroelasticitet i turbomaskiner
-  9860                      Teknologie masterexamen - Arkitektur
-  9894                      Teknologie masterexamen - Beräknings- och systembiologi
-  9875                      Teknologie masterexamen - Beräkningskemi och beräkningsfysik
-  9895                      Teknologie masterexamen - Datalogi
-  9901                      Teknologie masterexamen - Datorsimuleringar inom teknik och naturvetenskap
-  9938                      Teknologie masterexamen - Distribuerade system
-  9909                      Teknologie masterexamen - Elektrofysik
-  9910                      Teknologie masterexamen - Elkraftteknik
-  9859                      Teknologie masterexamen - Fastighetsföretagande
-  9861                      Teknologie masterexamen - Fastighetsutveckling och finansiella tjänster
-  9868                      Teknologie masterexamen - Fastighetsvetenskap
-  9977                      Teknologie masterexamen - Flyg- och rymdteknik
-  9978                      Teknologie masterexamen - Fordonsteknik
-  9927                      Teknologie masterexamen - Fotonik
-  9914                      Teknologie masterexamen - Fusionsenergi och teknisk fysik
-  9862                      Teknologie masterexamen - Geodesi och geoinformatik
-  24400                     Teknologie masterexamen - Husbyggnads- och anläggningsteknik
-  9850                      Teknologie masterexamen - Huskonstruktion
-  9958                      Teknologie masterexamen - Hållbar energiteknik
-  9552                      Teknologie masterexamen - Hållbar samhällsplanering och stadsutformning
-  9928                      Teknologie masterexamen - Inbyggda system
-  9959                      Teknologie masterexamen - Industriell ekonomi
-  9873                      Teknologie masterexamen - Industriell och miljöinriktad bioteknologi
-  9961                      Teknologie masterexamen - Industriell produktion
-  9962                      Teknologie masterexamen - Industriell produktutveckling
-  9929                      Teknologie masterexamen - Informations- och kommunikationssäkerhet
-  9915                      Teknologie masterexamen - Informations- och kommunikationsteknik, forskningsförberedande
-  9864                      Teknologie masterexamen - Innovations- och tillväxtekonomi
-  9966                      Teknologie masterexamen - Innovativ uthållig energiteknik
-  9963                      Teknologie masterexamen - Integrerad produktdesign
-  13450                     Teknologie masterexamen - Internetteknik
-  9882                      Teknologie masterexamen - Kemiteknik för energi och miljö
-  9939                      Teknologie masterexamen - Kommunikationssystem
-  9930                      Teknologie masterexamen - Konstruktion och realisering av IT-produkter och -system
-  9979                      Teknologie masterexamen - Kärnenergiteknik
-  10001                     Teknologie masterexamen - Ljus, design och hälsa
-  9883                      Teknologie masterexamen - Makromolekylära material
-  9980                      Teknologie masterexamen - Marina system
-  9984                      Teknologie masterexamen - Marinteknik
-  9896                      Teknologie masterexamen - Maskininlärning
-  9981                      Teknologie masterexamen - Matematik
-  9885                      Teknologie masterexamen - Material och sensorsystem för miljötekniska tillämpningar
-  11254                     Teknologie masterexamen - Materialteknik
-  9897                      Teknologie masterexamen - Media management
-  10002                     Teknologie masterexamen - Medicinsk bildbehandling
-  9874                      Teknologie masterexamen - Medicinsk bioteknologi
-  10003                     Teknologie masterexamen - Medicinsk teknik
-  9898                      Teknologie masterexamen - Medieteknik
-  9863                      Teknologie masterexamen - Miljöteknik och hållbar infrastruktur
-  9969                      Teknologie masterexamen - Miljövänliga energisystem
-  9884                      Teknologie masterexamen - Molekylär vetenskap och teknik
-  9899                      Teknologie masterexamen - Människa-datorinteraktion
-  9931                      Teknologie masterexamen - Nanoteknik
-  9911                      Teknologie masterexamen - Nätverkstjänster och system
-  9932                      Teknologie masterexamen - Programvaruteknik för distribuerade system
-  13400                     Teknologie masterexamen - Samhällsplanering
-  9902                      Teknologie masterexamen - Systembiologi
-  9933                      Teknologie masterexamen - Systemkonstruktion på kisel
-  9912                      Teknologie masterexamen - Systemteknik och robotik
-  9937                      Teknologie masterexamen - Säker och mobil kommunikation
-  9934                      Teknologie masterexamen - Teknik för interaktiva system
-  9964                      Teknologie masterexamen - Teknik och hållbar utveckling
-  9968                      Teknologie masterexamen - Teknik och ledning för energi- och miljösystem
-  9935                      Teknologie masterexamen - Teknik och ledning för informationssystem
-  9983                      Teknologie masterexamen - Teknisk fysik
-  9865                      Teknologie masterexamen - Teknisk infrastruktur
-  9965                      Teknologie masterexamen - Teknisk materialvetenskap
-  9982                      Teknologie masterexamen - Teknisk mekanik
-  9900                      Teknologie masterexamen - Tekniska beräkningar
-  23002                     Teknologie masterexamen - Tillämpad matematik och beräkningsmatematik
-  21652                     Teknologie masterexamen - Transport och geoinformatik
-  9866                      Teknologie masterexamen - Transportsystem
-  9913                      Teknologie masterexamen - Trådlösa system
-  13401                     Teknologie masterexamen - Urban planering och design
-  28050                     Teknologie masterexamen - Urbana studier
-  9867                      Teknologie masterexamen - Vattensystemteknik
-  9557                      Z - Skolan för arkitektur och samhällsbyggnad (ABE)
-  9852                      Skolan för arkitektur och samhällsbyggnad (ABE) - Civilingengörsexamen
-  29550                     Övriga utbildningsprogram
-  30301                     Kompletterande pedagogisk utbildning för ämneslärarexamen i matematik, naturvetenskap och teknik för forskarutbildade
-  30300                     Kompletterande pedagogisk utbildning
-  29551                     Ämneslärarutbildning med inriktning mot teknik, årskurs 7-9
+|-------------------------||-----------------------------------------------------------------------------------------------------------------------|
+| 10520                     ||Arkitektexamen|
+| 9558                      ||Arkitektexamen - Arkitektur|
+| 10500                     ||Civilingenjörsexamen|
+| 9871                      ||Civilingenjörsexamen - Bioteknik|
+| 9973                      ||Civilingenjörsexamen - Civilingenjör och lärare|
+| 9889                      ||Civilingenjörsexamen - Datateknik|
+| 9942                      ||Civilingenjörsexamen - Design och produktframtagning|
+| 9905                      ||Civilingenjörsexamen - Elektroteknik|
+| 9943                      ||Civilingenjörsexamen - Energi och miljö|
+| 9974                      ||Civilingenjörsexamen - Farkostteknik|
+| 9944                      ||Civilingenjörsexamen - Industriell ekonomi|
+| 9918                      ||Civilingenjörsexamen - Informationsteknik|
+| 9878                      ||Civilingenjörsexamen - Kemivetenskap|
+| 9945                      ||Civilingenjörsexamen - Maskinteknik|
+| 9946                      ||Civilingenjörsexamen - Materialdesign|
+| 9987                      ||Civilingenjörsexamen - Medicinsk teknik|
+| 9890                      ||Civilingenjörsexamen - Medieteknik|
+| 9919                      ||Civilingenjörsexamen - Mikroelektronik|
+| 10526                     ||Civilingenjörsexamen - Samhällsbyggnad|
+| 9975                      ||Civilingenjörsexamen - Teknisk fysik|
+| 10521                     ||Högskoleexamen|
+| 9802                      ||Högskoleexamen - Byggproduktion|
+| 9803                      ||Högskoleexamen - Byggteknik och fastighetsförmedling|
+| 10522                     ||Högskoleingenjörsexamen|
+| 9800                      ||Högskoleingenjörsexamen - Byggteknik och design|
+| 9801                      ||Högskoleingenjörsexamen - Byggteknik och ekonomi|
+| 10751                     ||Högskoleingenjörsexamen - Byggteknik och hälsa|
+| 9989                      ||Högskoleingenjörsexamen - Datateknik och ekonomi|
+| 9921                      ||Högskoleingenjörsexamen - Datateknik|
+| 9990                      ||Högskoleingenjörsexamen - Datateknik|
+| 9922                      ||Högskoleingenjörsexamen - Elektronik och datorteknik|
+| 9949                      ||Högskoleingenjörsexamen - Elektroteknik och ekonomi|
+| 9907                      ||Högskoleingenjörsexamen - Elektroteknik|
+| 9948                      ||Högskoleingenjörsexamen - Elektroteknik|
+| 9880                      ||Högskoleingenjörsexamen - Kemiteknik|
+| 9951                      ||Högskoleingenjörsexamen - Maskinteknik och ekonomi|
+| 9950                      ||Högskoleingenjörsexamen - Maskinteknik|
+| 9991                      ||Högskoleingenjörsexamen - Medicinsk teknik|
+| 9992                      ||Högskoleingenjörsexamen - Teknik och ekonomi|
+| 10523                     ||Teknologie kandidatexamen|
+| 9924                      ||Teknologie kandidatexamen - Affärssystem|
+| 10950                     ||Teknologie kandidatexamen - Arkitektur|
+| 17650                     ||Teknologie kandidatexamen - Energi och miljö|
+| 9804                      ||Teknologie kandidatexamen - Fastighet och finans|
+| 9805                      ||Teknologie kandidatexamen - Fastighetsutveckling med fastighetsförmedling|
+| 9925                      ||Teknologie kandidatexamen - Informations- och kommunikationsteknik|
+| 9994                      ||Teknologie kandidatexamen - Medicinsk informatik|
+| 9892                      ||Teknologie kandidatexamen - Simuleringsteknik och virtuell design|
+| 10524                     ||Teknologie magisterexamen|
+| 9996                      ||Teknologie magisterexamen - Arbete och hälsa|
+| 9997                      ||Teknologie magisterexamen - Datornätverk|
+| 9858                      ||Teknologie magisterexamen - Design och byggande|
+| 9953                      ||Teknologie magisterexamen - Entreprenörskap och innovationsledning|
+| 9998                      ||Teknologie magisterexamen - Ergonomi och Människa-Teknik-Organisation|
+| 9999                      ||Teknologie magisterexamen - Ljusdesign|
+| 9954                      ||Teknologie magisterexamen - Produktframtagning|
+| 9955                      ||Teknologie magisterexamen - Projektledning och verksamhetsutveckling|
+| 14553                     ||Teknologie magisterexamen - Teknik, hälsa och arbetsmiljöutveckling|
+| 9956                      ||Teknologie magisterexamen - Tillämpad logistik|
+| 10525                     ||Teknologie masterexamen|
+| 9970                      ||Teknologie masterexamen - Aeroelasticitet i turbomaskiner|
+| 9860                      ||Teknologie masterexamen - Arkitektur|
+| 9894                      ||Teknologie masterexamen - Beräknings- och systembiologi|
+| 9875                      ||Teknologie masterexamen - Beräkningskemi och beräkningsfysik|
+| 9895                      ||Teknologie masterexamen - Datalogi|
+| 9901                      ||Teknologie masterexamen - Datorsimuleringar inom teknik och naturvetenskap|
+| 9938                      ||Teknologie masterexamen - Distribuerade system|
+| 9909                      ||Teknologie masterexamen - Elektrofysik|
+| 9910                      ||Teknologie masterexamen - Elkraftteknik|
+| 9859                      ||Teknologie masterexamen - Fastighetsföretagande|
+| 9861                      ||Teknologie masterexamen - Fastighetsutveckling och finansiella tjänster|
+| 9868                      ||Teknologie masterexamen - Fastighetsvetenskap|
+| 9977                      ||Teknologie masterexamen - Flyg- och rymdteknik|
+| 9978                      ||Teknologie masterexamen - Fordonsteknik|
+| 9927                      ||Teknologie masterexamen - Fotonik|
+| 9914                      ||Teknologie masterexamen - Fusionsenergi och teknisk fysik|
+| 9862                      ||Teknologie masterexamen - Geodesi och geoinformatik|
+| 24400                     ||Teknologie masterexamen - Husbyggnads- och anläggningsteknik|
+| 9850                      ||Teknologie masterexamen - Huskonstruktion|
+| 9958                      ||Teknologie masterexamen - Hållbar energiteknik|
+| 9552                      ||Teknologie masterexamen - Hållbar samhällsplanering och stadsutformning|
+| 9928                      ||Teknologie masterexamen - Inbyggda system|
+| 9959                      ||Teknologie masterexamen - Industriell ekonomi|
+| 9873                      ||Teknologie masterexamen - Industriell och miljöinriktad bioteknologi|
+| 9961                      ||Teknologie masterexamen - Industriell produktion|
+| 9962                      ||Teknologie masterexamen - Industriell produktutveckling|
+| 9929                      ||Teknologie masterexamen - Informations- och kommunikationssäkerhet|
+| 9915                      ||Teknologie masterexamen - Informations- och kommunikationsteknik, forskningsförberedande|
+| 9864                      ||Teknologie masterexamen - Innovations- och tillväxtekonomi|
+| 9966                      ||Teknologie masterexamen - Innovativ uthållig energiteknik|
+| 9963                      ||Teknologie masterexamen - Integrerad produktdesign|
+| 13450                     ||Teknologie masterexamen - Internetteknik|
+| 9882                      ||Teknologie masterexamen - Kemiteknik för energi och miljö|
+| 9939                      ||Teknologie masterexamen - Kommunikationssystem|
+| 9930                      ||Teknologie masterexamen - Konstruktion och realisering av IT-produkter och -system|
+| 9979                      ||Teknologie masterexamen - Kärnenergiteknik|
+| 10001                     ||Teknologie masterexamen - Ljus, design och hälsa|
+| 9883                      ||Teknologie masterexamen - Makromolekylära material|
+| 9980                      ||Teknologie masterexamen - Marina system|
+| 9984                      ||Teknologie masterexamen - Marinteknik|
+| 9896                      ||Teknologie masterexamen - Maskininlärning|
+| 9981                      ||Teknologie masterexamen - Matematik|
+| 9885                      ||Teknologie masterexamen - Material och sensorsystem för miljötekniska tillämpningar|
+| 11254                     ||Teknologie masterexamen - Materialteknik|
+| 9897                      ||Teknologie masterexamen - Media management|
+| 10002                     ||Teknologie masterexamen - Medicinsk bildbehandling|
+| 9874                      ||Teknologie masterexamen - Medicinsk bioteknologi|
+| 10003                     ||Teknologie masterexamen - Medicinsk teknik|
+| 9898                      ||Teknologie masterexamen - Medieteknik|
+| 9863                      ||Teknologie masterexamen - Miljöteknik och hållbar infrastruktur|
+| 9969                      ||Teknologie masterexamen - Miljövänliga energisystem|
+| 9884                      ||Teknologie masterexamen - Molekylär vetenskap och teknik|
+| 9899                      ||Teknologie masterexamen - Människa-datorinteraktion|
+| 9931                      ||Teknologie masterexamen - Nanoteknik|
+| 9911                      ||Teknologie masterexamen - Nätverkstjänster och system|
+| 9932                      ||Teknologie masterexamen - Programvaruteknik för distribuerade system|
+| 13400                     ||Teknologie masterexamen - Samhällsplanering|
+| 9902                      ||Teknologie masterexamen - Systembiologi|
+| 9933                      ||Teknologie masterexamen - Systemkonstruktion på kisel|
+| 9912                      ||Teknologie masterexamen - Systemteknik och robotik|
+| 9937                      ||Teknologie masterexamen - Säker och mobil kommunikation|
+| 9934                      ||Teknologie masterexamen - Teknik för interaktiva system|
+| 9964                      ||Teknologie masterexamen - Teknik och hållbar utveckling|
+| 9968                      ||Teknologie masterexamen - Teknik och ledning för energi- och miljösystem|
+| 9935                      ||Teknologie masterexamen - Teknik och ledning för informationssystem|
+| 9983                      ||Teknologie masterexamen - Teknisk fysik|
+| 9865                      ||Teknologie masterexamen - Teknisk infrastruktur|
+| 9965                      ||Teknologie masterexamen - Teknisk materialvetenskap|
+| 9982                      ||Teknologie masterexamen - Teknisk mekanik|
+| 9900                      ||Teknologie masterexamen - Tekniska beräkningar|
+| 23002                     ||Teknologie masterexamen - Tillämpad matematik och beräkningsmatematik|
+| 21652                     ||Teknologie masterexamen - Transport och geoinformatik|
+| 9866                      ||Teknologie masterexamen - Transportsystem|
+| 9913                      ||Teknologie masterexamen - Trådlösa system|
+| 13401                     ||Teknologie masterexamen - Urban planering och design|
+| 28050                     ||Teknologie masterexamen - Urbana studier|
+| 9867                      ||Teknologie masterexamen - Vattensystemteknik|
+| 9557                      ||Z - Skolan för arkitektur och samhällsbyggnad (ABE)|
+| 9852                      ||Skolan för arkitektur och samhällsbyggnad (ABE) - Civilingengörsexamen|
+| 29550                     ||Övriga utbildningsprogram|
+| 30301                     ||Kompletterande pedagogisk utbildning för ämneslärarexamen i matematik, naturvetenskap och teknik för forskarutbildade|
+| 30300                     ||Kompletterande pedagogisk utbildning|
+| 29551                     ||Ämneslärarutbildning med inriktning mot teknik, årskurs 7-9|
 
 Course<sub>n</sub>: Subject/Course
 -------------------------
