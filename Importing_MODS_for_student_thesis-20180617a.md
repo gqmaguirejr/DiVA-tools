@@ -481,21 +481,14 @@ indicates that this name is the name of one of the authors (aut) of the
 publication. The code "aut" is from the U. S. Library of Congress, MARC
 Code List for Relators: Term Sequence[^2].
 
-\<name type=\"personal\" authority=\"kth\" xlink:href=\"u1qpyuu7\"\>
-
-\<namePart type=\"family\"\>Besharat\</namePart\>
-
-\<namePart type=\"given\"\>Shiva\</namePart\>
-
-\<role\>
-
-\<roleTerm authority=\"marcrelator\" type=\"code\"\>aut\</roleTerm\>
-
-\</role\>
-
-\<affiliation\>KTH, Radio Systems Laboratory (RS Lab)\</affiliation\>
-
-\</name\>
+    \<name type=\"personal\" authority=\"kth\" xlink:href=\"u1qpyuu7\"\>
+      \<namePart type=\"family\"\>Besharat\</namePart\>
+      \<namePart type=\"given\"\>Shiva\</namePart\>
+      \<role\>
+        \<roleTerm authority=\"marcrelator\" type=\"code\"\>aut\</roleTerm\>
+      \</role\>
+      \<affiliation\>KTH, Radio Systems Laboratory (RS Lab)\</affiliation\>
+    \</name\>
 
 Note that the attribute of \<name\> is type=\"personal\" indicating that
 this is the name of a person. While the attribute authority=\"kth\"
@@ -525,12 +518,12 @@ type=\"code\"\>ths\</roleTerm\> as "ths" stands for "Thesis advisor".
 Additionally, there is a name part whose attribute indicates that this
 is the termsOfAddress (i.e., the title of the person):
 
-\<namePart type=\"termsOfAddress\"\>Associate Professor\</namePart\>
+    \<namePart type=\"termsOfAddress\"\>Associate Professor\</namePart\>
 
 Additionally, there is a \<description\> that provides the user's ORCID
 identifier:
 
-\<description\>orcid.org=0000-0002-4226-9652\</description\>
+    \<description\>orcid.org=0000-0002-4226-9652\</description\>
 
 The resulting information about the adviser following the import is
 shown in Figure 2
@@ -548,23 +541,15 @@ The publisher has the role code "pbl". Note that in this case the
 namePart elements are the successive levels of the organization from KTH
 down to the unit level:
 
-\<name\>
-
-\<namePart\>KTH\</namePart\>
-
-\<namePart\>EECS\</namePart\>
-
-\<namePart\>CoS\</namePart\>
-
-\<namePart\>RSlab\</namePart\>
-
-\<role\>
-
-\<roleTerm authority=\"marcrelator\" type=\"code\"\>pbl\</roleTerm\>
-
-\</role\>
-
-\</name\>
+    \<name\>
+      \<namePart\>KTH\</namePart\>
+      \<namePart\>EECS\</namePart\>
+      \<namePart\>CoS\</namePart\>
+      \<namePart\>RSlab\</namePart\>
+      \<role\>
+        \<roleTerm authority=\"marcrelator\" type=\"code\"\>pbl\</roleTerm\>
+      \</role\>
+    \</name\>
 
 Examiner<sub>n</sub>: \<name ...\>
 =========================
@@ -572,7 +557,7 @@ Examiner<sub>n</sub>: \<name ...\>
 This element is similar to that for the adviser, except that we know the
 role of this person is as examiner (mon = Monitor), from:
 
-\<roleTerm type=\"code\" authority=\"marcrelator\"\>mon\</roleTerm\>
+    \<roleTerm type=\"code\" authority=\"marcrelator\"\>mon\</roleTerm\>
 
 The resulting Graphical user interface (GUI) view of the examiner,
 following import is shown in
@@ -591,24 +576,16 @@ that is the publisher, based upon the type=\"corporate\". In this case
 the authority is authority=\"kth\", hence xlink value is assigned by KTH
 (the value \"879654\" is the code for the school of EECS .. RSLab).
 
-\<name type=\"corporate\" xlink:href=\"879654\"\>
-
-\<namePart\>KTH\</namePart\>
-
-\<namePart\>Skolan för elektroteknik och datavetenskap
+    \<name type=\"corporate\" xlink:href=\"879654\"\>
+      \<namePart\>KTH\</namePart\>
+      \<namePart\>Skolan för elektroteknik och datavetenskap
 (EECS)\</namePart\>
-
-\<namePart\>Kommunikationssystem, CoS\</namePart\>
-
-\<namePart\>Radio Systems Laboratory (RS Lab)\</namePart\>
-
-\<role\>
-
-\<roleTerm type=\"code\" authority=\"marcrelator\"\>pbl\</roleTerm\>
-
-\</role\>
-
-\</name\>
+      \<namePart\>Kommunikationssystem, CoS\</namePart\>
+      \<namePart\>Radio Systems Laboratory (RS Lab)\</namePart\>
+      \<role\>
+        \<roleTerm type=\"code\" authority=\"marcrelator\"\>pbl\</roleTerm\>
+      \</role\>
+    \</name\>
 
 A list of the codes for the different parts of KTH are listed in Table
 2.
@@ -720,23 +697,15 @@ Title and subtitle<sub>n</sub>: \<titleInfo ...\>
 This element specifies the \<title\> and \<subtitle\> and the attribute
 "lang" indicates the language of the element's value.
 
-\<titleInfo lang=\"eng\"\>
-
-\<title\>Connecting Silos\</title\>
-
-\<subTitle\>Automation system for thesis processing in Canvas and
+    \<titleInfo lang=\"eng\"\>
+      \<title\>Connecting Silos\</title\>
+      \<subTitle\>Automation system for thesis processing in Canvas and
 DiVA\</subTitle\>
-
-\</titleInfo\>
-
-\<titleInfo type=\"alternative\" lang=\"swe\"\>
-
-\<title\>Anslutande silor\</title\>
-
-\<subTitle\>Automatiseringssystem för avhandling i Canvas och
-DiVA\</subTitle\>
-
-\</titleInfo\>
+    \</titleInfo\>
+    \<titleInfo type=\"alternative\" lang=\"swe\"\>
+      \<title\>Anslutande silor\</title\>
+      \<subTitle\>Automatiseringssystem för avhandling i Canvas och DiVA\</subTitle\>
+    \</titleInfo\>
 
 The GUI view of the title(s) and subtitle(s) after import are shown in
 Figure 4
@@ -752,33 +721,20 @@ Keywords<sub>n</sub>: \<subject ...\>
 Using a \<subject\> element containing \<topic\> elements one can
 specify keywords for a publication, in this case:
 
-\<subject lang=\"eng\"\>
-
-\<topic\>RESTful APIs\</topic\>
-
-\<topic\>Canvas\</topic\>
-
-\<topic\> DiVA\</topic\>
-
-\<topic\> Calendars\</topic\>
-
-\<topic\> data mining\</topic\>
-
-\</subject\>
-
-\<subject lang=\"swe\"\>
-
-\<topic\>RESTful APIs\</topic\>
-
-\<topic\>Canvas\</topic\>
-
-\<topic\>DiVA\</topic\>
-
-\<topic\>kalendrar\</topic\>
-
-\<topic\>data mining\</topic\>
-
-\</subject\>
+    \<subject lang=\"eng\"\>
+      \<topic\>RESTful APIs\</topic\>
+      \<topic\>Canvas\</topic\>
+      \<topic\> DiVA\</topic\>
+      \<topic\> Calendars\</topic\>
+      \<topic\> data mining\</topic\>
+    \</subject\>
+    \<subject lang=\"swe\"\>
+      \<topic\>RESTful APIs\</topic\>
+      \<topic\>Canvas\</topic\>
+      \<topic\>DiVA\</topic\>
+      \<topic\>kalendrar\</topic\>
+      \<topic\>data mining\</topic\>
+    \</subject\>
 
 The results of importing the above keywords in English and Swedish are
 shown in Figure 5.
@@ -791,11 +747,9 @@ height="2.2619050743657043in"}
 Abstract<sub>n</sub>: \<abstract ...\>
 =============================
 
-\<abstract lang=\"eng\"\>As the era of digitalization dawns, the need to
-integrate separate silos...\</abstract\>
+    \<abstract lang=\"eng\"\>As the era of digitalization dawns, the need to integrate separate silos...\</abstract\>
 
-\<abstract lang=\"swe\"\>N&\#228;r digitaliseringens tid uppst&\#229;r,
-s&\#229; blir behovet av ...\</abstract\>
+    \<abstract lang=\"swe\"\>N&\#228;r digitaliseringens tid uppst&\#229;r, s&\#229; blir behovet av ...\</abstract\>
 
 The results of importing the above keywords in English and Swedish are
 shown in Figure 6.
@@ -819,8 +773,7 @@ type=\"level\"...\> is used. The language used seems to always be
 Swedish and the values that are used are shown in Table 3. An example
 is:
 
-\<note type=\"level\" lang=\"swe\"\>Självständigt arbete på grundnivå
-(högskoleexamen)\</note\>
+    \<note type=\"level\" lang=\"swe\"\>Självständigt arbete på grundnivå (högskoleexamen)\</note\>
 
 []{#_Ref516946297 .anchor}Table : Degree levels (The values are from the
 Javascript file: ImportForm.jsf.)
@@ -885,14 +838,10 @@ degree project is recorded using a \<subject authority=\"kth\" ...\>
 element. As the authority is KTH, the XLINK uses a KTH specific
 numerical code. An example of such an entry is:
 
-\<subject lang=\"eng\" authority=\"kth\" xlink:href=\"9925\"\>
-
-\<topic\>Bachelor of Science - Information and Communication
-Technology\</topic\>
-
-\<genre\>Educational program\</genre\>
-
-\</subject\>
+    \<subject lang=\"eng\" authority=\"kth\" xlink:href=\"9925\"\>
+      \<topic\>Bachelor of Science - Information and Communication Technology\</topic\>
+      \<genre\>Educational program\</genre\>
+    \</subject\>
 
 []{#_Toc517019654 .anchor}Table : KTH's Educational programs for degree
 project (The values are from the Javascript file: ImportForm.jsf.)
@@ -1051,21 +1000,14 @@ their degree project is recorded using a \<subject authority=\"kth\"
 ...\> element. As the authority is KTH, the XLINK uses a KTH specific
 numerical code. An example of such an entry is:
 
-\<subject lang=\"eng\" xlink:href=\"10329\"\>
-
-\<topic\>Information and Communication Technology\</topic\>
-
-\<genre\>Subject/course\</genre\>
-
-\</subject\>
-
-\<subject lang=\"swe\" xlink:href=\"10329\"\>
-
-\<topic\>Informations- och kommunikationsteknik\</topic\>
-
-\<genre\>Subject/course\</genre\>
-
-\</subject\>
+    \<subject lang=\"eng\" xlink:href=\"10329\"\>
+      \<topic\>Information and Communication Technology\</topic\>
+      \<genre\>Subject/course\</genre\>
+    \</subject\>
+    \<subject lang=\"swe\" xlink:href=\"10329\"\>
+      \<topic\>Informations- och kommunikationsteknik\</topic\>
+      \<genre\>Subject/course\</genre\>
+    \</subject\>
 
 []{#_Toc517019655 .anchor}Table : Subjects/courses for a degree project
 and their codes for KTH (The values are from the Javascript file:
@@ -1335,26 +1277,16 @@ Universitetskanslersämbetet, UKÄ) and Statistiska centralbyrån
 Uppdaterad augusti 2016\
 <http://www.scb.se/contentassets/10054f2ef27c437884e8cde0d38b9cc4/standard-for-svensk-indelning--av-forskningsamnen-2011-uppdaterad-aug-2016.pdf>
 
-\<subject lang=\"eng\" authority=\"hsv\" xlink:href=\"20203\"\>
-
-\<topic\>Engineering and Technology\</topic\>
-
-\<topic\>Electrical Engineering, Electronic Engineering, Information
-Engineering\</topic\>
-
-\<topic\>Communication Systems\</topic\>
-
-\</subject\>
-
-\<subject lang=\"swe\" authority=\"hsv\" xlink:href=\"20203\"\>
-
-\<topic\>Teknik och teknologier\</topic\>
-
-\<topic\>Elektroteknik och elektronik\</topic\>
-
-\<topic\>Kommunikationssystem\</topic\>
-
-\</subject\>
+    \<subject lang=\"eng\" authority=\"hsv\" xlink:href=\"20203\"\>
+      \<topic\>Engineering and Technology\</topic\>
+      \<topic\>Electrical Engineering, Electronic Engineering, Information Engineering\</topic\>
+      \<topic\>Communication Systems\</topic\>
+    \</subject\>
+    \<subject lang=\"swe\" authority=\"hsv\" xlink:href=\"20203\"\>
+      \<topic\>Teknik och teknologier\</topic\>
+      \<topic\>Elektroteknik och elektronik\</topic\>
+      \<topic\>Kommunikationssystem\</topic\>
+    \</subject\>
 
 ![](Importing_MODS_for_student_thesis-20180617a-image5.png){width="6.032122703412074in"
 height="1.0595231846019249in"}
@@ -1849,12 +1781,9 @@ Note that the language used for the defense is specified as a \<language
 letter code for a language according to ISO639-2 \<languageTerm
 authority=\"iso639-2b\"\> - in this case "eng" means "English".
 
-\<language objectPart=\"defence\"\>
-
-\<languageTerm type=\"code\"
-authority=\"iso639-2b\"\>eng\</languageTerm\>
-
-\</language\>
+    \<language objectPart=\"defence\"\>
+      \<languageTerm type=\"code\" authority=\"iso639-2b\"\>eng\</languageTerm\>
+    \</language\>
 
 Defense venue<sub>n</sub>
 ----------------
@@ -1873,13 +1802,10 @@ The \<originInfo\> element specified both the date that the document was
 published (see the year in Figure 10) and the date and time of the oral
 presentation (defense) (see the Date in Figure 9).
 
-\<originInfo\>
-
-\<dateIssued\>2018\</dateIssued\>
-
-\<dateOther type=\"defence\"\>2018-06-13T10:00:00\</dateOther\>
-
-\</originInfo\>
+    \<originInfo\>
+      \<dateIssued\>2018\</dateIssued\>
+      \<dateOther type=\"defence\"\>2018-06-13T10:00:00\</dateOther\>
+    \</originInfo\>
 
 ![](Importing_MODS_for_student_thesis-20180617a-image3.png){width="5.854902668416448in"
 height="2.10119094488189in"}
@@ -1893,11 +1819,9 @@ The physical description of the book is described in the
 \<physicalDescription\> element and within this the number of pages are
 in the \<extent\> element. An example is:
 
-\<physicalDescription\>
-
-\<extent\>xiii,120\</extent\>
-
-\</physicalDescription\>
+    \<physicalDescription\>
+      \<extent\>xiii,120\</extent\>
+    \</physicalDescription\>
 
 See the "Number of Pages" in Figure 10.
 
@@ -1914,19 +1838,13 @@ university). Note that the local identifier indicates the \<titleInfo\>.
 The values of the local identifier are shown in xxx. Note that the
 format of the issue number is "year: number". An example is:
 
-\<relatedItem type=\"series\"\>
-
-\<titleInfo\>
-
-\<title\>TRITA-EECS-EX\</title\>
-
-\</titleInfo\>
-
-\<identifier type=\"local\"\>16855\</identifier\>
-
-\<identifier type=\"issue number\"\>2018:164\</identifier\>
-
-\</relatedItem\>
+    \<relatedItem type=\"series\"\>
+      \<titleInfo\>
+        \<title\>TRITA-EECS-EX\</title\>
+      \</titleInfo\>
+      \<identifier type=\"local\"\>16855\</identifier\>
+      \<identifier type=\"issue number\"\>2018:164\</identifier\>
+    \</relatedItem\>
 
 When imported into DiVA the result is shown in Figure 11.
 
