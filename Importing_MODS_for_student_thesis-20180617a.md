@@ -178,8 +178,8 @@ contents of MODS elements actually exist in the file.)
 
 | **Logical block**    | **MODS element**     | **Description** |
 |----------------------|----------------------|----------------------|
-| Start of collection  | \<modsCollection     | A collection of |
-|                      | xmlns=\"http://www.loc.gov/mods/v3\"     | \<mods\> elements. |
+| Start of collection  | \<modsCollection     | A collection of \<mods\> elements.|
+|                      | xmlns=\"http://www.loc.gov/mods/v3\"     | |
 |                      | xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" | |
 |                      | xsi:schemaLocation=\"http://www.loc.gov/mods/v3 | |
 |                      | http://www.loc.gov/standards/mods/v3/mods-3-2.xsd\"\> | |
@@ -192,159 +192,103 @@ contents of MODS elements actually exist in the file.)
 |                      | http://www.loc.gov/standards/mods/v3/mods-3-2.xsd\"\> | |
 |---|---|---|
 | Genre<sub>n</sub>             | \<genre              | This element         |
-|                      | authority=\"diva\"   | identifies that the  |
-|                      | type=\"public        | item is a student    |
-|                      | ationTypeCode\"\>stu | thesis.              |
-|                      | dentThesis\</genre\> |                      |
-|                      |                      | Note that there are  |
-|                      | \<genre              | versions in English, |
-|                      | authority=\"diva\"   | Swedish, and         |
-|                      | lang=\"swe\"         | Norwegian.           |
-|                      | type=\"publicationTy |                      |
-|                      | pe\"\>Studentuppsats |                      |
-|                      | (Exam                |                      |
-|                      | ensarbete)\</genre\> |                      |
-|                      |                      |                      |
+|                      | authority=\"diva\"   | identifies that the item is a student thesis. |
+|                      | type=\"publicationTypeCode\"\>studentThesis\</genre\> | |
+|                      |                      | Note that there are versions in English, Swedish, and Norwegian. |
+|                      | \<genre              | |
+|                      | authority=\"diva\"   |         |
+|                      | lang=\"swe\"         |            |
+|                      | type=\"publicationType\"\>Studentuppsats (Examensarbete)\</genre\> |                      |
 |                      | \<genre              |                      |
 |                      | authority=\"diva\"   |                      |
 |                      | lang=\"eng\"         |                      |
-|                      | type=\"public        |                      |
-|                      | ationType\"\>Student |                      |
-|                      | thesis\</genre\>     |                      |
-|                      |                      |                      |
+|                      | type=\"publicationType\"\>Student thesis\</genre\>     |                      |
 |                      | \<genre              |                      |
 |                      | authority=\"diva\"   |                      |
 |                      | lang=\"nor\"         |                      |
-|                      | typ                  |                      |
-|                      | e=\"publicationType\ |                      |
-|                      | "\>Oppgave\</genre\> |                      |
+|                      | type=\"publicationType\"\>Oppgave\</genre\> |                      |
 |---|---|---|
-| Author<sub>n,1</sub>          | \<name               | First author         |
+| Author<sub>n,1</sub>| \<name               | First author         |
 |                      | type=\"personal\"    |                      |
 |                      | authority=\"kth\"    |                      |
-|                      | xlink                |                      |
-|                      | :href=\"u1qpyuu7\"\> |                      |
+|                      | xlink:href=\"u1qpyuu7\"\> |                      |
 |                      |                      |                      |
 |                      | \<namePart           |                      |
-|                      | type=\"family\"\>B   |                      |
-|                      | esharat\</namePart\> |                      |
+|                      | type=\"family\"\>Besharat\</namePart\> |                      |
 |                      |                      |                      |
 |                      | \<namePart           |                      |
-|                      | type=\"given\"       |                      |
-|                      | \>Shiva\</namePart\> |                      |
+|                      | type=\"given\"\>Shiva\</namePart\> |                      |
 |                      |                      |                      |
 |                      | \<role\>             |                      |
 |                      |                      |                      |
 |                      | \<roleTerm           |                      |
-|                      | autho                |                      |
-|                      | rity=\"marcrelator\" |                      |
-|                      | type=\"code          |                      |
-|                      | \"\>aut\</roleTerm\> |                      |
-|                      |                      |                      |
+|                      | authority=\"marcrelator\" |                      |
+|                      | type=\"code\"\>aut\</roleTerm\> |                      |
 |                      | \</role\>            |                      |
 |                      |                      |                      |
-|                      | \<affiliation\>KTH,  |                      |
-|                      | Radio Systems        |                      |
-|                      | Laboratory (RS       |                      |
-|                      | Lab)\</affiliation\> |                      |
+|                      | \<affiliation\>KTH, Radio Systems Laboratory (RS Lab)\</affiliation\> |                      |
 |                      |                      |                      |
 |                      | \</name\>            |                      |
 |---|---|---|
 | Author<sub>n,2</sub>          | \<name               | Second author        |
 |                      | type=\"personal\"    |                      |
 |                      | authority=\"kth\"    |                      |
-|                      | xlink                |                      |
-|                      | :href=\"u1hr9yuk\"\> |                      |
+|                      | xlink:href=\"u1hr9yuk\"\> |                      |
 |                      |                      |                      |
 |                      | \<namePart           |                      |
-|                      | type=\"famil         |                      |
-|                      | y\"\>Li\</namePart\> |                      |
-|                      |                      |                      |
+|                      | type=\"family\"\>Li\</namePart\> |                      |
 |                      | \<namePart           |                      |
-|                      | type=\"give          |                      |
-|                      | n\"\>Qi\</namePart\> |                      |
+|                      | type=\"given\"\>Qi\</namePart\> |                      |
 |                      |                      |                      |
 |                      | \<role\>             |                      |
-|                      |                      |                      |
 |                      | \<roleTerm           |                      |
-|                      | autho                |                      |
-|                      | rity=\"marcrelator\" |                      |
-|                      | type=\"code          |                      |
-|                      | \"\>aut\</roleTerm\> |                      |
-|                      |                      |                      |
+|                      | authority=\"marcrelator\" |                      |
+|                      | type=\"code\"\>aut\</roleTerm\> |                      |
 |                      | \</role\>            |                      |
 |                      |                      |                      |
-|                      | \<affiliation\>KTH,  |                      |
-|                      | Radio Systems        |                      |
-|                      | Laboratory (RS       |                      |
-|                      | Lab)\</affiliation\> |                      |
+|                      | \<affiliation\>KTH, Radio Systems Laboratory (RS Lab)\</affiliation\> |                      |
 |                      |                      |                      |
 |                      | \</name\>            |                      |
 |---|---|---|
 | Adviser<sub>n,i</sub>         | \<name               | Adviser              |
 |                      | type=\"personal\"    |                      |
 |                      | authority=\"kth\"    |                      |
-|                      | xlink                |                      |
-|                      | :href=\"u1ft3a12\"\> |                      |
+|                      | xlink:href=\"u1ft3a12\"\> |                      |
 |                      |                      |                      |
 |                      | \<namePart           |                      |
-|                      | type                 |                      |
-|                      | =\"family\"\>V&\#228 |                      |
-|                      | ;stberg\</namePart\> |                      |
+|                      | type=\"family\"\>V&\#228;stberg\</namePart\> |                      |
 |                      |                      |                      |
 |                      | \<namePart           |                      |
-|                      | type=\"given\"\      |                      |
-|                      | >Anders\</namePart\> |                      |
+|                      | type=\"given\"\>Anders\</namePart\> |                      |
 |                      |                      |                      |
 |                      | \<namePart           |                      |
-|                      | type=\"termsOf       |                      |
-|                      | Address\"\>Associate |                      |
-|                      | Pr                   |                      |
-|                      | ofessor\</namePart\> |                      |
+|                      | type=\"termsOfAddress\"\>Associate Professor\</namePart\> |                      |
 |                      |                      |                      |
 |                      | \<role\>             |                      |
-|                      |                      |                      |
 |                      | \<roleTerm           |                      |
-|                      | autho                |                      |
-|                      | rity=\"marcrelator\" |                      |
-|                      | type=\"code          |                      |
-|                      | \"\>ths\</roleTerm\> |                      |
-|                      |                      |                      |
+|                      | authority=\"marcrelator\" |                      |
+|                      | type=\"code\"\>ths\</roleTerm\> |                      |
 |                      | \</role\>            |                      |
 |                      |                      |                      |
-|                      | \<affiliation\>KTH,  |                      |
-|                      | Radio Systems        |                      |
-|                      | Laboratory (RS       |                      |
-|                      | Lab)\</affiliation\> |                      |
+|                      | \<affiliation\>KTH, Radio Systems Laboratory (RS Lab)\</affiliation\> |                      |
 |                      |                      |                      |
-|                      | \<description\>orcid |                      |
-|                      | .org=0000-0002-4226- |                      |
-|                      | 9652\</description\> |                      |
+|                      | \<description\>orcid.org=0000-0002-4226-9652\</description\> |                      |
 |                      |                      |                      |
 |                      | \</name\>            |                      |
 |---|---|---|
 | Publisher<sub>n</sub>         | \<name\>             | Publisher            |
 |                      |                      |                      |
-|                      | \<namePa             |                      |
-|                      | rt\>KTH\</namePart\> |                      |
+|                      | \<namePart\>KTH\</namePart\> |                      |
 |                      |                      |                      |
-|                      | \<namePar            |                      |
-|                      | t\>EECS\</namePart\> |                      |
+|                      | \<namePart\>EECS\</namePart\> |                      |
 |                      |                      |                      |
-|                      | \<namePa             |                      |
-|                      | rt\>CoS\</namePart\> |                      |
+|                      | \<namePart\>CoS\</namePart\> |                      |
 |                      |                      |                      |
-|                      | \<namePart           |                      |
-|                      | \>RSlab\</namePart\> |                      |
-|                      |                      |                      |
+|                      | \<namePart\>RSlab\</namePart\> |                      |
 |                      | \<role\>             |                      |
-|                      |                      |                      |
 |                      | \<roleTerm           |                      |
-|                      | autho                |                      |
-|                      | rity=\"marcrelator\" |                      |
-|                      | type=\"code          |                      |
-|                      | \"\>pbl\</roleTerm\> |                      |
-|                      |                      |                      |
+|                      | authority=\"marcrelator\" |                      |
+|                      | type=\"code\"\>pbl\</roleTerm\> |                      |
 |                      | \</role\>            |                      |
 |                      |                      |                      |
 |                      | \</name\>            |                      |
@@ -352,350 +296,168 @@ contents of MODS elements actually exist in the file.)
 | Examiner<sub>n</sub>          | \<name               | Examiner             |
 |                      | type=\"personal\"    |                      |
 |                      | authority=\"kth\"    |                      |
-|                      | xlink                |                      |
-|                      | :href=\"u1d13i2c\"\> |                      |
+|                      | xlink:href=\"u1d13i2c\"\> |                      |
 |                      |                      |                      |
 |                      | \<namePart           |                      |
-|                      | type                 |                      |
-|                      | =\"family\"\>Maguire |                      |
-|                      | Jr.\</namePart\>     |                      |
+|                      | type=\"family\"\>Maguire Jr.\</namePart\>     |                      |
 |                      |                      |                      |
 |                      | \<namePart           |                      |
-|                      | ty                   |                      |
-|                      | pe=\"given\"\>Gerald |                      |
-|                      | Q.\</namePart\>      |                      |
+|                      | type=\"given\"\>Gerald Q.\</namePart\>      |                      |
 |                      |                      |                      |
 |                      | \<namePart           |                      |
-|                      | type=\"              |                      |
-|                      | termsOfAddress\"\>pr |                      |
-|                      | ofessor\</namePart\> |                      |
+|                      | type=\"termsOfAddress\"\>professor\</namePart\> |                      |
 |                      |                      |                      |
 |                      | \<role\>             |                      |
-|                      |                      |                      |
 |                      | \<roleTerm           |                      |
 |                      | type=\"code\"        |                      |
-|                      | aut                  |                      |
-|                      | hority=\"marcrelator |                      |
-|                      | \"\>mon\</roleTerm\> |                      |
-|                      |                      |                      |
+|                      | authority=\"marcrelator\"\>mon\</roleTerm\> |                      |
 |                      | \</role\>            |                      |
 |                      |                      |                      |
 |                      | \<affiliation        |                      |
-|                      | lang=\"eng\"\>KTH,   |                      |
-|                      | Radio Systems        |                      |
-|                      | Laboratory (RS       |                      |
-|                      | Lab)\</affiliation\> |                      |
+|                      | lang=\"eng\"\>KTH, Radio Systems Laboratory (RS Lab)\</affiliation\> |                      |
 |                      |                      |                      |
 |                      | \<affiliation        |                      |
-|                      | lang=\"swe\"\>KTH,   |                      |
-|                      | Radio Systems        |                      |
-|                      | Laboratory (RS       |                      |
-|                      | Lab)\</affiliation\> |                      |
+|                      | lang=\"swe\"\>KTH, Radio Systems Laboratory (RS Lab)\</affiliation\> |                      |
 |                      |                      |                      |
-|                      | \<description\>orcid |                      |
-|                      | .org=0000-0002-6066- |                      |
-|                      | 746X\</description\> |                      |
-|                      |                      |                      |
+|                      | \<description\>orcid.org=0000-0002-6066-746X\</description\> |                      |
 |                      | \</name\>            |                      |
 |---|---|---|
 | PublisherCorp        | \<name               |                      |
 |                      | type=\"corporate\"   |                      |
 |                      | authority=\"kth\"    |                      |
-|                      | xli                  |                      |
-|                      | nk:href=\"879654\"\> |                      |
+|                      | xlink:href=\"879654\"\> |                      |
 |                      |                      |                      |
-|                      | \<namePa             |                      |
-|                      | rt\>KTH\</namePart\> |                      |
-|                      |                      |                      |
-|                      | \<namePart\>Skolan   |                      |
-|                      | för elektroteknik    |                      |
-|                      | och datavetenskap    |                      |
-|                      | (EECS)\</namePart\>  |                      |
-|                      |                      |                      |
-|                      | \<namePart\>K        |                      |
-|                      | ommunikationssystem, |                      |
-|                      | CoS\</namePart\>     |                      |
-|                      |                      |                      |
-|                      | \<namePart\>Radio    |                      |
-|                      | Systems Laboratory   |                      |
-|                      | (RS                  |                      |
-|                      | Lab)\</namePart\>    |                      |
+|                      | \<namePart\>KTH\</namePart\> |                      |
+|                      | \<namePart\>Skolan för elektroteknik och datavetenskap (EECS)\</namePart\>  |                      |
+|                      | \<namePart\>Kommunikationssystem, CoS\</namePart\>     |                      |
+|                      | \<namePart\>Radio Systems Laboratory (RS Lab)\</namePart\>    |                      |
 |                      |                      |                      |
 |                      | \<role\>             |                      |
-|                      |                      |                      |
 |                      | \<roleTerm           |                      |
 |                      | type=\"code\"        |                      |
-|                      | aut                  |                      |
-|                      | hority=\"marcrelator |                      |
-|                      | \"\>pbl\</roleTerm\> |                      |
-|                      |                      |                      |
+|                      | authority=\"marcrelator\"\>pbl\</roleTerm\> |                      |
 |                      | \</role\>            |                      |
-|                      |                      |                      |
 |                      | \</name\>            |                      |
 |---|---|---|
 | Title and            | \<titleInfo          | Title and subtitle   |
-| subtitle<sub>n</sub>          | lang=\"eng\"\>       |                      |
-|                      |                      |                      |
-|                      | \<title\>Connecting  |                      |
-|                      | Silos\</title\>      |                      |
-|                      |                      |                      |
-|                      | \<                   |                      |
-|                      | subTitle\>Automation |                      |
-|                      | system for thesis    |                      |
-|                      | processing in\       |                      |
-|                      | Canvas and           |                      |
-|                      | DiVA\</subTitle\>    |                      |
-|                      |                      |                      |
+| subtitle<sub>n</sub> | lang=\"eng\"\>       |                      |
+|                      | \<title\>Connecting Silos\</title\>      |                      |
+|                      | \<subTitle\>Automation system for thesis processing in Canvas and DiVA\</subTitle\>    |                      |
 |                      | \</titleInfo\>       |                      |
 |                      |                      |                      |
 |                      | \<titleInfo          |                      |
 |                      | type=\"alternative\" |                      |
 |                      | lang=\"swe\"\>       |                      |
-|                      |                      |                      |
-|                      | \<title\>Anslutande  |                      |
-|                      | silor\</title\>      |                      |
-|                      |                      |                      |
-|                      | \<subTitle\>A        |                      |
-|                      | utomatiseringssystem |                      |
-|                      | för avhandling i     |                      |
-|                      | Canvas\              |                      |
-|                      | och                  |                      |
-|                      | DiVA\</subTitle\>    |                      |
-|                      |                      |                      |
+|                      | \<title\>Anslutande silor\</title\>      |                      |
+|                      | \<subTitle\>Automatiseringssystem för avhandling i Canvas och DiVA\</subTitle\>    |                      |
 |                      | \</titleInfo\>       |                      |
 |---|---|---|
-| Keywords<sub>n</sub>          | \<subject            | Keyword(s)           |
+| Keywords<sub>n</sub> | \<subject            | Keyword(s)           |
 |                      | lang=\"eng\"\>       |                      |
-|                      |                      |                      |
-|                      | \<topic\>RESTful     |                      |
-|                      | APIs\</topic\>       |                      |
-|                      |                      |                      |
-|                      | \<top                |                      |
-|                      | ic\>Canvas\</topic\> |                      |
-|                      |                      |                      |
-|                      | \<topic\>            |                      |
-|                      | DiVA\</topic\>       |                      |
-|                      |                      |                      |
-|                      | \<topic\>            |                      |
-|                      | Calendars\</topic\>  |                      |
-|                      |                      |                      |
-|                      | \<topic\> data       |                      |
-|                      | mining\</topic\>     |                      |
-|                      |                      |                      |
+|                      | \<topic\>RESTful APIs\</topic\>       |                      |
+|                      | \<topic\>Canvas\</topic\> |                      |
+|                      | \<topic\>DiVA\</topic\>       |                      |
+|                      | \<topic\>Calendars\</topic\>  |                      |
+|                      | \<topic\> data mining\</topic\>     |                      |
 |                      | \</subject\>         |                      |
 |                      |                      |                      |
 |                      | \<subject            |                      |
 |                      | lang=\"swe\"\>       |                      |
-|                      |                      |                      |
-|                      | \<topic\>RESTful     |                      |
-|                      | APIs\</topic\>       |                      |
-|                      |                      |                      |
-|                      | \<top                |                      |
-|                      | ic\>Canvas\</topic\> |                      |
-|                      |                      |                      |
-|                      | \<t                  |                      |
-|                      | opic\>DiVA\</topic\> |                      |
-|                      |                      |                      |
-|                      | \<topic\             |                      |
-|                      | >kalendrar\</topic\> |                      |
-|                      |                      |                      |
-|                      | \<topic\>data        |                      |
-|                      | mining\</topic\>     |                      |
-|                      |                      |                      |
+|                      | \<topic\>RESTful APIs\</topic\>       |                      |
+|                      | \<topic\>Canvas\</topic\> |                      |
+|                      | \<topic\>DiVA\</topic\> |                      |
+|                      | \<topic\>kalendrar\</topic\> |                      |
+|                      | \<topic\>data mining\</topic\>     |                      |
 |                      | \</subject\>         |                      |
 |---|---|---|
-| Abstract<sub>n</sub>          | \<abstract           | Abstract(s)          |
+| Abstract<sub>n</sub> | \<abstract           | Abstract(s)          |
 |                      | lang=\"eng\"\>As the |                      |
-|                      | era of               |                      |
-|                      | digitalization       |                      |
-|                      | dawns, the need to   |                      |
-|                      | integrate separate   |                      |
-|                      | s                    |                      |
-|                      | ilos...\</abstract\> |                      |
+|                      | era of digitalization dawns, the need to   |                      |
+|                      | integrate separate silos...\</abstract\> |                      |
 |                      |                      |                      |
 |                      | \<abstract           |                      |
-|                      | lan                  |                      |
-|                      | g=\"swe\"\>N&\#228;r |                      |
-|                      | digitaliseringens    |                      |
-|                      | tid uppst&\#229;r,   |                      |
-|                      | s&\#229; blir        |                      |
-|                      | behovet av           |                      |
-|                      | ...\</abstract\>     |                      |
+|                      | lang=\"swe\"\>N&\#228;r digitaliseringens tid uppst&\#229;r,   |                      |
+|                      | s&\#229; blir behovet av ...\</abstract\>     |                      |
 |---|---|---|
-| Level<sub>n</sub>             | \<note               | Level                |
+| Level<sub>n</sub>| \<note               | Level                |
 |                      | type=\"level\"       |                      |
-|                      | lang=\"              |                      |
-|                      | swe\"\>Självständigt |                      |
-|                      | arbete på grundnivå  |                      |
-|                      | (högs                |                      |
-|                      | koleexamen)\</note\> |                      |
+|                      | lang=\"swe\"\>Självständigt arbete på grundnivå (högskoleexamen)\</note\> |                      |
 |---|---|---|
-| Credits<sub>n</sub>           | \<note               | Number of credits    |
-|                      | type=\               |                      |
-|                      | "universityCredits\" |                      |
-|                      | lang=\"swe\"\>10     |                      |
-|                      | poäng / 15           |                      |
-|                      | hp\</note\>          |                      |
+| Credits<sub>n</sub> | \<note               | Number of credits    |
+|                      | type=\"universityCredits\" |                      |
+|                      | lang=\"swe\"\>10 poäng / 15 hp\</note\>          |                      |
 |---|---|---|
-| Program<sub>n</sub>           | \<subject            | Program of study     |
-|                      | lang=\"eng\"         |                      |
+| Program<sub>n</sub> | \<subject            | Program of study     |
+|                      | lang=\"eng\"         ||
 |                      | authority=\"kth\"    |                      |
-|                      | x                    |                      |
-|                      | link:href=\"9925\"\> |                      |
-|                      |                      |                      |
-|                      | \<topic\>Bachelor of |                      |
-|                      | Science -            |                      |
-|                      | Information and      |                      |
-|                      | Communication        |                      |
-|                      | Technology\</topic\> |                      |
-|                      |                      |                      |
-|                      | \<genre\>Educational |                      |
-|                      | program\</genre\>    |                      |
-|                      |                      |                      |
+|                      | xlink:href=\"9925\"\> |                      |
+|                      | \<topic\>Bachelor of Science - Information and Communication Technology\</topic\> |                      |
+|                      | \<genre\>Educational program\</genre\>    |                      |
 |                      | \</subject\>         |                      |
 |---|---|---|
-| Course<sub>n</sub>            | \<subject            | Specific subject or  |
+| Course<sub>n</sub> | \<subject            | Specific subject or  |
 |                      | lang=\"eng\"         | course               |
-|                      | xl                   |                      |
-|                      | ink:href=\"10329\"\> |                      |
-|                      |                      |                      |
-|                      | \<topic\>Information |                      |
-|                      | and Communication    |                      |
-|                      | Technology\</topic\> |                      |
-|                      |                      |                      |
-|                      | \<genre\>Subj        |                      |
-|                      | ect/course\</genre\> |                      |
-|                      |                      |                      |
+|                      | xlink:href=\"10329\"\> |                      |
+|                      | \<topic\>Information and Communication Technology\</topic\> |                      |
+|                      | \<genre\>Subject/course\</genre\> |                      |
 |                      | \</subject\>         |                      |
 |                      |                      |                      |
 |                      | \<subject            |                      |
 |                      | lang=\"swe\"         |                      |
-|                      | xl                   |                      |
-|                      | ink:href=\"10329\"\> |                      |
-|                      |                      |                      |
-|                      | \<                   |                      |
-|                      | topic\>Informations- |                      |
-|                      | och                  |                      |
-|                      | kommunikat           |                      |
-|                      | ionsteknik\</topic\> |                      |
-|                      |                      |                      |
-|                      | \<genre\>Subj        |                      |
-|                      | ect/course\</genre\> |                      |
-|                      |                      |                      |
+|                      | xlink:href=\"10329\"\> |                      |
+|                      | \<topic\>Informations- och kommunikationsteknik\</topic\> |                      |
+|                      | \<genre\>Subject/course\</genre\> |                      |
 |                      | \</subject\>         |                      |
 |---|---|---|
-| National subject     | \<subject            | National subject     |
-| category<sub>n</sub>          | lang=\"eng\"         | category             |
+| National subject     | \<subject            | National subject category |
+| category<sub>n</sub> | lang=\"eng\"         |              |
 |                      | authority=\"hsv\"    |                      |
-|                      | xl                   |                      |
-|                      | ink:href=\"20203\"\> |                      |
-|                      |                      |                      |
-|                      | \<topic\>Engineering |                      |
-|                      | and                  |                      |
-|                      | Technology\</topic\> |                      |
-|                      |                      |                      |
-|                      | \<topic\>Electrical  |                      |
-|                      | Engineering,         |                      |
-|                      | Electronic           |                      |
-|                      | Engineering,         |                      |
-|                      | Information          |                      |
-|                      | E                    |                      |
-|                      | ngineering\</topic\> |                      |
-|                      |                      |                      |
-|                      | \<                   |                      |
-|                      | topic\>Communication |                      |
-|                      | Systems\</topic\>    |                      |
-|                      |                      |                      |
+|                      | xlink:href=\"20203\"\> |                      |
+|                      | \<topic\>Engineering and Technology\</topic\> |                      |
+|                      | \<topic\>Communication Systems\</topic\>    |                      |
 |                      | \</subject\>         |                      |
 |                      |                      |                      |
 |                      | \<subject            |                      |
 |                      | lang=\"swe\"         |                      |
 |                      | authority=\"hsv\"    |                      |
-|                      | xl                   |                      |
-|                      | ink:href=\"20203\"\> |                      |
-|                      |                      |                      |
-|                      | \<topic\>Teknik och  |                      |
-|                      | t                    |                      |
-|                      | eknologier\</topic\> |                      |
-|                      |                      |                      |
-|                      | \<                   |                      |
-|                      | topic\>Elektroteknik |                      |
-|                      | och                  |                      |
-|                      | elektronik\</topic\> |                      |
-|                      |                      |                      |
-|                      | \<topic\>Kommunikat  |                      |
-|                      | ionssystem\</topic\> |                      |
-|                      |                      |                      |
+|                      | xlink:href=\"20203\"\> |                      |
+|                      | \<topic\>Teknik och teknologier\</topic\> |                      |
+|                      | \<topic\>Elektroteknik och elektronik\</topic\> |                      |
+|                      | \<topic\>Kommunikationssystem\</topic\> |                      |
 |                      | \</subject\>         |                      |
 |---|---|---|
-| Cooperation note<sub>n</sub>  | \<note               | External Cooperation |
-|                      | type=\"cooperat      |                      |
-|                      | ion\"\>Unimplemented |                      |
-|                      | in Import to DiVA,   |                      |
-|                      | NAB\</note\>         |                      |
+| Cooperation note<sub>n</sub> | \<note               | External Cooperation |
+|                      | type=\"cooperation\"\>Unimplemented in Import to DiVA, NAB\</note\>         |                      |
 |---|---|---|
-| Defense language<sub>n</sub>  | \<language           | Oral presentation    |
-|                      | obje                 | information          |
-|                      | ctPart=\"defence\"\> |                      |
-|                      |                      |                      |
+| Defense language<sub>n</sub> | \<language           | Oral presentation information |
+|                      | objectPart=\"defence\"\> |                      |
 |                      | \<languageTerm       |                      |
 |                      | type=\"code\"        |                      |
-|                      | autho                |                      |
-|                      | rity=\"iso639-2b\"\> |                      |
-|                      | eng\</languageTerm\> |                      |
-|                      |                      |                      |
+|                      | authority=\"iso639-2b\"\>eng\</languageTerm\> |                      |
 |                      | \</language\>        |                      |
 |---|---|---|
-| Defense venue<sub>n</sub>     | \<note               |                      |
-|                      | typ                  |                      |
-|                      | e=\"venue\"\>Seminar |                      |
-|                      | room Grimeton at     |                      |
-|                      | CoS, Electrum -      |                      |
-|                      | elevator B - 4th     |                      |
-|                      | floor -              |                      |
-|                      | Isafjordsgatan 22,   |                      |
-|                      | Kista\</note\>       |                      |
+| Defense venue<sub>n</sub>| \<note               |                      |
+|                      | type=\"venue\"\>Seminar room Grimeton at CoS, Electrum - elevator B - 4th floor - Isafjordsgatan 22, Kista\</note\>       |                      |
 |---|---|---|
-| Origin<sub>n</sub>            | \<originInfo\>       | Dates of thesis      |
-|                      |                      |                      |
-|                      | \<dateIssued\        |                      |
-|                      | >2018\</dateIssued\> |                      |
-|                      |                      |                      |
+| Origin<sub>n</sub> | \<originInfo\>       | Dates of thesis      |
+|                      | \<dateIssued\>2018\</dateIssued\> |                      |
 |                      | \<dateOther          |                      |
-|                      | type=\"defe          |                      |
-|                      | nce\"\>2018-06-13T10 |                      |
-|                      | :00:00\</dateOther\> |                      |
-|                      |                      |                      |
+|                      | type=\"defence\"\>2018-06-13T10:00:00\</dateOther\> |                      |
 |                      | \</originInfo\>      |                      |
 |---|---|---|
-|                    | \<p                  | Physical attributes  |
-| physicalDescription<sub>n</sub> | hysicalDescription\> | of the publication   |
-|                      |                      | -- such as number of |
-|                      | \<extent\            | pages                |
-|                      | >xiii,120\</extent\> |                      |
-|                      |                      |                      |
-|                      | \</p                 |                      |
-|                      | hysicalDescription\> |                      |
+|| physicalDescription<sub>n</sub>| \<physicalDescription\>| Physical attributes of the publication -- such as number of pages |
+|                      | \<extent\>xiii,120\</extent\> |                      |
+|                      | \</physicalDescription\> |                      |
 |---|---|---|
-| relatedItem<sub>n</sub>       | \<relatedItem        | Series and number of |
-|                      | type=\"series\"\>    | the publication      |
-|                      |                      |                      |
+| relatedItem<sub>n</sub>| \<relatedItem        | Series and number of the publication |
+|                      | type=\"series\"\>    | |
 |                      | \<titleInfo\>        |                      |
-|                      |                      |                      |
-|                      | \<title\>TRI         |                      |
-|                      | TA-EECS-EX\</title\> |                      |
-|                      |                      |                      |
+|                      | \<title\>TRITA-EECS-EX\</title\> |                      |
 |                      | \</titleInfo\>       |                      |
-|                      |                      |                      |
 |                      | \<identifier         |                      |
-|                      | type=\"local\"\>     |                      |
-|                      | 16855\</identifier\> |                      |
-|                      |                      |                      |
+|                      | type=\"local\"\>16855\</identifier\> |                      |
 |                      | \<identifier         |                      |
-|                      | type=\"issue         |                      |
-|                      | number\"\>201        |                      |
-|                      | 8:164\</identifier\> |                      |
-|                      |                      |                      |
+|                      | type=\"issue number\"\>2018:164\</identifier\> |                      |
 |                      | \</relatedItem\>     |                      |
 |---|---|---|
 | end Item             | \</mods\>            | End of an item       |
