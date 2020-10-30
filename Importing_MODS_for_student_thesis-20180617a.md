@@ -27,72 +27,61 @@ Generating the MODS file via software is the topic of another project.
 
 [List of Tables](#list-of-tables)
 
-[1 Example MODS file 1](#example-mods-file)
+[Example MODS file 1](#example-mods-file)
 
-[2 Start of collection: \<modsCollection ...\>
-5](#start-of-collection-modscollection)
+[Start of collection: \<modsCollection ...\>](#start-of-collection-modscollection)
 
-[3 Item<sub>n</sub>: \<mods ...\> 5](#itemn-mods)
+[Item<sub>n</sub>: \<mods ...\>](#itemn-mods)
 
-[4 Genre<sub>n</sub>: \<genre ...\> 5](#genren-genre)
+[Genre<sub>n</sub>: \<genre ...\>](#genren-genre)
 
-[5 Author<sub>n,i</sub>: \<name ...\> 5](#authorni-name)
+[Author<sub>n,i</sub>: \<name ...\>](#authorni-name)
 
-[6 Adviser<sub>n,i</sub>: \<name ...\> 7](#adviserni-name)
+[Adviser<sub>n,i</sub>: \<name ...\>](#adviserni-name)
 
-[7 Publisher<sub>n</sub> : \<name ...\> 7](#publishern-name)
+[Publisher<sub>n</sub> : \<name ...\>](#publishern-name)
 
-[8 Examiner<sub>n</sub>: \<name ...\> 8](#examinern-name)
+[Examiner<sub>n</sub>: \<name ...\>](#examinern-name)
 
-[9 PublisherCorp: \<name ...\> 8](#publishercorp-name)
+[PublisherCorp: \<name ...\>](#publishercorp-name)
 
-[10 Title and subtitle<sub>n</sub>: \<titleInfo ...\>
-13](#title-and-subtitlen-titleinfo)
+[Title and subtitle<sub>n</sub>: \<titleInfo ...\>](#title-and-subtitlen-titleinfo)
 
-[11 Keywords<sub>n</sub>: \<subject ...\> 14](#keywordsn-subject)
+[Keywords<sub>n</sub>: \<subject ...\>](#keywordsn-subject)
 
-[12 Abstract<sub>n</sub>: \<abstract ...\> 15](#abstractn-abstract)
+[Abstract<sub>n</sub>: \<abstract ...\>](#abstractn-abstract)
 
-[13 Degree related information 16](#degree-related-information)
+[Degree related information](#degree-related-information)
 
-[13.1 Level<sub>n</sub>: which degree is this thesis for?
-16](#leveln-which-degree-is-this-thesis-for)
+[Level<sub>n</sub>: which degree is this thesis for?](#leveln-which-degree-is-this-thesis-for)
 
-[13.2 Credits<sub>n</sub> :Number of university creidt for degree project
-16](#creditsn-number-of-university-creidt-for-degree-project)
+[Credits<sub>n</sub> :Number of university creidt for degree project](#creditsn-number-of-university-creidt-for-degree-project)
 
-[13.3 Program: Educational program 17](#program-educational-program)
+[Program: Educational program](#program-educational-program)
 
-[13.4 Course<sub>n</sub>: Subject/Course 20](#coursen-subjectcourse)
+[Course<sub>n</sub>: Subject/Course](#coursen-subjectcourse)
 
-[13.5 The results of all of these degree related elements
-25](#the-results-of-all-of-these-degree-related-elements)
+[The results of all of these degree related elements](#the-results-of-all-of-these-degree-related-elements)
 
-[14 National subject category<sub>n</sub>: Using HSV codes
-26](#national-subject-categoryn-using-hsv-codes)
+[National subject category<sub>n</sub>: Using HSV codes](#national-subject-categoryn-using-hsv-codes)
 
-[15 Oral presentation (defense) related information
-41](#oral-presentation-defense-related-information)
+[Oral presentation (defense) related information](#oral-presentation-defense-related-information)
 
-[15.1 Defense language<sub>n</sub> 41](#defense-languagen)
+[Defense language<sub>n</sub>](#defense-languagen)
 
-[15.2 Defense venue<sub>n</sub> 41](#defense-venuen)
+[Defense venue<sub>n</sub>](#defense-venuen)
 
-[15.3 Origin<sub>n</sub> 41](#originn)
+[Origin<sub>n</sub>](#originn)
 
-[16 physicalDescription<sub>n</sub> : The physical description of the book
-42](#physicaldescriptionn-the-physical-description-of-the-book)
+[physicalDescription<sub>n</sub> : The physical description of the book](#physicaldescriptionn-the-physical-description-of-the-book)
 
-[17 relatedItem<sub>n</sub>: Information about the series and the number of the
-publication within this series
-42](#relateditemn-information-about-the-series-and-the-number-of-the-publication-within-this-series)
+[relatedItem<sub>n</sub>: Information about the series and the number of the publication within this series](#relateditemn-information-about-the-series-and-the-number-of-the-publication-within-this-series)
 
-[18 Limitations 47](#limitations)
+[Limitations](#limitations)
 
-[19 Cooperation note<sub>n</sub>: External collaboration (cannot be imported)
-47](#cooperation-noten-external-collaboration-cannot-be-imported)
+[Cooperation note<sub>n</sub>: External collaboration (cannot be imported)](#cooperation-noten-external-collaboration-cannot-be-imported)
 
-[20 How much is KTH specific? 47](#how-much-is-kth-specific)
+[How much is KTH specific? 47](#how-much-is-kth-specific)
 
 # List of Figures
 ===============
@@ -439,7 +428,7 @@ contents of MODS elements actually exist in the file.)
 
 
 
-Start of collection: \<modsCollection ...\>
+# Start of collection: \<modsCollection ...\>
 ===========================================
 
 This element contains a number of \<mods\> elements. The tag also
@@ -449,7 +438,7 @@ introduces which XML name space is used
 the scheme is located (xsi:schemaLocation=\"[http://www.loc.gov/mods/v3
 http://www.loc.gov/standards/mods/v3/mods-3-2.xsd](http://www.loc.gov/mods/v3%20http:/www.loc.gov/standards/mods/v3/mods-3-2.xsd)\"\>).
 
-Item<sub>n</sub>: \<mods ...\>
+## Item<sub>n</sub>: \<mods ...\>
 =====================
 
 This is a single MODS item. The attributes indicate the version
@@ -460,7 +449,7 @@ xmlns:xsi=<http://www.w3.org/2001/XMLSchema-instance>), and location of
 the schema ( xsi:schemaLocation=\"[http://www.loc.gov/mods/v3
 http://www.loc.gov/standards/mods/v3/mods-3-2.xsd](http://www.loc.gov/mods/v3%20http://www.loc.gov/standards/mods/v3/mods-3-2.xsd)\")
 
-Genre<sub>n</sub>: \<genre ...\>
+## Genre<sub>n</sub>: \<genre ...\>
 =======================
 
 This identifies the genre of the item, in this case it is a
@@ -471,7 +460,7 @@ this item is a DiVA publication code (\"publicationTypeCode\"). The list
 of publication codes can be found at:
 <https://wiki.epc.ub.uu.se/display/divainfo/Publikationstyp>
 
-Author<sub>n,i</sub>: \<name ...\>
+## Author<sub>n,i</sub>: \<name ...\>
 =========================
 
 This \<name\> element identifies the author of the thesis (there may be
@@ -509,7 +498,7 @@ height="8.25625in"}
 []{#_Ref516929296 .anchor}Figure : DiVA Graphical user interface (GUI)
 for entering information about the authors
 
-Adviser<sub>n,i</sub>: \<name ...\>
+## Adviser<sub>n,i</sub>: \<name ...\>
 ==========================
 
 This element gives information about the adviser. We know that this is
@@ -534,7 +523,7 @@ height="3.710702099737533in"}
 []{#_Ref516930337 .anchor}Figure : Graphical user interface (GUI) for
 entering information about the adviser(s)
 
-Publisher<sub>n</sub> : \<name ...\>
+## Publisher<sub>n</sub> : \<name ...\>
 ===========================
 
 The publisher has the role code "pbl". Note that in this case the
@@ -551,7 +540,7 @@ down to the unit level:
       \</role\>
     \</name\>
 
-Examiner<sub>n</sub>: \<name ...\>
+## Examiner<sub>n</sub>: \<name ...\>
 =========================
 
 This element is similar to that for the adviser, except that we know the
@@ -568,7 +557,7 @@ height="3.928571741032371in"}
 []{#_Toc517019603 .anchor}Figure : Graphical user interface (GUI) for
 entering information about the examiner
 
-PublisherCorp: \<name ...\>
+## PublisherCorp: \<name ...\>
 ===========================
 
 This \<name\> element specifies information about the corporate entity
@@ -691,7 +680,7 @@ each of these other nameParts, except for code 177.
 |879653|Skolan för elektroteknik och datavetenskap (EECS)|Kommunikationssystem, CoS|Optical Network Laboratory (ON Lab)|
 |879654|Skolan för elektroteknik och datavetenskap (EECS)|Kommunikationssystem, CoS|Radio Systems Laboratory (RS Lab)|
 
-Title and subtitle<sub>n</sub>: \<titleInfo ...\>
+## Title and subtitle<sub>n</sub>: \<titleInfo ...\>
 ========================================
 
 This element specifies the \<title\> and \<subtitle\> and the attribute
@@ -715,7 +704,7 @@ height="5.196428258967629in"}
 
 []{#_Ref516930850 .anchor}Figure : GUI view of the titles and subtitles
 
-Keywords<sub>n</sub>: \<subject ...\>
+## Keywords<sub>n</sub>: \<subject ...\>
 ============================
 
 Using a \<subject\> element containing \<topic\> elements one can
@@ -744,7 +733,7 @@ height="2.2619050743657043in"}
 
 []{#_Ref516932162 .anchor}Figure : GUI view of keywords
 
-Abstract<sub>n</sub>: \<abstract ...\>
+## Abstract<sub>n</sub>: \<abstract ...\>
 =============================
 
     \<abstract lang=\"eng\"\>As the era of digitalization dawns, the need to integrate separate silos...\</abstract\>
@@ -759,7 +748,7 @@ height="4.348485345581802in"}
 
 []{#_Ref516932246 .anchor}Figure : GUI view of abstracts
 
-Degree related information
+## Degree related information
 ==========================
 
 There are a number of different elements that contain information about
@@ -1268,7 +1257,7 @@ height="2.5833333333333335in"}
 []{#_Ref516948292 .anchor}Figure : DivA GUI view of Degree related
 elements
 
-National subject category<sub>n</sub>: Using HSV codes
+## National subject category<sub>n</sub>: Using HSV codes
 =============================================
 
 These categories are defined in Högskoleverket (HSV) (now
@@ -1765,14 +1754,14 @@ forskningsämnen 2011 (Updated August 2016)
 | 60599 | Övrig annan humaniora | Other Humanities not elsewhere specified |
 
 
-Oral presentation (defense) related information
+## Oral presentation (defense) related information
 ===============================================
 
 The oral presentation (defense) has a date (see Origin), language
 (Defense language), and place where the oral presentation took place
 (Defense venue).
 
-Defense language<sub>n</sub>
+## Defense language<sub>n</sub>
 -------------------
 
 Note that the language used for the defense is specified as a \<language
@@ -1812,7 +1801,7 @@ height="2.10119094488189in"}
 
 []{#_Ref516955483 .anchor}Figure : Presentation related information
 
-physicalDescription<sub>n</sub>: The physical description of the book
+## physicalDescription<sub>n</sub>: The physical description of the book
 =============================================================
 
 The physical description of the book is described in the
@@ -1830,7 +1819,7 @@ height="0.9047615923009624in"}
 
 []{#_Ref516955462 .anchor}Figure : DiVA GUI view of other information
 
-relatedItem<sub>n</sub>: Information about the series and the number of the publication within this series
+## relatedItem<sub>n</sub>: Information about the series and the number of the publication within this series
 =================================================================================================
 
 These are published in different series (by school within the
@@ -2070,21 +2059,20 @@ theses (The values are from the Javascript file: ImportForm.jsf.)
 |8551|TSC-BT|
 |6351|TSC-MT|
 
-Limitations
+# Limitations
 ===========
 
 Note that DiVA sets a limit of 200 publications worth of meta data per
 file.
 
-Cooperation note<sub>n</sub>: External collaboration (cannot be imported)
+## Cooperation note<sub>n</sub>: External collaboration (cannot be imported)
 ================================================================
 
 There are some MODS elements that can be in the file, but will not be
 imported due to their not being implemented in DiVA for import. An
 example of such an element is:
 
-\<note type=\"cooperation\"\>Unimplemented in Import to DiVA,
-NAB\</note\>
+    \<note type=\"cooperation\"\>Unimplemented in Import to DiVA, NAB\</note\>
 
 However, the above element type can be exported from DiVA, as per
 <https://wiki.epc.ub.uu.se/display/divainfo/Externt+samarbete> To enter
@@ -2096,7 +2084,7 @@ height="1.577380796150481in"}
 []{#_Ref516956710 .anchor}Figure : GUI for entering information about an
 external collaboration
 
-How much is KTH specific?
+# How much is KTH specific?
 =========================
 
 When the authority=\"kth\", then the values are specific to the DiVA
@@ -2111,6 +2099,7 @@ or <https://kth.diva-portal.org/dream/import/importForm.jsf>.
 For the KTH organizational codes I looked at the MODS entries for EECS
 publications published in 2018 (before June).
 
+# Notes
 [^1]: [www.loc.gov/standards/mods/](http://www.loc.gov/standards/mods/)
 
 [^2]: <https://www.loc.gov/marc/relators/relaterm.html>
