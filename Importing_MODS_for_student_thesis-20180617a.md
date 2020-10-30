@@ -85,7 +85,7 @@ Generating the MODS file via software is the topic of another project.
 # List of Figures
 
 [Figure 1: DiVA Graphical user interface (GUI) for entering information
-about the authors 6](#_Ref516929296)
+about the authors 6](#figure1)
 
 [Figure 2: Graphical user interface (GUI) for entering information about
 the adviser(s) 7](#_Ref516930337)
@@ -484,12 +484,13 @@ affiliation that has been specified (in this case "Radio Systems
 Laboratory (RS Lab)". The result of the two authors' \<name\> elements
 is shown in Figure 1.
 
+<a href="#figure1>
 <figure>
   <img src="Importing_MODS_for_student_thesis-20180617a-image1.png" alt="my alt text"/>
   <figcaption>Figure 1: DiVA Graphical user interface (GUI)
 for entering information about the authors</figcaption>
 </figure>
-
+</a>
 ===========
 
 ![](Importing_MODS_for_student_thesis-20180617a-image1.png){width="6.26875in"
