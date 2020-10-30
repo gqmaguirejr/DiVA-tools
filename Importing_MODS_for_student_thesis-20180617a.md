@@ -172,13 +172,12 @@ cycle student thesis with two authors (Note that the logical are simply
 labels for the purpose of annotation in this explanation and *only* the
 contents of MODS elements actually exist in the file.)
 
-```
-+----------------------+----------------------+----------------------+
-|                      | **MODS file          |                      |
-|                      | contents**           |                      |
-+======================+======================+======================+
+
+
+                        **MODS file contents**
+
 | **Logical block**    | **MODS element**     | **Description**      |
-+----------------------+----------------------+----------------------+
+|----------------------|----------------------|----------------------|
 | Start of collection  | \<modsCollection     | A collection of      |
 |                      | xmlns=\"http://w     | \<mods\> elements.   |
 |                      | ww.loc.gov/mods/v3\" |                      |
@@ -900,12 +899,12 @@ A list of the codes for the different parts of KTH are listed in Table
 publisher-- Note that there is a \<namePart\>KTH\</namePart\> before
 each of these other nameParts, excpet for code 177.
 
-  Code     School                                                    Department                                       Unit
-  -------- --------------------------------------------------------- ------------------------------------------------ ----------------------------------------------------------------------
-  177      \<namePart\>KTH\</namePart\>                                                                               
-  5850     Skolan för arkitektur och samhällsbyggnad (ABE)                                                            
-  5921     Centra                                                    Science for Life Laboratory, SciLifeLab          
-  5922     Skolan för bioteknologi (BIO)                             Centra                                           Centrum för Bioprocessteknik, CBioPT
+|  Code   |  School                                                 |   Department                                   |    Unit|
+| --------|---------------------------------------------------------|------------------------------------------------|----------------------------------------------------------------------|
+| 177     | \<namePart\>KTH\</namePart\>|
+|  5850   | Skolan för arkitektur och samhällsbyggnad (ABE)|
+|  5921|Centra                                                   | Science for Life Laboratory, SciLifeLab          |
+| 5922     |Skolan för bioteknologi (BIO)                            | Centra                                          | Centrum för Bioprocessteknik, CBioPT|
   5934     Skolan för kemivetenskap (CHE)                            Kemiteknik                                       Tillämpad elektrokemi
   5956     Skolan för datavetenskap och kommunikation (CSC)                                                           
   5958     Skolan för datavetenskap och kommunikation (CSC)          Beräkningsbiologi, CB                            
