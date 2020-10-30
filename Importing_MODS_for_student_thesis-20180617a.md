@@ -176,37 +176,20 @@ contents of MODS elements actually exist in the file.)
 
                         **MODS file contents**
 
-| **Logical block**    | **MODS element**     | **Description**      |
+| **Logical block**    | **MODS element**     | **Description** |
 |----------------------|----------------------|----------------------|
-| Start of collection  | \<modsCollection     | A collection of      |
-|                      | xmlns=\"http://w     | \<mods\> elements.   |
-|                      | ww.loc.gov/mods/v3\" |                      |
-|                      | xmlns:xsi=\"htt      |                      |
-|                      | p://www.w3.org/2001/ |                      |
-|                      | XMLSchema-instance\" |                      |
-|                      | xsi:sch              |                      |
-|                      | emaLocation=\"http:/ |                      |
-|                      | /www.loc.gov/mods/v3 |                      |
-|                      | http://www.lo        |                      |
-|                      | c.gov/standards/mods |                      |
-|                      | /v3/mods-3-2.xsd\"\> |                      |
+| Start of collection  | \<modsCollection     | A collection of |
+|                      | xmlns=\"http://www.loc.gov/mods/v3\"     | \<mods\> elements. |
+|                      | xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" | |
+|                      | xsi:schemaLocation=\"http://www.loc.gov/mods/v3 | |
+|                      | http://www.loc.gov/standards/mods/v3/mods-3-2.xsd\"\> | |
 |---|---|---|
-| Start of an Item     | \<mods               | Start of a           |
-|                      | version=\"3.2\"      | bibliographic item   |
-|                      | xmlns=\"http://w     |                      |
-|                      | ww.loc.gov/mods/v3\" |                      |
-|                      | xmln                 |                      |
-|                      | s:xlink=\"http://www |                      |
-|                      | .w3.org/1999/xlink\" |                      |
-|                      | xmlns:xsi=\"htt      |                      |
-|                      | p://www.w3.org/2001/ |                      |
-|                      | XMLSchema-instance\" |                      |
-|                      | xsi:sch              |                      |
-|                      | emaLocation=\"http:/ |                      |
-|                      | /www.loc.gov/mods/v3 |                      |
-|                      | http://www.lo        |                      |
-|                      | c.gov/standards/mods |                      |
-|                      | /v3/mods-3-2.xsd\"\> |                      |
+| Start of an Item     | \<mods version=\"3.2\"| Start of a bibliographic item |
+|                      | xmlns=\"http://www.loc.gov/mods/v3\" | |
+|                      | xmlns:xlink=\"http://www.w3.org/1999/xlink\" | |
+|                      | xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" | |
+|                      | xsi:schemaLocation=\"http://www.loc.gov/mods/v3 | |
+|                      | http://www.loc.gov/standards/mods/v3/mods-3-2.xsd\"\> | |
 |---|---|---|
 | Genre<sub>n</sub>             | \<genre              | This element         |
 |                      | authority=\"diva\"   | identifies that the  |
