@@ -172,7 +172,7 @@ cycle student thesis with two authors (Note that the logical are simply
 labels for the purpose of annotation in this explanation and *only* the
 contents of MODS elements actually exist in the file.)
 
-|---                   | ---                  | ---                  |
+```
 +----------------------+----------------------+----------------------+
 |                      | **MODS file          |                      |
 |                      | contents**           |                      |
@@ -720,6 +720,7 @@ contents of MODS elements actually exist in the file.)
 +----------------------+----------------------+----------------------+
 | end collection       | \</modsCollection\>  | End of collection    |
 +----------------------+----------------------+----------------------+
+```
 
 Start of collection: \<modsCollection ...\>
 ===========================================
