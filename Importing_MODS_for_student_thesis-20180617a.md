@@ -495,7 +495,9 @@ for entering information about the authors</figcaption>
 ![](Importing_MODS_for_student_thesis-20180617a-image1.png){width="6.26875in"
 height="8.25625in"}
 
-[]{#figure1} Figure 1: DiVA Graphical user interface (GUI)
+# test 123
+
+![Importing_MODS_for_student_thesis-20180617a-image1.png]{#figure1} Figure 1: DiVA Graphical user interface (GUI)
 for entering information about the authors
 
 ## Adviser<sub>n,i</sub>: \<name ...\>
