@@ -486,8 +486,7 @@ is shown in Figure 1.
 
 <figure>
   <img src="Importing_MODS_for_student_thesis-20180617a-image1.png" alt="my alt text"/>
-  <figcaption><a href="#figure1>
-Figure 1</a>: DiVA Graphical user interface (GUI)
+  <figcaption>Figure 1: DiVA Graphical user interface (GUI)
 for entering information about the authors</figcaption>
 </figure>
 
@@ -496,7 +495,7 @@ for entering information about the authors</figcaption>
 ![](Importing_MODS_for_student_thesis-20180617a-image1.png){width="6.26875in"
 height="8.25625in"}
 
-[]{#_Ref516929296 .anchor}Figure : DiVA Graphical user interface (GUI)
+[]{#figure1} Figure 1: DiVA Graphical user interface (GUI)
 for entering information about the authors
 
 ## Adviser<sub>n,i</sub>: \<name ...\>
