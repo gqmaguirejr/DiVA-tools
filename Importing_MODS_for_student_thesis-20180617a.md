@@ -1740,7 +1740,6 @@ forskningsämnen 2011 (Updated August 2016)
 | 10407| Teoretisk kemi| Theoretical Chemistry|
 |----------------------|----------------------|----------------------|
 | | Häri ingår\:| Including\:|
-|----------------------|----------------------|----------------------|
 | | kvantkemi| Quantum Chemistry|
 |----------------------|----------------------|----------------------|
 | 10499| Annan kemi| Other Chemistry Topics|
@@ -1827,968 +1826,613 @@ forskningsämnen 2011 (Updated August 2016)
 |----------------------|----------------------|----------------------|
 | 201| Samhällsbyggnadsteknik| Civil Engineering|
 |----------------------|----------------------|----------------------|
-| 20101                | Arkitekturteknik     | Architectural        |
-|                      |                      | Engineering          |
+| 20101| Arkitekturteknik     | Architectural Engineering|
 |----------------------|----------------------|----------------------|
-| 20102                | Byggproduktion       | Construction         |
-|                      |                      | Management           |
+| 20102| Byggproduktion| Construction Management|
 |----------------------|----------------------|----------------------|
-| 20103                | Husbyggnad           | Building             |
-|                      |                      | Technologies         |
+| 20103| Husbyggnad| Building Technologies|
 |----------------------|----------------------|----------------------|
-| 20104                | Infrastrukturteknik  | Infrastructure       |
-|                      |                      | Engineering          |
+| 20104| Infrastrukturteknik  | Infrastructure Engineering|
 |----------------------|----------------------|----------------------|
-| 20105                | Transportteknik och  | Transport Systems    |
-|                      | logistik             | and Logistics        |
+| 20105| Transportteknik och logistik  | Transport Systems and Logistics|
 |----------------------|----------------------|----------------------|
-| 20106                | Geoteknik            | Geotechnical         |
-|                      |                      | Engineering          |
+| 20106| Geoteknik| Geotechnical Engineering|
 |----------------------|----------------------|----------------------|
-| 20107                | Vattenteknik         | Water Engineering    |
+| 20107| Vattenteknik| Water Engineering|
 |----------------------|----------------------|----------------------|
-| 20108                | Miljöanalys och      | Environmental        |
-|                      | by                   | Analysis and         |
-|                      | gginformationsteknik | Construction         |
-|                      |                      | Information          |
-|                      |                      | Technology           |
+| 20108| Miljöanalys och bygginformationsteknik| Environmental Analysis and Construction Information Technology|
 |----------------------|----------------------|----------------------|
-| 20199                | Annan                | Other Civil          |
-|                      | sa                   | Engineering          |
-|                      | mhällsbyggnadsteknik |                      |
+| 20199| Annan samhällsbyggnadsteknik| Other Civil Engineering|
 |----------------------|----------------------|----------------------|
-| 202                  | Elektroteknik och    | Electrical           |
-|                      | elektronik,          | Engineering,         |
-|                      |                      | Electronic           |
-|                      |                      | Engineering          |
-|                      |                      | Information          |
-|                      |                      | Engineering          |
+| 202| Elektroteknik och elektronik,   | Electrical Engineering, Electronic Engineering, Information Engineering|
 |----------------------|----------------------|----------------------|
-| 20201                | Robotteknik och      | Robotics             |
-|                      | automation           |                      |
+| 20201| Robotteknik och automation| Robotics|
 |----------------------|----------------------|----------------------|
-| 20202                | Reglerteknik         | Control Engineering  |
+| 20202| Reglerteknik| Control Engineering  |
 |----------------------|----------------------|----------------------|
-| 20203                | Kommunikationssystem | Communication        |
-|                      |                      | Systems              |
+| 20203| Kommunikationssystem | Communication Systems|
 |----------------------|----------------------|----------------------|
-| 20204                | Telekommunikation    | Telecommunications   |
+| 20204| Telekommunikation| Telecommunications|
 |----------------------|----------------------|----------------------|
-| 20205                | Signalbehandling     | Signal Processing    |
+| 20205| Signalbehandling| Signal Processing|
 |----------------------|----------------------|----------------------|
-| 20206                | Datorsystem          | Computer Systems     |
+| 20206| Datorsystem| Computer Systems|
 |----------------------|----------------------|----------------------|
-| 20207                | Inbäddad             | Embedded Systems     |
-|                      | systemteknik         |                      |
+| 20207| Inbäddad systemteknik| Embedded Systems|
 |----------------------|----------------------|----------------------|
-| 20299                | Annan elektroteknik  | Other Electrical     |
-|                      | och elektronik       | Engineering,         |
-|                      |                      | Electronic           |
-|                      |                      | Engineering,         |
-|                      |                      | Information          |
-|                      |                      | Engineering          |
+| 20299| Annan elektroteknik och elektronik  | Other Electrical Engineering, Electronic Engineering, Information Engineering|
 |----------------------|----------------------|----------------------|
-| 203                  | Maskinteknik         | Mechanical           |
-|                      |                      | Engineering          |
+| 203| Maskinteknik| Mechanical Engineering|
 |----------------------|----------------------|----------------------|
-| 20301                | Teknisk mekanik      | Applied Mechanics    |
+| 20301| Teknisk mekanik| Applied Mechanics|
 |----------------------|----------------------|----------------------|
-| 20302                | Rymd- och flygteknik | Aerospace            |
-|                      |                      | Engineering          |
+| 20302| Rymd- och flygteknik | Aerospace Engineering|
 |----------------------|----------------------|----------------------|
-| 20303                | Farkostteknik        | Vehicle Engineering  |
+| 20303| Farkostteknik| Vehicle Engineering  |
 |----------------------|----------------------|----------------------|
-| 20304                | Energiteknik         | Energy Engineering   |
+| 20304| Energiteknik| Energy Engineering   |
 |----------------------|----------------------|----------------------|
-| 20305                | Tillförlitlighets-   | Reliability and      |
-|                      | och kvalitetsteknik  | Maintenance          |
+| 20305| Tillförlitlighets- och kvalitetsteknik| Reliability and Maintenance|
 |----------------------|----------------------|----------------------|
-| 20306                | Strömningsmekanik    | Fluid Mechanics and  |
-|                      | och akustik          | Acoustics            |
+| 20306| Strömningsmekanik och akustikw| Fluid Mechanics and Acoustics|
 |----------------------|----------------------|----------------------|
-| 20307                | Produktionsteknik,   | Production           |
-|                      | arbetsvetenskap och  | Engineering, Human   |
-|                      | ergonomi             | Work Science and     |
-|                      |                      | Ergonomics           |
+| 20307| Produktionsteknik, arbetsvetenskap och ergonomi| Production Engineering, Human Work Science and Ergonomics|
 |----------------------|----------------------|----------------------|
-| 20308                | Tribologi (ytteknik  | Tribology            |
-|                      | omfattande friktion, | (Interacting         |
-|                      | nötning och          | Surfaces including   |
-|                      | smörjning            | Friction,            |
-|                      |                      | Lubrication and      |
-|                      |                      | Wear)                |
+| 20308| Tribologi (ytteknik  omfattande friktion, nötning och smörjning  | Tribology (Interacting Surfaces including Friction, Lubrication and Wear)|
 |----------------------|----------------------|----------------------|
-| 20399                | Annan maskinteknik   | Other Mechanical     |
-|                      |                      | Engineering          |
+| 20399| Annan maskinteknik| Other Mechanical Engineering|
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
+| | Häri ingår\:| Including\:|
+| | logistik| Logistics|
+| | förbränningsteknik   | Combustion Technology|
+| | återvinningsteknik   | Recycling Technology |
+| | Industriell ekonomi  | Industrial engineering and management|
 |----------------------|----------------------|----------------------|
-|                      | logistik             | Logistics            |
+| 204| Kemiteknik| Chemical Engineering |
 |----------------------|----------------------|----------------------|
-|                      | förbränningsteknik   | Combustion           |
-|                      |                      | Technology           |
+| 20401| Kemiska processer    | Chemical Process Engineering|
 |----------------------|----------------------|----------------------|
-|                      | återvinningsteknik   | Recycling Technology |
+| 20402| Korrosionsteknik| Corrosion Engineering|
 |----------------------|----------------------|----------------------|
-|                      | Industriell ekonomi  | Industrial           |
-|                      |                      | engineering and      |
-|                      |                      | management           |
+| 20403| Polymerteknologi| Polymer Technologies |
 |----------------------|----------------------|----------------------|
-| 204                  | Kemiteknik           | Chemical Engineering |
+| 20404| Farmaceutisk synteskemi| Pharmaceutical Chemistry|
 |----------------------|----------------------|----------------------|
-| 20401                | Kemiska processer    | Chemical Process     |
-|                      |                      | Engineering          |
+| 20499| Annan kemiteknik| Other Chemical Engineering|
 |----------------------|----------------------|----------------------|
-| 20402                | Korrosionsteknik     | Corrosion            |
-|                      |                      | Engineering          |
+| 205| Materialteknik| Materials Engineering|
 |----------------------|----------------------|----------------------|
-| 20403                | Polymerteknologi     | Polymer Technologies |
+| 20501| Keramteknik| Ceramics|
 |----------------------|----------------------|----------------------|
-| 20404                | Farmaceutisk         | Pharmaceutical       |
-|                      | synteskemi           | Chemistry            |
+| 20502| Kompositmaterial och -teknik | Composite Science and Engineering|
 |----------------------|----------------------|----------------------|
-| 20499                | Annan kemiteknik     | Other Chemical       |
-|                      |                      | Engineering          |
+| 20503| Pappers-, massa- och fiberteknik | Paper, Pulp and Fiber Technology|
 |----------------------|----------------------|----------------------|
-| 205                  | Materialteknik       | Materials            |
-|                      |                      | Engineering          |
+| 20504| Textil-, gummi- och polymermaterial| Textile, Rubber and Polymeric Materials|
 |----------------------|----------------------|----------------------|
-| 20501                | Keramteknik          | Ceramics             |
+| 20505| Bearbetnings-, yt- och fogningsteknik  | Manufacturing, Surface and Joining Technology|
 |----------------------|----------------------|----------------------|
-| 20502                | Kompositmaterial och | Composite Science    |
-|                      | -teknik              | and Engineering      |
+| 20506| Metallurgi och metalliska material| Metallurgy and Metallic Materials|
 |----------------------|----------------------|----------------------|
-| 20503                | Pappers-, massa- och | Paper, Pulp and      |
-|                      | fiberteknik          | Fiber Technology     |
+| 20599| Annan materialteknik | Other Materials Engineering|
 |----------------------|----------------------|----------------------|
-| 20504                | Textil-, gummi- och  | Textile, Rubber and  |
-|                      | polymermaterial      | Polymeric Materials  |
+| 206| Medicinteknik| Medical Engineering  |
 |----------------------|----------------------|----------------------|
-| 20505                | Bearbetnings-, yt-   | Manufacturing,       |
-|                      | och fogningsteknik   | Surface and Joining  |
-|                      |                      | Technology           |
+| 20601| Medicinsk laboratorie- och mätteknik | Medical Laboratory and Measurements Technologies|
 |----------------------|----------------------|----------------------|
-| 20506                | Metallurgi och       | Metallurgy and       |
-|                      | metalliska material  | Metallic Materials   |
+| 20602 | Medicinsk material- och protesteknik| Medical Materials|
 |----------------------|----------------------|----------------------|
-| 20599                | Annan materialteknik | Other Materials      |
-|                      |                      | Engineering          |
+| 20603| Medicinsk bildbehandling| Medical Image Processing|
 |----------------------|----------------------|----------------------|
-| 206                  | Medicinteknik        | Medical Engineering  |
+| 20604| Medicinsk apparatteknik| Medical Equipment Engineering|
 |----------------------|----------------------|----------------------|
-| 20601                | Medicinsk            | Medical Laboratory   |
-|                      | laboratorie- och     | and Measurements     |
-|                      | mätteknik            | Technologies         |
+| 20605| Medicinsk ergonomi   | Medical Ergonomics|
 |----------------------|----------------------|----------------------|
-| 20602                | Medicinsk material-  | Medical Materials    |
-|                      | och protesteknik     |                      |
+| 20699| Annan medicinteknik  | Other Medical Engineering|
 |----------------------|----------------------|----------------------|
-| 20603                | Medicinsk            | Medical Image        |
-|                      | bildbehandling       | Processing           |
+| 207| Naturresursteknik| Environmental Engineering|
 |----------------------|----------------------|----------------------|
-| 20604                | Medicinsk            | Medical Equipment    |
-|                      | apparatteknik        | Engineering          |
+| 20701| Geofysisk teknik| Geophysical Engineering|
 |----------------------|----------------------|----------------------|
-| 20605                | Medicinsk ergonomi   | Medical Ergonomics   |
+| 20702| Energisystem| Energy Systems|
 |----------------------|----------------------|----------------------|
-| 20699                | Annan medicinteknik  | Other Medical        |
-|                      |                      | Engineering          |
+| 20703| Fjärranalysteknik| Remote Sensing|
 |----------------------|----------------------|----------------------|
-| 207                  | Naturresursteknik    | Environmental        |
-|                      |                      | Engineering          |
+| 20704| Mineral- och gruvteknik| Mineral and Mine Engineering|
 |----------------------|----------------------|----------------------|
-| 20701                | Geofysisk teknik     | Geophysical          |
-|                      |                      | Engineering          |
+| 20705| Marin teknik         | Marine Engineering   |
 |----------------------|----------------------|----------------------|
-| 20702                | Energisystem         | Energy Systems       |
+| 20706| Havs- och vattendragsteknik| Ocean and River Engineering|
 |----------------------|----------------------|----------------------|
-| 20703                | Fjärranalysteknik    | Remote Sensing       |
+| 20707| Miljöledning| Environmental Management|
 |----------------------|----------------------|----------------------|
-| 20704                | Mineral- och         | Mineral and Mine     |
-|                      | gruvteknik           | Engineering          |
+| 20799| Annan naturresursteknik| Other Environmental Engineering|
 |----------------------|----------------------|----------------------|
-| 20705                | Marin teknik         | Marine Engineering   |
+| 208| Miljöbioteknik| Environmental Biotechnology|
 |----------------------|----------------------|----------------------|
-| 20706                | Havs- och            | Ocean and River      |
-|                      | vattendragsteknik    | Engineering          |
+| 20801| Biosanering| Bioremediation|
 |----------------------|----------------------|----------------------|
-| 20707                | Miljöledning         | Environmental        |
-|                      |                      | Management           |
+| 20802| Diagnostisk bioteknologi| Diagnostic Biotechnology|
 |----------------------|----------------------|----------------------|
-| 20799                | Annan                | Other Environmental  |
-|                      | naturresursteknik    | Engineering          |
+| 20803| Vattenbehandling| Water Treatment|
 |----------------------|----------------------|----------------------|
-| 208                  | Miljöbioteknik       | Environmental        |
-|                      |                      | Biotechnology        |
+| 20804| Bioteknisk etik| Bioethics|
 |----------------------|----------------------|----------------------|
-| 20801                | Biosanering          | Bioremediation       |
+| 20899| Annan miljöbioteknik | Other Environmental Biotechnology|
 |----------------------|----------------------|----------------------|
-| 20802                | Diagnostisk          | Diagnostic           |
-|                      | bioteknologi         | Biotechnology        |
+| 209| Industriell bioteknik| Industrial Biotechnology|
 |----------------------|----------------------|----------------------|
-| 20803                | Vattenbehandling     | Water Treatment      |
+| 20901| Bioprocessteknik| Bioprocess Technology|
 |----------------------|----------------------|----------------------|
-| 20804                | Bioteknisk etik      | Bioethics            |
+| 20902| Biokemikalier| Biochemicals |
 |----------------------|----------------------|----------------------|
-| 20899                | Annan miljöbioteknik | Other Environmental  |
-|                      |                      | Biotechnology        |
+| 20903| Biomaterial| Bio Materials|
 |----------------------|----------------------|----------------------|
-| 209                  | Industriell          | Industrial           |
-|                      | bioteknik            | Biotechnology        |
+| 20904| Bioenergi | Bioenergy |
 |----------------------|----------------------|----------------------|
-| 20901                | Bioprocessteknik     | Bioprocess           |
-|                      |                      | Technology           |
+| 20905 | Läkemedelsbioteknik  | Pharmaceutical Biotechnology        |
 |----------------------|----------------------|----------------------|
-| 20902                | Biokemikalier        | Biochemicals         |
+| 20906| Biokatalys och enzymteknik |Biocatalysis and Enzyme Technology|
 |----------------------|----------------------|----------------------|
-| 20903                | Biomaterial          | Bio Materials        |
+| 20907 | Bioteknisk apparatteknik | Bioengineering Equipment |
 |----------------------|----------------------|----------------------|
-| 20904                | Bioenergi            | Bioenergy            |
+| 20908 | Medicinsk bioteknik | Medical Biotechnology |
 |----------------------|----------------------|----------------------|
-| 20905                | Läkemedelsbioteknik  | Pharmaceutical       |
-|                      |                      | Biotechnology        |
+| 20999 | Annan industriell bioteknik | Other Industrial |
 |----------------------|----------------------|----------------------|
-| 20906                | Biokatalys och       | Biocatalysis and     |
-|                      | enzymteknik          | Enzyme Technology    |
+| 210 | Nanoteknik | Nano-technology |
 |----------------------|----------------------|----------------------|
-| 20907                | Bioteknisk           | Bioengineering       |
-|                      | apparatteknik        | Equipment            |
+| 21001 | Nanoteknik | Nano-technology |
 |----------------------|----------------------|----------------------|
-| 20908                | Medicinsk bioteknik  | Medical              |
-|                      |                      | Biotechnology        |
+| 211 | Annan teknik | Other Engineering  and Technologies     |
 |----------------------|----------------------|----------------------|
-| 20999                | Annan industriell    | Other Industrial     |
-|                      | bioteknik            | Biotechnology        |
+| 21101 | Livsmedelsteknik | Food Engineering |
 |----------------------|----------------------|----------------------|
-| 210                  | Nanoteknik           | Nano-technology      |
+| 21102 | Mediateknik | Media Engineering |
 |----------------------|----------------------|----------------------|
-| 21001                | Nanoteknik           | Nano-technology      |
+| 21103 | Interaktionsteknik | Interaction Technologies |
 |----------------------|----------------------|----------------------|
-| 211                  | Annan teknik         | Other Engineering    |
-|                      |                      | and Technologies     |
+| 21199 | Övrig annan teknik | Other Engineering and Technologies not elsewhere Specified  |
 |----------------------|----------------------|----------------------|
-| 21101                | Livsmedelsteknik     | Food Engineering     |
+| **Medicin och hälsovetenskap**|                      |                      |
 |----------------------|----------------------|----------------------|
-| 21102                | Mediateknik          | Media Engineering    |
+| 3| Medicin och hälsovetenskap | Medical and Health Sciences |
 |----------------------|----------------------|----------------------|
-| 21103                | Interaktionsteknik   | Interaction          |
-|                      |                      | Technologies         |
+| 301 | Medicinska och farmaceutiska grundvetenskaper | Basic Medicine |
 |----------------------|----------------------|----------------------|
-| 21199                | Övrig annan teknik   | Other Engineering    |
-|                      |                      | and Technologies not |
-|                      |                      | elsewhere Specified  |
+| 30101 | Farmaceutiska vetenskaper | Pharmaceutical Sciences |
 |----------------------|----------------------|----------------------|
-| **Medicin och        |                      |                      |
-| hälsovetenskap**     |                      |                      |
+| 30102 | Farmakologi och toxikologi | Pharmacology and Toxicology |
 |----------------------|----------------------|----------------------|
-| 3                    | Medicin och          | Medical and Health   |
-|                      | hälsovetenskap       | Sciences             |
+| 30103 | Läkemedelskemi | Medicinal Chemistry  |
 |----------------------|----------------------|----------------------|
-| 301                  | Medicinska och       | Basic Medicine       |
-|                      | farmaceutiska        |                      |
-|                      | grundvetenskaper     |                      |
+| 30104 | Samhällsfarmaci och klinisk farmaci | Social and Clinical Pharmacy |
 |----------------------|----------------------|----------------------|
-| 30101                | Farmaceutiska        | Pharmaceutical       |
-|                      | vetenskaper          | Sciences             |
+| 30105 | Neurovetenskaper | Neurosciences |
 |----------------------|----------------------|----------------------|
-| 30102                | Farmakologi och      | Pharmacology and     |
-|                      | toxikologi           | Toxicology           |
+| 30106 | Fysiologi | Physiology |
 |----------------------|----------------------|----------------------|
-| 30103                | Läkemedelskemi       | Medicinal Chemistry  |
+| 30107 | Medicinsk genetik | Medical Genetics |
 |----------------------|----------------------|----------------------|
-| 30104                | Samhällsfarmaci och  | Social and Clinical  |
-|                      | klinisk farmaci      | Pharmacy             |
+| 30108| Cell- och molekylärbiologi | Cell and Molecular Biology |
 |----------------------|----------------------|----------------------|
-| 30105                | Neurovetenskaper     | Neurosciences        |
+| 30109 | Mikrobiologi inom det medicinska området | Microbiology in the medical area |
 |----------------------|----------------------|----------------------|
-| 30106                | Fysiologi            | Physiology           |
+| 30110| Immunologi inom det  medicinska området  | Immunology in the medical area|
 |----------------------|----------------------|----------------------|
-| 30107                | Medicinsk genetik    | Medical Genetics     |
+| 30199| Andra medicinska och farmaceutiska grundvetenskaper  | Other Basic Medicine |
 |----------------------|----------------------|----------------------|
-| 30108                | Cell- och            | Cell and Molecular   |
-|                      | molekylärbiologi     | Biology              |
+| 302| Klinisk medicin| Clinical Medicine |
 |----------------------|----------------------|----------------------|
-| 30109                | Mikrobiologi inom    | Microbiology in the  |
-|                      | det medicinska       | medical area         |
-|                      | området              |                      |
+| 30201 | Anestesi och intensivvård | Anesthesiology and Intensive Care |
 |----------------------|----------------------|----------------------|
-| 30110                | Immunologi inom det  | Immunology in the    |
-|                      | medicinska området   | medical area         |
+| 30202 | Hematologi | Hematology |
 |----------------------|----------------------|----------------------|
-| 30199                | Andra medicinska och | Other Basic Medicine |
-|                      | farmaceutiska        |                      |
-|                      | grundvetenskaper     |                      |
+| 30203 | Cancer och onkologi  | Cancer and Oncology  |
 |----------------------|----------------------|----------------------|
-| 302                  | Klinisk medicin      | Clinical Medicine    |
+| 30204 | Dermatologi och venereologi | Dermatology and Venereal Diseases |
 |----------------------|----------------------|----------------------|
-| 30201                | Anestesi och         | Anesthesiology and   |
-|                      | intensivvård         | Intensive Care       |
+| 30205 | Endokrinologi och diabetes | Endocrinology and Diabetes |
 |----------------------|----------------------|----------------------|
-| 30202                | Hematologi           | Hematology           |
+| 30206 | Kardiologi | Cardiac and Cardiovascular Systems |
 |----------------------|----------------------|----------------------|
-| 30203                | Cancer och onkologi  | Cancer and Oncology  |
+| 30207 | Neurologi | Neurology |
 |----------------------|----------------------|----------------------|
-| 30204                | Dermatologi och      | Dermatology and      |
-|                      | venereologi          | Venereal Diseases    |
+| 30208 | Radiologi och  bildbehandling | Radiology, Nuclear Medicine and Medical Imaging |
 |----------------------|----------------------|----------------------|
-| 30205                | Endokrinologi och    | Endocrinology and    |
-|                      | diabetes             | Diabetes             |
+| 30209 | Infektionsmedicin | Infectious Medicine |
 |----------------------|----------------------|----------------------|
-| 30206                | Kardiologi           | Cardiac and          |
-|                      |                      | Cardiovascular       |
-|                      |                      | Systems              |
+| 30210 | Reumatologi och inflammation | Rheumatology and Autoimmunity |
 |----------------------|----------------------|----------------------|
-| 30207                | Neurologi            | Neurology            |
+| 30211 | Ortopedi | Orthopaedics |
 |----------------------|----------------------|----------------------|
-| 30208                | Radiologi och        | Radiology, Nuclear   |
-|                      | bildbehandling       | Medicine and Medical |
-|                      |                      | Imaging              |
+| 30212 | Kirurgi | Surgery |
 |----------------------|----------------------|----------------------|
-| 30209                | Infektionsmedicin    | Infectious Medicine  |
+| 30213 | Gastroenterologi | Gastroenterology and Hepatology |
 |----------------------|----------------------|----------------------|
-| 30210                | Reumatologi och      | Rheumatology and     |
-|                      | inflammation         | Autoimmunity         |
+| 30214 | Urologi och  njurmedicin | Urology and Nephrology |
 |----------------------|----------------------|----------------------|
-| 30211                | Ortopedi             | Orthopaedics         |
+| 30215 | Psykiatri | Psychiatry |
 |----------------------|----------------------|----------------------|
-| 30212                | Kirurgi              | Surgery              |
+| 30216 | Odontologi | Dentistry |
 |----------------------|----------------------|----------------------|
-| 30213                | Gastroenterologi     | Gastroenterology and |
-|                      |                      | Hepatology           |
+| 30217 | Oftalmologi | Ophthalmology |
 |----------------------|----------------------|----------------------|
-| 30214                | Urologi och          | Urology and          |
-|                      | njurmedicin          | Nephrology           |
+| 30218 | Oto-rhino-laryngologi | Otorhinolaryngology  |
 |----------------------|----------------------|----------------------|
-| 30215                | Psykiatri            | Psychiatry           |
+| 30219 | Lungmedicin och allergi | Respiratory Medicine and Allergy |
 |----------------------|----------------------|----------------------|
-| 30216                | Odontologi           | Dentistry            |
+| 30220 | Reproduktionsmedicin och gynekologi | Obstetrics, Gynaecology and Reproductive Medicine |
 |----------------------|----------------------|----------------------|
-| 30217                | Oftalmologi          | Ophthalmology        |
+| 30221 | Pediatrik | Pediatrics |
 |----------------------|----------------------|----------------------|
-| 30218                | O                    | Otorhinolaryngology  |
-|                      | to-rhino-laryngologi |                      |
+| 30222 | Geriatrik | Geriatrics |
 |----------------------|----------------------|----------------------|
-| 30219                | Lungmedicin och      | Respiratory Medicine |
-|                      | allergi              | and Allergy          |
+| 30223 | Klinisk laboratoriemedicin| Clinical Laboratory Medicine             |
 |----------------------|----------------------|----------------------|
-| 30220                | Reproduktionsmedicin | Obstetrics,          |
-|                      | och gynekologi       | Gynaecology and      |
-|                      |                      | Reproductive         |
-|                      |                      | Medicine             |
+| 30224 | Allmänmedicin | General Practice |
 |----------------------|----------------------|----------------------|
-| 30221                | Pediatrik            | Pediatrics           |
+| 30299 | Annan klinisk medicin | Other Clinical Medicine |
 |----------------------|----------------------|----------------------|
-| 30222                | Geriatrik            | Geriatrics           |
+| 303 | Hälsovetenskap | Health Sciences |
 |----------------------|----------------------|----------------------|
-| 30223                | Klinisk              | Clinical Laboratory  |
-|                      | laboratoriemedicin   | Medicine             |
+| 30301 | Hälso- och sjukvårdsorganisation, hälsopolitik och hälsoekonomi Health| Care Service and Management, Health Policy and Services and Health Economy   |
 |----------------------|----------------------|----------------------|
-| 30224                | Allmänmedicin        | General Practice     |
+| 30302 | Folkhälsovetenskap, global hälsa, socialmedicin och epidemiologi | Public Health,  Global Health, Social Medicine and Epidemiology|
 |----------------------|----------------------|----------------------|
-| 30299                | Annan klinisk        | Other Clinical       |
-|                      | medicin              | Medicine             |
+
+| 30303| Arbetsmedicin och miljömedicin | Occupational Health and Environmental Health |
 |----------------------|----------------------|----------------------|
-| 303                  | Hälsovetenskap       | Health Sciences      |
+| 30304 | Näringslära | Nutrition and Dietetics |
 |----------------------|----------------------|----------------------|
-| 30301                | Hälso- och           | Care Service and     |
-|                      | sj                   | Management, Health   |
-|                      | ukvårdsorganisation, | Policy and Services  |
-|                      | hälsopolitik och     | and Health Economy   |
-|                      | hälsoekonomi Health  |                      |
+| 30305 | Omvårdnad | Nursing |
 |----------------------|----------------------|----------------------|
-| 30302                | Folkhälsovetenskap,  | Public Health,       |
-|                      | global hälsa,        | Global Health,       |
-|                      | socialmedicin och    | Social Medicine and  |
-|                      | epidemiologi         | Epidemiology         |
+| 30306 | Arbetsterapi | Occupational Therapy |
 |----------------------|----------------------|----------------------|
-| 30303                | Arbetsmedicin och    | Occupational Health  |
-|                      | miljömedicin         | and Environmental    |
-|                      |                      | Health               |
+| 30307 | Sjukgymnastik | Physiotherapy |
 |----------------------|----------------------|----------------------|
-| 30304                | Näringslära          | Nutrition and        |
-|                      |                      | Dietetics            |
+| 30308 | Idrottsvetenskap | Sport and Fitness Sciences |
 |----------------------|----------------------|----------------------|
-| 30305                | Omvårdnad            | Nursing              |
+| 30309 | Beroendelära | Substance Abuse |
 |----------------------|----------------------|----------------------|
-| 30306                | Arbetsterapi         | Occupational Therapy |
+| 30310 | Medicinsk etik | Medical Ethics |
 |----------------------|----------------------|----------------------|
-| 30307                | Sjukgymnastik        | Physiotherapy        |
+| 30399 | Annan hälsovetenskap | Other Health Sciences |
 |----------------------|----------------------|----------------------|
-| 30308                | Idrottsvetenskap     | Sport and Fitness    |
-|                      |                      | Sciences             |
+| 304 | Medicinsk bioteknologi| Medical Biotechnology |
 |----------------------|----------------------|----------------------|
-| 30309                | Beroendelära         | Substance Abuse      |
+| 30401 | Medicinsk bioteknologi (inriktn. mot cellbiologi | Medical Biotechnology (focus on Cell Biology |
+| | (inkl stamcellsbiologi), molekylärbiologi, mikrobiologi, biokemi eller biofarmaci) | (incl. Stem Cell Biology), Molecular Biology, Microbiology, Biochemistry or Biopharmacy) |
 |----------------------|----------------------|----------------------|
-| 30310                | Medicinsk etik       | Medical Ethics       |
+| 30402 | Biomedicinsk laboratori evetenskap/teknologi | Biomedical Laboratory Science/Technology |
 |----------------------|----------------------|----------------------|
-| 30399                | Annan hälsovetenskap | Other Health         |
-|                      |                      | Sciences             |
+| 30403 | Biomaterialvetenskap | Biomaterials Science |
 |----------------------|----------------------|----------------------|
-| 304                  | Medicinsk            | Medical              |
-|                      | bioteknologi         | Biotechnology        |
+| 30499 | Annan medicinsk bioteknologi | Other Medical Biotechnology |
 |----------------------|----------------------|----------------------|
-| 30401                | Medicinsk            | Medical              |
-|                      | bioteknologi         | Biotechnology (focus |
-|                      | (inriktn. mot        | on Cell Biology      |
-|                      | cellbiologi          | (incl. Stem Cell     |
-|                      |                      | Biology), Molecular  |
-|                      | (inkl                | Biology,             |
-|                      | stamcellsbiologi),   | Microbiology,        |
-|                      | molekylärbiologi,    | Biochemistry or      |
-|                      | mikrobiologi,        | Biopharmacy)         |
-|                      |                      |                      |
-|                      | biokemi eller        |                      |
-|                      | biofarmaci)          |                      |
+| 305 | Annan medicin och hälsovetenskap | Other Medical and Health Sciences |
 |----------------------|----------------------|----------------------|
-| 30402                | Biomedicinsk         | Biomedical           |
-|                      | laboratori           | Laboratory           |
-|                      | evetenskap/teknologi | Science/Technology   |
+| 30501 | Rättsmedicin | Forensic Science |
 |----------------------|----------------------|----------------------|
-| 30403                | Biomaterialvetenskap | Biomaterials Science |
+| 30502 | Gerontologi, medicin sk/hälsovetenskaplig inriktning (Samhällsvetenskaplig inriktn.under 50999) | Gerontology, specialising in Medical and Health Sciences  (specialising in Social Sciences to  be 50999) |
 |----------------------|----------------------|----------------------|
-| 30499                | Annan medicinsk      | Other Medical        |
-|                      | bioteknologi         | Biotechnology        |
+| 30599 | Övrig annan medicin och hälsovetenskap | Other Medical and Health Sciences not elsewhere specified |
 |----------------------|----------------------|----------------------|
-| 305                  | Annan medicin och    | Other Medical and    |
-|                      | hälsovetenskap       | Health Sciences      |
+| **Lantbruksvetenskap och veterinärmedicin** |                      |                      |
 |----------------------|----------------------|----------------------|
-| 30501                | Rättsmedicin         | Forensic Science     |
+| 4 | Lantbruksvetenskap  och veterinärmedicin | Agricultural and Veterinary sciences  |
 |----------------------|----------------------|----------------------|
-| 30502                | Gerontologi,         | Gerontology,         |
-|                      | medicin              | specialising in      |
-|                      | sk/hälsovetenskaplig | Medical and Health   |
-|                      | inriktning           | Sciences             |
-|                      | (                    | (specialising in     |
-|                      | Samhällsvetenskaplig | Social Sciences to   |
-|                      | inriktn.under 50999) | be 50999)            |
+| 401 | Lantbruksvetenskap, skogsbruk och fiske | Agriculture, Forestry and Fisheries |
 |----------------------|----------------------|----------------------|
-| 30599                | Övrig annan medicin  | Other Medical and    |
-|                      | och hälsovetenskap   | Health Sciences not  |
-|                      |                      | elsewhere specified  |
+| 40101 | Jordbruksvetenskap | Agricultural Science |
+| | Häri ingår\: | Including\: |
+| | växtproduktion | Plant Production |
+| | genetik | Plant Genetics |
+| | förädling | Plant Breeding |
+| | växtskydd | Plant Protection |
+| | patologi | Plant Pathology |
+| | jordbruksekologi | Agricultural Ecology |
+| | agroteknologi | Agricultural  Technology           |
+| | agrarhistoria | Agricultural History |
 |----------------------|----------------------|----------------------|
-| **Lantbruksvetenskap |                      |                      |
-| och                  |                      |                      |
-| veterinärmedicin**   |                      |                      |
+| 40102 | Trädgårdsv etenskap/hortikultur| Horticulture |
 |----------------------|----------------------|----------------------|
-| 4                    | Lantbruksvetenskap   | Agricultural and     |
-|                      | och veterinärmedicin | Veterinary sciences  |
+| 40103 | Livsmedelsvetenskap | Food Science |
+| | Häri ingår\: | Including\: |
+| | produktkvalitet | Product Quality |
+| | vegetabilier | Vegetables |
+| | mjölk | Milk |
+| | kött | Meat |
+| | fisk | Fish |
 |----------------------|----------------------|----------------------|
-| 401                  | Lantbruksvetenskap,  | Agriculture,         |
-|                      | skogsbruk och fiske  | Forestry and         |
-|                      |                      | Fisheries            |
+| 40104 | Skogsvetenskap | Forest Science |
+| | Häri ingår\: | Including\: |
+| | inventering | Forest Inventory |
+| | planering | Forest Planning |
+| | skötsel | Silviculture |
+| | produktion | Forest Protection |
+| | föryngring | Regeneration |
+| | hushållning | Forest Management |
+| | genetik | Forest Genetics |
+| | mykologi | Forest Mycology |
+| | patologi | Forest Pathology |
+| | skogsteknologi | Forest Technology |
+| | skogshistoria | Forest History |
 |----------------------|----------------------|----------------------|
-| 40101                | Jordbruksvetenskap   | Agricultural Science |
+| 40105 | Trävetenskap | Wood Science |
+| | Häri ingår\: |  Including\: |
+| | träteknologi | Wood Technology |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
+| 40106 | Markvetenskap | Soil Science |
+| | Häri ingår\: | Including\: |
+| | biogeofysik | Biogeophysics |
+| | biogeokemi | Biogeochemistry |
+| | markmikrobiologi | Soil Micobiology |
+| | växt-mark interaktioner| Plant-Soil Interactions |
 |----------------------|----------------------|----------------------|
-|                      | växtproduktion       | Plant Production     |
+| 40107 | Fisk- och akvakulturforskning|  Fish and Aquacultural Science |
+| | Häri ingår\:          | Including\:           |
+| | fiskodling | Fishfarming |
+| | genetik | Fish Genetics |
+| | avel | Fish Breeding |
+| | fiskpopulationsbiologi | Fish Ecology |
+| | fisketologi | Fish Ethology |
 |----------------------|----------------------|----------------------|
-|                      | genetik              | Plant Genetics       |
+| 40108 | Landskapsarkitektur | Landscape Architecture |
+| | Häri ingår\: | Including\: |
+| | planering | Planning |
+| | design | Design |
+| | vård | Management |
 |----------------------|----------------------|----------------------|
-|                      | förädling            | Plant Breeding       |
+| 402 | Husdjursvetenskap | Animal and Dairy Sience |
 |----------------------|----------------------|----------------------|
-|                      | växtskydd            | Plant Protection     |
+| 40201 | Husdjursvetenskap | Animal and Dairy Science |
+| | Häri ingår\: | Including\: |
+| | utfodring och vård | Husbandary |
+| | etologi | Ethology |
+| | genetic och avel | Genetics and Breeding |
+| | husdjurshygien | Animal Hygiene |
+| | nutrition och vård   | Nutrition and Management |
+| | djuretik | Animal Ethics |
 |----------------------|----------------------|----------------------|
-|                      | patologi             | Plant Pathology      |
+| 403 | Veterinärmedicin | Veterinary Science |
 |----------------------|----------------------|----------------------|
-|                      | jordbruksekologi     | Agricultural Ecology |
+| 40301 | Medicinsk biovetenskap | Medical Bioscience |
+| | Häri ingår\: | Including\: |
+| | anatomi | Anatomy |
+| | fysiologi | Physiology |
+| | biokemi | Biochemistry |
 |----------------------|----------------------|----------------------|
-|                      | agroteknologi        | Agricultural         |
-|                      |                      | Technology           |
+| 40302 | Patobiologi | Pathobiology |
+| | Häri ingår\: | Including\: |
+| | immunologi | Immunology |
+| | mikrobiologi | Microbiology |
+| | patologi | Pathology |
+| | toxikologi | Toxicology |
+| | farmakologi | Pharmacology |
+| | livsmedelssäkerhet | Food Safety |
 |----------------------|----------------------|----------------------|
-|                      | agrarhistoria        | Agricultural History |
+| 40303 | Klinisk vetenskap | Clinical Science |
+| | Häri ingår\: | Including\: |
+| | anestesiologi | Anesthesiology |
+| | diagnostik | Diagnostics |
+| | djuromvårdnad | Veterinary Nursing |
+| | epidemiologi | Epidemiology |
+| | kirurgi | Surgery |
+| | medicin | Medicine |
+| | reproduktion | Reproduction |
 |----------------------|----------------------|----------------------|
-| 40102                | Trädgårdsv           | Horticulture         |
-|                      | etenskap/hortikultur |                      |
+| 40304 | Annan veterinärmedicin| Other Veterinary Science |
+| | Häri ingår\:          | Including\:           |
+| | djuretik | Animal Ethics |
 |----------------------|----------------------|----------------------|
-| 40103                | Livsmedelsvetenskap  | Food Science         |
+| 404 | Bioteknologi med applikationer på växter och djur | Agricultural Biotechnology |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
+| 40401 | Växtbioteknologi | Plant Biotechnology  |
+| | Häri ingår\: | Including\: |
+| | skogsbioteknologi | Forest Biotechnology |
+| | genteknologi | Gene Technology |
 |----------------------|----------------------|----------------------|
-|                      | produktkvalitet      | Product Quality      |
+| 40402 | Genetik och förädling inom lantbruksvetenskap | Genetics and Breeding in Agricultural Sciences |
+| | Häri ingår\:\: | Including |
+| | mikroorganismer | Microorganisms |
+| | svampar | Fungi |
+| | växter och djur inom lantbruksvetenskapsområdet | Plants and Animals in Agricultural Sciences  |
 |----------------------|----------------------|----------------------|
-|                      | vegetabilier         | Vegetables           |
+| 405 | Annan lantbruksvetenskap | Other Agricultural Sciences |
 |----------------------|----------------------|----------------------|
-|                      | mjölk                | Milk                 |
+| 40501 | Förnyelsebar bioenergi | Renewable Bioenergy Research |
 |----------------------|----------------------|----------------------|
-|                      | kött                 | Meat                 |
+| 40502 | Vilt- och fiskeförvaltning| Fish and Wildlife Management |
+| | Häri ingår\:          | Including\:           |
+| | jakt | Hunting |
 |----------------------|----------------------|----------------------|
-|                      | fisk                 | Fish                 |
+| 40503 | Lantbrukets  arbetsmiljö och säkerhet| Agricultural Occupational Health and Safety |
 |----------------------|----------------------|----------------------|
-| 40104                | Skogsvetenskap       | Forest Science       |
+| 40504 | Miljö- och naturvårdsvetenskap| Environmental Sciences related to Agriculture and Land-use |
+| | Häri ingår\: | Including\: |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
+| | biodiversitet | Research on Biodiversity |
+| | risk | Risks |
+| | etikforskning | Ethics |
 |----------------------|----------------------|----------------------|
-|                      | inventering          | Forest Inventory     |
+| 40599 | Övrig annan lantbruksvetenskap| Other Agricultural Sciences not elsewhere specified  |
 |----------------------|----------------------|----------------------|
-|                      | planering            | Forest Planning      |
+| **Samhällsvetenskap** |                      |                      |
 |----------------------|----------------------|----------------------|
-|                      | skötsel              | Silviculture         |
+| 5 | Samhällsvetenskap | Social Sciences |
 |----------------------|----------------------|----------------------|
-|                      | produktion           | Forest Protection    |
+| 501 | Psykologi | Psychology |
 |----------------------|----------------------|----------------------|
-|                      | föryngring           | Regeneration         |
+| 50101 | Psykologi (exklusive tillämpad psykologi) | Psychology (excluding Applied Psychology) |
 |----------------------|----------------------|----------------------|
-|                      | hushållning          | Forest Management    |
+| 50102 | Tillämpad psykologi | Applied Psychology |
+| | Häri ingår\: | Including\: |
+| | klinisk psykologi | Clinical Psychology |
+| | psykoterapi | Psychotherapy |
 |----------------------|----------------------|----------------------|
-|                      | genetik              | Forest Genetics      |
+| 502 | Ekonomi och näringsliv | Economics and Business |
 |----------------------|----------------------|----------------------|
-|                      | mykologi             | Forest Mycology      |
+| 50201 | Nationalekonomi | Economics |
 |----------------------|----------------------|----------------------|
-|                      | patologi             | Forest Pathology     |
+| 50202 | Företagsekonomi | Business Administration |
 |----------------------|----------------------|----------------------|
-|                      | skogsteknologi       | Forest Technology    |
+| 50203 | Ekonomisk historia | Economic History |
 |----------------------|----------------------|----------------------|
-|                      | skogshistoria        | Forest History       |
+| 503 | Utbildningsvetenskap | Educational Sciences |
 |----------------------|----------------------|----------------------|
-| 40105                | Trävetenskap         | Wood Science         |
+| 50301 | Pedagogik | Pedagogy |
 |----------------------|----------------------|----------------------|
-|                      | Häri                 | ingår\: Including\:    |
+| | Häri ingår\: | Including\: |
+| | special- och andra inriktningar av pedagogik | Special Needs- and other orientations of Pedagogy|
 |----------------------|----------------------|----------------------|
-|                      | träteknologi         | Wood Technology      |
+| 50302 | Didaktik | Didactics |
+| | Häri ingår\: | Including\: |
 |----------------------|----------------------|----------------------|
-| 40106                | Markvetenskap        | Soil Science         |
+| | allmän- och ämnesdidaktik | General and Subject Didactics |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
+| 50303 | Lärande | Learning |
 |----------------------|----------------------|----------------------|
-|                      | biogeofysik          | Biogeophysics        |
+| 50304 | Pedagogiskt arbete | Pedagogical Work |
 |----------------------|----------------------|----------------------|
-|                      | biogeokemi           | Biogeochemistry      |
+| 504 | Sociologi | Sociology |
 |----------------------|----------------------|----------------------|
-|                      | markmikrobiologi     | Soil Micobiology     |
+| 50401 | Sociologi (exklusive socialt arbete, socialpsykologi och socialantropologi) | Sociology (excluding Social Work, Social Psychology and Social Anthropology) |
 |----------------------|----------------------|----------------------|
-|                      | växt-mark            | Plant-Soil           |
-|                      | interaktioner        | Interactions         |
+| 50402 | Socialt arbete | Social Work |
 |----------------------|----------------------|----------------------|
-| 40107                | Fisk- och            | Fish and             |
-|                      | akvakulturforskning  | Aquacultural Science |
+| 50403 | Socialpsykologi | Social Psychology |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
+| 50404 | Socialantropologi | Social Anthropology |
 |----------------------|----------------------|----------------------|
-|                      | fiskodling           | Fishfarming          |
+| 505 | Juridik | Law                  |
 |----------------------|----------------------|----------------------|
-|                      | genetik              | Fish Genetics        |
+| 50501 | Juridik (exklusive juridik och samhälle) | Law (excluding Law and Society) |
 |----------------------|----------------------|----------------------|
-|                      | avel                 | Fish Breeding        |
+| 50502 | Juridik och samhälle | Law and Society |
+| | Häri ingår\:          | Including\:           |
+| | rättssociologi | Sociology of Law |
+| | kriminologi | Criminology |
 |----------------------|----------------------|----------------------|
-|                      | fi                   | Fish Ecology         |
-|                      | skpopulationsbiologi |                      |
+| 506 | Statsvetenskap | Political Science |
 |----------------------|----------------------|----------------------|
-|                      | fisketologi          | Fish Ethology        |
+| 50601 | Statsvetenskap (exklusive studier av offentlig förvaltning och globaliseringsstudier) | Political Science (excluding Public Administration Studies and Globalisation Studies) |
 |----------------------|----------------------|----------------------|
-| 40108                | Landskapsarkitektur  | Landscape            |
-|                      |                      | Architecture         |
+| 50602 | Studier av offentlig förvaltning | Public Administration Studies |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
+| 50603 | Globaliseringsstudier | Globalisation Studies |
 |----------------------|----------------------|----------------------|
-|                      | planering            | Planning             |
+| 507 | Social och ekonomisk geografi | Social and Economic Geography |
 |----------------------|----------------------|----------------------|
-|                      | design               | Design               |
+| 50701 | Kulturgeografi | Human Geography |
 |----------------------|----------------------|----------------------|
-|                      | vård                 | Management           |
+| 50702 | Ekonomisk geografi | Economic Geography |
+| | Häri ingår\: | Including\: |
 |----------------------|----------------------|----------------------|
-| 402                  | Husdjursvetenskap    | Animal and Dairy     |
-|                      |                      | Sience               |
+| | teman som t.ex. turism | Themes for example Tourism |
 |----------------------|----------------------|----------------------|
-| 40201                | Husdjursvetenskap    | Animal and Dairy     |
-|                      |                      | Science.             |
+| 508 | Medie- och kommunikationsvetenskap| Media and Communications |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
+| 50801 | Medievetenskap | Media Studies |
 |----------------------|----------------------|----------------------|
-|                      | utfodring och vård   | Husbandary           |
+| 50802 | Kommunikationsvetenskap | Communication Studies |
 |----------------------|----------------------|----------------------|
-|                      | etologi              | Ethology             |
+| 50803 | Mänsklig interaktion med IKT | Human Aspects of ICT |
 |----------------------|----------------------|----------------------|
-|                      | genetic och avel     | Genetics and         |
-|                      |                      | Breeding             |
+| 50804 | Systemvetenskap, informationssystem och informatik med samhällsvetenskaplig inriktning | Information Systems, Social aspects |
 |----------------------|----------------------|----------------------|
-|                      | husdjurshygien       | Animal Hygiene       |
+| 50805 | Biblioteks-och informationsvetenskap | Information Studies  |
 |----------------------|----------------------|----------------------|
-|                      | nutrition och vård   | Nutrition and        |
-|                      |                      | Management           |
+| 509 | Annan samhällsvetenskap | Other Social Sciences |
 |----------------------|----------------------|----------------------|
-|                      | djuretik             | Animal Ethics        |
+| 50901 | Tvärvetenskapliga studier inom samhällsvetenskap | Social Sciences Interdisciplinary |
+| | Häri ingår\: | Including\: |
+| | freds- och konfliktforskning| Peace and Conflict Research |
+| | studier om ett hållbart samhälle | Studies on Sustainable Society |
 |----------------------|----------------------|----------------------|
-| 403                  | Veterinärmedicin     | Veterinary Science   |
+| 50902 | Genusstudier | Gender Studies |
 |----------------------|----------------------|----------------------|
-| 40301                | Medicinsk            | Medical Bioscience   |
-|                      | biovetenskap         |                      |
+| 50903 | Arbetslivsstudier | Work Sciences |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
+| 50904 | Internationell migration och etniska relationer (IMER) | International Migration and Ethnic Relations        |
 |----------------------|----------------------|----------------------|
-|                      | anatomi              | Anatomy              |
+| 50999 | Övrig annan samhällsvetenskap | Other Social Sciences not elsewhere specified  |
 |----------------------|----------------------|----------------------|
-|                      | fysiologi            | Physiology           |
+| **Humaniora och konst**              |                      |                      |
 |----------------------|----------------------|----------------------|
-|                      | biokemi              | Biochemistry         |
+| 6 | Humaniora och konst|Humanities and the Arts |
 |----------------------|----------------------|----------------------|
-| 40302                | Patobiologi          | Pathobiology         |
+| 601 | Historia och arkeologi| History and Archaeology |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
+| 60101 | Historia | History |
 |----------------------|----------------------|----------------------|
-|                      | immunologi           | Immunology           |
+| 60102 | Teknikhistoria | History of Technology |
 |----------------------|----------------------|----------------------|
-|                      | mikrobiologi         | Microbiology         |
+| 60103 | Arkeologi | Archaeology |
 |----------------------|----------------------|----------------------|
-|                      | patologi             | Pathology            |
+| 602 | Språk och litteratur | Languages and Literature |
 |----------------------|----------------------|----------------------|
-|                      | toxikologi           | Toxicology           |
+| 60201 | Jämförande språkvetenskap och allmän lingvistik | General Language Studies and Linguistics |
 |----------------------|----------------------|----------------------|
-|                      | farmakologi          | Pharmacology         |
+| 60202 | Studier av enskilda språk | Specific Languages |
 |----------------------|----------------------|----------------------|
-|                      | livsmedelssäkerhet   | Food Safety          |
+| 60203 | Litteraturvetenskap | General Literary studies |
+| | Häri ingår\: | Including\: |
+| | litteraturteori | Literary Theory |
 |----------------------|----------------------|----------------------|
-| 40303                | Klinisk vetenskap    | Clinical Science     |
+| 60204 | Litteraturstudier | Specific Literatures |
+| | Häri ingår\: | Including\: |
+| | litteraturer från särskilda språkområden | Literature from specific Language areas |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
+| 603 | Filosofi, etik och religion | Philosophy, Ethics and Religion |
 |----------------------|----------------------|----------------------|
-|                      | anestesiologi        | Anesthesiology       |
+| 60301 | Filosofi | Philosophy |
 |----------------------|----------------------|----------------------|
-|                      | diagnostik           | Diagnostics          |
+| 60302 | Etik | Ethics |
 |----------------------|----------------------|----------------------|
-|                      | djuromvårdnad        | Veterinary Nursing   |
+| 60303 | Religionsvetenskap | Religious Studies |
+| | Häri ingår\: | Including\: |
+| | religi onsbeteendevetenskap| Social Sciences of Religions |
+| | tros- och  livsåskådningsv etenskap/systematisk teologi| Studies in Faiths and deologies/Systematic Theology |
+| | bibelvetenskap | Biblical Studies |
+| | kyrkovetenskap | Ecclesiology / Theology |
+| | kyrkohistoria | Church History |
 |----------------------|----------------------|----------------------|
-|                      | epidemiologi         | Epidemiology         |
+| 60304 | Religionshistoria | History of Religions |
 |----------------------|----------------------|----------------------|
-|                      | kirurgi              | Surgery              |
+| 60305 | Idé- och lärdomshistoria | History of Ideas |
 |----------------------|----------------------|----------------------|
-|                      | medicin              | Medicine             |
+| 604 | Konst | Arts |
 |----------------------|----------------------|----------------------|
-|                      | reproduktion         | Reproduction         |
+| 60401 | Bildkonst | Visual Arts|
 |----------------------|----------------------|----------------------|
-| 40304                | Annan                | Other Veterinary     |
-|                      | veterinärmedicin     | Science              |
+| 60402 | Musik | Music |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
+| 60403 | Litterär gestaltning | Literary Composition |
 |----------------------|----------------------|----------------------|
-|                      | djuretik             | Animal Ethics        |
+| 60404 | Scenkonst | Performing Arts |
 |----------------------|----------------------|----------------------|
-| 404                  | Bioteknologi med     | Agricultural         |
-|                      | applikationer på     | Biotechnology        |
-|                      | växter och djur      |                      |
+| 60405 | Arkitektur | Architecture |
 |----------------------|----------------------|----------------------|
-| 40401                | Växtbioteknologi     | Plant Biotechnology  |
+| 60406 | Design | Design |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
+| 60407 | Konstvetenskap | Art History |
 |----------------------|----------------------|----------------------|
-|                      | skogsbioteknologi    | Forest Biotechnology |
+| 60408 | Musikvetenskap | Musicology |
 |----------------------|----------------------|----------------------|
-|                      | genteknologi         | Gene Technology      |
+| 60409 | Teatervetenskap | Performing Art Studies |
 |----------------------|----------------------|----------------------|
-| 40402                | Genetik och          | Genetics and         |
-|                      | förädling inom       | Breeding in          |
-|                      | lantbruksvetenskap   | Agricultural         |
-|                      |                      | Sciences             |
+| 60410 | Filmvetenskap | Studies on Film |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår\:\:         | Including            |
+| 605 | Annan humaniora | Other Humanities |
 |----------------------|----------------------|----------------------|
-|                      | mikroorganismer      | Microorganisms       |
+| 60501 | Antikvetenskap | Classical Archaeology and Ancient History |
 |----------------------|----------------------|----------------------|
-|                      | svampar              | Fungi                |
+| 60502 | Kulturstudier | Cultural Studies |
 |----------------------|----------------------|----------------------|
-|                      | växter och djur inom | Plants and Animals   |
-|                      | lantbr               | in Agricultural      |
-|                      | uksvetenskapsområdet | Sciences             |
+| 60503 | Etnologi | Ethnology |
 |----------------------|----------------------|----------------------|
-| 405                  | Annan                | Other Agricultural   |
-|                      | lantbruksvetenskap   | Sciences             |
-|----------------------|----------------------|----------------------|
-| 40501                | Förnyelsebar         | Renewable Bioenergy  |
-|                      | bioenergi            | Research             |
-|----------------------|----------------------|----------------------|
-| 40502                | Vilt- och            | Fish and Wildlife    |
-|                      | fiskeförvaltning     | Management           |
-|----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
-|----------------------|----------------------|----------------------|
-|                      | jakt                 | Hunting              |
-|----------------------|----------------------|----------------------|
-| 40503                | Lantbrukets          | Agricultural         |
-|                      | arbetsmiljö och      | Occupational Health  |
-|                      | säkerhet             | and Safety           |
-|----------------------|----------------------|----------------------|
-| 40504                | Miljö- och           | Environmental        |
-|                      | naturvårdsvetenskap  | Sciences related to  |
-|                      |                      | Agriculture and      |
-|                      |                      | Land-use             |
-|----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
-|----------------------|----------------------|----------------------|
-|                      | biodiversitet        | Research on          |
-|                      |                      | Biodiversity         |
-|----------------------|----------------------|----------------------|
-|                      | risk                 | Risks                |
-|----------------------|----------------------|----------------------|
-|                      | etikforskning        | Ethics               |
-|----------------------|----------------------|----------------------|
-| 40599                | Övrig annan          | Other Agricultural   |
-|                      | lantbruksvetenskap   | Sciences not         |
-|                      |                      | elsewhere specified  |
-|----------------------|----------------------|----------------------|
-| *                    |                      |                      |
-| *Samhällsvetenskap** |                      |                      |
-|----------------------|----------------------|----------------------|
-| 5                    | Samhällsvetenskap    | Social Sciences      |
-|----------------------|----------------------|----------------------|
-| 501                  | Psykologi            | Psychology           |
-|----------------------|----------------------|----------------------|
-| 50101                | Psykologi (exklusive | Psychology           |
-|                      | tillämpad psykologi) | (excluding Applied   |
-|                      |                      | Psychology)          |
-|----------------------|----------------------|----------------------|
-| 50102                | Tillämpad psykologi  | Applied Psychology   |
-|----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
-|----------------------|----------------------|----------------------|
-|                      | klinisk psykologi    | Clinical Psychology  |
-|----------------------|----------------------|----------------------|
-|                      | psykoterapi          | Psychotherapy        |
-|----------------------|----------------------|----------------------|
-| 502                  | Ekonomi och          | Economics and        |
-|                      | näringsliv           | Business             |
-|----------------------|----------------------|----------------------|
-| 50201                | Nationalekonomi      | Economics            |
-|----------------------|----------------------|----------------------|
-| 50202                | Företagsekonomi      | Business             |
-|                      |                      | Administration       |
-|----------------------|----------------------|----------------------|
-| 50203                | Ekonomisk historia   | Economic History     |
-|----------------------|----------------------|----------------------|
-| 503                  | Utbildningsvetenskap | Educational Sciences |
-|----------------------|----------------------|----------------------|
-| 50301                | Pedagogik            | Pedagogy             |
-|----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
-|----------------------|----------------------|----------------------|
-|                      | special- och andra   | Special Needs- and   |
-|                      | inriktningar av      | other orientations   |
-|                      | pedagogik            | of Pedagogy          |
-|----------------------|----------------------|----------------------|
-| 50302                | Didaktik             | Didactics            |
-|----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
-|----------------------|----------------------|----------------------|
-|                      | allmän- och          | General and Subject  |
-|                      | ämnesdidaktik        | Didactics            |
-|----------------------|----------------------|----------------------|
-| 50303                | Lärande              | Learning             |
-|----------------------|----------------------|----------------------|
-| 50304                | Pedagogiskt arbete   | Pedagogical Work     |
-|----------------------|----------------------|----------------------|
-| 504                  | Sociologi            | Sociology            |
-|----------------------|----------------------|----------------------|
-| 50401                | Sociologi (exklusive | Sociology (excluding |
-|                      | socialt arbete,      | Social Work, Social  |
-|                      | socialpsykologi och  | Psychology and       |
-|                      | socialantropologi)   | Social Anthropology) |
-|----------------------|----------------------|----------------------|
-| 50402                | Socialt arbete       | Social Work          |
-|----------------------|----------------------|----------------------|
-| 50403                | Socialpsykologi      | Social Psychology    |
-|----------------------|----------------------|----------------------|
-| 50404                | Socialantropologi    | Social Anthropology  |
-|----------------------|----------------------|----------------------|
-| 505                  |                      | Law                  |
-|----------------------|----------------------|----------------------|
-| 50501                | Juridik (exklusive   | Law (excluding Law   |
-|                      | juridik och          | and Society)         |
-|                      | samhälle)            |                      |
-|----------------------|----------------------|----------------------|
-| 50502                | Juridik och samhälle | Law and Society      |
-|----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
-|----------------------|----------------------|----------------------|
-|                      | rättssociologi       | Sociology of Law     |
-|----------------------|----------------------|----------------------|
-|                      | kriminologi          | Criminology          |
-|----------------------|----------------------|----------------------|
-| 506                  | Statsvetenskap       | Political Science    |
-|----------------------|----------------------|----------------------|
-| 50601                | Statsvetenskap       | Political Science    |
-|                      | (exklusive studier   | (excluding Public    |
-|                      | av offentlig         | Administration       |
-|                      | förvaltning och      | Studies and          |
-|                      | gl                   | Globalisation        |
-|                      | obaliseringsstudier) | Studies)             |
-|----------------------|----------------------|----------------------|
-| 50602                | Studier av offentlig | Public               |
-|                      | förvaltning          | Administration       |
-|                      |                      | Studies              |
-|----------------------|----------------------|----------------------|
-| 50603                | G                    | Globalisation        |
-|                      | lobaliseringsstudier | Studies              |
-|----------------------|----------------------|----------------------|
-| 507                  | Social och ekonomisk | Social and Economic  |
-|                      | geografi             | Geography            |
-|----------------------|----------------------|----------------------|
-| 50701                | Kulturgeografi       | Human Geography      |
-|----------------------|----------------------|----------------------|
-| 50702                | Ekonomisk geografi   | Economic Geography   |
-|----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
-|----------------------|----------------------|----------------------|
-|                      | teman som t.ex.      | Themes for example   |
-|                      | turism               | Tourism              |
-|----------------------|----------------------|----------------------|
-| 508                  | Medie- och           | Media and            |
-|                      | kom                  | Communications       |
-|                      | munikationsvetenskap |                      |
-|----------------------|----------------------|----------------------|
-| 50801                | Medievetenskap       | Media Studies        |
-|----------------------|----------------------|----------------------|
-| 50802                | Kom                  | Communication        |
-|                      | munikationsvetenskap | Studies              |
-|----------------------|----------------------|----------------------|
-| 50803                | Mänsklig interaktion | Human Aspects of ICT |
-|                      | med IKT              |                      |
-|----------------------|----------------------|----------------------|
-| 50804                | Systemvetenskap,     | Information Systems, |
-|                      | informationssystem   | Social aspects       |
-|                      | och informatik med   |                      |
-|                      | samhällsvetenskaplig |                      |
-|                      | inriktning           |                      |
-|----------------------|----------------------|----------------------|
-| 50805                | Biblioteks-och       | Information Studies  |
-|                      | i                    |                      |
-|                      | nformationsvetenskap |                      |
-|----------------------|----------------------|----------------------|
-| 509                  | Annan                | Other Social         |
-|                      | samhällsvetenskap    | Sciences             |
-|----------------------|----------------------|----------------------|
-| 50901                | Tvärvetenskapliga    | Social Sciences      |
-|                      | studier inom         | Interdisciplinary    |
-|                      | samhällsvetenskap    |                      |
-|----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
-|----------------------|----------------------|----------------------|
-|                      | freds- och           | Peace and Conflict   |
-|                      | konfliktforskning    | Research             |
-|----------------------|----------------------|----------------------|
-|                      | studier om ett       | Studies on           |
-|                      | hållbart samhälle    | Sustainable Society  |
-|----------------------|----------------------|----------------------|
-| 50902                | Genusstudier         | Gender Studies       |
-|----------------------|----------------------|----------------------|
-| 50903                | Arbetslivsstudier    | Work Sciences        |
-|----------------------|----------------------|----------------------|
-| 50904                | Internationell       | International        |
-|                      | migration och        | Migration and Ethnic |
-|                      | etniska relationer   | Relations            |
-|                      | (IMER)               |                      |
-|----------------------|----------------------|----------------------|
-| 50999                | Övrig annan          | Other Social         |
-|                      | samhällsvetenskap    | Sciences not         |
-|                      |                      | elsewhere specified  |
-|----------------------|----------------------|----------------------|
-| **Humaniora och      |                      |                      |
-| konst**              |                      |                      |
-|----------------------|----------------------|----------------------|
-| 6 Humaniora och      |                      |                      |
-| konst Humanities and |                      |                      |
-| the Arts             |                      |                      |
-|----------------------|----------------------|----------------------|
-| 601                  | Historia och         | History and          |
-|                      | arkeologi            | Archaeology          |
-|----------------------|----------------------|----------------------|
-| 60101                | Historia             | History              |
-|----------------------|----------------------|----------------------|
-| 60102                | Teknikhistoria       | History of           |
-|                      |                      | Technology           |
-|----------------------|----------------------|----------------------|
-| 60103                | Arkeologi            | Archaeology          |
-|----------------------|----------------------|----------------------|
-| 602                  | Språk och litteratur | Languages and        |
-|                      |                      | Literature           |
-|----------------------|----------------------|----------------------|
-| 60201                | Jämförande           | General Language     |
-|                      | språkvetenskap och   | Studies and          |
-|                      | allmän lingvistik    | Linguistics          |
-|----------------------|----------------------|----------------------|
-| 60202                | Studier av enskilda  | Specific Languages   |
-|                      | språk                |                      |
-|----------------------|----------------------|----------------------|
-| 60203                | Litteraturvetenskap  | General              |
-|                      |                      | Literary studies     |
-|----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
-|----------------------|----------------------|----------------------|
-|                      | litteraturteori      | Literary Theory      |
-|----------------------|----------------------|----------------------|
-| 60204                | Litteraturstudier    | Specific Literatures |
-|----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
-|----------------------|----------------------|----------------------|
-|                      | litteraturer från    | Literature from      |
-|                      | särskilda            | specific Language    |
-|                      | språkområden         | areas                |
-|----------------------|----------------------|----------------------|
-| 603                  | Filosofi, etik och   | Philosophy, Ethics   |
-|                      | religion             | and Religion         |
-|----------------------|----------------------|----------------------|
-| 60301                | Filosofi             | Philosophy           |
-|----------------------|----------------------|----------------------|
-| 60302                | Etik                 | Ethics               |
-|----------------------|----------------------|----------------------|
-| 60303                | Religionsvetenskap   | Religious Studies    |
-|----------------------|----------------------|----------------------|
-|                      | Häri ingår\:          | Including\:           |
-|----------------------|----------------------|----------------------|
-|                      | religi               | Social Sciences of   |
-|                      | onsbeteendevetenskap | Religions            |
-|----------------------|----------------------|----------------------|
-|                      | tros- och            | Studies in Faiths    |
-|                      | livsåskådningsv      | and                  |
-|                      | etenskap/systematisk | I                    |
-|                      | teologi              | deologies/Systematic |
-|                      |                      | Theology             |
-|----------------------|----------------------|----------------------|
-|                      | bibelvetenskap       | Biblical Studies     |
-|----------------------|----------------------|----------------------|
-|                      | kyrkovetenskap       | Ecclesiology/        |
-|                      |                      | Practical Theology   |
-|----------------------|----------------------|----------------------|
-|                      | kyrkohistoria        | Church History       |
-|----------------------|----------------------|----------------------|
-| 60304                | Religionshistoria    | History of Religions |
-|----------------------|----------------------|----------------------|
-| 60305                | Idé- och             | History of Ideas     |
-|                      | lärdomshistoria      |                      |
-|----------------------|----------------------|----------------------|
-| 604                  | Konst                | Arts                 |
-|----------------------|----------------------|----------------------|
-| 60401                | Bildkonst            | Visual Arts          |
-|----------------------|----------------------|----------------------|
-| 60402                | Musik                | Music                |
-|----------------------|----------------------|----------------------|
-| 60403                | Litterär gestaltning | Literary Composition |
-|----------------------|----------------------|----------------------|
-| 60404                | Scenkonst            | Performing Arts      |
-|----------------------|----------------------|----------------------|
-| 60405                | Arkitektur           | Architecture         |
-|----------------------|----------------------|----------------------|
-| 60406                | Design               | Design               |
-|----------------------|----------------------|----------------------|
-| 60407                | Konstvetenskap       | Art History          |
-|----------------------|----------------------|----------------------|
-| 60408                | Musikvetenskap       | Musicology           |
-|----------------------|----------------------|----------------------|
-| 60409                | Teatervetenskap      | Performing Art       |
-|                      |                      | Studies              |
-|----------------------|----------------------|----------------------|
-| 60410                | Filmvetenskap        | Studies on Film      |
-|----------------------|----------------------|----------------------|
-| 605                  | Annan humaniora      | Other Humanities     |
-|----------------------|----------------------|----------------------|
-| 60501                | Antikvetenskap       | Classical            |
-|                      |                      | Archaeology and      |
-|                      |                      | Ancient History      |
-|----------------------|----------------------|----------------------|
-| 60502                | Kulturstudier        | Cultural Studies     |
-|----------------------|----------------------|----------------------|
-| 60503                | Etnologi             | Ethnology            |
-|----------------------|----------------------|----------------------|
-| 60599                | Övrig annan          | Other Humanities not |
-|                      | humaniora            | elsewhere specified  |
+| 60599 | Övrig annan humaniora | Other Humanities not elsewhere specified |
 |----------------------|----------------------|----------------------|
 
 Oral presentation (defense) related information
