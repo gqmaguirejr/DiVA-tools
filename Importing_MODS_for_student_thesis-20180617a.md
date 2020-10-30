@@ -129,7 +129,7 @@ the examiner 8](#_Toc517019603)
 List of Tables {#list-of-tables .Unnumbered-heading-1}
 ==============
 
-[Table 1: Example of a MODS file for a 1^st^ cycle student thesis with
+[Table 1: Example of a MODS file for a 1<sup>st</sup> cycle student thesis with
 two authors (Note that the logical are simply labels for the purpose of
 annotation in this explanation and *only* the contents of MODS elements
 actually exist in the file.) 1](#_Ref516924899)
