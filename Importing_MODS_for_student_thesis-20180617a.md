@@ -80,7 +80,7 @@ Generating the MODS file via software is the topic of another project.
 
 [Cooperation note<sub>n</sub>: External collaboration (cannot be imported)](#cooperation-noten-external-collaboration-cannot-be-imported)
 
-[How much is KTH specific? 47](#how-much-is-kth-specific)
+[How much is KTH specific?](#how-much-is-kth-specific)
 
 # List of Figures
 
@@ -483,6 +483,14 @@ while the second part is the lowest level of the organizational
 affiliation that has been specified (in this case "Radio Systems
 Laboratory (RS Lab)". The result of the two authors' \<name\> elements
 is shown in Figure 1.
+
+<figure>
+  <img src="Importing_MODS_for_student_thesis-20180617a-image1.png" alt="my alt text"/>
+  <figcaption>Figure 1: DiVA Graphical user interface (GUI)
+for entering information about the authors</figcaption>
+</figure>
+
+===========
 
 ![](Importing_MODS_for_student_thesis-20180617a-image1.png){width="6.26875in"
 height="8.25625in"}
@@ -2077,7 +2085,6 @@ or <https://kth.diva-portal.org/dream/import/importForm.jsf>.
 For the KTH organizational codes I looked at the MODS entries for EECS
 publications published in 2018 (before June).
 
-# Notes
 [^1]: [www.loc.gov/standards/mods/](http://www.loc.gov/standards/mods/)
 
 [^2]: <https://www.loc.gov/marc/relators/relaterm.html>
