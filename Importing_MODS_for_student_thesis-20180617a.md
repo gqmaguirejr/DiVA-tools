@@ -1180,7 +1180,7 @@ Technology\</topic\>
 []{#_Toc517019654 .anchor}Table : KTH's Educational programs for degree
 project (The values are from the Javascript file: ImportForm.jsf.)
 
-  Option code in DiVA GUI   Value of the element
+|  Option code in DiVA GUI |  Value of the element |
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------|
 | 10520                     |Arkitektexamen|
 | 9558                      |Arkitektexamen - Arkitektur|
