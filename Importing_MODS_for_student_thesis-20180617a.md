@@ -18,14 +18,14 @@ in as many of the fields of the DiVA records for a student thesis as
 possible (to facilitate importing complete or nearly complete records).
 Generating the MODS file via software is the topic of another project.
 
-Contents {#contents .Unnumbered-heading-1}
+# Contents {#contents .Unnumbered-heading-1}
 ========
 
-[Contents i](#_Toc517019570)
+[Contents](#contents)
 
-[List of Figures ii](#list-of-figures)
+[List of Figures](#list-of-figures)
 
-[List of Tables ii](#list-of-tables)
+[List of Tables](#list-of-tables)
 
 [1 Example MODS file 1](#example-mods-file)
 
@@ -94,7 +94,7 @@ publication within this series
 
 [20 How much is KTH specific? 47](#how-much-is-kth-specific)
 
-List of Figures {#list-of-figures .Unnumbered-heading-1}
+# List of Figures
 ===============
 
 [Figure 1: DiVA Graphical user interface (GUI) for entering information
@@ -126,7 +126,7 @@ the examiner 8](#_Toc517019603)
 [Figure 12: GUI for entering information about an external collaboration
 47](#_Ref516956710)
 
-List of Tables {#list-of-tables .Unnumbered-heading-1}
+# List of Tables
 ==============
 
 [Table 1: Example of a MODS file for a 1<sup>st</sup> cycle student thesis with
