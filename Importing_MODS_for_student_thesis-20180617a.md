@@ -190,7 +190,7 @@ contents of MODS elements actually exist in the file.)
 |                      | http://www.lo        |                      |
 |                      | c.gov/standards/mods |                      |
 |                      | /v3/mods-3-2.xsd\"\> |                      |
-
+|---|---|---|
 | Start of an Item     | \<mods               | Start of a           |
 |                      | version=\"3.2\"      | bibliographic item   |
 |                      | xmlns=\"http://w     |                      |
@@ -207,7 +207,7 @@ contents of MODS elements actually exist in the file.)
 |                      | http://www.lo        |                      |
 |                      | c.gov/standards/mods |                      |
 |                      | /v3/mods-3-2.xsd\"\> |                      |
-
+|---|---|---|
 | Genre<sub>n</sub>             | \<genre              | This element         |
 |                      | authority=\"diva\"   | identifies that the  |
 |                      | type=\"public        | item is a student    |
@@ -235,7 +235,7 @@ contents of MODS elements actually exist in the file.)
 |                      | typ                  |                      |
 |                      | e=\"publicationType\ |                      |
 |                      | "\>Oppgave\</genre\> |                      |
-
+|---|---|---|
 | Author<sub>n,1</sub>          | \<name               | First author         |
 |                      | type=\"personal\"    |                      |
 |                      | authority=\"kth\"    |                      |
@@ -266,7 +266,7 @@ contents of MODS elements actually exist in the file.)
 |                      | Lab)\</affiliation\> |                      |
 |                      |                      |                      |
 |                      | \</name\>            |                      |
-
+|---|---|---|
 | Author<sub>n,2</sub>          | \<name               | Second author        |
 |                      | type=\"personal\"    |                      |
 |                      | authority=\"kth\"    |                      |
@@ -297,7 +297,7 @@ contents of MODS elements actually exist in the file.)
 |                      | Lab)\</affiliation\> |                      |
 |                      |                      |                      |
 |                      | \</name\>            |                      |
-
+|---|---|---|
 | Adviser<sub>n,i</sub>         | \<name               | Adviser              |
 |                      | type=\"personal\"    |                      |
 |                      | authority=\"kth\"    |                      |
@@ -339,7 +339,7 @@ contents of MODS elements actually exist in the file.)
 |                      | 9652\</description\> |                      |
 |                      |                      |                      |
 |                      | \</name\>            |                      |
-
+|---|---|---|
 | Publisher<sub>n</sub>         | \<name\>             | Publisher            |
 |                      |                      |                      |
 |                      | \<namePa             |                      |
@@ -365,7 +365,7 @@ contents of MODS elements actually exist in the file.)
 |                      | \</role\>            |                      |
 |                      |                      |                      |
 |                      | \</name\>            |                      |
-
+|---|---|---|
 | Examiner<sub>n</sub>          | \<name               | Examiner             |
 |                      | type=\"personal\"    |                      |
 |                      | authority=\"kth\"    |                      |
@@ -414,7 +414,7 @@ contents of MODS elements actually exist in the file.)
 |                      | 746X\</description\> |                      |
 |                      |                      |                      |
 |                      | \</name\>            |                      |
-
+|---|---|---|
 | PublisherCorp        | \<name               |                      |
 |                      | type=\"corporate\"   |                      |
 |                      | authority=\"kth\"    |                      |
@@ -449,7 +449,7 @@ contents of MODS elements actually exist in the file.)
 |                      | \</role\>            |                      |
 |                      |                      |                      |
 |                      | \</name\>            |                      |
-
+|---|---|---|
 | Title and            | \<titleInfo          | Title and subtitle   |
 | subtitle<sub>n</sub>          | lang=\"eng\"\>       |                      |
 |                      |                      |                      |
@@ -480,7 +480,7 @@ contents of MODS elements actually exist in the file.)
 |                      | DiVA\</subTitle\>    |                      |
 |                      |                      |                      |
 |                      | \</titleInfo\>       |                      |
-
+|---|---|---|
 | Keywords<sub>n</sub>          | \<subject            | Keyword(s)           |
 |                      | lang=\"eng\"\>       |                      |
 |                      |                      |                      |
@@ -520,7 +520,7 @@ contents of MODS elements actually exist in the file.)
 |                      | mining\</topic\>     |                      |
 |                      |                      |                      |
 |                      | \</subject\>         |                      |
-
+|---|---|---|
 | Abstract<sub>n</sub>          | \<abstract           | Abstract(s)          |
 |                      | lang=\"eng\"\>As the |                      |
 |                      | era of               |                      |
@@ -538,7 +538,7 @@ contents of MODS elements actually exist in the file.)
 |                      | s&\#229; blir        |                      |
 |                      | behovet av           |                      |
 |                      | ...\</abstract\>     |                      |
-
+|---|---|---|
 | Level<sub>n</sub>             | \<note               | Level                |
 |                      | type=\"level\"       |                      |
 |                      | lang=\"              |                      |
@@ -546,14 +546,14 @@ contents of MODS elements actually exist in the file.)
 |                      | arbete på grundnivå  |                      |
 |                      | (högs                |                      |
 |                      | koleexamen)\</note\> |                      |
-
+|---|---|---|
 | Credits<sub>n</sub>           | \<note               | Number of credits    |
 |                      | type=\               |                      |
 |                      | "universityCredits\" |                      |
 |                      | lang=\"swe\"\>10     |                      |
 |                      | poäng / 15           |                      |
 |                      | hp\</note\>          |                      |
-
+|---|---|---|
 | Program<sub>n</sub>           | \<subject            | Program of study     |
 |                      | lang=\"eng\"         |                      |
 |                      | authority=\"kth\"    |                      |
@@ -570,7 +570,7 @@ contents of MODS elements actually exist in the file.)
 |                      | program\</genre\>    |                      |
 |                      |                      |                      |
 |                      | \</subject\>         |                      |
-
+|---|---|---|
 | Course<sub>n</sub>            | \<subject            | Specific subject or  |
 |                      | lang=\"eng\"         | course               |
 |                      | xl                   |                      |
@@ -600,7 +600,7 @@ contents of MODS elements actually exist in the file.)
 |                      | ect/course\</genre\> |                      |
 |                      |                      |                      |
 |                      | \</subject\>         |                      |
-
+|---|---|---|
 | National subject     | \<subject            | National subject     |
 | category<sub>n</sub>          | lang=\"eng\"         | category             |
 |                      | authority=\"hsv\"    |                      |
@@ -644,13 +644,13 @@ contents of MODS elements actually exist in the file.)
 |                      | ionssystem\</topic\> |                      |
 |                      |                      |                      |
 |                      | \</subject\>         |                      |
-
+|---|---|---|
 | Cooperation note<sub>n</sub>  | \<note               | External Cooperation |
 |                      | type=\"cooperat      |                      |
 |                      | ion\"\>Unimplemented |                      |
 |                      | in Import to DiVA,   |                      |
 |                      | NAB\</note\>         |                      |
-
+|---|---|---|
 | Defense language<sub>n</sub>  | \<language           | Oral presentation    |
 |                      | obje                 | information          |
 |                      | ctPart=\"defence\"\> |                      |
@@ -662,7 +662,7 @@ contents of MODS elements actually exist in the file.)
 |                      | eng\</languageTerm\> |                      |
 |                      |                      |                      |
 |                      | \</language\>        |                      |
-
+|---|---|---|
 | Defense venue<sub>n</sub>     | \<note               |                      |
 |                      | typ                  |                      |
 |                      | e=\"venue\"\>Seminar |                      |
@@ -672,7 +672,7 @@ contents of MODS elements actually exist in the file.)
 |                      | floor -              |                      |
 |                      | Isafjordsgatan 22,   |                      |
 |                      | Kista\</note\>       |                      |
-
+|---|---|---|
 | Origin<sub>n</sub>            | \<originInfo\>       | Dates of thesis      |
 |                      |                      |                      |
 |                      | \<dateIssued\        |                      |
@@ -684,7 +684,7 @@ contents of MODS elements actually exist in the file.)
 |                      | :00:00\</dateOther\> |                      |
 |                      |                      |                      |
 |                      | \</originInfo\>      |                      |
-
+|---|---|---|
 |                    | \<p                  | Physical attributes  |
 | physicalDescription<sub>n</sub> | hysicalDescription\> | of the publication   |
 |                      |                      | -- such as number of |
@@ -693,7 +693,7 @@ contents of MODS elements actually exist in the file.)
 |                      |                      |                      |
 |                      | \</p                 |                      |
 |                      | hysicalDescription\> |                      |
-
+|---|---|---|
 | relatedItem<sub>n</sub>       | \<relatedItem        | Series and number of |
 |                      | type=\"series\"\>    | the publication      |
 |                      |                      |                      |
@@ -714,11 +714,11 @@ contents of MODS elements actually exist in the file.)
 |                      | 8:164\</identifier\> |                      |
 |                      |                      |                      |
 |                      | \</relatedItem\>     |                      |
-
+|---|---|---|
 | end Item             | \</mods\>            | End of an item       |
-
+|---|---|---|
 | end collection       | \</modsCollection\>  | End of collection    |
-
+|---|---|---|
 ```
 
 Start of collection: \<modsCollection ...\>
