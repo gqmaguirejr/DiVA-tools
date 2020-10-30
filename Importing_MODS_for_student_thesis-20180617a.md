@@ -1678,253 +1678,154 @@ forskningsämnen 2011 (Updated August 2016)
 | 10203| Bioinformatik (beräkningsbiologi)       | Bioinformatics (Computational Biology)|
 |      | (tillämpningar under 10610) | (applications to be 10610)|
 |----------------------|----------------------|----------------------|
-| 10204                | Männi                | Human Computer       |
-|                      | ska-datorinteraktion | Interaction (Social  |
-|                      | (interaktionsdesign) | aspects to be 50803) |
-|                      | (S                   |                      |
-|                      | amhällsvetenskapliga |                      |
-|                      | aspekter under       |                      |
-|                      | 50803)               |                      |
+| 10204| Människa-datorinteraktion (interaktionsdesign) | Human Computer Interaction |
+| | (Samhällsvetenskapliga  aspekter under  50803) | (Social aspects to be 50803)|
 |----------------------|----------------------|----------------------|
-| 10205                | Programvaruteknik    | Software Engineering |
+| 10205| Programvaruteknik    | Software Engineering |
 |----------------------|----------------------|----------------------|
-| 10206                | Datorteknik          | Computer Engineering |
+| 10206| Datorteknik          | Computer Engineering |
 |----------------------|----------------------|----------------------|
-| 10207                | Datorseende och      | Computer Vision and  |
-|                      | robotik (autonoma    | Robotics (Autonomous |
-|                      | system)              | Systems)             |
+| 10207| Datorseende och robotik (autonoma system) | Computer Vision and Robotics (Autonomous Systems)|
 |----------------------|----------------------|----------------------|
-| 10208                | Språkteknologi       | Language Technology  |
-|                      | (språkvetenskaplig   | (Computational       |
-|                      | databehandling)      | Linguistics)         |
+| 10208| Språkteknologi (språkvetenskaplig databehandling)| Language Technology (Computational Linguistics)|
 |----------------------|----------------------|----------------------|
-| 10209                | Medieteknik          | Media and            |
-|                      |                      | Communication        |
-|                      |                      | Technology           |
+| 10209| Medieteknik| Media and Communication Technology|
 |----------------------|----------------------|----------------------|
-| 10299                | Annan data- och      | Other Computer and   |
-|                      | i                    | Information Science  |
-|                      | nformationsvetenskap |                      |
+| 10299| Annan data- och informationsvetenskap| Other Computer and Information Science|
 |----------------------|----------------------|----------------------|
-| 103                  | Fysik                | Physical Sciences    |
+| 103| Fysik| Physical Sciences    |
 |----------------------|----------------------|----------------------|
-| 10301                | Subatomär fysik      | Subatomic Physics    |
+| 10301| Subatomär fysik| Subatomic Physics|
+| | Häri ingår\:| Including\: |
+| | fält- och partikelfysik|  Particle and Field Physics|
+| | astropartikelfysik   | Astroparticle Physics|
+| | kärnfysik            | Nuclear Physics      |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+| 10302| Atom- och  molekylfysik och optik| Atom and Molecular Physics and Optics|
+| | Häri ingår\:          | Including\:           |
+| | kemisk fysik         | Chemical Physics     |
+| | laseroptik           | Laser Optics         |
+| | kvantoptik           | Quantum Optics       |
 |----------------------|----------------------|----------------------|
-|                      | fält- och            | Particle and Field   |
-|                      | partikelfysik        | Physics              |
+| 10303| Fusion, plasma och rymdfysik| Fusion, Plasma and Space Physics
 |----------------------|----------------------|----------------------|
-|                      | astropartikelfysik   | Astroparticle        |
-|                      |                      | Physics              |
+| 10304| Den kondenserade materiens fysik| Condensed Matter Physics|
 |----------------------|----------------------|----------------------|
-|                      | kärnfysik            | Nuclear Physics      |
+| 10305| Astronomi, astrofysik och kosmologi| Astronomy, Astrophysics and Cosmology|
 |----------------------|----------------------|----------------------|
-| 10302                | Atom- och            | Atom and Molecular   |
-|                      | molekylfysik och     | Physics and Optics   |
-|                      | optik                |                      |
+| 10306| Acceleratorfysik och instrumentering| Accelerator Physics and Instrumentation|
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+| 10399| Annan fysik| Other Physics Topics |
 |----------------------|----------------------|----------------------|
-|                      | kemisk fysik         | Chemical Physics     |
+| 104| Kemi |  Chemical Sciences|
 |----------------------|----------------------|----------------------|
-|                      | laseroptik           | Laser Optics         |
+| 10401| Analytisk kemi       | Analytical Chemistry |
 |----------------------|----------------------|----------------------|
-|                      | kvantoptik           | Quantum Optics       |
+| 10402| Fysikalisk kemi| Physical Chemistry|
+| | Häri ingår\:| Including\:|
+| | kolloidkemi| Colloid Chemistry|
 |----------------------|----------------------|----------------------|
-| 10303                | Fusion, plasma och   | Fusion, Plasma and   |
-|                      | rymdfysik            | Space Physics        |
+| 10403| Materialkemi| Materials Chemistry  |
 |----------------------|----------------------|----------------------|
-| 10304                | Den kondenserade     | Condensed Matter     |
-|                      | materiens fysik      | Physics              |
+| 10404| Oorganisk kemi       | Inorganic Chemistry  |
 |----------------------|----------------------|----------------------|
-| 10305                | Astronomi,           | Astronomy,           |
-|                      | astrofysik och       | Astrophysics and     |
-|                      | kosmologi            | Cosmology            |
+| | Häri ingår\:| Including\:|
+| | elektrokemi| Electrochemistry|
+| | kärnkemi| Nuclear Chemistry|
 |----------------------|----------------------|----------------------|
-| 10306                | Acceleratorfysik och | Accelerator Physics  |
-|                      | instrumentering      | and Instrumentation  |
+| 10405| Organisk kemi| Organic Chemistry|
 |----------------------|----------------------|----------------------|
-| 10399                | Annan fysik          | Other Physics Topics |
+| 10406| Polymerkemi| Polymer Chemistry|
 |----------------------|----------------------|----------------------|
-| 104                  | Kemi Chemical        |                      |
-|                      | Sciences             |                      |
+| 10407| Teoretisk kemi| Theoretical Chemistry|
 |----------------------|----------------------|----------------------|
-| 10401                | Analytisk kemi       | Analytical Chemistry |
+| | Häri ingår\:| Including\:|
 |----------------------|----------------------|----------------------|
-| 10402                | Fysikalisk kemi      | Physical Chemistry   |
+| | kvantkemi| Quantum Chemistry|
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+| 10499| Annan kemi| Other Chemistry Topics|
 |----------------------|----------------------|----------------------|
-|                      | kolloidkemi          | Colloid Chemistry    |
+| 105| Geovetenskap och miljövetenskap| Earth and Related Environmental Sciences|
 |----------------------|----------------------|----------------------|
-| 10403                | Materialkemi         | Materials Chemistry  |
+| 10501| Klimatforskning| Climate Research|
 |----------------------|----------------------|----------------------|
-| 10404                | Oorganisk kemi       | Inorganic Chemistry  |
+| 10502| Miljövetenskap  (Samhällsvetenskapliga aspekter under 507)| Environmental Sciences (social aspects to be 507)|
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+| 10503| Multidisciplinär geovetenskap| Geosciences, Multidisciplinary|
 |----------------------|----------------------|----------------------|
-|                      | elektrokemi          | Electrochemistry     |
+| 10504| Geologi| Geology|
 |----------------------|----------------------|----------------------|
-|                      | kärnkemi             | Nuclear Chemistry    |
+| 10505| Geofysik| Geophysics|
 |----------------------|----------------------|----------------------|
-| 10405                | Organisk kemi        | Organic Chemistry    |
+| 10506| Geokemi| Geochemistry|
 |----------------------|----------------------|----------------------|
-| 10406                | Polymerkemi          | Polymer Chemistry    |
+| 10507| Naturgeografi        | Physical Geography   |
 |----------------------|----------------------|----------------------|
-| 10407                | Teoretisk kemi       | Theoretical          |
-|                      |                      | Chemistry            |
+| 10508| Meteorologi och atmosfärforskning | Meteorology and Atmospheric Sciences |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+| 10509| Oceanografi, hydrologi och vattenresurser| Oceanography, Hydrology and Water Resources|
 |----------------------|----------------------|----------------------|
-|                      | kvantkemi            | Quantum Chemistry    |
+| 10599| Annan geovetenskap och miljövetenskap| Other Earth and Related Environmental Sciences|
 |----------------------|----------------------|----------------------|
-| 10499                | Annan kemi           | Other Chemistry      |
-|                      |                      | Topics               |
+| 106| Biologi (Medicinska tillämpningar under 3 och lantbruksvetenskapliga under 4) | Biological Sciences  (Medical to be 3 and Agricultural tobe 4)|
 |----------------------|----------------------|----------------------|
-| 105                  | Geovetenskap och     | Earth and Related    |
-|                      | miljövetenskap       | Environmental        |
-|                      |                      | Sciences             |
+| 10601| Strukturbiologi      | Structural Biology   |
 |----------------------|----------------------|----------------------|
-| 10501                | Klimatforskning      | Climate Research     |
+| 10602| Biokemi och molekylärbiologi| Biochemistry and Molecular Biology|
+| | Häri ingår\:| Including\:|
+| | Biokemisk metodik| Biochemical Research Methods|
 |----------------------|----------------------|----------------------|
-| 10502                | Miljövetenskap       | Environmental        |
-|                      | (S                   | Sciences (social     |
-|                      | amhällsvetenskapliga | aspects to be 507)   |
-|                      | aspekter under 507)  |                      |
+| 10603| Biofysik| Biophysics|
 |----------------------|----------------------|----------------------|
-| 10503                | Multidisciplinär     | Geosciences,         |
-|                      | geovetenskap         | Multidisciplinary    |
+| 10604| Cellbiologi| Cell Biology|
 |----------------------|----------------------|----------------------|
-| 10504                | Geologi              | Geology              |
+| 10605| Immunologi (medicinsk under 30110 och lantbruksvetenskaplig under 40302)| Immunology (medical to be 30110 and agricultural to be 40302)|
 |----------------------|----------------------|----------------------|
-| 10505                | Geofysik             | Geophysics           |
+| 10606| Mikrobiologi  (medicinsk under 30109 och lantbruksvetenskaplig under 40302)| Microbiology (medical to be 30109 and agricultural to be 40302)|
+| | Häri ingår\:| Including\:|
+| | virologi| Virology|
+| | mykologi| Mycology|
 |----------------------|----------------------|----------------------|
-| 10506                | Geokemi              | Geochemistry         |
+| 10607| Botanik| Botany|
+| | Häri ingår\:| Including\:|
+| | växtfysiologi| Plant Physiology|
 |----------------------|----------------------|----------------------|
-| 10507                | Naturgeografi        | Physical Geography   |
+| 10608| Zoologi| Zoology|
+| | Häri ingår\:| Including\:|
+| | zoofysiologi| Zoophysiology|
+| | morfologi| Morphology|
+| | ornitologi| Ornithology|
+| | entomologi| Entomology|
 |----------------------|----------------------|----------------------|
-| 10508                | Meteorologi och      | Meteorology and      |
-|                      | atmosfärforskning    | Atmospheric Sciences |
+| 10609| Genetik (medicinsk under 30107 och lantbruksvetenskaplig under 40402)| Genetics (medical to be 30107 and agricultural to be 40402)|
 |----------------------|----------------------|----------------------|
-| 10509                | Oceanografi,         | Oceanography,        |
-|                      | hydrologi och        | Hydrology and Water  |
-|                      | vattenresurser       | Resources            |
+| 10610| Bioinformatik och systembiologi (metodutveckling under10203)| Bioinformatics and Systems Biology (methods development to be 10203)|
 |----------------------|----------------------|----------------------|
-| 10599                | Annan geovetenskap   | Other Earth and      |
-|                      | och miljövetenskap   | Related              |
-|                      |                      | Environmental        |
-|                      |                      | Sciences             |
+| 10611| Ekologi| Ecology|
+| | Häri ingår\:          | Including\:           |
+| | akvatisk ekologi     | Aquatic Ecology      |
+| | terrester ekologi    | Terrestrial Ecology  |
+| | bevarandebiologi     | Biodiversity Conservation|
 |----------------------|----------------------|----------------------|
-| 106                  | Biologi (Medicinska  | Biological           |
-|                      | tillämpningar under  | Sciences  (Medical   |
-|                      | 3 och                | to be 3 and          |
-|                      | la                   | Agricultural tobe 4) |
-|                      | ntbruksvetenskapliga |                      |
-|                      | under 4)             |                      |
+| 10612| Biologisk systematik | Biological Systematics|
 |----------------------|----------------------|----------------------|
-| 10601                | Strukturbiologi      | Structural Biology   |
+| 10613| Etologi| Behavioural Sciences Biology|
 |----------------------|----------------------|----------------------|
-| 10602                | Biokemi och          | Biochemistry and     |
-|                      | molekylärbiologi     | Molecular Biology    |
+| 10614| Utvecklingsbiologi| Developmental Biology|
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
-|                      |                      |                      |
-|                      | Biokemisk metodik    | Biochemical Research |
-|                      |                      | Methods              |
+| 10615| Evolutionsbiologi| Evolutionary Biology |
 |----------------------|----------------------|----------------------|
-| 10603                | Biofysik             | Biophysics           |
+| 10699| Annan biologi| Other Biological Topics|
 |----------------------|----------------------|----------------------|
-| 10604                | Cellbiologi          | Cell Biology         |
+| 107| Annan naturvetenskap | Other Natural Sciences|
 |----------------------|----------------------|----------------------|
-| 10605                | Immunologi           | Immunology (medical  |
-|                      | (medicinsk under     | to be 30110 and      |
-|                      | 30110 och            | agricultural to be   |
-|                      | l                    | 40302)               |
-|                      | antbruksvetenskaplig |                      |
-|                      | under 40302)         |                      |
+| 10799| Övrig annan naturvetenskap| Other Natural Sciences not elsewhere specified|
 |----------------------|----------------------|----------------------|
-| 10606                | Mikrobiologi         | Microbiology         |
-|                      | (medicinsk under     | (medical to be 30109 |
-|                      | 30109 och            | and agricultural to  |
-|                      | l                    | be 40302)            |
-|                      | antbruksvetenskaplig |                      |
-|                      | under 40302)         |                      |
+| **Teknik**|||
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+| 2| Teknik| Engineering and Technology|
 |----------------------|----------------------|----------------------|
-|                      | virologi             | Virology             |
-|----------------------|----------------------|----------------------|
-|                      | mykologi             | Mycology             |
-|----------------------|----------------------|----------------------|
-| 10607                | Botanik              | Botany               |
-|----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
-|----------------------|----------------------|----------------------|
-|                      | växtfysiologi        | Plant Physiology     |
-|----------------------|----------------------|----------------------|
-| 10608                | Zoologi              | Zoology              |
-|----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
-|----------------------|----------------------|----------------------|
-|                      | zoofysiologi         | Zoophysiology        |
-|----------------------|----------------------|----------------------|
-|                      | morfologi            | Morphology           |
-|----------------------|----------------------|----------------------|
-|                      | ornitologi           | Ornithology          |
-|----------------------|----------------------|----------------------|
-|                      | entomologi           | Entomology           |
-|----------------------|----------------------|----------------------|
-| 10609                | Genetik (medicinsk   | Genetics (medical to |
-|                      | under 30107 och      | be 30107 and         |
-|                      | l                    | agricultural to be   |
-|                      | antbruksvetenskaplig | 40402)               |
-|                      | under 40402)         |                      |
-|----------------------|----------------------|----------------------|
-| 10610                | Bioinformatik och    | Bioinformatics and   |
-|                      | systembiologi        | Systems Biology      |
-|                      | (metodutveckling     | (methods development |
-|                      | under10203)          | to be 10203)         |
-|----------------------|----------------------|----------------------|
-| 10611                | Ekologi              | Ecology              |
-|----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
-|----------------------|----------------------|----------------------|
-|                      | akvatisk ekologi     | Aquatic Ecology      |
-|----------------------|----------------------|----------------------|
-|                      | terrester ekologi    | Terrestrial Ecology  |
-|----------------------|----------------------|----------------------|
-|                      | bevarandebiologi     | Biodiversity         |
-|                      |                      | Conservation         |
-|----------------------|----------------------|----------------------|
-| 10612                | Biologisk systematik | Biological           |
-|                      |                      | Systematics          |
-|----------------------|----------------------|----------------------|
-| 10613                | Etologi              | Behavioural Sciences |
-|                      |                      | Biology              |
-|----------------------|----------------------|----------------------|
-| 10614                | Utvecklingsbiologi   | Developmental        |
-|                      |                      | Biology              |
-|----------------------|----------------------|----------------------|
-| 10615                | Evolutionsbiologi    | Evolutionary Biology |
-|----------------------|----------------------|----------------------|
-| 10699                | Annan biologi        | Other Biological     |
-|                      |                      | Topics               |
-|----------------------|----------------------|----------------------|
-| 107                  | Annan naturvetenskap | Other Natural        |
-|                      |                      | Sciences             |
-|----------------------|----------------------|----------------------|
-| 10799                | Övrig annan          | Other Natural        |
-|                      | naturvetenskap       | Sciences not         |
-|                      |                      | elsewhere specified  |
-|----------------------|----------------------|----------------------|
-| **Teknik**           |                      |                      |
-|----------------------|----------------------|----------------------|
-| 2                    | Teknik               | Engineering and      |
-|                      |                      | Technology           |
-|----------------------|----------------------|----------------------|
-| 201                  | Sa                   | Civil Engineering    |
-|                      | mhällsbyggnadsteknik |                      |
+| 201| Samhällsbyggnadsteknik| Civil Engineering|
 |----------------------|----------------------|----------------------|
 | 20101                | Arkitekturteknik     | Architectural        |
 |                      |                      | Engineering          |
@@ -2020,7 +1921,7 @@ forskningsämnen 2011 (Updated August 2016)
 | 20399                | Annan maskinteknik   | Other Mechanical     |
 |                      |                      | Engineering          |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | logistik             | Logistics            |
 |----------------------|----------------------|----------------------|
@@ -2378,7 +2279,7 @@ forskningsämnen 2011 (Updated August 2016)
 |----------------------|----------------------|----------------------|
 | 40101                | Jordbruksvetenskap   | Agricultural Science |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | växtproduktion       | Plant Production     |
 |----------------------|----------------------|----------------------|
@@ -2402,7 +2303,7 @@ forskningsämnen 2011 (Updated August 2016)
 |----------------------|----------------------|----------------------|
 | 40103                | Livsmedelsvetenskap  | Food Science         |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | produktkvalitet      | Product Quality      |
 |----------------------|----------------------|----------------------|
@@ -2416,7 +2317,7 @@ forskningsämnen 2011 (Updated August 2016)
 |----------------------|----------------------|----------------------|
 | 40104                | Skogsvetenskap       | Forest Science       |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | inventering          | Forest Inventory     |
 |----------------------|----------------------|----------------------|
@@ -2442,13 +2343,13 @@ forskningsämnen 2011 (Updated August 2016)
 |----------------------|----------------------|----------------------|
 | 40105                | Trävetenskap         | Wood Science         |
 |----------------------|----------------------|----------------------|
-|                      | Häri                 | ingår: Including:    |
+|                      | Häri                 | ingår\: Including\:    |
 |----------------------|----------------------|----------------------|
 |                      | träteknologi         | Wood Technology      |
 |----------------------|----------------------|----------------------|
 | 40106                | Markvetenskap        | Soil Science         |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | biogeofysik          | Biogeophysics        |
 |----------------------|----------------------|----------------------|
@@ -2462,7 +2363,7 @@ forskningsämnen 2011 (Updated August 2016)
 | 40107                | Fisk- och            | Fish and             |
 |                      | akvakulturforskning  | Aquacultural Science |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | fiskodling           | Fishfarming          |
 |----------------------|----------------------|----------------------|
@@ -2478,7 +2379,7 @@ forskningsämnen 2011 (Updated August 2016)
 | 40108                | Landskapsarkitektur  | Landscape            |
 |                      |                      | Architecture         |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | planering            | Planning             |
 |----------------------|----------------------|----------------------|
@@ -2492,7 +2393,7 @@ forskningsämnen 2011 (Updated August 2016)
 | 40201                | Husdjursvetenskap    | Animal and Dairy     |
 |                      |                      | Science.             |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | utfodring och vård   | Husbandary           |
 |----------------------|----------------------|----------------------|
@@ -2513,7 +2414,7 @@ forskningsämnen 2011 (Updated August 2016)
 | 40301                | Medicinsk            | Medical Bioscience   |
 |                      | biovetenskap         |                      |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | anatomi              | Anatomy              |
 |----------------------|----------------------|----------------------|
@@ -2523,7 +2424,7 @@ forskningsämnen 2011 (Updated August 2016)
 |----------------------|----------------------|----------------------|
 | 40302                | Patobiologi          | Pathobiology         |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | immunologi           | Immunology           |
 |----------------------|----------------------|----------------------|
@@ -2539,7 +2440,7 @@ forskningsämnen 2011 (Updated August 2016)
 |----------------------|----------------------|----------------------|
 | 40303                | Klinisk vetenskap    | Clinical Science     |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | anestesiologi        | Anesthesiology       |
 |----------------------|----------------------|----------------------|
@@ -2558,7 +2459,7 @@ forskningsämnen 2011 (Updated August 2016)
 | 40304                | Annan                | Other Veterinary     |
 |                      | veterinärmedicin     | Science              |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | djuretik             | Animal Ethics        |
 |----------------------|----------------------|----------------------|
@@ -2568,7 +2469,7 @@ forskningsämnen 2011 (Updated August 2016)
 |----------------------|----------------------|----------------------|
 | 40401                | Växtbioteknologi     | Plant Biotechnology  |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | skogsbioteknologi    | Forest Biotechnology |
 |----------------------|----------------------|----------------------|
@@ -2579,7 +2480,7 @@ forskningsämnen 2011 (Updated August 2016)
 |                      | lantbruksvetenskap   | Agricultural         |
 |                      |                      | Sciences             |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår::         | Including            |
+|                      | Häri ingår\:\:         | Including            |
 |----------------------|----------------------|----------------------|
 |                      | mikroorganismer      | Microorganisms       |
 |----------------------|----------------------|----------------------|
@@ -2598,7 +2499,7 @@ forskningsämnen 2011 (Updated August 2016)
 | 40502                | Vilt- och            | Fish and Wildlife    |
 |                      | fiskeförvaltning     | Management           |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | jakt                 | Hunting              |
 |----------------------|----------------------|----------------------|
@@ -2611,7 +2512,7 @@ forskningsämnen 2011 (Updated August 2016)
 |                      |                      | Agriculture and      |
 |                      |                      | Land-use             |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | biodiversitet        | Research on          |
 |                      |                      | Biodiversity         |
@@ -2637,7 +2538,7 @@ forskningsämnen 2011 (Updated August 2016)
 |----------------------|----------------------|----------------------|
 | 50102                | Tillämpad psykologi  | Applied Psychology   |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | klinisk psykologi    | Clinical Psychology  |
 |----------------------|----------------------|----------------------|
@@ -2657,7 +2558,7 @@ forskningsämnen 2011 (Updated August 2016)
 |----------------------|----------------------|----------------------|
 | 50301                | Pedagogik            | Pedagogy             |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | special- och andra   | Special Needs- and   |
 |                      | inriktningar av      | other orientations   |
@@ -2665,7 +2566,7 @@ forskningsämnen 2011 (Updated August 2016)
 |----------------------|----------------------|----------------------|
 | 50302                | Didaktik             | Didactics            |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | allmän- och          | General and Subject  |
 |                      | ämnesdidaktik        | Didactics            |
@@ -2695,7 +2596,7 @@ forskningsämnen 2011 (Updated August 2016)
 |----------------------|----------------------|----------------------|
 | 50502                | Juridik och samhälle | Law and Society      |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | rättssociologi       | Sociology of Law     |
 |----------------------|----------------------|----------------------|
@@ -2724,7 +2625,7 @@ forskningsämnen 2011 (Updated August 2016)
 |----------------------|----------------------|----------------------|
 | 50702                | Ekonomisk geografi   | Economic Geography   |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | teman som t.ex.      | Themes for example   |
 |                      | turism               | Tourism              |
@@ -2758,7 +2659,7 @@ forskningsämnen 2011 (Updated August 2016)
 |                      | studier inom         | Interdisciplinary    |
 |                      | samhällsvetenskap    |                      |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | freds- och           | Peace and Conflict   |
 |                      | konfliktforskning    | Research             |
@@ -2809,13 +2710,13 @@ forskningsämnen 2011 (Updated August 2016)
 | 60203                | Litteraturvetenskap  | General              |
 |                      |                      | Literary studies     |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | litteraturteori      | Literary Theory      |
 |----------------------|----------------------|----------------------|
 | 60204                | Litteraturstudier    | Specific Literatures |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | litteraturer från    | Literature from      |
 |                      | särskilda            | specific Language    |
@@ -2830,7 +2731,7 @@ forskningsämnen 2011 (Updated August 2016)
 |----------------------|----------------------|----------------------|
 | 60303                | Religionsvetenskap   | Religious Studies    |
 |----------------------|----------------------|----------------------|
-|                      | Häri ingår:          | Including:           |
+|                      | Häri ingår\:          | Including\:           |
 |----------------------|----------------------|----------------------|
 |                      | religi               | Social Sciences of   |
 |                      | onsbeteendevetenskap | Religions            |
