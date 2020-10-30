@@ -719,7 +719,7 @@ contents of MODS elements actually exist in the file.)
 |---|---|---|
 | end collection       | \</modsCollection\>  | End of collection    |
 |---|---|---|
-```
+
 
 Start of collection: \<modsCollection ...\>
 ===========================================
