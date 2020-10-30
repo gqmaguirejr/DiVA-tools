@@ -2540,7 +2540,7 @@ height="1.6309514435695538in"}
 []{#_Toc517019657 .anchor}Table : Local identifier for the series of
 theses (The values are from the Javascript file: ImportForm.jsf.)
 
-|Option|code in DiVA GUI  | Value of the element|
+|Option code in DiVA GUI  | Value of the element|
 |-------------------------|-----------------------------------------------------------------------------------------------------------|
 |129|Arbete och Hälsa (Upphört 2008-09-02)|
 |7001|CESIS Working Paper Series in Economics and Institutions of Innovation|
