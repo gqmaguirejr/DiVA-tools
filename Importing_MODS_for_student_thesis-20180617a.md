@@ -901,100 +901,100 @@ each of these other nameParts, except for code 177.
 
 |  Code   |  School                                                 |   Department                                   |    Unit|
 | --------|---------------------------------------------------------|------------------------------------------------|----------------------------------------------------------------------|
-| 177     | \<namePart\>KTH\</namePart\>| | | |
-|  5850   | Skolan för arkitektur och samhällsbyggnad (ABE)| | |
-|  5921|Centra                                                   | Science for Life Laboratory, SciLifeLab          |
-| 5922     |Skolan för bioteknologi (BIO)                            | Centra                                          | Centrum för Bioprocessteknik, CBioPT|
-|  5934    |Skolan för kemivetenskap (CHE)                            |Kemiteknik                                       |Tillämpad elektrokemi
-|  5956    |Skolan för datavetenskap och kommunikation (CSC)|
-  5958     Skolan för datavetenskap och kommunikation (CSC)          Beräkningsbiologi, CB                            
-  5963     Skolan för datavetenskap och kommunikation (CSC)          Teoretisk datalogi, TCS                          
-  5964     Skolan för datavetenskap och kommunikation (CSC)          Tal, musik och hörsel, TMH                       
-  5967     Skolan för datavetenskap och kommunikation (CSC)          Tal, musik och hörsel, TMH                       Musikakustik
-  5969     Skolan för datavetenskap och kommunikation (CSC)          Centra                                           Centrum för Autonoma System, CAS
-  5972     Skolan för datavetenskap och kommunikation (CSC)          Centra                                           Centre for Sustainable Communications, CESC
-  5977     Skolan för elektro- och systemteknik (EES)                                                                 
-  5978     Skolan för elektro- och systemteknik (EES)                Reglerteknik                                     
-  5980     Skolan för elektro- och systemteknik (EES)                Kommunikationsteori                              
-  5981     Skolan för elektro- och systemteknik (EES)                Elektriska energisystem                          
-  5983     Skolan för elektro- och systemteknik (EES)                Elektroteknisk teori och konstruktion            
-  5984     Skolan för elektro- och systemteknik (EES)                Fusionsplasmafysik                               
-  5985     Skolan för elektro- och systemteknik (EES)                Industriella informations- och styrsystem        
-  5987     Skolan för elektro- och systemteknik (EES)                Signalbehandling                                 
-  5988     Skolan för elektro- och systemteknik (EES)                Rymd- och plasmafysik                            
-  5993     Skolan för elektro- och systemteknik (EES)                Centra                                           ACCESS Linnaeus Centre
-  5994     Skolan för informations- och kommunikationsteknik (ICT)                                                    
-  5998     Skolan för informations- och kommunikationsteknik (ICT)   Kommunikationssystem, CoS                        
-  6001     Skolan för informations- och kommunikationsteknik (ICT)   Materialfysik (Stängd 20120101)                  Materialfysik, MF (Stängd 20120101)
-  6018     Skolan för informations- och kommunikationsteknik (ICT)   Centra                                           Zhejiang-KTH Joint Research Center of Photonics, JORCEP
-  6021     Skolan för informations- och kommunikationsteknik (ICT)   Centra                                           VinnExcellence Center for Intelligence in Paper and Packaging, iPACK
-  6025     Skolan för industriell teknik och management (ITM)\<      Energiteknik                                     Tillämpad termodynamik och kylteknik
-  6038     Skolan för industriell teknik och management (ITM)        Maskinkonstruktion (Inst.)                       
-  6046     Skolan för industriell teknik och management (ITM)        Maskinkonstruktion (Inst.)                       Produkt- och tjänstedesign
-  6048     Skolan för industriell teknik och management (ITM)        Materialvetenskap                                
-  6092     Skolan för teknikvetenskap (SCI)                          Farkost och flyg                                 
-  6099     Skolan för teknikvetenskap (SCI)                          Farkost och flyg                                 Spårfordon
-  6108     Skolan för teknikvetenskap (SCI)                          Tillämpad fysik                                  
-  6118     Skolan för teknikvetenskap (SCI)                          Matematik (Inst.)                                Optimeringslära och systemteori
-  6164     Skolan för teknik och hälsa (STH)                         Medicinsk teknik                                 
-  6181     Tidigare Institutioner (före 2005)                        Biokemi och biokemisk teknologi                  
-  6182     Tidigare Institutioner (före 2005)                        Bioteknologi                                     
-  6221     Tidigare Institutioner (före 2005)                        Signaler, sensorer och system                    
-  6222     Tidigare Institutioner (före 2005)                        Tal, musik och hörsel                            
-  10300    Skolan för datavetenskap och kommunikation (CSC)          Medieteknik och interaktionsdesign, MID          
-  11800    Skolan för teknikvetenskap (SCI)                          Matematik (Inst.)                                Numerisk analys, NA
-  11801    Skolan för elektro- och systemteknik (EES)                Mikro- och nanosystemteknik                      
-  13000    Skolan för informations- och kommunikationsteknik (ICT)   Material- och nanofysik                          
-  13051    Skolan för informations- och kommunikationsteknik (ICT)   Kommunikationssystem, CoS                        Network Systems Laboratory (NS Lab)
-  13052    Skolan för informations- och kommunikationsteknik (ICT)   Kommunikationssystem, CoS                        Optical Network Laboratory (ON Lab)
-  13053    Skolan för informations- och kommunikationsteknik (ICT)   Kommunikationssystem, CoS                        Radio Systems Laboratory (RS Lab)
-  13054    Skolan för informations- och kommunikationsteknik (ICT)   Programvaruteknik och Datorsystem, SCS           
-  13304    Skolan för informations- och kommunikationsteknik (ICT)   Material- och nanofysik                          Materialfysik, MF
-  13550    Skolan för datavetenskap och kommunikation (CSC)          Centra                                           Centre for Sustainable Communications, CESC
-  13600    Skolan för bioteknologi (BIO)                             Industriell bioteknologi                         
-  13601    Skolan för bioteknologi (BIO)                             Proteinteknologi                                 
-  13608    Centra                                                    SeRC - Swedish e-Science Research Centre         
-  874100   Skolan för datavetenskap och kommunikation (CSC)          Beräkningsvetenskap och beräkningsteknik (CST)   
-  874101   Skolan för elektro- och systemteknik (EES)                Elkraftteknik                                    
-  876350   Skolan för industriell teknik och management (ITM)        Centra                                           Integrated Transport Research Lab, ITRL
-  876903   Skolan för teknikvetenskap (SCI)                          Tillämpad fysik                                  Materialfysik, MF
-  876904   Skolan för teknikvetenskap (SCI)                          Tillämpad fysik                                  Optik och Fotonik, OFO
-  876912   Skolan för informations- och kommunikationsteknik (ICT)   Elektronik                                       
-  876914   Skolan för informations- och kommunikationsteknik (ICT)   Elektronik                                       Integrerade komponenter och kretsar
-  877050   Skolan för elektro- och systemteknik (EES)                Teknisk informationsvetenskap                    
-  877051   Skolan för elektro- och systemteknik (EES)                Nätverk och systemteknik                         
-  878260   Skolan för arkitektur och samhällsbyggnad (ABE)           Hållbar utveckling, miljövetenskap och teknik    Strategiska hållbarhetsstudier
-  879223   Skolan för elektroteknik och datavetenskap (EECS)                                                          
-  879224   Skolan för kemi, bioteknologi och hälsa (CBH)                                                              
-  879225   Skolan för elektroteknik och datavetenskap (EECS)         Beräkningsvetenskap och beräkningsteknik (CST)   
-  879226   Skolan för elektroteknik och datavetenskap (EECS)         Elektroteknisk teori och konstruktion            
-  879227   Skolan för elektroteknik och datavetenskap (EECS)         Elkraftteknik                                    
-  879228   Skolan för elektroteknik och datavetenskap (EECS)         Fusionsplasmafysik                               
-  879229   Skolan för elektroteknik och datavetenskap (EECS)         Medieteknik och interaktionsdesign, MID          
-  879230   Skolan för elektroteknik och datavetenskap (EECS)         Mikro- och nanosystemteknik                      
-  879231   Skolan för elektroteknik och datavetenskap (EECS)         Nätverk och systemteknik                         
-  879232   Skolan för elektroteknik och datavetenskap (EECS)         Programvaruteknik och datorsystem, SCS           
-  879233   Skolan för elektroteknik och datavetenskap (EECS)         Reglerteknik                                     
-  879234   Skolan för elektroteknik och datavetenskap (EECS)         Robotik, perception och lärande, RPL             
-  879235   Skolan för elektroteknik och datavetenskap (EECS)         Rymd- och plasmafysik                            
-  879236   Skolan för elektroteknik och datavetenskap (EECS)         Teknisk informationsvetenskap                    
-  879237   Skolan för elektroteknik och datavetenskap (EECS)         Teoretisk datalogi, TCS                          
-  879238   Skolan för elektroteknik och datavetenskap (EECS)         Centra                                           Parallelldatorcentrum, PDC
-  879241   Skolan för elektroteknik och datavetenskap (EECS)         Centra                                           KTH Center för trådlösa system, Wireless\@kth
-  879243   Skolan för teknikvetenskap (SCI)                          Centra                                           Zhejiang-KTH Joint Research Center of Photonics, JORCEP
-  879245   Skolan för elektroteknik och datavetenskap (EECS)         Centra                                           Centrum för autonoma systen, CAS
-  879247   Skolan för elektroteknik och datavetenskap (EECS)         Centra                                           ACCESS Linnaeus Centre
-  879249   Skolan för elektroteknik och datavetenskap (EECS)         Elektronik                                       
-  879301   Skolan för elektroteknik och datavetenskap (EECS)         Elektronik                                       Integrerade komponenter och kretsar
-  879302   Skolan för elektroteknik och datavetenskap (EECS)         Tal, musik och hörsel, TMH                       
-  879303   Skolan för elektroteknik och datavetenskap (EECS)         Tal, musik och hörsel, TMH                       Musikakustik
-  879305   Skolan för elektroteknik och datavetenskap (EECS)         Kommunikationssystem, CoS                        
-  879322   Skolan för kemi, bioteknologi och hälsa (CBH)             Medicinteknik och hälsosystem                    Ergonomi
-  879332   Skolan för kemi, bioteknologi och hälsa (CBH)             Kemiteknik                                       Tillämpad elektrokemi
-  879346   Skolan för kemi, bioteknologi och hälsa (CBH)             Proteinvetenskap                                 Proteinteknologi
-  879652   Skolan för elektroteknik och datavetenskap (EECS)         Kommunikationssystem, CoS                        Network Systems Laboratory (NS Lab)
-  879653   Skolan för elektroteknik och datavetenskap (EECS)         Kommunikationssystem, CoS                        Optical Network Laboratory (ON Lab)
-  879654   Skolan för elektroteknik och datavetenskap (EECS)         Kommunikationssystem, CoS                        Radio Systems Laboratory (RS Lab)
+|177|\<namePart\>KTH\</namePart\>| | | |
+|5850|Skolan för arkitektur och samhällsbyggnad (ABE)| | |
+|5921|Centra|Science for Life Laboratory, SciLifeLab|
+|5922|Skolan för bioteknologi (BIO)|Centra| Centrum för Bioprocessteknik, CBioPT|
+|5934|Skolan för kemivetenskap (CHE)|Kemiteknik|Tillämpad elektrokemi|
+|5956|Skolan för datavetenskap och kommunikation (CSC)|
+|5958|Skolan för datavetenskap och kommunikation (CSC)|Beräkningsbiologi, CB|
+|5963|Skolan för datavetenskap och kommunikation (CSC)|Teoretisk datalogi, TCS|
+|5964|Skolan för datavetenskap och kommunikation (CSC)|Tal, musik och hörsel, TMH|
+|5967|Skolan för datavetenskap och kommunikation (CSC)|Tal, musik och hörsel, TMH|Musikakustik|
+|5969|Skolan för datavetenskap och kommunikation (CSC)|Centra|Centrum för Autonoma System, CAS\|
+|5972|Skolan för datavetenskap och kommunikation (CSC)|Centra|Centre for Sustainable Communications, CESC|
+|5977|Skolan för elektro- och systemteknik (EES)|
+|5978|Skolan för elektro- och systemteknik (EES)|Reglerteknik|
+|5980|Skolan för elektro- och systemteknik (EES)|Kommunikationsteori                              
+|5981|Skolan för elektro- och systemteknik (EES)|Elektriska energisystem|
+|5983|Skolan för elektro- och systemteknik (EES)|Elektroteknisk teori och konstruktion|
+|5984|Skolan för elektro- och systemteknik (EES)|Fusionsplasmafysik|
+|5985|Skolan för elektro- och systemteknik (EES)|Industriella informations- och styrsystem|
+|5987|Skolan för elektro- och systemteknik (EES)|Signalbehandling|
+|5988|Skolan för elektro- och systemteknik (EES)|Rymd- och plasmafysik|
+|5993|Skolan för elektro- och systemteknik (EES)|Centra|ACCESS Linnaeus Centre|
+|5994|Skolan för informations- och kommunikationsteknik (ICT)|
+|5998|Skolan för informations- och kommunikationsteknik (ICT)|Kommunikationssystem, CoS|
+|6001|Skolan för informations- och kommunikationsteknik (ICT)|Materialfysik (Stängd 20120101)|Materialfysik, MF (Stängd 20120101)|
+|6018|Skolan för informations- och kommunikationsteknik (ICT)|Centra|Zhejiang-KTH Joint Research Center of Photonics, JORCEP|
+|6021|Skolan för informations- och kommunikationsteknik (ICT)|Centra|VinnExcellence Center for Intelligence in Paper and Packaging, iPACK|
+|6025|Skolan för industriell teknik och management (ITM)|Energiteknik|Tillämpad termodynamik och kylteknik|
+|6038|Skolan för industriell teknik och management (ITM)|Maskinkonstruktion (Inst.)|
+|6046|Skolan för industriell teknik och management (ITM)|Maskinkonstruktion (Inst.)|Produkt- och tjänstedesign|
+|6048|Skolan för industriell teknik och management (ITM)|Materialvetenskap|
+|6092|Skolan för teknikvetenskap (SCI)|Farkost och flyg|
+|6099|Skolan för teknikvetenskap (SCI)|Farkost och flyg|Spårfordon|
+|6108|Skolan för teknikvetenskap (SCI)|Tillämpad fysik|
+|6118|Skolan för teknikvetenskap (SCI)|Matematik (Inst.)|Optimeringslära och systemteori|
+|6164|Skolan för teknik och hälsa (STH)|Medicinsk teknik|
+|6181|Tidigare Institutioner (före 2005)|Biokemi och biokemisk teknologi|
+|6182|Tidigare Institutioner (före 2005)|Bioteknologi|
+|6221|Tidigare Institutioner (före 2005)|Signaler, sensorer och system|
+|6222|Tidigare Institutioner (före 2005)|Tal, musik och hörsel|
+|10300|Skolan för datavetenskap och kommunikation (CSC)|Medieteknik och interaktionsdesign, MID|
+|11800|Skolan för teknikvetenskap (SCI)|Matematik (Inst.)|Numerisk analys, NA|
+|11801|Skolan för elektro- och systemteknik (EES)|Mikro- och nanosystemteknik|
+|13000|Skolan för informations- och kommunikationsteknik (ICT)|Material- och nanofysik|
+|13051|Skolan för informations- och kommunikationsteknik (ICT)|Kommunikationssystem, CoS|Network Systems Laboratory (NS Lab)|
+|13052|Skolan för informations- och kommunikationsteknik (ICT)|Kommunikationssystem, CoS|Optical Network Laboratory (ON Lab)|
+|13053|Skolan för informations- och kommunikationsteknik (ICT)|Kommunikationssystem, CoS|Radio Systems Laboratory (RS Lab)|
+|13054|Skolan för informations- och kommunikationsteknik (ICT)|Programvaruteknik och Datorsystem, SCS|
+|13304|Skolan för informations- och kommunikationsteknik (ICT)|Material- och nanofysik|Materialfysik, MF|
+|13550|Skolan för datavetenskap och kommunikation (CSC)|Centra|Centre for Sustainable Communications, CESC|
+|13600|Skolan för bioteknologi (BIO)|Industriell bioteknologi|
+|13601|Skolan för bioteknologi (BIO)|Proteinteknologi|
+|13608|Centra|SeRC - Swedish e-Science Research Centre|
+|874100|Skolan för datavetenskap och kommunikation (CSC)|Beräkningsvetenskap och beräkningsteknik (CST)|
+|874101|Skolan för elektro- och systemteknik (EES)|Elkraftteknik|
+|876350|Skolan för industriell teknik och management (ITM)<Centra|Integrated Transport Research Lab, ITRL|
+|876903|Skolan för teknikvetenskap (SCI)|Tillämpad fysik|Materialfysik, MF|
+|876904|Skolan för teknikvetenskap (SCI)|Tillämpad fysik|Optik och Fotonik, OFO|
+|876912|Skolan för informations- och kommunikationsteknik (ICT)|Elektronik|
+|876914|Skolan för informations- och kommunikationsteknik (ICT)|Elektronik|Integrerade komponenter och kretsar|
+|877050|Skolan för elektro- och systemteknik (EES)|Teknisk informationsvetenskap|
+|877051|Skolan för elektro- och systemteknik (EES)|Nätverk och systemteknik|
+|878260|Skolan för arkitektur och samhällsbyggnad (ABE)|Hållbar utveckling, miljövetenskap och teknik|Strategiska hållbarhetsstudier|
+|879223|Skolan för elektroteknik och datavetenskap (EECS)|
+|879224|Skolan för kemi, bioteknologi och hälsa (CBH)|
+|879225|Skolan för elektroteknik och datavetenskap (EECS)|Beräkningsvetenskap och beräkningsteknik (CST)|
+|879226|Skolan för elektroteknik och datavetenskap (EECS)|Elektroteknisk teori och konstruktion|
+|879227|Skolan för elektroteknik och datavetenskap (EECS)|Elkraftteknik|
+|879228|Skolan för elektroteknik och datavetenskap (EECS)|Fusionsplasmafysik|
+|879229|Skolan för elektroteknik och datavetenskap (EECS)|Medieteknik och interaktionsdesign, MID|
+|879230|Skolan för elektroteknik och datavetenskap (EECS)|Mikro- och nanosystemteknik|
+|879231|Skolan för elektroteknik och datavetenskap (EECS)|Nätverk och systemteknik|
+|879232|Skolan för elektroteknik och datavetenskap (EECS)|Programvaruteknik och datorsystem, SCS|
+|879233|Skolan för elektroteknik och datavetenskap (EECS)|Reglerteknik|
+|879234|Skolan för elektroteknik och datavetenskap (EECS)|Robotik, perception och lärande, RPL|
+|879235|Skolan för elektroteknik och datavetenskap (EECS)|Rymd- och plasmafysik|
+|879236|Skolan för elektroteknik och datavetenskap (EECS)|Teknisk informationsvetenskap|
+|879237|Skolan för elektroteknik och datavetenskap (EECS)|Teoretisk datalogi, TCS|
+|879238|Skolan för elektroteknik och datavetenskap (EECS)|Centra|Parallelldatorcentrum, PDC|
+|879241|Skolan för elektroteknik och datavetenskap (EECS)|Centra|KTH Center för trådlösa system, Wireless\@kth|
+|879243|Skolan för teknikvetenskap (SCI)|Centra|Zhejiang-KTH Joint Research Center of Photonics, JORCEP|
+|879245|Skolan för elektroteknik och datavetenskap (EECS)|Centra|Centrum för autonoma systen, CAS|
+|879247|Skolan för elektroteknik och datavetenskap (EECS)|Centra|ACCESS Linnaeus Centre|
+|879249|Skolan för elektroteknik och datavetenskap (EECS)|Elektronik|
+|879301|Skolan för elektroteknik och datavetenskap (EECS)|Elektronik|Integrerade komponenter och kretsar|
+|879302|Skolan för elektroteknik och datavetenskap (EECS)|Tal, musik och hörsel, TMH|
+|879303|Skolan för elektroteknik och datavetenskap (EECS)|Tal, musik och hörsel, TMH|Musikakustik|
+|879305|Skolan för elektroteknik och datavetenskap (EECS)|Kommunikationssystem, CoS|
+|879322|Skolan för kemi, bioteknologi och hälsa (CBH)|Medicinteknik och hälsosystem|Ergonomi|
+|879332|Skolan för kemi, bioteknologi och hälsa (CBH)|Kemiteknik|Tillämpad elektrokemi|
+|879346|Skolan för kemi, bioteknologi och hälsa (CBH)<Proteinvetenskap|Proteinteknologi|
+|879652|Skolan för elektroteknik och datavetenskap (EECS)|Kommunikationssystem, CoS|Network Systems Laboratory (NS Lab)|
+|879653|Skolan för elektroteknik och datavetenskap (EECS)|Kommunikationssystem, CoS|Optical Network Laboratory (ON Lab)|
+|879654|Skolan för elektroteknik och datavetenskap (EECS)|Kommunikationssystem, CoS|Radio Systems Laboratory (RS Lab)|
 
 Title and subtitle<sub>n</sub>: \<titleInfo ...\>
 ========================================
