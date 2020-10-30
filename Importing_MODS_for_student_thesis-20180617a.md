@@ -32,7 +32,7 @@ Contents {#contents .Unnumbered-heading-1}
 [2 Start of collection: \<modsCollection ...\>
 5](#start-of-collection-modscollection)
 
-[3 Item<sub>n~</sub>: \<mods ...\> 5](#itemn-mods)
+[3 Item<sub>n</sub>: \<mods ...\> 5](#itemn-mods)
 
 [4 Genre<sub>n</sub>: \<genre ...\> 5](#genren-genre)
 
@@ -89,7 +89,7 @@ publication within this series
 
 [18 Limitations 47](#limitations)
 
-[19 Cooperation note~n~: External collaboration (cannot be imported)
+[19 Cooperation note<sub>n</sub>: External collaboration (cannot be imported)
 47](#cooperation-noten-external-collaboration-cannot-be-imported)
 
 [20 How much is KTH specific? 47](#how-much-is-kth-specific)
@@ -209,7 +209,7 @@ contents of MODS elements actually exist in the file.)
 |                      | c.gov/standards/mods |                      |
 |                      | /v3/mods-3-2.xsd\"\> |                      |
 +----------------------+----------------------+----------------------+
-| Genre<sub>n</sub>             | \<genre              | This element         |
+| Genre~n~             | \<genre              | This element         |
 |                      | authority=\"diva\"   | identifies that the  |
 |                      | type=\"public        | item is a student    |
 |                      | ationTypeCode\"\>stu | thesis.              |
@@ -732,7 +732,7 @@ introduces which XML name space is used
 the scheme is located (xsi:schemaLocation=\"[http://www.loc.gov/mods/v3
 http://www.loc.gov/standards/mods/v3/mods-3-2.xsd](http://www.loc.gov/mods/v3%20http:/www.loc.gov/standards/mods/v3/mods-3-2.xsd)\"\>).
 
-Item~n~: \<mods ...\>
+Item<sub>n</sub>: \<mods ...\>
 =====================
 
 This is a single MODS item. The attributes indicate the version
@@ -743,7 +743,7 @@ xmlns:xsi=<http://www.w3.org/2001/XMLSchema-instance>), and location of
 the schema ( xsi:schemaLocation=\"[http://www.loc.gov/mods/v3
 http://www.loc.gov/standards/mods/v3/mods-3-2.xsd](http://www.loc.gov/mods/v3%20http://www.loc.gov/standards/mods/v3/mods-3-2.xsd)\")
 
-Genre~n~: \<genre ...\>
+Genre<sub>n</sub>: \<genre ...\>
 =======================
 
 This identifies the genre of the item, in this case it is a
@@ -754,7 +754,7 @@ this item is a DiVA publication code (\"publicationTypeCode\"). The list
 of publication codes can be found at:
 <https://wiki.epc.ub.uu.se/display/divainfo/Publikationstyp>
 
-Author~n,i~: \<name ...\>
+Author<sub>n,i</sub>: \<name ...\>
 =========================
 
 This \<name\> element identifies the author of the thesis (there may be
@@ -799,7 +799,7 @@ height="8.25625in"}
 []{#_Ref516929296 .anchor}Figure : DiVA Graphical user interface (GUI)
 for entering information about the authors
 
-Adviser~n,i~: \<name ...\>
+Adviser<sub>n,i</sub>: \<name ...\>
 ==========================
 
 This element gives information about the adviser. We know that this is
@@ -824,7 +824,7 @@ height="3.710702099737533in"}
 []{#_Ref516930337 .anchor}Figure : Graphical user interface (GUI) for
 entering information about the adviser(s)
 
-Publisher~n~ : \<name ...\>
+Publisher<sub>n</sub> : \<name ...\>
 ===========================
 
 The publisher has the role code "pbl". Note that in this case the
@@ -849,7 +849,7 @@ down to the unit level:
 
 \</name\>
 
-Examiner~n~: \<name ...\>
+Examiner<sub>n</sub>: \<name ...\>
 =========================
 
 This element is similar to that for the adviser, except that we know the
@@ -997,7 +997,7 @@ each of these other nameParts, excpet for code 177.
   879653   Skolan för elektroteknik och datavetenskap (EECS)         Kommunikationssystem, CoS                        Optical Network Laboratory (ON Lab)
   879654   Skolan för elektroteknik och datavetenskap (EECS)         Kommunikationssystem, CoS                        Radio Systems Laboratory (RS Lab)
 
-Title and subtitle~n~: \<titleInfo ...\>
+Title and subtitle<sub>n</sub>: \<titleInfo ...\>
 ========================================
 
 This element specifies the \<title\> and \<subtitle\> and the attribute
@@ -1029,7 +1029,7 @@ height="5.196428258967629in"}
 
 []{#_Ref516930850 .anchor}Figure : GUI view of the titles and subtitles
 
-Keywords~n~: \<subject ...\>
+Keywords<sub>n</sub>: \<subject ...\>
 ============================
 
 Using a \<subject\> element containing \<topic\> elements one can
@@ -1071,7 +1071,7 @@ height="2.2619050743657043in"}
 
 []{#_Ref516932162 .anchor}Figure : GUI view of keywords
 
-Abstract~n~: \<abstract ...\>
+Abstract<sub>n</sub>: \<abstract ...\>
 =============================
 
 \<abstract lang=\"eng\"\>As the era of digitalization dawns, the need to
@@ -1094,7 +1094,7 @@ Degree related information
 There are a number of different elements that contain information about
 the degree associated with the degree project.
 
-**Level~n~: which degree is this thesis for?**
+**Level<sub>n</sub>: which degree is this thesis for?**
 ----------------------------------------------
 
 To record what level a student thesis is written for, a \<note
@@ -1122,7 +1122,7 @@ Javascript file: ImportForm.jsf.)
   L1                        Studentarbete första termin
   L3                        Studentarbete övrigt
 
-Credits~n~ **:Number of university creidt for degree project**
+Credits<sub>n</sub> **:Number of university creidt for degree project**
 --------------------------------------------------------------
 
 To record how many credits a student thesis is worth, \<note
@@ -1326,7 +1326,7 @@ project (The values are from the Javascript file: ImportForm.jsf.)
   30300                     Kompletterande pedagogisk utbildning
   29551                     Ämneslärarutbildning med inriktning mot teknik, årskurs 7-9
 
-Course~n~: Subject/Course
+Course<sub>n</sub>: Subject/Course
 -------------------------
 
 The subject/course program that a student is enrolled in when doing
@@ -1610,7 +1610,7 @@ height="2.5833333333333335in"}
 []{#_Ref516948292 .anchor}Figure : DivA GUI view of Degree related
 elements
 
-National subject category~n~: Using HSV codes
+National subject category<sub>n</sub>: Using HSV codes
 =============================================
 
 These categories are defined in Högskoleverket (HSV) (now
@@ -2916,7 +2916,7 @@ The oral presentation (defense) has a date (see Origin), language
 (Defense language), and place where the oral presentation took place
 (Defense venue).
 
-Defense language~n~
+Defense language<sub>n</sub>
 -------------------
 
 Note that the language used for the defense is specified as a \<language
@@ -2932,7 +2932,7 @@ authority=\"iso639-2b\"\>eng\</languageTerm\>
 
 \</language\>
 
-Defense venue~n~
+Defense venue<sub>n</sub>
 ----------------
 
 The venue for the oral presentation (defense) is specified as *Room,
@@ -2942,7 +2942,7 @@ the address. An example of a venue is:
 \<note type=\"venue\"\>Seminar room Grimeton at CoS, Electrum - elevator
 B - 4th floor - Isafjordsgatan 22, Kista\</note\>
 
-Origin~n~
+Origin<sub>n</sub>
 ---------
 
 The \<originInfo\> element specified both the date that the document was
@@ -2962,7 +2962,7 @@ height="2.10119094488189in"}
 
 []{#_Ref516955483 .anchor}Figure : Presentation related information
 
-physicalDescription~n~ : The physical description of the book
+physicalDescription<sub>n</sub>: The physical description of the book
 =============================================================
 
 The physical description of the book is described in the
@@ -2982,7 +2982,7 @@ height="0.9047615923009624in"}
 
 []{#_Ref516955462 .anchor}Figure : DiVA GUI view of other information
 
-relatedItem~n~: Information about the series and the number of the publication within this series
+relatedItem<sub>n</sub>: Information about the series and the number of the publication within this series
 =================================================================================================
 
 These are published in different series (by school within the
@@ -3234,7 +3234,7 @@ Limitations
 Note that DiVA sets a limit of 200 publications worth of meta data per
 file.
 
-Cooperation note~n~: External collaboration (cannot be imported)
+Cooperation note<sub>n</sub>: External collaboration (cannot be imported)
 ================================================================
 
 There are some MODS elements that can be in the file, but will not be
