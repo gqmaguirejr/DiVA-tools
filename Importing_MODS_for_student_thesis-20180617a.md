@@ -30,35 +30,35 @@ Generating the MODS file via software is the topic of another project.
 
 [Start of collection: \<modsCollection ...\>](#start-of-collection-modscollection-)
 
-    [Item<sub>n</sub>: \<mods ...\>](#itemn-mods-)
+[Item<sub>n</sub>: \<mods ...\>](#itemn-mods-)
 
-    [Genre<sub>n</sub>: \<genre ...\>](#genren-genre-)
+[Genre<sub>n</sub>: \<genre ...\>](#genren-genre-)
 
-    [Author<sub>n,i</sub>: \<name ...\>](#authorni-name-)
+[Author<sub>n,i</sub>: \<name ...\>](#authorni-name-)
 
-    [Adviser<sub>n,i</sub>: \<name ...\>](#adviserni-name-)
+[Adviser<sub>n,i</sub>: \<name ...\>](#adviserni-name-)
 
-    [Publisher<sub>n</sub> : \<name ...\>](#publishern-name-)
+[Publisher<sub>n</sub> : \<name ...\>](#publishern-name-)
 
-    [Examiner<sub>n</sub>: \<name ...\>](#examinern-name-)
+[Examiner<sub>n</sub>: \<name ...\>](#examinern-name-)
 
-    [PublisherCorp: \<name ...\>](#publishercorp-name-)
+[PublisherCorp: \<name ...\>](#publishercorp-name-)
 
-    [Title and subtitle<sub>n</sub>: \<titleInfo ...\>](#title-and-subtitlen-titleinfo-)
+[Title and subtitle<sub>n</sub>: \<titleInfo ...\>](#title-and-subtitlen-titleinfo-)
 
-    [Keywords<sub>n</sub>: \<subject ...\>](#keywordsn-subject-)
+[Keywords<sub>n</sub>: \<subject ...\>](#keywordsn-subject-)
 
-    [Abstract<sub>n</sub>: \<abstract ...\>](#abstractn-abstract-)
+[Abstract<sub>n</sub>: \<abstract ...\>](#abstractn-abstract-)
 
 [Degree related information](#degree-related-information)
 
-    [Level<sub>n</sub>: which degree is this thesis for?](#leveln-which-degree-is-this-thesis-for)
+[Level<sub>n</sub>: which degree is this thesis for?](#leveln-which-degree-is-this-thesis-for)
 
-    [Credits<sub>n</sub> :Number of university creidt for degree project](#creditsn-number-of-university-creidt-for-degree-project)
+[Credits<sub>n</sub> :Number of university creidt for degree project](#creditsn-number-of-university-creidt-for-degree-project)
 
-    [Program: Educational program](#program-educational-program)
+[Program: Educational program](#program-educational-program)
 
-    [Course<sub>n</sub>: Subject/Course](#coursen-subjectcourse)
+[Course<sub>n</sub>: Subject/Course](#coursen-subjectcourse)
 
 [The results of all of these degree related elements](#the-results-of-all-of-these-degree-related-elements)
 
@@ -66,15 +66,15 @@ Generating the MODS file via software is the topic of another project.
 
 [Oral presentation (defense) related information](#oral-presentation-defense-related-information)
 
-    [Defense language<sub>n</sub>](#defense-languagen)
+[Defense language<sub>n</sub>](#defense-languagen)
 
-    [Defense venue<sub>n</sub>](#defense-venuen)
+[Defense venue<sub>n</sub>](#defense-venuen)
 
 [Origin<sub>n</sub>](#originn)
 
-    [physicalDescription<sub>n</sub> : The physical description of the book](#physicaldescriptionn-the-physical-description-of-the-book)
+[physicalDescription<sub>n</sub> : The physical description of the book](#physicaldescriptionn-the-physical-description-of-the-book)
 
-    [relatedItem<sub>n</sub>: Information about the series and the number of the publication within this series](#relateditemn-information-about-the-series-and-the-number-of-the-publication-within-this-series)
+[relatedItem<sub>n</sub>: Information about the series and the number of the publication within this series](#relateditemn-information-about-the-series-and-the-number-of-the-publication-within-this-series)
 
 [Limitations](#limitations)
 
