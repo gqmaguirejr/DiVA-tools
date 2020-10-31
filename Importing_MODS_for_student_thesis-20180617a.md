@@ -1258,7 +1258,6 @@ forskningsämnen 2011 (Updated August 2016)</a>
 | 10105| Beräkningsmatematik  | Computational Mathematics|
 | 10106| Sannolikhetsteori och statistik | Probability Theory and Statistics       |
 | 10199| Annan matematik| Other Mathematics|
-|----------------------|----------------------|----------------------|
 | 102| Data- och informationsvetenskap  (Datateknik)| Computer and Information Sciences |
 | 10201| Datavetenskap (datalogi) | Computer Sciences|
 | 10202| Systemvetenskap, informationssystem och informatik (samhällsvetenskaplig inriktning under 50804)   | Information Systems (Social aspects to be 50804)|
