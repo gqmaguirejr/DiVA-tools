@@ -482,9 +482,8 @@ affiliation that has been specified (in this case "Radio Systems
 Laboratory (RS Lab)". The result of the two authors' \<name\> elements
 is shown in Figure 1.
 
-<a name="figure1"></a>
 ![DiVA Graphical user interface (GUI)](Importing_MODS_for_student_thesis-20180617a-image1.png "DiVA GUI for entering authors")
-Figure 1: DiVA Graphical user interface (GUI)
+<a name="figure1">Figure 1: DiVA Graphical user interface (GUI)</a>
 
 
 ## Adviser<sub>n,i</sub>: \<name ...\>
@@ -505,9 +504,8 @@ identifier:
 The resulting information about the adviser following the import is
 shown in Figure 2
 
-<a name="figure2"></a>
 ![Graphical user interface (GUI) for entering information about the adviser(s)](Importing_MODS_for_student_thesis-20180617a-image2.png "GUI for entering information about the adviser(s)")
-Figure 2: Graphical user interface (GUI) for entering information about the adviser(s)
+<a name="figure2">Figure 2: Graphical user interface (GUI) for entering information about the adviser(s)</a>
 
 ## Publisher<sub>n</sub> : \<name ...\>
 
