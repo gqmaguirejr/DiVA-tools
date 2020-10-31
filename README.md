@@ -421,15 +421,80 @@ Input:
 ./get_pid_and_names.py spreadsheet.csv
 ```
 
+The program outputs the following files (for the example command shown later):
+* kth-exluding-theses-all-level2-2012-2019_pid_name.csv - which contains entries of the for PID and authors:
+```
+"913155","Olivecrona, Henrik (Karolinska Institutet, Sweden) (Department of Molecular Medicine and Surgery, Section of Orthopaedics and Sport Medicine);Maguire, Gerald Q., Jr. [u1d13i2c] [0000-0002-6066-746X] (KTH [177], Skolan för informations- och kommunikationsteknik (ICT) [5994], Kommunikationssystem, CoS [5998], Radio Systems Laboratory (RS Lab) [13053]);Noz, Marilyn E. [0000-0002-2442-1622] (New York University,  Department of Radiology) (Nuclear Medicine);Zeleznik, Michael P. [0000-0002-0706-1805] (University of Utah) (School of Computing, College of Engineering);Kesteris, Uldis (Department of Orthopedics, Skåne University Hospital);Weidenhielm, Lars [0000-0002-4280-1178] (Karolinska Institutet at Karolinska University Hospital Solna) (Department of Molecular Medicine and Surgery)"
 
-The program outputs the following files:
+```
+
+* kth-exluding-theses-all-level2-2012-2019_pid_name.JSON - which contains entires of the form:
+```
+ {
+     "PID": 528381,
+     "entry": {
+         "Name": "Maguire Jr., Gerald Q.",
+         "kthid": "u1d13i2c",
+         "orcid": "0000-0002-6066-746X",
+         "kth": " (KTH [177], Skolan f\u00f6r informations- och kommunikationsteknik (ICT) [5994], Kommunikationssystem, CoS [5998])"
+     }
+ }
+```
+* kth-exluding-theses-all-level2-2012-2019_missing_kthids.csv which contains entries of the form:
+```
+Name	KTHID	ORCID	PIDs missing KTHIDs for named person
+...
+Gross, J			[1055431]	 (KTH [177], Skolan för elektro- och systemteknik (EES) [5977])
+...
+```
+* kth-exluding-theses-all-level2-2012-2019_pid_name_aliases.JSON 
+```
+{
+    "kthid": "u1d13i2c",
+    "entry": {
+        "orcid": "0000-0002-6066-746X",
+        "kth": " (KTH [177], Skolan f\u00f6r informations- och kommunikationsteknik (ICT) [5994], Kommunikationssystem, CoS [5998])",
+        "aliases": [
+            {
+                "Name": "Maguire Jr., Gerald Q.",
+                "PID": [
+                    528381,
+                    606323,
+                    638177,
+                    675824,
+                    675849,
+...
+                    1314634,
+                    1367981,
+                    1416571
+                ]
+            },
+            {
+                "Name": "Maguire, Gerald Q.",
+                "PID": [
+                    561069
+                ]
+            },
+            {
+                "Name": "Maguire Jr., Gerald",
+                "PID": [
+                    561509
+                ]
+            },
+            {
+                "Name": "Maguire, Gerald Q., Jr.",
+                "PID": [
+                   913155
+                ]
+            }
+        ]
+    }
+}
+
+```
 
 Example:
 ```
 ./get_pid_and_names.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019.csv 
 ```
 
-Produces the files:
-* kth-exluding-theses-all-level2-2012-2019_pid_name_aliases.JSON
-* kth-exluding-theses-all-level2-2012-2019_pid_name.csv
-* kth-exluding-theses-all-level2-2012-2019_pid_name.JSON
