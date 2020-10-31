@@ -26,7 +26,7 @@ Generating the MODS file via software is the topic of another project.
 
 [List of Tables](#list-of-tables)
 
-[Example MODS file 1](#example-mods-file)
+[Example MODS file](#example-mods-file)
 
 [Start of collection: \<modsCollection ...\>](#start-of-collection-modscollection-)
 
@@ -140,7 +140,7 @@ August 2016)](#user-content-table7)
 [Table 8: Local identifier for the series of theses (The values are from
 the Javascript file: ImportForm.jsf.)](#user-content-table8)
 
-Example MODS file
+# Example MODS file
 
 To help others understand how to create a MODS record for a student
 thesis we will look at an example of such a record (see Table 1) and
@@ -311,8 +311,8 @@ contents of MODS elements actually exist in the file.)</a>
 |                      | authority=\"marcrelator\"\>pbl\</roleTerm\> |                      |
 |                      | \</role\>            |                      |
 |                      | \</name\>            |                      |
-| Title and            | \<titleInfo          | Title and subtitle   |
-| subtitle<sub>n</sub> | lang=\"eng\"\>       |                      |
+| Title and  subtitle<sub>n</sub>| \<titleInfo          | Title and subtitle   |
+| | lang=\"eng\"\>       |                      |
 |                      | \<title\>Connecting Silos\</title\>      |                      |
 |                      | \<subTitle\>Automation system for thesis processing in Canvas and DiVA\</subTitle\>    |                      |
 |                      | \</titleInfo\>       |                      |
@@ -371,8 +371,8 @@ contents of MODS elements actually exist in the file.)</a>
 |                      | \<topic\>Informations- och kommunikationsteknik\</topic\> |                      |
 |                      | \<genre\>Subject/course\</genre\> |                      |
 |                      | \</subject\>         |                      |
-| National subject     | \<subject            | National subject category |
-| category<sub>n</sub> | lang=\"eng\"         |              |
+| National subject category<sub>n</sub>| \<subject            | National subject category |
+|  | lang=\"eng\"         |              |
 |                      | authority=\"hsv\"    |                      |
 |                      | xlink:href=\"20203\"\> |                      |
 |                      | \<topic\>Engineering and Technology\</topic\> |                      |
@@ -724,7 +724,7 @@ shown in Figure 6.
 There are a number of different elements that contain information about
 the degree associated with the degree project.
 
-**Level<sub>n</sub>: which degree is this thesis for?**
+## Level<sub>n</sub>: which degree is this thesis for?**
 
 To record what level a student thesis is written for, a \<note
 type=\"level\"...\> is used. The language used seems to always be
@@ -750,7 +750,7 @@ Javascript file: ImportForm.jsf.)</a>
 |L2|Studentarbete andra termin|
 |L3|Studentarbete övrigt|
 
-# Credits<sub>n</sub> **:Number of university creidt for degree project**
+## Credits<sub>n</sub> **:Number of university creidt for degree project**
 
 To record how many credits a student thesis is worth, \<note
 type=\"universityCredits\" ...\> is used. The language used seems to
@@ -948,7 +948,7 @@ project (The values are from the Javascript file: ImportForm.jsf.)</a>
 | 30300                     |Kompletterande pedagogisk utbildning|
 | 29551                     |Ämneslärarutbildning med inriktning mot teknik, årskurs 7-9|
 
-# Course<sub>n</sub>: Subject/Course
+## Course<sub>n</sub>: Subject/Course
 
 The subject/course program that a student is enrolled in when doing
 their degree project is recorded using a \<subject authority=\"kth\"
@@ -1248,7 +1248,7 @@ forskningsämnen 2011 (Updated August 2016)</a>
 
 | HSV code             | Swedish              | English              |
 |----------------------|----------------------|----------------------|
-| **Naturvetenskap**   |                      |                      |
+| **Naturvetenskap** |
 | 1| Naturvetenskap| Natural sciences|
 | 101| Matematik| Mathematics|
 | 10101| Matematisk analys| Mathematical Analysis|
@@ -1439,7 +1439,7 @@ forskningsämnen 2011 (Updated August 2016)</a>
 | 21102 | Mediateknik | Media Engineering |
 | 21103 | Interaktionsteknik | Interaction Technologies |
 | 21199 | Övrig annan teknik | Other Engineering and Technologies not elsewhere Specified  |
-| **Medicin och hälsovetenskap**|                      |                      |
+| **Medicin och hälsovetenskap**|
 | 3| Medicin och hälsovetenskap | Medical and Health Sciences |
 | 301 | Medicinska och farmaceutiska grundvetenskaper | Basic Medicine |
 | 30101 | Farmaceutiska vetenskaper | Pharmaceutical Sciences |
@@ -1501,7 +1501,7 @@ forskningsämnen 2011 (Updated August 2016)</a>
 | 30501 | Rättsmedicin | Forensic Science |
 | 30502 | Gerontologi, medicin sk/hälsovetenskaplig inriktning (Samhällsvetenskaplig inriktn.under 50999) | Gerontology, specialising in Medical and Health Sciences  (specialising in Social Sciences to  be 50999) |
 | 30599 | Övrig annan medicin och hälsovetenskap | Other Medical and Health Sciences not elsewhere specified |
-| **Lantbruksvetenskap och veterinärmedicin** |                      |                      |
+| **Lantbruksvetenskap och veterinärmedicin** |
 | 4 | Lantbruksvetenskap  och veterinärmedicin | Agricultural and Veterinary sciences  |
 | 401 | Lantbruksvetenskap, skogsbruk och fiske | Agriculture, Forestry and Fisheries |
 | 40101 | Jordbruksvetenskap | Agricultural Science |
@@ -1613,7 +1613,7 @@ forskningsämnen 2011 (Updated August 2016)</a>
 | | risk | Risks |
 | | etikforskning | Ethics |
 | 40599 | Övrig annan lantbruksvetenskap| Other Agricultural Sciences not elsewhere specified  |
-| **Samhällsvetenskap** |                      |                      |
+| **Samhällsvetenskap** |
 | 5 | Samhällsvetenskap | Social Sciences |
 | 501 | Psykologi | Psychology |
 | 50101 | Psykologi (exklusive tillämpad psykologi) | Psychology (excluding Applied Psychology) |
@@ -1669,7 +1669,7 @@ forskningsämnen 2011 (Updated August 2016)</a>
 | 50903 | Arbetslivsstudier | Work Sciences |
 | 50904 | Internationell migration och etniska relationer (IMER) | International Migration and Ethnic Relations        |
 | 50999 | Övrig annan samhällsvetenskap | Other Social Sciences not elsewhere specified  |
-| **Humaniora och konst**              |                      |                      |
+| **Humaniora och konst** |
 | 6 | Humaniora och konst|Humanities and the Arts |
 | 601 | Historia och arkeologi| History and Archaeology |
 | 60101 | Historia | History |
@@ -1732,7 +1732,7 @@ authority=\"iso639-2b\"\> - in this case "eng" means "English".
       \<languageTerm type=\"code\" authority=\"iso639-2b\"\>eng\</languageTerm\>
     \</language\>
 
-Defense venue<sub>n</sub>
+## Defense venue<sub>n</sub>
 
 The venue for the oral presentation (defense) is specified as *Room,
 Address, City*. Unfortunately, I have not learned how to put commas into
@@ -1741,7 +1741,7 @@ the address. An example of a venue is:
 \<note type=\"venue\"\>Seminar room Grimeton at CoS, Electrum - elevator
 B - 4th floor - Isafjordsgatan 22, Kista\</note\>
 
-# Origin<sub>n</sub>
+## Origin<sub>n</sub>
 
 The \<originInfo\> element specified both the date that the document was
 published (see the year in Figure 10) and the date and time of the oral
@@ -1752,6 +1752,7 @@ presentation (defense) (see the Date in Figure 9).
       \<dateOther type=\"defence\"\>2018-06-13T10:00:00\</dateOther\>
     \</originInfo\>
 
+## Collected presentation information
 The collected presentation related information is shown in Figure 9.
 
 ![Presentation related information](Importing_MODS_for_student_thesis-20180617a-image9.png "Presentation related information")
