@@ -725,7 +725,6 @@ There are a number of different elements that contain information about
 the degree associated with the degree project.
 
 **Level<sub>n</sub>: which degree is this thesis for?**
-----------------------------------------------
 
 To record what level a student thesis is written for, a \<note
 type=\"level\"...\> is used. The language used seems to always be
@@ -747,12 +746,11 @@ Javascript file: ImportForm.jsf.)</a>
 |M4|Självständigt arbete på grundnivå (konstnärlig högskoleexamen)|
 |M5|Självständigt arbete på grundnivå (konstnärlig kandidatexamen)|
 |M3|Självständigt arbete på grundnivå (yrkesexamen)|
-|L2|Studentarbete andra termin|
 |L1|Studentarbete första termin|
+|L2|Studentarbete andra termin|
 |L3|Studentarbete övrigt|
 
 Credits<sub>n</sub> **:Number of university creidt for degree project**
---------------------------------------------------------------
 
 To record how many credits a student thesis is worth, \<note
 type=\"universityCredits\" ...\> is used. The language used seems to
@@ -768,29 +766,28 @@ ImportForm.jsf.)</a>
 
 |  Option code in DiVA GUI |  Value of the element|
 |--------------------------|----------------------|
-|4|5 hp|
-|5|7,5 hp|
-|7|10 hp|
-|8|12 hp|
-|10|15 hp|
-|12|18 hp|
-|15|22,5 hp|
-|16|16 hp|
-|17|20hp|
-|20|30 hp|
-|25|37,5 hp|
-|30|45 hp|
-|40|60 hp|
-|60|90 hp|
-|80|120 hp|
-|120|180 hp|
-|140|210 hp|
-|160|240 hp|
-|200|300 hp|
-|220|330 hp|
+|4:|5 hp|
+|5:|7,5 hp|
+|7:|10 hp|
+|8:|12 hp|
+|10:|15 hp|
+|12:|18 hp|
+|15:|22,5 hp|
+|16:|16 hp|
+|17:|20hp|
+|20:|30 hp|
+|25:|37,5 hp|
+|30:|45 hp|
+|40:|60 hp|
+|60:|90 hp|
+|80:|120 hp|
+|120:|180 hp|
+|140:|210 hp|
+|160:|240 hp|
+|200:|300 hp|
+|220:|330 hp|
 
 Program: Educational program
-----------------------------
 
 The educational program that a student is enrolled in when doing their
 degree project is recorded using a \<subject authority=\"kth\" ...\>
@@ -952,7 +949,6 @@ project (The values are from the Javascript file: ImportForm.jsf.)</a>
 | 29551                     |Ämneslärarutbildning med inriktning mot teknik, årskurs 7-9|
 
 Course<sub>n</sub>: Subject/Course
--------------------------
 
 The subject/course program that a student is enrolled in when doing
 their degree project is recorded using a \<subject authority=\"kth\"
@@ -1217,7 +1213,6 @@ ImportForm.jsf.)</a>
 |10442|Ytkemi|
 
 The results of all of these degree related elements
----------------------------------------------------
 
 Figure 7 shows the results of all of the degree related elements as shown via the DiVA GUI.
 
@@ -1726,7 +1721,6 @@ The oral presentation (defense) has a date (see Origin), language
 (Defense venue).
 
 ## Defense language<sub>n</sub>
--------------------
 
 Note that the language used for the defense is specified as a \<language
 ...\> element. The language value is given according to the encoding
@@ -1739,7 +1733,6 @@ authority=\"iso639-2b\"\> - in this case "eng" means "English".
     \</language\>
 
 Defense venue<sub>n</sub>
-----------------
 
 The venue for the oral presentation (defense) is specified as *Room,
 Address, City*. Unfortunately, I have not learned how to put commas into
