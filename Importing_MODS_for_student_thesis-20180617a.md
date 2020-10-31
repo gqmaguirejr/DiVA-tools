@@ -494,8 +494,7 @@ for entering information about the authors</figcaption>
 
 ===========
 
-[]{#figure1 .anchor}
-![DiVA Graphical user interface (GUI)](Importing_MODS_for_student_thesis-20180617a-image1.png "DiVA GUI for entering authors"){#figure1 .class width="6.26875in"
+![DiVA Graphical user interface (GUI)](Importing_MODS_for_student_thesis-20180617a-image1.png "DiVA GUI for entering authors"){: #figure1 .class width="6.26875in"
 height="8.25625in"}Figure 1: DiVA Graphical user interface (GUI)
 
 
