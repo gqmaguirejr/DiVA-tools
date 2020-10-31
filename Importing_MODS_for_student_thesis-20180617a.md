@@ -1757,7 +1757,7 @@ presentation (defense) (see the Date in Figure 9).
     \</originInfo\>
 
 <a name="figure9"></a>
-![Presentation related information](Importing_MODS_for_student_thesis-20180617a-image3.png "Presentation related information")Figure 9: Presentation related information
+![Presentation related information](Importing_MODS_for_student_thesis-20180617a-image9.png "Presentation related information")Figure 9: Presentation related information
 
 ## physicalDescription<sub>n</sub>: The physical description of the book
 
