@@ -150,12 +150,10 @@ would contain for the 1<sup>st</sup> cycle degree project by Qi Li
 *Connecting Silos: Automation system for thesis processing in Canvas and
 DiVA*, June 2018.
 
-[]{#_Ref516924899 .anchor}Table : Example of a MODS file for a 1<sup>st</sup>
+<a name="table1">Table 1: Example of a MODS file for a 1<sup>st</sup>
 cycle student thesis with two authors (Note that the logical are simply
 labels for the purpose of annotation in this explanation and *only* the
-contents of MODS elements actually exist in the file.)
-
-
+contents of MODS elements actually exist in the file.)</a>
 
                         **MODS file contents**
 
@@ -558,9 +556,9 @@ the authority is authority=\"kth\", hence xlink value is assigned by KTH
 A list of the codes for the different parts of KTH are listed in Table
 2.
 
-[]{#_Ref517019557 .anchor}Table 2: KTH specific codes for the coporate
+<a name="table2">Table 2: KTH specific codes for the coporate
 publisher-- Note that there is a \<namePart\>KTH\</namePart\> before
-each of these other nameParts, except for code 177.
+each of these other nameParts, except for code 177.</a>
 
 |  Code   |  School                                                 |   Department                                   |    Unit|
 | --------|---------------------------------------------------------|------------------------------------------------|----------------------------------------------------------------------|
@@ -736,8 +734,8 @@ is:
 
     \<note type=\"level\" lang=\"swe\"\>Självständigt arbete på grundnivå (högskoleexamen)\</note\>
 
-[]{#_Ref516946297 .anchor}Table : Degree levels (The values are from the
-Javascript file: ImportForm.jsf.)
+<a name="table3">Table 3: Degree levels (The values are from the
+Javascript file: ImportForm.jsf.)</a>
 
   Option code in DiVA GUI   Value of the element
   ------------------------- ----------------------------------------------------------------
@@ -764,9 +762,9 @@ is:
 \<note type=\"universityCredits\" lang=\"swe\"\>10 poäng / 15
 hp\</note\>
 
-[]{#_Toc517019653 .anchor}Table : Number of university credits for
+<a name="table4">Table 4: Number of university credits for
 degree project (The values are from the Javascript file:
-ImportForm.jsf.)
+ImportForm.jsf.)</a>
 
 |  Option code in DiVA GUI |  Value of the element|
 |--------------------------|----------------------|
@@ -804,8 +802,8 @@ numerical code. An example of such an entry is:
       \<genre\>Educational program\</genre\>
     \</subject\>
 
-[]{#_Toc517019654 .anchor}Table : KTH's Educational programs for degree
-project (The values are from the Javascript file: ImportForm.jsf.)
+<a name="table5">Table 5: KTH's Educational programs for degree
+project (The values are from the Javascript file: ImportForm.jsf.)</a>
 
 |  Option code in DiVA GUI |  Value of the element |
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------|
@@ -970,9 +968,9 @@ numerical code. An example of such an entry is:
       \<genre\>Subject/course\</genre\>
     \</subject\>
 
-[]{#_Toc517019655 .anchor}Table : Subjects/courses for a degree project
+<a name="table6">Table 6: Subjects/courses for a degree project
 and their codes for KTH (The values are from the Javascript file:
-ImportForm.jsf.)
+ImportForm.jsf.)</a>
 
 |  Option code in DiVA GUI |  Value of the element                       |
 | -------------------------|---------------------------------------------|
@@ -1250,8 +1248,8 @@ Uppdaterad augusti 2016\
 
 <a name="figure8">Figure 8: DiVA GUI view of National subject category</a>
 
-[]{#_Toc517019656 .anchor}Table 7: Standard för svensk indelning av
-forskningsämnen 2011 (Updated August 2016)
+<a name="table7">Table 7: Standard för svensk indelning av
+forskningsämnen 2011 (Updated August 2016)</a>
 
 | HSV code             | Swedish              | English              |
 |----------------------|----------------------|----------------------|
@@ -1761,6 +1759,8 @@ presentation (defense) (see the Date in Figure 9).
       \<dateOther type=\"defence\"\>2018-06-13T10:00:00\</dateOther\>
     \</originInfo\>
 
+The collected presentation related information is shown in Figure 9.
+
 ![Presentation related information](Importing_MODS_for_student_thesis-20180617a-image9.png "Presentation related information")
 
 <a name="figure9">Figure 9: Presentation related information</a>
@@ -1803,8 +1803,8 @@ When imported into DiVA the result is shown in Figure 11.
 
 <a name="figure11">Figure 11: DiVA GUI view of Series fields</a>
 
-[]{#_Toc517019657 .anchor}Table : Local identifier for the series of
-theses (The values are from the Javascript file: ImportForm.jsf.)
+<a name="table8">Table 8: Local identifier for the series of
+theses (The values are from the Javascript file: ImportForm.jsf.)</a>
 
 |Option code in DiVA GUI  | Value of the element|
 |-------------------------|-----------------------------------------------------------------------------------------------------------|
@@ -2042,7 +2042,6 @@ this data one must use the DiVA GUI as shown in Figure 12
 <a name="figure12">Figure 12: GUI for entering information about an external collaboration</a>
 
 # How much is KTH specific?
-=========================
 
 When the authority=\"kth\", then the values are specific to the DiVA
 options for KTH or in the case of (Author, Adviser, and Examiner
