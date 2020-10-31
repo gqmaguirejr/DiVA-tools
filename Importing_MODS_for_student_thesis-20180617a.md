@@ -739,17 +739,17 @@ Javascript file: ImportForm.jsf.)</a>
 
 |  Option code in DiVA GUI |  Value of the element|
 |-------------------------- |----------------------------------------------------------------|
-  H1                        Självständigt arbete på avancerad nivå (magisterexamen)
-  H2                        Självständigt arbete på avancerad nivå (masterexamen)
-  H3                        Självständigt arbete på avancerad nivå (yrkesexamen)
-  M1                        Självständigt arbete på grundnivå (högskoleexamen)
-  M2                        Självständigt arbete på grundnivå (kandidatexamen)
-  M4                        Självständigt arbete på grundnivå (konstnärlig högskoleexamen)
-  M5                        Självständigt arbete på grundnivå (konstnärlig kandidatexamen)
-  M3                        Självständigt arbete på grundnivå (yrkesexamen)
-  L2                        Studentarbete andra termin
-  L1                        Studentarbete första termin
-  L3                        Studentarbete övrigt
+|H1|Självständigt arbete på avancerad nivå (magisterexamen)|
+|H2|Självständigt arbete på avancerad nivå (masterexamen)|
+|H3|Självständigt arbete på avancerad nivå (yrkesexamen)|
+|M1|Självständigt arbete på grundnivå (högskoleexamen)|
+|M2|Självständigt arbete på grundnivå (kandidatexamen)|
+|M4|Självständigt arbete på grundnivå (konstnärlig högskoleexamen)|
+|M5|Självständigt arbete på grundnivå (konstnärlig kandidatexamen)|
+|M3|Självständigt arbete på grundnivå (yrkesexamen)|
+|L2|Studentarbete andra termin|
+|L1|Studentarbete första termin|
+|L3|Studentarbete övrigt|
 
 Credits<sub>n</sub> **:Number of university creidt for degree project**
 --------------------------------------------------------------
