@@ -750,7 +750,7 @@ Javascript file: ImportForm.jsf.)</a>
 |L2|Studentarbete andra termin|
 |L3|Studentarbete övrigt|
 
-Credits<sub>n</sub> **:Number of university creidt for degree project**
+# Credits<sub>n</sub> **:Number of university creidt for degree project**
 
 To record how many credits a student thesis is worth, \<note
 type=\"universityCredits\" ...\> is used. The language used seems to
@@ -787,7 +787,7 @@ ImportForm.jsf.)</a>
 |200|300 hp|
 |220|330 hp|
 
-Program: Educational program
+## Program: Educational program
 
 The educational program that a student is enrolled in when doing their
 degree project is recorded using a \<subject authority=\"kth\" ...\>
@@ -948,7 +948,7 @@ project (The values are from the Javascript file: ImportForm.jsf.)</a>
 | 30300                     |Kompletterande pedagogisk utbildning|
 | 29551                     |Ämneslärarutbildning med inriktning mot teknik, årskurs 7-9|
 
-Course<sub>n</sub>: Subject/Course
+# Course<sub>n</sub>: Subject/Course
 
 The subject/course program that a student is enrolled in when doing
 their degree project is recorded using a \<subject authority=\"kth\"
@@ -1212,7 +1212,7 @@ ImportForm.jsf.)</a>
 |10441|Ytbehandlingsteknik|
 |10442|Ytkemi|
 
-The results of all of these degree related elements
+## The results of all of these degree related elements
 
 Figure 7 shows the results of all of the degree related elements as shown via the DiVA GUI.
 
