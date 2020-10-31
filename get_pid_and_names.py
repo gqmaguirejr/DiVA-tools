@@ -7,6 +7,9 @@
 # information about KTH authors who do not have a KTHID in the DiVA record for one or more publications, and
 # a summary of all the names and "aliases" of a KTH author (indicating whicih publications this name/alias has been used for).
 #
+#kth-exluding-theses-all-level2-2012-2019_pid_name.csv - which contains entries of the for PID and authors:
+#"913155","Olivecrona, Henrik (Karolinska Institutet, Sweden) (Department of Molecular Medicine and Surgery, Section of Orthopaedics and Sport Medicine);Maguire, Gerald Q., Jr. [u1d13i2c] [0000-0002-6066-746X] (KTH [177], Skolan för informations- och kommunikationsteknik (ICT) [5994], Kommunikationssystem, CoS [5998], Radio Systems Laboratory (RS Lab) [13053]);Noz, Marilyn E. [0000-0002-2442-1622] (New York University,  Department of Radiology) (Nuclear Medicine);Zeleznik, Michael P. [0000-0002-0706-1805] (University of Utah) (School of Computing, College of Engineering);Kesteris, Uldis (Department of Orthopedics, Skåne University Hospital);Weidenhielm, Lars [0000-0002-4280-1178] (Karolinska Institutet at Karolinska University Hospital Solna) (Department of Molecular Medicine and Surgery)"
+#
 # kth-exluding-theses-all-level2-2012-2019_pid_name.JSON which contains entires of the form:
 # {
 #     "PID": 528381,
