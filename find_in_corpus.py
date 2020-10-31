@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# ./find_in_corpus.py targets.json shard_number path_to_distroy_with_corpus
+# ./find_in_corpus.py targets.json shard_number path_to_corpus
 #
 # The shard number N (is the digits indicating the piece of the corpus) - for the file s2-corpus-186 N is 186
 # The program outputs the following files:
@@ -98,12 +98,12 @@ def main():
         print('REMAINING :', remainder)
 
     if (len(remainder) < 3):
-        print("Insuffient arguments must provide targets.json shard_number path_to_distroy_with_corpus\n")
+        print("Insuffient arguments must provide targets.json shard_number path_to_corpus\n")
         return
 
     targets_json_file=remainder[0]
     shard_number=remainder[1]
-    path_to_distroy_with_corpus=remainder[2]
+    path_to_corpus=remainder[2]
 
     targets=[]
     # read the lines from the JSON file
@@ -125,7 +125,7 @@ def main():
 
     print("doi_set length={0}, pmid_set length={1}".format(len(doi_set), len(pmid_set)))
     
-    shard_filename="{0}/s2-corpus-{1}".format(path_to_distroy_with_corpus, shard_number)
+    shard_filename="{0}/s2-corpus-{1}".format(path_to_corpus, shard_number)
     print("shard_filename={}".format(shard_filename))
 
     corpus_shard=[]

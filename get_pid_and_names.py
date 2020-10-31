@@ -1,10 +1,72 @@
 #!/usr/bin/python3
 #
-# ./get_pid_and_names.py spreadsheet.csv
+# ./get_pid_and_names.py diva_spreadsheet.csv
 #
-# reads in a CSV spreaadsheet of DiVA entries and generates and
-# output a file containing on
-#   PID, Name
+# reads in a CSV spreaadsheet of DiVA entries and uses the information to generates several output files.
+# These files identify publications with has information about publications and their KTH authors,
+# information about KTH authors who do not have a KTHID in the DiVA record for one or more publications, and
+# a summary of all the names and "aliases" of a KTH author (indicating whicih publications this name/alias has been used for).
+#
+# kth-exluding-theses-all-level2-2012-2019_pid_name.JSON which contains entires of the form:
+# {
+#     "PID": 528381,
+#     "entry": {
+#         "Name": "Maguire Jr., Gerald Q.",
+#         "kthid": "u1d13i2c",
+#         "orcid": "0000-0002-6066-746X",
+#         "kth": " (KTH [177], Skolan f\u00f6r informations- och kommunikationsteknik (ICT) [5994], Kommunikationssystem, CoS [5998])"
+#     }
+# }
+#
+#  kth-exluding-theses-all-level2-2012-2019_missing_kthids.csv which contains entries of the form:
+#Name	KTHID	ORCID	PIDs missing KTHIDs for named person
+# ..
+# Gross, J			[1055431]	 (KTH [177], Skolan för elektro- och systemteknik (EES) [5977])
+# ...
+#
+#  kth-exluding-theses-all-level2-2012-2019_pid_name_aliases.JSON which contains entries of the form:
+# {
+#     "kthid": "u1d13i2c",
+#     "entry": {
+#         "orcid": "0000-0002-6066-746X",
+#         "kth": " (KTH [177], Skolan f\u00f6r informations- och kommunikationsteknik (ICT) [5994], Kommunikationssystem, CoS [5998])",
+#         "aliases": [
+#             {
+#                 "Name": "Maguire Jr., Gerald Q.",
+#                 "PID": [
+#                     528381,
+#                     606323,
+#                     638177,
+#                     675824,
+#                     675849,
+# ...
+#                     1314634,
+#                     1367981,
+#                     1416571
+#                 ]
+#             },
+#             {
+#                 "Name": "Maguire, Gerald Q.",
+#                 "PID": [
+#                     561069
+#                 ]
+#             },
+#             {
+#                 "Name": "Maguire Jr., Gerald",
+#                 "PID": [
+#                     561509
+#                 ]
+#             },
+#             {
+#                 "Name": "Maguire, Gerald Q., Jr.",
+#                 "PID": [
+#                     913155
+#                 ]
+#             }
+#         ]
+#     }
+# }
+
 #
 # G. Q. Maguire Jr.
 #
@@ -17,7 +79,12 @@
 #  wget -O kth-exluding-theses-all-level2-2012-2019.csv 'https://kth.diva-portal.org/smash/export.jsf?format=csvall2&addFilename=true&aq=[[]]&aqe=[]&aq2=[[{"dateIssued":{"from":"2012","to":"2019"}},{"organisationId":"177","organisationId-Xtra":true},{"publicationTypeCode":["bookReview","review","article","artisticOutput","book","chapter","manuscript","collection","other","conferencePaper","patent","conferenceProceedings","report","dataset"]}]]&onlyFullText=false&noOfRows=5000000&sortOrder=title_sort_asc&sortOrder2=title_sort_asc'
 #
 #  wget -O eecs-exluding-theses-all-level2-2012-2019.csv 'https://kth.diva-portal.org/smash/export.jsf?format=csvall2&addFilename=true&aq=[[]]&aqe=[]&aq2=[[{"dateIssued":{"from":"2012","to":"2019"}},{"organisationId":"879223","organisationId-Xtra":true},{"publicationTypeCode":["bookReview","review","article","artisticOutput","book","chapter","manuscript","collection","other","conferencePaper","patent","conferenceProceedings","report","dataset"]}]]&onlyFullText=false&noOfRows=5000000&sortOrder=title_sort_asc&sortOrder2=title_sort_asc'
-
+#
+# for the example command it produces:
+#  kth-exluding-theses-all-level2-2012-2019_missing_kthids.csv
+#  kth-exluding-theses-all-level2-2012-2019_pid_name_aliases.JSON
+#  kth-exluding-theses-all-level2-2012-2019_pid_name.JSON
+#
 #
 
 import requests, time
