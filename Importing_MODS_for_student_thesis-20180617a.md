@@ -548,15 +548,13 @@ the authority is authority=\"kth\", hence xlink value is assigned by KTH
 
     \<name type=\"corporate\" xlink:href=\"879654\"\>
       \<namePart\>KTH\</namePart\>
-      \<namePart\>Skolan för elektroteknik och datavetenskap
-(EECS)\</namePart\>
+      \<namePart\>Skolan för elektroteknik och datavetenskap (EECS)\</namePart\>
       \<namePart\>Kommunikationssystem, CoS\</namePart\>
       \<namePart\>Radio Systems Laboratory (RS Lab)\</namePart\>
       \<role\>
         \<roleTerm type=\"code\" authority=\"marcrelator\"\>pbl\</roleTerm\>
       \</role\>
     \</name\>
-
 A list of the codes for the different parts of KTH are listed in Table
 2.
 
@@ -706,7 +704,7 @@ specify keywords for a publication, in this case:
 The results of importing the above keywords in English and Swedish are
 shown in Figure 5.
 
-![GUI view of keywords](Importing_MODS_for_student_thesis-20180617a-image2.png "GUI view of keywords")
+![GUI view of keywords](Importing_MODS_for_student_thesis-20180617a-image5.png "GUI view of keywords")
 
 <a name="figure5">Figure 5: GUI view of keywords</a>
 
@@ -719,7 +717,7 @@ shown in Figure 5.
 The results of importing the above keywords in English and Swedish are
 shown in Figure 6.
 
-![GUI view of abstracts](Importing_MODS_for_student_thesis-20180617a-image2.png "GUI view of abstracts")
+![GUI view of abstracts](Importing_MODS_for_student_thesis-20180617a-image6.png "GUI view of abstracts")
 
 <a name="figure6">Figure 6: GUI view of abstracts</a>
 
@@ -1225,7 +1223,7 @@ The results of all of these degree related elements
 
 Figure 7 shows the results of all of the degree related elements as shown via the DiVA GUI.
 
-![GUI view of Degree related elements](Importing_MODS_for_student_thesis-20180617a-image4.png "GUI view of Degree related elements")
+![GUI view of Degree related elements](Importing_MODS_for_student_thesis-20180617a-image7.png "GUI view of Degree related elements")
 
 <a name="figure7">Figure 7: DivA GUI view of Degree related elements</a>
 
