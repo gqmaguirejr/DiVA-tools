@@ -1,3 +1,14 @@
+# Facilitating entering the meta data for student theses into DiVA via importing a MODS file
+
+Gerald Q. Maguire Jr.
+
+KTH Royal Institute of Technology
+
+School of Electrical Engineering and Computer Science (EECS)
+
+2018.06.16
+
+
 DiVA supports the ability to import a file containing publication meta
 data. One of the formats that can be imported into DiVA is Metadata
 Object Description Schema (MODS)[^1]. In particular, the variant of MODS
@@ -18,7 +29,7 @@ in as many of the fields of the DiVA records for a student thesis as
 possible (to facilitate importing complete or nearly complete records).
 Generating the MODS file via software is the topic of another project.
 
-# Contents {#contents .Unnumbered-heading-1}
+# Contents
 
 [Contents](#contents)
 
@@ -1438,7 +1449,7 @@ forskningsämnen 2011 (Updated August 2016)</a>
 | 21102 | Mediateknik | Media Engineering |
 | 21103 | Interaktionsteknik | Interaction Technologies |
 | 21199 | Övrig annan teknik | Other Engineering and Technologies not elsewhere Specified  |
-| **Medicin och hälsovetenskap**|
+| **Medicin och hälsovetenskap** |
 | 3| Medicin och hälsovetenskap | Medical and Health Sciences |
 | 301 | Medicinska och farmaceutiska grundvetenskaper | Basic Medicine |
 | 30101 | Farmaceutiska vetenskaper | Pharmaceutical Sciences |
