@@ -88,59 +88,57 @@ Generating the MODS file via software is the topic of another project.
 about the authors](#user-content-figure1)
 
 [Figure 2: Graphical user interface (GUI) for entering information about
-the adviser(s) 7](#_Ref516930337)
+the adviser(s)](#user-content-figure2)
 
 [Figure 3: Graphical user interface (GUI) for entering information about
-the examiner 8](#_Toc517019603)
+the examiner](#user-content-figure3)
 
-[Figure 4: GUI view of the titles and subtitles 13](#_Ref516930850)
+[Figure 4: GUI view of the titles and subtitles](#user-content-figure4)
 
-[Figure 5: GUI view of keywords 14](#_Ref516932162)
+[Figure 5: GUI view of keywords](#user-content-figure5)
 
-[Figure 6: GUI view of abstracts 15](#_Ref516932246)
+[Figure 6: GUI view of abstracts](#user-content-figure6)
 
-[Figure 7: DivA GUI view of Degree related elements 25](#_Ref516948292)
+[Figure 7: DivA GUI view of Degree related elements](#user-content-figure7)
 
-[Figure 8: DiVA GUI view of National subject category
-26](#_Toc517019608)
+[Figure 8: DiVA GUI view of National subject category](#user-content-figure8)
 
-[Figure 9: Presentation related information 41](#_Ref516955483)
+[Figure 9: Presentation related information](#user-content-figure9)
 
-[Figure 10: DiVA GUI view of other information 42](#_Ref516955462)
+[Figure 10: DiVA GUI view of other information](#user-content-figure10)
 
-[Figure 11: DiVA GUI view of Series fields 42](#_Ref516956027)
+[Figure 11: DiVA GUI view of Series fields](#user-content-figure11)
 
-[Figure 12: GUI for entering information about an external collaboration
-47](#_Ref516956710)
+[Figure 12: GUI for entering information about an external collaboration](#user-content-figure12)
 
 # List of Tables
 
 [Table 1: Example of a MODS file for a 1<sup>st</sup> cycle student thesis with
 two authors (Note that the logical are simply labels for the purpose of
 annotation in this explanation and *only* the contents of MODS elements
-actually exist in the file.) 1](#_Ref516924899)
+actually exist in the file.)](#user-content-table1)
 
 [Table 2: KTH specific codes for the coporate publisher-- Note that
 there is a \<namePart\>KTH\</namePart\> before each of these other
-nameParts, excpet for code 177. 9](#_Ref517019557)
+nameParts, excpet for code 177.](#user-content-table2)
 
 [Table 3: Degree levels (The values are from the Javascript file:
-ImportForm.jsf.) 16](#_Ref516946297)
+ImportForm.jsf.)](#user-content-table3)
 
 [Table 4: Number of university credits for degree project (The values
-are from the Javascript file: ImportForm.jsf.) 16](#_Toc517019653)
+are from the Javascript file: ImportForm.jsf.)](#user-content-table4)
 
 [Table 5: Educational program for degree project (The values are from
-the Javascript file: ImportForm.jsf.) 17](#_Toc517019654)
+the Javascript file: ImportForm.jsf.)](#user-content-table5)
 
 [Table 6: Subjects/courses for a degree project (The values are from the
-Javascript file: ImportForm.jsf.) 20](#_Toc517019655)
+Javascript file: ImportForm.jsf.)](#user-content-table6)
 
 [Table 7: Standard för svensk indelning av forskningsämnen 2011 (Updated
-August 2016) 26](#_Toc517019656)
+August 2016)](#user-content-table7)
 
 [Table 8: Local identifier for the series of theses (The values are from
-the Javascript file: ImportForm.jsf.) 43](#_Toc517019657)
+the Javascript file: ImportForm.jsf.)](#user-content-table8)
 
 Example MODS file
 
@@ -482,33 +480,11 @@ of the organization where the author is affiliated (in this case "KTH"),
 while the second part is the lowest level of the organizational
 affiliation that has been specified (in this case "Radio Systems
 Laboratory (RS Lab)". The result of the two authors' \<name\> elements
-is shown in Figure [DiVA Graphical user interface (GUI)].
-
-<!---
-<figure>
-  <img src="Importing_MODS_for_student_thesis-20180617a-image1.png" alt="my alt text" id=#figure1"/>
-  <figcaption>Figure 1: DiVA Graphical user interface (GUI)
-for entering information about the authors</figcaption>
-</figure>
--->
-
-===========
+is shown in Figure 1.
 
 <a name="figure1"></a>
 ![DiVA Graphical user interface (GUI)](Importing_MODS_for_student_thesis-20180617a-image1.png "DiVA GUI for entering authors")Figure 1: DiVA Graphical user interface (GUI)
 
-
-===========
-
-<!---
-![](Importing_MODS_for_student_thesis-20180617a-image1.png){width="6.26875in"
-height="8.25625in"}
-
-# test 123
-
-![Importing_MODS_for_student_thesis-20180617a-image1.png]{#figure1} Figure 1: DiVA Graphical user interface (GUI)
-for entering information about the authors
--->
 
 ## Adviser<sub>n,i</sub>: \<name ...\>
 
@@ -528,11 +504,8 @@ identifier:
 The resulting information about the adviser following the import is
 shown in Figure 2
 
-![](Importing_MODS_for_student_thesis-20180617a-image2.png){width="5.315475721784777in"
-height="3.710702099737533in"}
-
-[]{#_Ref516930337 .anchor}Figure : Graphical user interface (GUI) for
-entering information about the adviser(s)
+<a name="figure2"></a>
+![Graphical user interface (GUI) for entering information about the adviser(s)](Importing_MODS_for_student_thesis-20180617a-image2.png "GUI for entering information about the adviser(s)")Figure 2: Graphical user interface (GUI) for entering information about the adviser(s)
 
 ## Publisher<sub>n</sub> : \<name ...\>
 
@@ -558,13 +531,10 @@ role of this person is as examiner (mon = Monitor), from:
     \<roleTerm type=\"code\" authority=\"marcrelator\"\>mon\</roleTerm\>
 
 The resulting Graphical user interface (GUI) view of the examiner,
-following import is shown in
+following import is shown in Figure 3.
 
-![](Importing_MODS_for_student_thesis-20180617a-image3.png){width="5.854902668416448in"
-height="3.928571741032371in"}
-
-[]{#_Toc517019603 .anchor}Figure : Graphical user interface (GUI) for
-entering information about the examiner
+<a name="figure3"></a>
+![Graphical user interface (GUI) for entering information about the examiner](Importing_MODS_for_student_thesis-20180617a-image3.png "GUI for entering information about the examiner")Figure 3: Graphical user interface (GUI) for entering information about the examiner
 
 ## PublisherCorp: \<name ...\>
 
@@ -704,12 +674,10 @@ DiVA\</subTitle\>
     \</titleInfo\>
 
 The GUI view of the title(s) and subtitle(s) after import are shown in
-Figure 4
+Figure 4.
 
-![](Importing_MODS_for_student_thesis-20180617a-image4.png){width="5.8608573928258965in"
-height="5.196428258967629in"}
-
-[]{#_Ref516930850 .anchor}Figure : GUI view of the titles and subtitles
+<a name="figure4"></a>
+![GUI view of the titles and subtitles](Importing_MODS_for_student_thesis-20180617a-image4.png "GUI view of the titles and subtitles")Figure 4: GUI view of the titles and subtitles
 
 ## Keywords<sub>n</sub>: \<subject ...\>
 
@@ -734,10 +702,9 @@ specify keywords for a publication, in this case:
 The results of importing the above keywords in English and Swedish are
 shown in Figure 5.
 
-![](Importing_MODS_for_student_thesis-20180617a-image2.png){width="5.315476815398076in"
-height="2.2619050743657043in"}
+<a name="figure5"></a>
+![GUI view of keywords](Importing_MODS_for_student_thesis-20180617a-image2.png "GUI view of keywords")Figure 5: GUI view of keywords
 
-[]{#_Ref516932162 .anchor}Figure : GUI view of keywords
 
 ## Abstract<sub>n</sub>: \<abstract ...\>
 
@@ -748,10 +715,8 @@ height="2.2619050743657043in"}
 The results of importing the above keywords in English and Swedish are
 shown in Figure 6.
 
-![](Importing_MODS_for_student_thesis-20180617a-image2.png){width="6.115271216097987in"
-height="4.348485345581802in"}
-
-[]{#_Ref516932246 .anchor}Figure : GUI view of abstracts
+<a name="figure6"></a>
+![GUI view of abstracts](Importing_MODS_for_student_thesis-20180617a-image2.png "GUI view of abstracts")Figure 6: GUI view of abstracts
 
 # Degree related information
 
@@ -1255,11 +1220,8 @@ The results of all of these degree related elements
 
 Figure 7 shows the results of all of the degree related elements as shown via the DiVA GUI.
 
-![](Importing_MODS_for_student_thesis-20180617a-image4.png){width="6.958893263342082in"
-height="2.5833333333333335in"}
-
-[]{#_Ref516948292 .anchor}Figure : DivA GUI view of Degree related
-elements
+<a name="figure7"></a>
+![GUI view of Degree related elements](Importing_MODS_for_student_thesis-20180617a-image4.png "GUI view of Degree related elements")Figure 7: DivA GUI view of Degree related elements
 
 # National subject category<sub>n</sub>: Using HSV codes
 
@@ -1280,11 +1242,8 @@ Uppdaterad augusti 2016\
       \<topic\>Kommunikationssystem\</topic\>
     \</subject\>
 
-![](Importing_MODS_for_student_thesis-20180617a-image5.png){width="6.032122703412074in"
-height="1.0595231846019249in"}
-
-[]{#_Toc517019608 .anchor}Figure : DiVA GUI view of National subject
-category
+<a name="figure8"></a>
+![GUI view of National subject category](Importing_MODS_for_student_thesis-20180617a-image8.png "GUI view of National subject category")Figure 8: DiVA GUI view of National subject category
 
 []{#_Toc517019656 .anchor}Table 7: Standard för svensk indelning av
 forskningsämnen 2011 (Updated August 2016)
@@ -1797,10 +1756,8 @@ presentation (defense) (see the Date in Figure 9).
       \<dateOther type=\"defence\"\>2018-06-13T10:00:00\</dateOther\>
     \</originInfo\>
 
-![](Importing_MODS_for_student_thesis-20180617a-image3.png){width="5.854902668416448in"
-height="2.10119094488189in"}
-
-[]{#_Ref516955483 .anchor}Figure : Presentation related information
+<a name="figure9"></a>
+![Presentation related information](Importing_MODS_for_student_thesis-20180617a-image3.png "Presentation related information")Figure 9: Presentation related information
 
 ## physicalDescription<sub>n</sub>: The physical description of the book
 
@@ -1814,10 +1771,8 @@ in the \<extent\> element. An example is:
 
 See the "Number of Pages" in Figure 10.
 
-![](Importing_MODS_for_student_thesis-20180617a-image5.png){width="6.035714129483814in"
-height="0.9047615923009624in"}
-
-[]{#_Ref516955462 .anchor}Figure : DiVA GUI view of other information
+<a name="figure10"></a>
+![GUI view of other information](Importing_MODS_for_student_thesis-20180617a-image10.png "GUI view of other information")Figure 10: DiVA GUI view of other information
 
 ## relatedItem<sub>n</sub>: Information about the series and the number of the publication within this series
 
@@ -1837,10 +1792,7 @@ format of the issue number is "year: number". An example is:
 
 When imported into DiVA the result is shown in Figure 11.
 
-![](Importing_MODS_for_student_thesis-20180617a-image5.png){width="6.035713035870516in"
-height="1.6309514435695538in"}
-
-[]{#_Ref516956027 .anchor}Figure : DiVA GUI view of Series fields
+![GUI view of Series fields](Importing_MODS_for_student_thesis-20180617a-image11.png "GUI view of Series fields")Figure 11: DiVA GUI view of Series fields
 
 []{#_Toc517019657 .anchor}Table : Local identifier for the series of
 theses (The values are from the Javascript file: ImportForm.jsf.)
@@ -2076,11 +2028,8 @@ However, the above element type can be exported from DiVA, as per
 <https://wiki.epc.ub.uu.se/display/divainfo/Externt+samarbete> To enter
 this data one must use the DiVA GUI as shown in Figure 12
 
-![](Importing_MODS_for_student_thesis-20180617a-image4.png){width="5.863094925634296in"
-height="1.577380796150481in"}
-
-[]{#_Ref516956710 .anchor}Figure : GUI for entering information about an
-external collaboration
+<a name="figure12"></a>
+![GUI for entering information about an external collaboration](Importing_MODS_for_student_thesis-20180617a-image12.png "GUI for entering information about an external collaboration")Figure 12: GUI for entering information about an external collaboration
 
 # How much is KTH specific?
 =========================
