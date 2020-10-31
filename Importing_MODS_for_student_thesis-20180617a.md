@@ -737,8 +737,8 @@ is:
 <a name="table3">Table 3: Degree levels (The values are from the
 Javascript file: ImportForm.jsf.)</a>
 
-  Option code in DiVA GUI   Value of the element
-  ------------------------- ----------------------------------------------------------------
+|  Option code in DiVA GUI |  Value of the element|
+|-------------------------- |----------------------------------------------------------------|
   H1                        Självständigt arbete på avancerad nivå (magisterexamen)
   H2                        Självständigt arbete på avancerad nivå (masterexamen)
   H3                        Självständigt arbete på avancerad nivå (yrkesexamen)
