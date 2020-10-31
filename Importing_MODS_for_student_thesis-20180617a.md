@@ -85,7 +85,7 @@ Generating the MODS file via software is the topic of another project.
 # List of Figures
 
 [Figure 1: DiVA Graphical user interface (GUI) for entering information
-about the authors 6](#figure1)
+about the authors](#figure1)
 
 [Figure 2: Graphical user interface (GUI) for entering information about
 the adviser(s) 7](#_Ref516930337)
@@ -494,6 +494,7 @@ for entering information about the authors</figcaption>
 
 ===========
 
+[]{#figure1 .anchor}
 ![DiVA Graphical user interface (GUI)](Importing_MODS_for_student_thesis-20180617a-image1.png "DiVA GUI for entering authors"){#figure1 .class width="6.26875in"
 height="8.25625in"}Figure 1: DiVA Graphical user interface (GUI)
 
