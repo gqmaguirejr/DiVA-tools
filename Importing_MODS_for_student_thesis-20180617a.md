@@ -482,7 +482,7 @@ of the organization where the author is affiliated (in this case "KTH"),
 while the second part is the lowest level of the organizational
 affiliation that has been specified (in this case "Radio Systems
 Laboratory (RS Lab)". The result of the two authors' \<name\> elements
-is shown in Figure 1.
+is shown in Figure [DiVA Graphical user interface (GUI)].
 
 <!---
 <figure>
