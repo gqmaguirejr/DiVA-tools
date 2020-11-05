@@ -498,3 +498,28 @@ Example:
 ./get_pid_and_names.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019.csv 
 ```
 
+## augment_names_from_profile.py
+
+Purpose: using the information from the output of get_pid_and_names.py and augmented with manual lookup of KTHIDs for users then filter to unique entries - then apply this program to add the user's first and last name information using the KTH profile API (note that you need an applicaiton key for this).
+
+Input:
+```
+./augment_names_from_profile.py input.json output.json 
+```
+
+Example:
+```
+cat kth-exluding-theses-all-level2-2012-2019_pid_name_aliases-manually_corrected.json | jq -c '.' > z1; cat z1| sort | uniq >pubs-2012-2019_pid_name_aliases-manually_corrected.json
+
+./augment_names_from_profile.py pubs-2012-2019_pid_name_aliases-manually_corrected.json pubs-2012-2019_augmented.json
+length of input=5114
+processing input
+*** KTHID: xxxxxxxx missing first and last name in {'username': None}
+* alias(es)=['xx, yy]
+...
+length of output=4841
+
+```
+
+
+
