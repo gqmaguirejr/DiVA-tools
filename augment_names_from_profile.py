@@ -151,41 +151,85 @@ def main():
 
     print("processing input")
     output=[]
-    for entry in input:
 
+    missing_kthid=0
+
+    matching_orcids=0
+    missing_orcids=0
+    missmatched_orcids=0
+    user_missing_orcids=0
+
+
+    for entry in input:
         kthid=entry.get('kthid', False)
-        # check to see there is a KTHID key present, if not present then skip record
+        # check to see there is a KTHID key present, if not present then simply output it
         if not kthid:
+            print("no kthid in {0}".format(entry))
+            output.append(entry)
+            missing_kthid=missing_kthid+1
             continue
         # if the kthid is "", then there is nothing to do, but copy the entry to the output
         if len(kthid) == 0:
             output.append(entry)
+            missing_kthid=missing_kthid+1
             continue
 
-        user=get_user_by_kthid(kthid)
-        # returns a response of the form:
-        # user={'defaultLanguage': 'en', 'acceptedTerms': True, 'isAdminHidden': False, 'avatar': {'visibility': 'public'}, '_id': 'u1d13i2c', 'kthId': 'u1d13i2c', 'username': 'maguire', 'homeDirectory': '\\\\ug.kth.se\\dfs\\home\\m\\a\\maguire', 'title': {'sv': 'PROFESSOR', 'en': 'PROFESSOR'}, 'streetAddress': 'ISAFJORDSGATAN 26', 'emailAddress': 'maguire@kth.se', 'telephoneNumber': '', 'isStaff': True, 'isStudent': False, 'firstName': 'Gerald Quentin', 'lastName': 'Maguire Jr', 'city': 'Stockholm', 'postalCode': '10044', 'remark': 'COMPUTER COMMUNICATION LAB', 'lastSynced': '2020-10-28T13:36:56.000Z', 'researcher': {'researchGate': '', 'googleScholarId': 'HJgs_3YAAAAJ', 'scopusId': '8414298400', 'researcherId': 'G-4584-2011', 'orcid': '0000-0002-6066-746X'}, ...
+        if not options.testing:
+            user=get_user_by_kthid(kthid)
+            # returns a response of the form:
+            # user={'defaultLanguage': 'en', 'acceptedTerms': True, 'isAdminHidden': False, 'avatar': {'visibility': 'public'}, '_id': 'u1d13i2c', 'kthId': 'u1d13i2c', 'username': 'maguire', 'homeDirectory': '\\\\ug.kth.se\\dfs\\home\\m\\a\\maguire', 'title': {'sv': 'PROFESSOR', 'en': 'PROFESSOR'}, 'streetAddress': 'ISAFJORDSGATAN 26', 'emailAddress': 'maguire@kth.se', 'telephoneNumber': '', 'isStaff': True, 'isStudent': False, 'firstName': 'Gerald Quentin', 'lastName': 'Maguire Jr', 'city': 'Stockholm', 'postalCode': '10044', 'remark': 'COMPUTER COMMUNICATION LAB', 'lastSynced': '2020-10-28T13:36:56.000Z', 'researcher': {'researchGate': '', 'googleScholarId': 'HJgs_3YAAAAJ', 'scopusId': '8414298400', 'researcherId': 'G-4584-2011', 'orcid': '0000-0002-6066-746X'}, ...
         
-        firstName=user.get('firstName', False)
-        lastName=user.get('lastName', False)
-        if firstName and lastName:
-            entry['profile']={'firstName': firstName, 'lastName': lastName }
-        elif not firstName and lastName:
-            entry['profile']={'lastName': lastName }
-        elif firstName and not lastName:
-            entry['profile']={'firstName': firstName}
-        else:
-            print("*** KTHID: {0} missing first and last name in {1}".format(kthid, user))
-            print("* alias(es)={0}".format(get_alias(entry)))
+            firstName=user.get('firstName', False)
+            lastName=user.get('lastName', False)
+            if firstName and lastName:
+                entry['profile']={'firstName': firstName, 'lastName': lastName }
+            elif not firstName and lastName:
+                entry['profile']={'lastName': lastName }
+            elif firstName and not lastName:
+                entry['profile']={'firstName': firstName}
+            else:
+                print("*** KTHID: {0} missing first and last name in {1}".format(kthid, user))
+                print("* alias(es)={0}".format(get_alias(entry)))
+
+            e=entry.get('entry', False)
+            entry_orcid=e.get('orcid', False)
+            user_researcher=user.get('researcher', False)
+            if user_researcher:
+                user_orcid=user_researcher.get('orcid', False)
+            else:
+                user_orcid=False
+
+            if Verbose_Flag:
+                print("entry={0}, user_orcid={1}, entry_orcid={2}".format(entry, user_orcid, entry_orcid))
+
+            if not user_orcid:
+                user_missing_orcids=user_missing_orcids+1
+            elif not entry_orcid and user_orcid: # if the entry has no orcid, but the user does, then add it
+                entry['researcher']['orcid']=user_orcid
+                missing_orcids=missing_orcids+1
+            elif entry_orcid and user_orcid:   # there is an orcid in the entry, check if it matches that of the user
+                if entry_orcid == user_orcid:
+                    matching_orcids=matching_orcids+1
+                else:
+                    print("entry={0}, has an orcid={1} that does not match user's orcid={2}".format(entry, entry_orcid, user_orcid))
+                    missmatched_orcids=missmatched_orcids+1
+
         output.append(entry)
 
     print("length of output={}".format(len(output)))
-    with open(outputfile, 'w', encoding='utf-8') as output_FH:
-        for n in output:
-            j_as_string = json.dumps(n)
-            print(j_as_string, file=output_FH)
+    print("numbered of entries missing KTHIDs={}".format(missing_kthid))
+
+    if not options.testing:
+        with open(outputfile, 'w', encoding='utf-8') as output_FH:
+            for n in output:
+                j_as_string = json.dumps(n)
+                print(j_as_string, file=output_FH)
 
         output_FH.close()
+
+
+        print("missing_orcids={0}, matching_orcids={1}, missmatched_orcids={2}, user_missing_orcids={3}".format(missing_orcids, matching_orcids, missmatched_orcids, user_missing_orcids))
+
     return
 
 if __name__ == "__main__": main()
