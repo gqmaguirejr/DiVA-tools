@@ -1,18 +1,25 @@
 #!/usr/bin/python3
 #
-# ./match_names.py targets.json matches_corpus_N.json
+# ./match_names.py targets.json matches_corpus_N.json  [augmented_author_data.json]
 #
 # The shard number N (is the digits indicating the piece of the corpus) - for the file s2-corpus-186 N is 186
 # The program outputs the following files:
 #  name.json - this contains JSON entries of the form:
 #                          diva_name, S2_author_name, S2_author_ID, PID
 #
+#
+# The option augmented_author_data.json file contains entries of the form:
+# {"kthid": "u1d13i2c", "entry": {"orcid": "0000-0002-6066-746X", "kth": " (KTH [177], Skolan f\u00f6r informations- och kommunikationsteknik (ICT) [5994], Kommunikationssystem, CoS [5998])", "aliases": [{"Name": "Maguire Jr., Gerald Q.", "PID": [528381, 606323, ... 1416571]}, {"Name": "Maguire, Gerald Q.", "PID": [561069]}, {"Name": "Maguire Jr., Gerald", "PID": [561509]}, {"Name": "Maguire, Gerald Q., Jr.", "PID": [913155]}]}, "profile": {"firstName": "Gerald Quentin", "lastName": "Maguire Jr"}}
+#
+# Here the alias data was mined from DiVA and the profile data comes from the user's research profile via the KTH API.
+# Note that the list of PID values are current imcomplete - I did not try to be exhaaustive, but simply tried to look at enough publications to try to figure out the user's KTHID and possible ORCID
+#
 # G. Q. Maguire Jr.
 #
 # 2020-10-25
 #
 # Example of runinng the program
-# ./match_names.py matches_corpus_186.json
+# ./match_names.py matches_corpus_186.json /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented.json
 #
 #
 
@@ -131,42 +138,157 @@ def split_names(names):
     #
     return name_list
 
-def find_s2_name_in_diva_name(s2_name, diva_name):
-    global Verbose_Flag
+def reorder_name(name):         # name is of the form last, first
+    #check for the comma
+    comma_offset=name.find(',')
+    if comma_offset < 0:        # if no comma, simply return the name
+        return name
+    last=name[0:comma_offset].strip()
+    first=name[comma_offset+1:].strip()
+    new_name=first+' '+last
+    return new_name
 
-    kthid=False
-    # a single diva_name is of the form: last_name, first_name [u1xxxxx] (KTH ....)
+def find_s2_name_in_diva_name(s2_name, diva_name, augmented_data):
+    global Verbose_Flag
+    global diva_name_info_by_kthid
+
+    # a single diva_name is of the form: last_name, first_name [u1xxxxx] [orcid](KTH ....)
+    #    Note that the KTHDID and the ORCID identifier are optional.
+    #
     # an s2_name is of the form: first_name last_name
     # or
     # first_name middle_name last_name
-    first_left_paren=diva_name.find('(')
-    first_left_bracket=diva_name.find('[')
-    if first_left_bracket > 0 and first_left_paren > first_left_bracket: # last_name, first_name [u1xxxxx] (KTH ....)
-        diva_name=diva_name[:first_left_paren-1].strip()
 
-        pattern = re.compile('[0-9a-z]*\]')
-        look_for_kthid=pattern.match(diva_name,first_left_bracket+1)
-        if look_for_kthid:
-            kthid=look_for_kthid.group(0)[:-1]
-            if Verbose_Flag:
-                print("kthid={}".format(kthid))
+    kth_affiliation=False
+    kth_affiliation=diva_name.find('(KTH') # look for affiliation(s) and remove them
+    if kth_affiliation < 0:                # only match for KTH authors
+        return False
 
-        trimmed_diva_name=diva_name[:first_left_bracket-1].strip()
-        split_diva_name=trimmed_diva_name.split(',')
-        reordered_diva_name=split_diva_name[1].strip() + ' ' + split_diva_name[0].strip()
-        print("reordered_diva_name={}".format(reordered_diva_name))
-        if len(reordered_diva_name) >= len(s2_name):
-            offset=reordered_diva_name.find(s2_name)
-            if offset >= 0:
-                n_dict=dict()
-                n_dict['diva_name']=reordered_diva_name
-                n_dict['S2_author_name']=s2_name
-                if kthid:
+    kthid=False
+    orcid=False
+    affiliation=False
+
+    # first processs the diva_name
+    first_left_paren=diva_name.find('(') # look for affiliation(s) and remove them
+    if first_left_paren> 0:
+        diva_name=diva_name[0:first_left_paren-1]
+
+    all_left_brackets=[x.start() for x in re.finditer('\[', diva_name)] # find offset of all left square brackets, note quote the bracket
+    if len(all_left_brackets) > 0:
+        first_left_bracket=all_left_brackets[0]
+        if first_left_bracket > 0:
+            first_left_bracket=first_left_bracket+1
+            closing_bracket=diva_name.find(']', first_left_bracket)
+            if closing_bracket > 0:
+                first_substring=diva_name[first_left_bracket:closing_bracket]
+                if first_substring.find('-') > 0: # this is an orcid ID
+                    orcid=first_substring
+                else:
+                    kthid=first_substring
+            else:
+                print("No closing right bracket in {}".format(diva_name))
+
+    if len(all_left_brackets) > 1:
+        second_left_bracket=all_left_brackets[1]
+        if second_left_bracket > 0:
+            second_left_bracket=second_left_bracket+1
+            closing_bracket=diva_name.find(']', second_left_bracket)
+            if closing_bracket > 0:
+                second_substring=diva_name[second_left_bracket:closing_bracket]
+                orcid=second_substring
+            else:
+                print("No closing right bracket in {}".format(diva_name))
+
+    if len(all_left_brackets) > 0: # trim off kthid and orcid; then strip white space
+        diva_name=diva_name[0:all_left_brackets[0]-1].strip()
+
+    if Verbose_Flag:
+        print("diva_name={0}, kthid={1}, orcid={2}".format(diva_name, kthid, orcid))
+
+    # split_diva_name=diva_name.split(',')
+    # reordered_diva_name=split_diva_name[1].strip() + ' ' + split_diva_name[0].strip()
+    reordered_diva_name=reorder_name(diva_name)
+
+    ## changes inserted here
+    if reordered_diva_name == s2_name: # if the reordered diva_name matches the s2_name, we are done
+        n_dict=dict()
+        n_dict['diva_name']=reordered_diva_name
+        n_dict['S2_author_name']=s2_name
+        if kthid:
+            n_dict['kthid']=kthid
+        if Verbose_Flag:
+            print("matched reordered diva name")
+        return n_dict
+
+    # match against the firstName and lastName for this kthid
+    if kthid:
+        diva_name_info_entry=diva_name_info_by_kthid.get(kthid, False)
+        if diva_name_info_entry:
+            profile=diva_name_info_entry.get('profile', False)
+            if profile:
+                firstName=profile.get('firstName', False)
+                lastName=profile.get('lastName', False)
+                profile_name=False
+                if firstName and lastName:
+                    profile_name=firstName+' '+lastName
+                elif firstName and not lastName:
+                    profile_name=firstName
+                elif not firstName and lastName:
+                    profile_name=lastName
+
+                if profile_name == s2_name: # if the reordered profile name matches the s2_name, we are done
+                    n_dict=dict()
+                    n_dict['diva_name']=profile_name
+                    n_dict['S2_author_name']=s2_name
                     n_dict['kthid']=kthid
-                return n_dict
+                    if Verbose_Flag:
+                        print("matched profile name")
+                    return n_dict
+
+            # now check the aliases
+            aliases=diva_name_info_entry.get('aliases', False)
+            if aliases:
+                for a in aliases:
+                    if reorder_name(a) == s2_name: # if the reordered diva_name matches the s2_name, we are done
+                        n_dict=dict()
+                        n_dict['diva_name']=reordered_diva_name
+                        n_dict['S2_author_name']=s2_name
+                        n_dict['kthid']=kthid
+                        print("matched alias={}".format(a))
+                        return n_dict
+    
+    print("diva_name={0}, reordered_diva_name={1}".format(diva_name, reordered_diva_name))
+
+    if len(reordered_diva_name) >= len(s2_name):
+        offset=reordered_diva_name.find(s2_name)
+        if offset >= 0:
+            n_dict=dict()
+            n_dict['diva_name']=reordered_diva_name
+            n_dict['S2_author_name']=s2_name
+            if kthid:
+                n_dict['kthid']=kthid
+            return n_dict
+        # if the names are close, then guess that they are the same
+        str_difference = damerau_levenshtein_distance(reordered_diva_name, s2_name) 
+        if str_difference < 2:
+            n_dict=dict()
+            n_dict['diva_name']=reordered_diva_name
+            n_dict['S2_author_name']=s2_name
+            if kthid:
+                n_dict['kthid']=kthid
+            if str_difference != 0:
+                n_dict['partial match']=str_difference
+            return n_dict
+
+        else:
+            print("string difference between {0} and {1} is {2}".format(reordered_diva_name, s2_name, str_difference))
+            return False
+    else:
+        length_difference=len(reordered_diva_name) - len(s2_name)
+        if length_difference < 3:
             # if the names are close, then guess that they are the same
             str_difference = damerau_levenshtein_distance(reordered_diva_name, s2_name) 
-            if str_difference < 2:
+            if kthid or str_difference < 4:
                 n_dict=dict()
                 n_dict['diva_name']=reordered_diva_name
                 n_dict['S2_author_name']=s2_name
@@ -174,39 +296,19 @@ def find_s2_name_in_diva_name(s2_name, diva_name):
                     n_dict['kthid']=kthid
                 if str_difference != 0:
                     n_dict['partial match']=str_difference
-                return n_dict
-
+                    if str_difference > (len(reordered_diva_name)/2):
+                        n_dict['unlikey match']="{}%".format(str_difference/len(reordered_diva_name)*100.0)
+                    return n_dict
             else:
                 print("string difference between {0} and {1} is {2}".format(reordered_diva_name, s2_name, str_difference))
                 return False
-        else:
-            length_difference=len(reordered_diva_name) - len(s2_name)
-            if length_difference < 3:
-                # if the names are close, then guess that they are the same
-                str_difference = damerau_levenshtein_distance(reordered_diva_name, s2_name) 
-                if kthid or str_difference < 4:
-                    n_dict=dict()
-                    n_dict['diva_name']=reordered_diva_name
-                    n_dict['S2_author_name']=s2_name
-                    if kthid:
-                        n_dict['kthid']=kthid
-                    if str_difference != 0:
-                        n_dict['partial match']=str_difference
-                        if str_difference > (len(reordered_diva_name)/2):
-                            n_dict['unlikey match']="{}%".format(str_difference/len(reordered_diva_name)*100.0)
-                        return n_dict
-                else:
-                    print("string difference between {0} and {1} is {2}".format(reordered_diva_name, s2_name, str_difference))
-                    return False
-            print("length difference between {0} and {1} is {2}".format(reordered_diva_name, s2_name, length_difference))
-            return False            
-            return False
+        print("length difference between {0} and {1} is {2}".format(reordered_diva_name, s2_name, length_difference))
+        return False            
 
-    if diva_name.find('(KTH') > 0:
-        print("Unhandled case in find_s2_name_in_diva_name for {0} and {1}".format(diva_name, s2_name))
-    else:
-        print("Ignoring non-KTH case in find_s2_name_in_diva_name for {0} and {1}".format(diva_name, s2_name))
+    print("Unhandled case in find_s2_name_in_diva_name for {0} and {1}".format(diva_name, s2_name))
     return False
+
+
 
 # def split_name_on_semicolon(name_str):
 #     new_names=[]
@@ -237,9 +339,77 @@ def find_s2_name_in_diva_name(s2_name, diva_name):
 #         wn.extend(split_name_on_semicolon(n))
 #     return wn
 
+def merge_two_diva_name_info_entries(kthid, existing_entry, diva_name_info_entry):
+    global Verbose_Flag
+    global diva_name_info_by_kthid
+
+    merged_entry=dict()
+    e_kthid=existing_entry.get('kthid', False)
+    n_kthid=diva_name_info_entry.get('kthid', False)
+    if (kthid != e_kthid) or (kthid != n_kthid) or (e_kthid != n_kthid):
+        print("error in kthid being merged: {0},{1},[2}".format(kthid, e_kthid, n_kthid))
+        return
+
+    merged_entry['kthid']=kthid
+
+    e_orcid=existing_entry.get('orcid', False)
+    if e_orcid:                 # all orcid values must be in uppercase
+        e_orcid=e_orcid.upper()
+    n_orcid=diva_name_info_entry.get('orcid', False)
+    if n_orcid:
+        n_orcid=n_orcid.upper()
+
+    if e_orcid and n_orcid and (e_orcid != n_orcid):
+        print("error for kthid={0} in orcid being merged: {1},{2}".format(kthid, e_orcid, n_orcid))
+    elif e_orcid and not n_orcid:
+        merged_entry['orcid']=e_orcid
+    elif not e_orcid and n_orcid:
+        merged_entry['orcid']=n_orcid
+    else:
+        if Verbose_Flag:
+            print("neither entry had an orcid")
+
+    e_profile=existing_entry.get('profile', False)
+    n_profile=diva_name_info_entry.get('profile', False)
+
+    if e_profile and not n_profile:
+        merged_entry['profile']=e_profile
+    elif not e_profile and n_profile:
+        merged_entry['profile']=n_profile
+    if not e_profile and not n_profile: # no profiles at all
+        if Verbose_Flag:
+            print("neither entry had an profile")
+    else:
+        # there are two profiles, check that they are the same
+        e_firstName=e_profile.get('firstName', False)
+        n_firstName=n_profile.get('firstName', False)
+
+        e_lastName=e_profile.get('lastName', False)
+        n_lastName=n_profile.get('lastName', False)
+
+        if (e_firstName != n_firstName) or (e_lastName != n_lastName):
+            print("error in first or last names being merged: {0},{1} vs. {2},{3}".format(e_firstName,e_lastName,  n_firstName, n_lastName))
+
+    e_aliases=existing_entry.get('aliases', False)
+    n_aliases=diva_name_info_entry.get('aliases', False)
+
+    # a little twist here is that we are going to converthe list of aliases into a set - this will make later processingeasier
+    set_of_aliases=set()
+    if e_aliases:
+        for a in e_aliases:
+            set_of_aliases.add(a)
+    if n_aliases:
+        for a in n_aliases:
+            set_of_aliases.add(a)
+
+    merged_entry['aliases']=set_of_aliases
+                        
+    diva_name_info_by_kthid[kthid]=diva_name_info_entry
+    return
 
 def main():
     global Verbose_Flag
+    global diva_name_info_by_kthid
 
     parser = optparse.OptionParser()
 
@@ -249,6 +419,14 @@ def main():
                       action="store_true",
                       help="Print lots of output to stdout"
     )
+
+    parser.add_option('-t', '--testing',
+                      dest="testing",
+                      default=False,
+                      action="store_true",
+                      help="execute test code"
+    )
+
 
     options, remainder = parser.parse_args()
 
@@ -262,9 +440,18 @@ def main():
         print("Insuffient arguments must provide matches_corpus_N.json\n")
         return
 
+    augmented_data_filename=False
+    if (len(remainder) == 2):
+        augmented_data_filename=remainder[1]
+        
+
     pp = pprint.PrettyPrinter(indent=4) # configure prettyprinter
 
     matches_corpus_file=remainder[0]
+
+    shard_number_str=matches_corpus_file[len('matches_corpus_'):]
+    shard_number_str=shard_number_str[:-len('.json_')+1:]
+    print("processing shard {}".format(shard_number_str))
 
     matches=[]
     # read the lines from the JSON file
@@ -273,6 +460,67 @@ def main():
             matches.append(json.loads(line))
 
     print("length of matches={}".format(len(matches)))
+
+    # place to put augement data about KTH authors
+    diva_name_info_by_kthid=dict()
+    # entries in this dict will have the form:
+    # 'u1d13i2c': {   'aliases': {   'Maguire Jr., Gerald',
+    #                                'Maguire Jr., Gerald Q.',
+    #                                'Maguire, Gerald Q.',
+    #                                'Maguire, Gerald Q., Jr.'},
+    #             'kthid': 'u1d13i2c',
+    #             'orcid': '0000-0002-6066-746X',
+    #             'profile': {   'firstName': 'Gerald Quentin',
+    #                            'lastName': 'Maguire Jr'}},
+
+
+    augmented_data=[]
+    if augmented_data_filename:
+        with open(augmented_data_filename, 'r') as augmented_data_FH:
+            for line in augmented_data_FH:
+                author_entry=json.loads(line)
+
+                # store aliases and first/last name in a dict by kthid
+                diva_name_info_entry=dict()
+
+                # note that kthid and profile are at the top level of the incoming author_entry
+                kthid=author_entry.get('kthid', False)
+                if not kthid:   #  if no kthid, then skip this
+                    continue
+
+                diva_name_info_entry['kthid']=kthid
+
+                profile=author_entry.get('profile', False)
+                if profile:
+                    diva_name_info_entry['profile']=profile
+
+                entry=author_entry.get('entry', False)
+                if entry:
+                        orcid=entry.get('orcid', False)
+                        if orcid:
+                            diva_name_info_entry['orcid']=orcid
+
+                        aliases=entry.get('aliases', False)
+                        if aliases and len(aliases) >= 1:
+                            # make the alias a set for easier lookup later
+                            set_of_aliases=set()
+                            for a in aliases:
+                                a_name=a.get('Name', False)
+                                if a_name:
+                                    set_of_aliases.add(a_name)
+
+                            diva_name_info_entry['aliases']=set_of_aliases
+                        
+                        existing_entry=diva_name_info_by_kthid.get(kthid, False)
+                        if not existing_entry:
+                            diva_name_info_by_kthid[kthid]=diva_name_info_entry
+                        else:
+                            merge_two_diva_name_info_entries(kthid, existing_entry, diva_name_info_entry)
+                            
+
+        print("length of augmented_data={}".format(len(augmented_data)))
+        print("length of diva_name_info_by_kthid={}".format(len(diva_name_info_by_kthid)))
+        # print("maguire entry={}".format(diva_name_info_by_kthid['u1d13i2c']))
 
     #  matches_corpus_N.json - this contains JSON entries of the form:
     #                          PID, Name, DOI, PMID, S2_publication_ID, S2_authors
@@ -291,12 +539,20 @@ def main():
 
     print("process matches")
     name_info=[]
+    number_of_matches=0
+
     for m in matches:
+        if options.testing:     # limit the number iterations for testing
+            if number_of_matches > 300:
+                break
+
         diva_name=m['Name']
+        names=split_names(diva_name)
+
         s2_authors=m['S2_authors']
 
-        if len(s2_authors) == 1:
-            found_name=find_s2_name_in_diva_name(s2_authors[0]['name'], diva_name)
+        if (len(s2_authors) == 1) and (len(names) == 1):
+            found_name=find_s2_name_in_diva_name(s2_authors[0]['name'], diva_name, augmented_data)
             if found_name:
                 print("found s2_author id: {0} for {1}".format(s2_authors[0]['ids'], s2_authors[0]['name']))
                 found_name['S2_author_ID']=s2_authors[0]['ids']
@@ -304,18 +560,19 @@ def main():
                 name_info.append(found_name)
                 continue
             else:
-                print("not found s2_author: {0} for {1}".format(diva_name,s2_authors))
+                if Verbose_Flag:
+                    print("not found s2_author: {0} for {1}".format(diva_name,s2_authors))
                 continue
 
-        if len(s2_authors) > 1:
-            names=split_names(diva_name)
+        # if len(s2_authors) > 1:
+        #     names=split_names(diva_name)
 
         if len(s2_authors) !=  len(names):
             print("***** len(s2_authors={0}, length of split names={1}, diva_name={2} for m['PID']={3}, S2_publication_ID={4}".format(len(s2_authors), len(names), diva_name, int(m['PID']), m['S2_publication_ID']))
             pp.pprint(s2_authors)
         else:
             for i in range(0, len(names)):
-                found_name=find_s2_name_in_diva_name(s2_authors[i]['name'], names[i])
+                found_name=find_s2_name_in_diva_name(s2_authors[i]['name'], names[i], augmented_data)
                 if found_name:
                     print("found s2_author id: {0} for {1}".format(s2_authors[i]['ids'], s2_authors[i]['name']))
                     found_name['S2_author_ID']=s2_authors[i]['ids']
@@ -323,15 +580,14 @@ def main():
                     name_info.append(found_name)
                     continue
                 else:
-                    print("not found s2_author {0} for {1}".format(names[i], s2_authors[i]['name']))
+                    if Verbose_Flag:
+                        print("not found s2_author {0} for {1}".format(names[i], s2_authors[i]['name']))
                     continue
 
                 
 
     print("length of name_info={}".format(len(name_info)))
 
-    shard_number_str=matches_corpus_file[len('matches_corpus_'):]
-    shard_number_str=shard_number_str[:-len('.json_')+1:]
     if len(shard_number_str) >=0 :
         names_outputfile="names-{}.json".format(shard_number_str)
     else:

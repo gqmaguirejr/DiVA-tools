@@ -106,6 +106,7 @@ def main():
     path_to_corpus=remainder[2]
 
     targets=[]
+    
     # read the lines from the JSON file
     with open(targets_json_file, 'r') as targets_FH:
         for line in targets_FH:
