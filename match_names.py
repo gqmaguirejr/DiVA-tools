@@ -308,6 +308,134 @@ def find_s2_name_in_diva_name(s2_name, diva_name, augmented_data):
     print("Unhandled case in find_s2_name_in_diva_name for {0} and {1}".format(diva_name, s2_name))
     return False
 
+def find_s2_name_in_diva_name_strict(s2_name, diva_name, augmented_data):
+    global Verbose_Flag
+    global diva_name_info_by_kthid
+
+    # a single diva_name is of the form: last_name, first_name [u1xxxxx] [orcid](KTH ....)
+    #    Note that the KTHDID and the ORCID identifier are optional.
+    #
+    # an s2_name is of the form: first_name last_name
+    # or
+    # first_name middle_name last_name
+
+    kth_affiliation=False
+    kth_affiliation=diva_name.find('(KTH') # look for affiliation(s) and remove them
+    if kth_affiliation < 0:                # only match for KTH authors
+        return False
+
+    kthid=False
+    orcid=False
+    affiliation=False
+
+    # first processs the diva_name
+    first_left_paren=diva_name.find('(') # look for affiliation(s) and remove them
+    if first_left_paren> 0:
+        diva_name=diva_name[0:first_left_paren-1]
+
+    all_left_brackets=[x.start() for x in re.finditer('\[', diva_name)] # find offset of all left square brackets, note quote the bracket
+    if len(all_left_brackets) > 0:
+        first_left_bracket=all_left_brackets[0]
+        if first_left_bracket > 0:
+            first_left_bracket=first_left_bracket+1
+            closing_bracket=diva_name.find(']', first_left_bracket)
+            if closing_bracket > 0:
+                first_substring=diva_name[first_left_bracket:closing_bracket]
+                if first_substring.find('-') > 0: # this is an orcid ID
+                    orcid=first_substring
+                else:
+                    kthid=first_substring
+            else:
+                print("No closing right bracket in {}".format(diva_name))
+
+    if len(all_left_brackets) > 1:
+        second_left_bracket=all_left_brackets[1]
+        if second_left_bracket > 0:
+            second_left_bracket=second_left_bracket+1
+            closing_bracket=diva_name.find(']', second_left_bracket)
+            if closing_bracket > 0:
+                second_substring=diva_name[second_left_bracket:closing_bracket]
+                orcid=second_substring
+            else:
+                print("No closing right bracket in {}".format(diva_name))
+
+    if len(all_left_brackets) > 0: # trim off kthid and orcid; then strip white space
+        diva_name=diva_name[0:all_left_brackets[0]-1].strip()
+
+    if Verbose_Flag:
+        print("diva_name={0}, kthid={1}, orcid={2}, s2_name={3}".format(diva_name, kthid, orcid, s2_name))
+
+    # split_diva_name=diva_name.split(',')
+    # reordered_diva_name=split_diva_name[1].strip() + ' ' + split_diva_name[0].strip()
+    reordered_diva_name=reorder_name(diva_name)
+
+    ## changes inserted here
+    if reordered_diva_name == s2_name: # if the reordered diva_name matches the s2_name, we are done
+        n_dict=dict()
+        n_dict['diva_name']=reordered_diva_name
+        n_dict['S2_author_name']=s2_name
+        if kthid:
+            n_dict['kthid']=kthid
+        if Verbose_Flag:
+            print("matched reordered diva name")
+        return n_dict
+
+    # match against the firstName and lastName for this kthid
+    if kthid:
+        diva_name_info_entry=diva_name_info_by_kthid.get(kthid, False)
+        if diva_name_info_entry:
+            profile=diva_name_info_entry.get('profile', False)
+            if profile:
+                firstName=profile.get('firstName', False)
+                lastName=profile.get('lastName', False)
+                profile_name=False
+                if firstName and lastName:
+                    profile_name=firstName+' '+lastName
+                elif firstName and not lastName:
+                    profile_name=firstName
+                elif not firstName and lastName:
+                    profile_name=lastName
+
+                if profile_name == s2_name: # if the reordered profile name matches the s2_name, we are done
+                    n_dict=dict()
+                    n_dict['diva_name']=profile_name
+                    n_dict['S2_author_name']=s2_name
+                    n_dict['kthid']=kthid
+                    if Verbose_Flag:
+                        print("matched profile name")
+                    return n_dict
+
+            # now check the aliases
+            aliases=diva_name_info_entry.get('aliases', False)
+            if aliases:
+                for a in aliases:
+                    if reorder_name(a) == s2_name: # if the reordered diva_name matches the s2_name, we are done
+                        n_dict=dict()
+                        n_dict['diva_name']=reordered_diva_name
+                        n_dict['S2_author_name']=s2_name
+                        n_dict['kthid']=kthid
+                        print("matched alias={}".format(a))
+                        return n_dict
+    
+    # only do a strict match do not consider insertions/deletions/exchanges
+    return False            
+
+
+
+def find_all_s2_name_in_diva_name(pid, s2_authors, names, augmented_data):
+    # there are multiple s2_authors and multiple DiVA names (in names)
+    found_names=[]
+
+    for s2a in s2_authors:
+        for diva_name in names:
+            found_name=find_s2_name_in_diva_name_strict(s2a['name'], diva_name, augmented_data)
+            if found_name:
+                found_name['S2_author_ID']=s2a['ids']
+                found_name['PID']=pid
+                found_names.append(found_name)
+                break
+    return found_names
+
 
 
 # def split_name_on_semicolon(name_str):
@@ -561,15 +689,82 @@ def main():
                 continue
             else:
                 if Verbose_Flag:
-                    print("not found s2_author: {0} for {1}".format(diva_name,s2_authors))
+                    print("not found diva author={0} for s2_author={1}".format(diva_name,s2_authors))
                 continue
 
         # if len(s2_authors) > 1:
         #     names=split_names(diva_name)
 
         if len(s2_authors) !=  len(names):
-            print("***** len(s2_authors={0}, length of split names={1}, diva_name={2} for m['PID']={3}, S2_publication_ID={4}".format(len(s2_authors), len(names), diva_name, int(m['PID']), m['S2_publication_ID']))
-            pp.pprint(s2_authors)
+            ## Section to handle errors/exceptions
+            # handle case of [{'ids': ['40952709'], 'name': 'Atlas Collaboration'}]
+            if (len(s2_authors) == 1) and (s2_authors[0]['name'] == 'Atlas Collaboration'):
+                print("**** special case: {0} vs. list of authors in PID={1}".format(s2_authors[0]['name'], int(m['PID'])))
+                continue
+
+            # fnshard 186: ollowing error reported to KTHB
+            if (int(m['PID']) == 1272258):
+                if (m['DOI'] == "10.1007/s00259-018-4148-3"):
+                    print("**** error in DOI {0}: PID={1} - DOI is for the whole conference proceedings".format(m['DOI'], int(m['PID'])))
+                continue
+
+            # fnshard 186: following error reported to KTHB
+            if (int(m['PID']) == 1183083):
+                if (m['DOI'] == "10.1201/9781315157368-80"):
+                    print("**** error in DOI {0}: PID={1} - DOI is for the whole conference proceedings".format(m['DOI'], int(m['PID'])))
+                continue
+
+            # fnshard 186: following error reported to S2
+            # note that even the 4th authors is incorrect as the corpus mixes the affiliations in and does not have the correct 4th name
+            if (int(m['PID']) == 560045):
+                print("**** error in {0}: number of authors is only 4".format(int(m['PID'])))
+                reduceds2_authors=[]
+                for i in range(0,4):
+                    reduceds2_authors.append(s2_authors[i])
+
+                found_names=find_all_s2_name_in_diva_name(int(m['PID']), reduceds2_authors, names, augmented_data)
+                # add the elements of the found_names to the name_info list
+                if found_names:
+                    print("found one or more names={}".format(found_names))
+                    name_info.extend(found_names)
+                    continue
+
+            # fnshard 186: following error reported to S2
+            if (int(m['PID']) == 1414546):
+                print("**** error in {0}: number of authors is ~21, but S2 shows only 5 in the corpus and 6 in the document's page".format(int(m['PID'])))
+                continue
+
+            " fnshard 186: following error reported to KTHB
+            if (int(m['PID']) == 1270591):
+                print("**** error in DOI {0}: PID={1} - DOI is for the whole conference proceedings - the paper is a workshop paper and has no DOI of its own".format(m['DOI'], int(m['PID'])))
+                continue
+
+            " fnshard 186: following error reported to s2, S2_publication_ID=a1e281115f158a0777852895e80599f6e6fcbb0e):
+            if (int(m['PID']) == 779118):
+                print("**** error in {0}: number of authors in S2 is 500, but only 8 in DiVA".format(int(m['PID'])))
+                continue
+
+            if (int(m['PID']) == 779118):
+                # S2_publication_ID=a1e281115f158a0777852895e80599f6e6fcbb0e
+                print("**** error in {0}: number of authors in S2 is 500, but in the original source there are 2884 authors".format(int(m['PID'])))
+                continue
+
+
+            print("***** len(s2_authors={0}, length of split names={1}, diva_name={2} for m['PID']={3}, S2_publication_ID={4}".format(len(s2_authors), len(names), diva_name, int(m['PID']), m['S2_publication_ID'])
+)
+
+            if len(s2_authors) >  len(names):
+                # consider a subset
+                found_names=find_all_s2_name_in_diva_name(int(m['PID']), s2_authors, names, augmented_data)
+                # add the elements of the found_names to the name_info list
+                if found_names:
+                    print("found one or more names={}".format(found_names))
+                    name_info.extend(found_names)
+                    continue
+
+            if (len(s2_authors) < 10) or Verbose_Flag:
+                print("S2 authors list when there are less than 10")
+                pp.pprint(s2_authors)
         else:
             for i in range(0, len(names)):
                 found_name=find_s2_name_in_diva_name(s2_authors[i]['name'], names[i], augmented_data)
