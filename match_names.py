@@ -734,7 +734,7 @@ def main():
                 print("**** error in {0}: number of authors is ~21, but S2 shows only 5 in the corpus and 6 in the document's page".format(int(m['PID'])))
                 continue
 
-            " fnshard 186: following error reported to KTHB
+            # shard 186: following error reported to KTHB
             if (int(m['PID']) == 1270591):
                 print("**** error in DOI {0}: PID={1} - DOI is for the whole conference proceedings - the paper is a workshop paper and has no DOI of its own".format(m['DOI'], int(m['PID'])))
                 continue
