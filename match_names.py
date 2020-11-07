@@ -148,7 +148,7 @@ def reorder_name(name):         # name is of the form last, first
     new_name=first+' '+last
     return new_name
 
-def find_s2_name_in_diva_name(s2_name, diva_name, augmented_data):
+def find_s2_name_in_diva_name(s2_name, diva_name):
     global Verbose_Flag
     global diva_name_info_by_kthid
 
@@ -236,6 +236,7 @@ def find_s2_name_in_diva_name(s2_name, diva_name, augmented_data):
                 elif not firstName and lastName:
                     profile_name=lastName
 
+
                 if profile_name == s2_name: # if the reordered profile name matches the s2_name, we are done
                     n_dict=dict()
                     n_dict['diva_name']=profile_name
@@ -257,7 +258,7 @@ def find_s2_name_in_diva_name(s2_name, diva_name, augmented_data):
                         print("matched alias={}".format(a))
                         return n_dict
     
-    print("diva_name={0}, reordered_diva_name={1}".format(diva_name, reordered_diva_name))
+    print("*+**+* diva_name={0}, reordered_diva_name={1}".format(diva_name, reordered_diva_name))
 
     if len(reordered_diva_name) >= len(s2_name):
         offset=reordered_diva_name.find(s2_name)
@@ -308,7 +309,7 @@ def find_s2_name_in_diva_name(s2_name, diva_name, augmented_data):
     print("Unhandled case in find_s2_name_in_diva_name for {0} and {1}".format(diva_name, s2_name))
     return False
 
-def find_s2_name_in_diva_name_strict(s2_name, diva_name, augmented_data):
+def find_s2_name_in_diva_name_strict(s2_name, diva_name):
     global Verbose_Flag
     global diva_name_info_by_kthid
 
@@ -422,13 +423,13 @@ def find_s2_name_in_diva_name_strict(s2_name, diva_name, augmented_data):
 
 
 
-def find_all_s2_name_in_diva_name(pid, s2_authors, names, augmented_data):
+def find_all_s2_name_in_diva_name(pid, s2_authors, names):
     # there are multiple s2_authors and multiple DiVA names (in names)
     found_names=[]
 
     for s2a in s2_authors:
         for diva_name in names:
-            found_name=find_s2_name_in_diva_name_strict(s2a['name'], diva_name, augmented_data)
+            found_name=find_s2_name_in_diva_name_strict(s2a['name'], diva_name)
             if found_name:
                 found_name['S2_author_ID']=s2a['ids']
                 found_name['PID']=pid
@@ -602,10 +603,11 @@ def main():
     #                            'lastName': 'Maguire Jr'}},
 
 
-    augmented_data=[]
     if augmented_data_filename:
         with open(augmented_data_filename, 'r') as augmented_data_FH:
             for line in augmented_data_FH:
+                if options.testing:
+                    print("line={}".format(line))
                 author_entry=json.loads(line)
 
                 # store aliases and first/last name in a dict by kthid
@@ -646,7 +648,6 @@ def main():
                             merge_two_diva_name_info_entries(kthid, existing_entry, diva_name_info_entry)
                             
 
-        print("length of augmented_data={}".format(len(augmented_data)))
         print("length of diva_name_info_by_kthid={}".format(len(diva_name_info_by_kthid)))
         # print("maguire entry={}".format(diva_name_info_by_kthid['u1d13i2c']))
 
@@ -670,9 +671,9 @@ def main():
     number_of_matches=0
 
     for m in matches:
-        if options.testing:     # limit the number iterations for testing
-            if number_of_matches > 300:
-                break
+        # if options.testing:     # limit the number iterations for testing
+        #     if number_of_matches > 300:
+        #         break
 
         diva_name=m['Name']
         names=split_names(diva_name)
@@ -680,9 +681,13 @@ def main():
         s2_authors=m['S2_authors']
 
         if (len(s2_authors) == 1) and (len(names) == 1):
-            found_name=find_s2_name_in_diva_name(s2_authors[0]['name'], diva_name, augmented_data)
+            found_name=find_s2_name_in_diva_name(s2_authors[0]['name'], diva_name)
             if found_name:
-                print("found s2_author id: {0} for {1}".format(s2_authors[0]['ids'], s2_authors[0]['name']))
+                print("{0}: found s2_author id: {1} for {2}: S2_publication_ID={3}".format(m['PID'], s2_authors[0]['ids'], s2_authors[0]['name'], m['S2_publication_ID']))
+                # the following is to handle an error in shard 185, it has been reported to S2
+                if (m['PID'] == 1421768) and (i == 2) and (s2_authors[0]['name'] == 'Yan Zhang'):
+                    print("there is an error in the S2 corpus shard 186 for the third author of S2_publication_ID=f7975807a3d0cc87395a38c7a1e9ee65dffdbacc")
+                    continue
                 found_name['S2_author_ID']=s2_authors[0]['ids']
                 found_name['PID']=int(m['PID'])
                 name_info.append(found_name)
@@ -722,7 +727,7 @@ def main():
                 for i in range(0,4):
                     reduceds2_authors.append(s2_authors[i])
 
-                found_names=find_all_s2_name_in_diva_name(int(m['PID']), reduceds2_authors, names, augmented_data)
+                found_names=find_all_s2_name_in_diva_name(int(m['PID']), reduceds2_authors, names)
                 # add the elements of the found_names to the name_info list
                 if found_names:
                     print("found one or more names={}".format(found_names))
@@ -755,29 +760,36 @@ def main():
 
             if len(s2_authors) >  len(names):
                 # consider a subset
-                found_names=find_all_s2_name_in_diva_name(int(m['PID']), s2_authors, names, augmented_data)
+                found_names=find_all_s2_name_in_diva_name(int(m['PID']), s2_authors, names)
                 # add the elements of the found_names to the name_info list
                 if found_names:
                     print("found one or more names={}".format(found_names))
                     name_info.extend(found_names)
                     continue
 
-            if (len(s2_authors) < 10) or Verbose_Flag:
+        if (len(s2_authors) < 10) or Verbose_Flag:
                 print("S2 authors list when there are less than 10")
                 pp.pprint(s2_authors)
+
+        if len(s2_authors) < len(names):
+            smaller_length=len(s2_authors)
         else:
-            for i in range(0, len(names)):
-                found_name=find_s2_name_in_diva_name(s2_authors[i]['name'], names[i], augmented_data)
-                if found_name:
-                    print("found s2_author id: {0} for {1}".format(s2_authors[i]['ids'], s2_authors[i]['name']))
-                    found_name['S2_author_ID']=s2_authors[i]['ids']
-                    found_name['PID']=int(m['PID'])
-                    name_info.append(found_name)
-                    continue
-                else:
-                    if Verbose_Flag:
-                        print("not found s2_author {0} for {1}".format(names[i], s2_authors[i]['name']))
-                    continue
+            smaller_length=len(names)
+
+        for i in range(0, smaller_length):
+            if names[i].find('(KTH') > 0:
+                print("i={0}, s2_authors[{0}]['name']= {1}, names[{0}]={2}".format(i, s2_authors[i]['name'], names[i]))
+            found_name=find_s2_name_in_diva_name(s2_authors[i]['name'], names[i])
+            if found_name:
+                print("{0}: found s2_author id: {1} for {2}: S2_publication_ID={3}".format(m['PID'], s2_authors[i]['ids'], s2_authors[i]['name'], m['S2_publication_ID']))
+                found_name['S2_author_ID']=s2_authors[i]['ids']
+                found_name['PID']=int(m['PID'])
+                name_info.append(found_name)
+                continue
+            else:
+                if Verbose_Flag:
+                    print("not found s2_author {0} for {1}".format(names[i], s2_authors[i]['name']))
+            continue
 
                 
 
