@@ -739,7 +739,7 @@ def main():
                 print("**** error in DOI {0}: PID={1} - DOI is for the whole conference proceedings - the paper is a workshop paper and has no DOI of its own".format(m['DOI'], int(m['PID'])))
                 continue
 
-            " fnshard 186: following error reported to s2, S2_publication_ID=a1e281115f158a0777852895e80599f6e6fcbb0e):
+            # shard 186: following error reported to s2, S2_publication_ID=a1e281115f158a0777852895e80599f6e6fcbb0e):
             if (int(m['PID']) == 779118):
                 print("**** error in {0}: number of authors in S2 is 500, but only 8 in DiVA".format(int(m['PID'])))
                 continue
