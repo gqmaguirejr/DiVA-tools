@@ -684,10 +684,6 @@ def main():
             found_name=find_s2_name_in_diva_name(s2_authors[0]['name'], diva_name)
             if found_name:
                 print("{0}: found s2_author id: {1} for {2}: S2_publication_ID={3}".format(m['PID'], s2_authors[0]['ids'], s2_authors[0]['name'], m['S2_publication_ID']))
-                # the following is to handle an error in shard 185, it has been reported to S2
-                if (m['PID'] == 1421768) and (i == 2) and (s2_authors[0]['name'] == 'Yan Zhang'):
-                    print("there is an error in the S2 corpus shard 186 for the third author of S2_publication_ID=f7975807a3d0cc87395a38c7a1e9ee65dffdbacc")
-                    continue
                 found_name['S2_author_ID']=s2_authors[0]['ids']
                 found_name['PID']=int(m['PID'])
                 name_info.append(found_name)
@@ -707,19 +703,23 @@ def main():
                 print("**** special case: {0} vs. list of authors in PID={1}".format(s2_authors[0]['name'], int(m['PID'])))
                 continue
 
-            # fnshard 186: ollowing error reported to KTHB
+            # shard 185
+            if (int(m['PID']) == 1039712):
+                print("**** another ATLAS collaborators special case: {0} vs. list of authors in PID={1}".format(s2_authors[0]['name'], int(m['PID'])))
+
+            # shard 186: ollowing error reported to KTHB
             if (int(m['PID']) == 1272258):
                 if (m['DOI'] == "10.1007/s00259-018-4148-3"):
                     print("**** error in DOI {0}: PID={1} - DOI is for the whole conference proceedings".format(m['DOI'], int(m['PID'])))
                 continue
 
-            # fnshard 186: following error reported to KTHB
+            # shard 186: following error reported to KTHB
             if (int(m['PID']) == 1183083):
                 if (m['DOI'] == "10.1201/9781315157368-80"):
                     print("**** error in DOI {0}: PID={1} - DOI is for the whole conference proceedings".format(m['DOI'], int(m['PID'])))
                 continue
 
-            # fnshard 186: following error reported to S2
+            # shard 186: following error reported to S2
             # note that even the 4th authors is incorrect as the corpus mixes the affiliations in and does not have the correct 4th name
             if (int(m['PID']) == 560045):
                 print("**** error in {0}: number of authors is only 4".format(int(m['PID'])))
@@ -734,7 +734,7 @@ def main():
                     name_info.extend(found_names)
                     continue
 
-            # fnshard 186: following error reported to S2
+            # shard 186: following error reported to S2
             if (int(m['PID']) == 1414546):
                 print("**** error in {0}: number of authors is ~21, but S2 shows only 5 in the corpus and 6 in the document's page".format(int(m['PID'])))
                 continue
@@ -747,6 +747,11 @@ def main():
             # shard 186: following error reported to s2, S2_publication_ID=a1e281115f158a0777852895e80599f6e6fcbb0e):
             if (int(m['PID']) == 779118):
                 print("**** error in {0}: number of authors in S2 is 500, but only 8 in DiVA".format(int(m['PID'])))
+                continue
+
+            # 
+            if (int(m['PID']) == 1106796):
+                print("**** error in {0}: number of authors in S2 is 6, but only 3 in DiVA - additionally the name of the authors in S2 are in Chinese".format(int(m['PID'])))
                 continue
 
             if (int(m['PID']) == 779118):
@@ -777,18 +782,43 @@ def main():
             smaller_length=len(names)
 
         for i in range(0, smaller_length):
+            # the following is to handle an error in shard 185, it has been reported to S2
+            if (int(m['PID']) == 1421768) and (i == 2) and (s2_authors[i]['name'] == 'Yan Zhang'):
+                print("there is an error in the S2 corpus shard 186 for the third author of S2_publication_ID=f7975807a3d0cc87395a38c7a1e9ee65dffdbacc")
+                continue
+
+            # the following is to handle an error in shard 185, it has been reported to S2
+            if (int(m['PID']) == 1289611) and (i == 1) and (s2_authors[i]['name'] == 'Mitra Basirat'):
+                print("there is an error in the S2 corpus shard 185 for the second author of S2_publication_ID=19fc41c99e72a3537d6b7ff2018c4b363d814703")
+                continue
+            #
+            if (int(m['PID']) == 1425320):
+                print("S2 does not list all of the authors for S2_publication_ID=4aac19a70bcb71ce69e85b243e0668670a2fcd74, it lists some authors - the journal also adds to this 'JET contributors'")
+                continue
+
+            if (int(m['PID']) == 1423947):
+                print("S2 does not list all of the authors for S2_publication_ID=0d09867b93ec4d34914fd0267e4ae522cf085ec6, it lists some authors - DiVA seems to know there are 1116 but does not show them all")
+                continue
+
+
             if names[i].find('(KTH') > 0:
-                print("i={0}, s2_authors[{0}]['name']= {1}, names[{0}]={2}".format(i, s2_authors[i]['name'], names[i]))
+                print("i={0}, s2_authors[{0}]['name']={1}, names[{0}]={2}".format(i, s2_authors[i]['name'], names[i]))
+            else:
+                continue
+
             found_name=find_s2_name_in_diva_name(s2_authors[i]['name'], names[i])
             if found_name:
                 print("{0}: found s2_author id: {1} for {2}: S2_publication_ID={3}".format(m['PID'], s2_authors[i]['ids'], s2_authors[i]['name'], m['S2_publication_ID']))
+
                 found_name['S2_author_ID']=s2_authors[i]['ids']
                 found_name['PID']=int(m['PID'])
                 name_info.append(found_name)
                 continue
             else:
-                if Verbose_Flag:
-                    print("not found s2_author {0} for {1}".format(names[i], s2_authors[i]['name']))
+                if names[i].find('(KTH') > 0:
+                    print("not found KTH author: {0} for s2_author {1}".format(names[i], s2_authors[i]['name']))
+                # if Verbose_Flag:
+                #     print("not found s2_author {0} for {1}".format(names[i], s2_authors[i]['name']))
             continue
 
                 
