@@ -392,7 +392,7 @@ ExampleL
 
 # find_in_corpus.py
 
-Purpose: using the information from the output of preprocess_for_corpus.py (information extracted from DiVA), find the publications that exist in a particulare shard of the Semantic Scholar (s2)  corpus and outputs a reduced version of the file of informaiton from DiVA.
+Purpose: using the information from the output of preprocess_for_corpus.py (information extracted from DiVA), find the publications that exist in a particulare shard of the Semantic Scholar (s2)  corpus and outputs a reduced version of the file of information from DiVA.
 
 Input:
 ```
@@ -522,7 +522,7 @@ length of output=4841
 ```
 
 ## ./check_augmented_names.py
-Purpose: check for missing kTHIDs and add them to an output file.
+Purpose: check for missing KTHIDs and add them to an output file.
 
 Input:
 ```
