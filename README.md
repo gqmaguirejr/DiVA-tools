@@ -521,5 +521,39 @@ length of output=4841
 
 ```
 
+## ./check_augmented_names.py
+Purpose: check for missing kTHIDs and add them to an output file.
 
+Input:
+```
+./check_augmented_names.py kthids.csv augmented_author_data.json
+```
+The program outputs the following file:
+    missing_kthids.json
+
+Example of runinng the program
+...
+./check_augmented_names.py /z3/maguire/SemanticScholar/KTH_DiVA/z1uniq.csv /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented.json
+...
+Note that the z1uniq.csv was computed by finding the [u1xxxxxx] strings in the csv file, saving them as z1.csv and then doing a:
+  cat z1.csv | sort | uniq >z1uniq.csv
+
+Output
+...
+error in line=[u105878]
+length of kthids=8796
+length of augmented=4984
+length of found_kthids=4712
+missing id u1q5qlvv in augmented data
+...
+missing id u1eun6xb in augmented data
+KTHIDs in original csv of publications=8796, found in augmented=4712, missing=4091
+*** KTHID: u11w5qab missing first and last name in {'username': None}
+...
+
+Note that the string [u105878] is too short to be a valid KTHID. There are 8796 in the z1uniq.csv file and 4984 entries in the augmented.json file. The result is that there are 4712 KTHIDs (or something that looks like a KTHID) that does not yet exist in the augmented.-json fule.
+
+The lines "missing id u1xxxxxx in augmented data" mean that this KTHID was not already in the augmented.json file.
+
+KTHIDs, such as "u11w5qab" that are missing user information generally mean that the KTHID string is not valid.
 

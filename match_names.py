@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# ./match_names.py targets.json matches_corpus_N.json  [augmented_author_data.json]
+# ./match_names.py matches_corpus_N.json  [augmented_author_data.json]
 #
 # The shard number N (is the digits indicating the piece of the corpus) - for the file s2-corpus-186 N is 186
 # The program outputs the following files:
@@ -22,7 +22,6 @@
 # ./match_names.py matches_corpus_186.json /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented.json
 #
 #
-
 import requests, time
 import pprint
 import optparse
@@ -202,6 +201,10 @@ def find_s2_name_in_diva_name(s2_name, diva_name):
     if len(all_left_brackets) > 0: # trim off kthid and orcid; then strip white space
         diva_name=diva_name[0:all_left_brackets[0]-1].strip()
 
+    # deal with fake KTHIDs
+    if kthid and ((kthid == '-') or kthid.startswith('PI0') or  kthid.startswith('pi0')):
+        kthid = False
+
     if Verbose_Flag:
         print("diva_name={0}, kthid={1}, orcid={2}".format(diva_name, kthid, orcid))
 
@@ -248,6 +251,8 @@ def find_s2_name_in_diva_name(s2_name, diva_name):
 
             # now check the aliases
             aliases=diva_name_info_entry.get('aliases', False)
+            if Verbose_Flag:
+                print("diva_name={0}, kthid={1}, orcid={2}, aliases={3}".format(diva_name, kthid, orcid, aliases))
             if aliases:
                 for a in aliases:
                     if reorder_name(a) == s2_name: # if the reordered diva_name matches the s2_name, we are done
@@ -255,9 +260,51 @@ def find_s2_name_in_diva_name(s2_name, diva_name):
                         n_dict['diva_name']=reordered_diva_name
                         n_dict['S2_author_name']=s2_name
                         n_dict['kthid']=kthid
+                        n_dict['matched_aliases']=a
                         print("matched alias={}".format(a))
                         return n_dict
-    
+    else:
+        # check against ALL aliases
+        for kthid in diva_name_info_by_kthid:
+            diva_name_info_entry=diva_name_info_by_kthid.get(kthid, False)
+            if diva_name_info_entry:
+                profile=diva_name_info_entry.get('profile', False)
+                if profile:
+                    firstName=profile.get('firstName', False)
+                    lastName=profile.get('lastName', False)
+                    profile_name=False
+                    if firstName and lastName:
+                        profile_name=firstName+' '+lastName
+                    elif firstName and not lastName:
+                        profile_name=firstName
+                    elif not firstName and lastName:
+                        profile_name=lastName
+
+                    if profile_name == s2_name: # if the reordered profile name matches the s2_name, we are done
+                        n_dict=dict()
+                        n_dict['diva_name']=profile_name
+                        n_dict['S2_author_name']=s2_name
+                        n_dict['kthid']=kthid
+                        n_dict['matched_against_all_aliases']=True
+                        if Verbose_Flag:
+                            print("matched profile name")
+                        return n_dict
+
+                # now check the aliases
+                aliases=diva_name_info_entry.get('aliases', False)
+                if Verbose_Flag:
+                    print("diva_name={0}, kthid={1}, orcid={2}, aliases={3}".format(diva_name, kthid, orcid, aliases))
+                if aliases:
+                    for a in aliases:
+                        if reorder_name(a) == s2_name: # if the reordered diva_name matches the s2_name, we are done
+                            n_dict=dict()
+                            n_dict['diva_name']=reordered_diva_name
+                            n_dict['S2_author_name']=s2_name
+                            n_dict['kthid']=kthid
+                            n_dict['matched_against_all_aliases']=True
+                            print("matched alias={}".format(a))
+                            return n_dict
+
     print("*+**+* diva_name={0}, reordered_diva_name={1}".format(diva_name, reordered_diva_name))
 
     if len(reordered_diva_name) >= len(s2_name):
@@ -363,9 +410,12 @@ def find_s2_name_in_diva_name_strict(s2_name, diva_name):
     if len(all_left_brackets) > 0: # trim off kthid and orcid; then strip white space
         diva_name=diva_name[0:all_left_brackets[0]-1].strip()
 
+    # deal with fake KTHIDs
+    if kthid and ((kthid == '-') or kthid.startswith('PI0') or  kthid.startswith('pi0')):
+        kthid = False
+
     if Verbose_Flag:
         print("diva_name={0}, kthid={1}, orcid={2}, s2_name={3}".format(diva_name, kthid, orcid, s2_name))
-
     # split_diva_name=diva_name.split(',')
     # reordered_diva_name=split_diva_name[1].strip() + ' ' + split_diva_name[0].strip()
     reordered_diva_name=reorder_name(diva_name)
@@ -415,9 +465,54 @@ def find_s2_name_in_diva_name_strict(s2_name, diva_name):
                         n_dict['diva_name']=reordered_diva_name
                         n_dict['S2_author_name']=s2_name
                         n_dict['kthid']=kthid
+                        n_dict['matched_aliases']=a
                         print("matched alias={}".format(a))
                         return n_dict
     
+    else:
+        # check against ALL aliases
+        for kthid in diva_name_info_by_kthid:
+            diva_name_info_entry=diva_name_info_by_kthid.get(kthid, False)
+            if diva_name_info_entry:
+                profile=diva_name_info_entry.get('profile', False)
+                if profile:
+                    firstName=profile.get('firstName', False)
+                    lastName=profile.get('lastName', False)
+                    profile_name=False
+                    if firstName and lastName:
+                        profile_name=firstName+' '+lastName
+                    elif firstName and not lastName:
+                        profile_name=firstName
+                    elif not firstName and lastName:
+                        profile_name=lastName
+
+                    if profile_name == s2_name: # if the reordered profile name matches the s2_name, we are done
+                        n_dict=dict()
+                        n_dict['diva_name']=profile_name
+                        n_dict['S2_author_name']=s2_name
+                        n_dict['kthid']=kthid
+                        n_dict['matched_against_all_aliases']=True
+                        if Verbose_Flag:
+                            print("matched profile name")
+                        return n_dict
+
+                # now check the aliases
+                aliases=diva_name_info_entry.get('aliases', False)
+                if Verbose_Flag:
+                    print("diva_name={0}, kthid={1}, orcid={2}, aliases={3}".format(diva_name, kthid, orcid, aliases))
+                if aliases:
+                    for a in aliases:
+                        if reorder_name(a) == s2_name: # if the reordered diva_name matches the s2_name, we are done
+                            n_dict=dict()
+                            n_dict['diva_name']=reordered_diva_name
+                            n_dict['S2_author_name']=s2_name
+                            n_dict['kthid']=kthid
+                            n_dict['matched_against_all_aliases']=True
+                            n_dict['matched_aliases']=a
+                            print("matched alias={}".format(a))
+                            return n_dict
+
+
     # only do a strict match do not consider insertions/deletions/exchanges
     return False            
 
@@ -472,12 +567,17 @@ def merge_two_diva_name_info_entries(kthid, existing_entry, diva_name_info_entry
     global Verbose_Flag
     global diva_name_info_by_kthid
 
+    print("".format())
+
     merged_entry=dict()
     e_kthid=existing_entry.get('kthid', False)
     n_kthid=diva_name_info_entry.get('kthid', False)
     if (kthid != e_kthid) or (kthid != n_kthid) or (e_kthid != n_kthid):
         print("error in kthid being merged: {0},{1},[2}".format(kthid, e_kthid, n_kthid))
         return
+
+    print("merge_two_diva_name_info_entries: partial duplicate records: e_kthid={1}, n_kthid={1}".format(e_kthid, n_kthid))
+
 
     merged_entry['kthid']=kthid
 
@@ -706,6 +806,8 @@ def main():
             # shard 185
             if (int(m['PID']) == 1039712):
                 print("**** another ATLAS collaborators special case: {0} vs. list of authors in PID={1}".format(s2_authors[0]['name'], int(m['PID'])))
+                continue
+
 
             # shard 186: ollowing error reported to KTHB
             if (int(m['PID']) == 1272258):
@@ -759,9 +861,14 @@ def main():
                 print("**** error in {0}: number of authors in S2 is 500, but in the original source there are 2884 authors".format(int(m['PID'])))
                 continue
 
+            if (int(m['PID']) == 874502):
+                print("**** another ATLAS? collaborators special case: {0} vs. list of authors in PID={1}".format(s2_authors[0]['name'], int(m['PID'])))
+                continue
 
-            print("***** len(s2_authors={0}, length of split names={1}, diva_name={2} for m['PID']={3}, S2_publication_ID={4}".format(len(s2_authors), len(names), diva_name, int(m['PID']), m['S2_publication_ID'])
-)
+
+            ######################################################
+
+            print("***** len(s2_authors={0}, length of split names={1}, diva_name={2} for m['PID']={3}, S2_publication_ID={4}".format(len(s2_authors), len(names), diva_name, int(m['PID']), m['S2_publication_ID']))
 
             if len(s2_authors) >  len(names):
                 # consider a subset
@@ -780,6 +887,26 @@ def main():
             smaller_length=len(s2_authors)
         else:
             smaller_length=len(names)
+
+        if  (int(m['PID']) == 620977):
+            print("***** authors name are out of order in s2, diva_name={0} for m['PID']={1}, S2_publication_ID={2}".format(diva_name, int(m['PID']), m['S2_publication_ID']))
+
+            found_name=find_s2_name_in_diva_name(s2_authors[1]['name'], names[0])
+            if found_name:
+                print("{0}: found s2_author id: {1} for {2}: S2_publication_ID={3}".format(int(m['PID']), s2_authors[1]['ids'], s2_authors[1]['name'], m['S2_publication_ID']))
+
+                found_name['S2_author_ID']=s2_authors[1]['ids']
+                found_name['PID']=int(m['PID'])
+                name_info.append(found_name)
+
+            found_name=find_s2_name_in_diva_name(s2_authors[0]['name'], names[1])
+            if found_name:
+                print("{0}: found s2_author id: {1} for {2}: S2_publication_ID={3}".format(int(m['PID']), s2_authors[0]['ids'], s2_authors[0]['name'], m['S2_publication_ID']))
+
+                found_name['S2_author_ID']=s2_authors[0]['ids']
+                found_name['PID']=int(m['PID'])
+                name_info.append(found_name)
+            continue
 
         for i in range(0, smaller_length):
             # the following is to handle an error in shard 185, it has been reported to S2
@@ -808,7 +935,7 @@ def main():
 
             found_name=find_s2_name_in_diva_name(s2_authors[i]['name'], names[i])
             if found_name:
-                print("{0}: found s2_author id: {1} for {2}: S2_publication_ID={3}".format(m['PID'], s2_authors[i]['ids'], s2_authors[i]['name'], m['S2_publication_ID']))
+                print("{0}: found s2_author id: {1} for {2}: S2_publication_ID={3}".format(int(m['PID']), s2_authors[i]['ids'], s2_authors[i]['name'], m['S2_publication_ID']))
 
                 found_name['S2_author_ID']=s2_authors[i]['ids']
                 found_name['PID']=int(m['PID'])
