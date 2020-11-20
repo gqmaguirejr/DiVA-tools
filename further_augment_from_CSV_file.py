@@ -62,13 +62,62 @@ def split_names(names):
 
 def get_author_from_authorString(author):
     entry=dict()
-    firstLeftParen=author.find('(')
+    # special case for the following author - due to inclusion of maiden name in parens
+    if author.find('Rachlew (Källne), Elisabeth') >= 0:
+        firstLeftParen=author.find('(', 28)
+    elif author.find('Lillqvist (nee Laine), Kristiina') >= 0:
+        firstLeftParen=author.find('(', 32)
+    else:
+        firstLeftParen=author.find('(')
     firstLeftBracket=author.find('[')
     str_length=len(author)
     #
-    # name [xx] [yy-yy-yy] (affiliation)
+    #print("firstLeftParen={0}, firstLeftBracket={1}".format(firstLeftParen, firstLeftBracket))
+    # name
     if (firstLeftBracket < 0) and (firstLeftParen < 0): #  no brackets or parens, then just a name
         entry['name']=author[:].strip()
+        return entry
+    #
+    # name [xx] [yyy]
+    if (firstLeftBracket > 0) and (firstLeftParen < 0): #  no parens, then a name and KTHID or ORCID
+        entry['name']=author[:firstLeftBracket-1].strip()
+        author=author[firstLeftBracket:]
+        numberofLeftBrackets=author.count('[')
+        firstLeftBracket=author.find('[')
+        firstRightBracket=author.find(']')
+        if numberofLeftBrackets == 1:
+            if firstRightBracket > 0:
+                kth_or_orcid_string=author[firstLeftBracket+1:firstRightBracket]
+                if kth_or_orcid_string.count('-') > 1:
+                    entry['orcid']=kth_or_orcid_string
+                else:
+                    entry['kthid']=kth_or_orcid_string
+                return entry
+            else:
+                print("Missing a right square bracket")
+                return entry
+        if numberofLeftBrackets == 2:
+            if firstRightBracket > 0:
+                kth_or_orcid_string=author[firstLeftBracket+1:firstRightBracket]
+                if kth_or_orcid_string.count('-') > 1:
+                    entry['orcid']=kth_or_orcid_string
+                else:
+                    entry['kthid']=kth_or_orcid_string
+            else:
+                print("Missing a right square bracket")
+                return entry
+            #
+            secondLeftBracket=author.find('[', firstRightBracket)
+            secondRightBracket=author.find(']', secondLeftBracket)
+            if (secondLeftBracket > 0) and (secondRightBracket > 0):
+                kth_or_orcid_string=author[secondLeftBracket+1:secondRightBracket]
+                if kth_or_orcid_string.count('-') > 1:
+                    entry['orcid']=kth_or_orcid_string
+                else:
+                    entry['kthid']=kth_or_orcid_string
+            else:
+                print("Missing a right square bracket")
+            return entry
         return entry
     #
     if (firstLeftBracket < 0) and  (firstLeftParen > 0): #  if paren, then just a name (affiliation)
@@ -76,9 +125,18 @@ def get_author_from_authorString(author):
         entry['affiliation']=author[firstLeftParen:].strip()
         return entry
     #
-    if (firstLeftBracket > 0) and  (firstLeftParen > 0): #  if paren, then just a name [xx] [yy] (affiliation) or  name [xx] (affiliation)
-        entry['name']=author[:firstLeftBracket-1].strip()
+    # if (firstLeftBracket > 0) and (firstLeftBracket > firstLeftParen)and  (firstLeftParen > 0): #  if paren, then just a name (affiliation) - note the affiliation can have a left bracket, but it is part of the affiliation
+    #     print("author={0}, firstLeftParen={1}".format(author, firstLeftParen))
+    #     entry['name']=author[:firstLeftParen-1].strip()
+    #     entry['affiliation']=author[firstLeftParen:].strip()
+    #     return entry
+    # #
+    if (firstLeftBracket > 0) and  (firstLeftParen > 0): #  if paren, then just a name [xx] [yy] (affiliation) or  name [xx] (affiliation) or name (affilation_with_a_leftbracket)
         entry['affiliation']=author[firstLeftParen:].strip()
+        if (firstLeftBracket > firstLeftParen): # the left beacket is in the affilation, so select the name only up to the paren
+            entry['name']=author[:firstLeftParen-1].strip()
+            return entry            
+        entry['name']=author[:firstLeftBracket-1].strip()
         #
         author=author[firstLeftBracket:firstLeftParen-1]
         numberofLeftBrackets=author.count('[')
@@ -150,8 +208,16 @@ def augmented_lookup_orcid(orcid_to_lookfor, augmented_by_kthid):
 # function returns a kthid (fake or not)
 def augmented_lookup_name(name_to_look_for, augmented_by_kthid):
     # names can either be in "profile": {"firstName": "Gerald Quentin", "lastName": "Maguire Jr"}}
-    # or in the list of aliases: "entry": {"aliases": [{"Name": "Maguire Jr., Gerald Q.", "PID": [528381, ...]}, {"Name": "Maguire, Gerald Q.", "PID": [561069]}, {"Name": "Maguire Jr., Gerald", "PID": [561509]}, {"Name": "Maguire, Gerald Q., Jr.", "PID": [913155]}]}
+    # or in the list of aliases: {"aliases": [{"Name": "Maguire Jr., Gerald Q.", "PID": [528381, ...]}, {"Name": "Maguire, Gerald Q.", "PID": [561069]}, {"Name": "Maguire Jr., Gerald", "PID": [561509]}, {"Name": "Maguire, Gerald Q., Jr.", "PID": [913155]}]}
+
+    # because there are some people who share the same name, the code needss to return a list of matches
+    list_of_matches=[]
+
+    print("name_to_look_for={}".format(name_to_look_for))
+
     for e in augmented_by_kthid:
+        if Verbose_Flag:
+            print("e={}".format(e))
         item=augmented_by_kthid[e]
         profile=item.get('profile', False)
         if profile:
@@ -160,29 +226,35 @@ def augmented_lookup_name(name_to_look_for, augmented_by_kthid):
             if firstName and lastName:
                 combined_name="{0}, {1}".format(lastName, firstName)
                 if combined_name == name_to_look_for:
-                    return e
+                    list_of_matches.append(e)
+                    continue
             elif firstName and not lastName:
                 combined_name="{0}".format(firstName)
                 if combined_name == name_to_look_for:
-                    return e
+                    list_of_matches.append(e)
+                    continue
             elif not firstName and lastName:
                 combined_name="{0}".format(lastName)
                 if combined_name == name_to_look_for:
-                    return e
+                    list_of_matches.append(e)
+                    continue
             else:
                 print("Error:: Profile, but no firstname or lastname")
         #
-        entry=item.get('entry', False)
-        if entry:
-            aliases=entry.get('aliases', False)
-            if aliases:
-                for a in aliases:
-                    if not a.get('Name', False):
-                        print("a={}".format(a))
+        aliases=item.get('aliases', False)
+        if aliases:
+            for a in aliases:
+                if Verbose_Flag:
+                    print("a={}".format(a))
+                if type(a) is int:
+                    print("the aliast is not a dict, a={}".format(a))
+                if not a.get('Name', False): # sanity check to make sure there is a Name key and value
+                    print("a={}".format(a))
+                #
+                if a['Name'] == name_to_look_for ['name']:
+                    list_of_matches.append(e)
 
-                    if a['Name'] == name_to_look_for:
-                        return e                        
-    return False
+    return list_of_matches
 
 def fake_diva_kthid(possible_kthid):
     if possible_kthid == '-':
@@ -195,11 +267,14 @@ def fake_diva_kthid(possible_kthid):
         return True
     if possible_kthid.find('u1') == 0:
         return False
+    if possible_kthid.find(fakeid_start) == 0:
+        return False
     # default to True, i.e., it is fake
     return True
 
 def fake_kthid(possible_kthid):
-    if possible_kthid.find('⚠⚠') == 0:
+    global fakeid_start
+    if possible_kthid.find(fakeid_start) == 0:
         return True
     return False
 
@@ -273,6 +348,7 @@ def main():
     global augmented_pid_and_authors
     global kthid_dict
     global pp
+    global fakeid_start
 
     parser = optparse.OptionParser()
 
@@ -387,6 +463,10 @@ def main():
         return
     print("Finished reading spreadsheet")
 
+    name_to_look_for={'name': 'Gaiarin, Simone'}
+    z1=augmented_lookup_name(name_to_look_for, augmented_by_kthid)
+    print("z1={}".format(z1))
+
     # get KTHIDs and ORCID if they exist, output as JSON
     # also keeo track of the alternative names and on which publication they are used
     augmented_pid_and_authors=dict()
@@ -395,9 +475,12 @@ def main():
         pid = int(pid_str[1:-1])
 
         names=get_authors_from_authorsString(pna['Name'])
-        pna['names']=names      # save the parse authors information
+        pna['names']=names      # save the parsed authors information
 
         for name in names:
+            if Verbose_Flag:
+                print("pid={0},name={1}".format(pid,name))
+
             existing_kthid=False
             existing_orcid=False
 
@@ -421,15 +504,95 @@ def main():
                         print("PID={0} has a fake DiVA KTHID of {1}, it should be {2} - found by orcid={3} for name={4}".format(pid, kthid, possible_id, orcid, name))
                         kthid=possible_id
 
+            if not kthid or fake_diva_kthid(kthid):
                 # since the kthid was fake, look up the user by name
                 possible_id=augmented_lookup_name(name, augmented_by_kthid)
-                if possible_id:
-                    print("PID={0} has a fake DiVA KTHID of {1}, it should be {2} - found by name={3}".format(pid, kthid, possible_id, name))
-                    kthid=possible_id
+                print("id={0}, possible_id={1}".format(pid, possible_id))
+                if not possible_id:
+                    print("***** id={0}, possible_id={1}".format(pid, possible_id))
+                    # this must be a missing entry
+                    kthid="{0}{1}".format(fakeid_start, fakeid_number)
+                    fakeid_number=fakeid_number+1
+                    new_entry=dict()
+                    new_entry['kthid']=kthid
+                    new_entry['kth']=affiliation
+                    new_entry['aliases']=[{'Name': name['name'], 'PID': [pid]}]
+                    augmented_by_kthid[kthid]=new_entry
+                
+                    print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name={2}, so made a new entry={3}".format(pid, kthid, name, new_entry))
+                else:           # otherwise there was possible ID
+                    if len(possible_id) == 1:
+                        print("PID={0} has a fake DiVA KTHID of {1}, it should be {2} - found by name={3}".format(pid, kthid, possible_id, name))
+                        kthid=possible_id[0]
+                    else:
+                        print("PID={0} has a fake DiVA KTHID of {1}, it should be one of {2} - found by name={3}".format(pid, kthid, possible_id, name))
+                        # there are multiple matches:
+                        # they could be the same one
+                        if len(possible_id) == 2:
+                            if possible_id[0] == possible_id[1]:
+                                kthid=possible_id[0]
+                            else: # names do not match check of on affiliation matches what we are looking for
+                                a1=augmented_by_kthid[possible_id[0]].get('kth', False)
+                                a2=augmented_by_kthid[possible_id[1]].get('kth', False)
+                                if a1 == affiliation:
+                                    kthid=possible_id[0]
+                                elif a2 == affiliation:
+                                    kthid=possible_id[1]
+                                else:
+                                    print("neither affiliation ({0}: {1}) or ({2}: {3}) matches what we are looking for {4}".format(possible_id[0], a1, possible_id[1], a2, affiliation))
 
-                if not kthid:
-                    print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name={2}".format(pid, kthid, name))
-                    continue
+                                    # this must be a missing entry
+                                    kthid="{0}{1}".format(fakeid_start, fakeid_number)
+                                    fakeid_number=fakeid_number+1
+                                    new_entry=dict()
+                                    new_entry['kthid']=kthid
+                                    new_entry['kth']=affiliation
+                                    new_entry['aliases']=[{'Name': name, 'PID': [pid]}]
+                                    augmented_by_kthid[kthid]=new_entry
+
+                                    print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name={2}, so made a new entry={3}".format(pid, kthid, name, new_entry))
+
+                        else: # length is not 1 or 2, so iterate
+                            does_one_affilation_match=False
+                            for ai, a in enumerate(possible_id):
+                                a1=augmented_by_kthid[a].get('kth', False)
+                                if a1 == affiliation:
+                                    kthid=a
+                                    does_one_affilation_match=True
+                                    print("found a matching affilation for ({0:{1})".format(a, a1))
+                            if not does_one_affilation_match:
+                                print("none of the KTHIDs had a matching affilations")
+                                # this must be a missing entry
+                                kthid="{0}{1}".format(fakeid_start, fakeid_number)
+                                fakeid_number=fakeid_number+1
+                                new_entry=dict()
+                                new_entry['kthid']=kthid
+                                new_entry['kth']=affiliation
+                                new_entry['aliases']=[{'Name': name, 'PID': [pid]}]
+                                augmented_by_kthid[kthid]=new_entry
+
+                                print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name={2}, so made a new entry={3}".format(pid, kthid, name, new_entry))
+
+                        # or they could be ones with different affilations
+                        #kthid=possible_id[0] # take the first - improve this later
+
+            if not kthid:
+                print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name={2}".format(pid, kthid, name))
+                # this must be a missing entry
+                kthid="{0}{1}".format(fakeid_start, fakeid_number)
+                fakeid_number=fakeid_number+1
+                new_entry=dict()
+                new_entry['kthid']=kthid
+                new_entry['kth']=affiliation
+                new_entry['aliases']=[{'Name': name, 'PID': [pid]}]
+                augmented_by_kthid[kthid]=new_entry
+                
+                print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name={2}, so made a new entry={3}".format(pid, kthid, name, new_entry))
+
+
+            print("kthid we have found is {0}".format(kthid))
+            if fake_diva_kthid(kthid):
+                print("*#*#*pid={0},name={1}".format(pid, name))
 
             # here kthid should be an ID, even if it is one of my fake ones
             existing_entry=augmented_by_kthid.get(kthid, False)
