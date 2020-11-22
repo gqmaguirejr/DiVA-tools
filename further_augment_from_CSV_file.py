@@ -47,8 +47,8 @@ def split_names(names):
             paren_count=paren_count+1
         if c == ')':
             paren_count=paren_count-1
-        if c == '"':
-            continue
+        # if c == '"':
+        #     continue
         if (c == ';') and (paren_count == 0):
             name_list.append(working_name)
             working_name=''
@@ -206,6 +206,7 @@ def augmented_lookup_orcid(orcid_to_lookfor, augmented_by_kthid):
     return False
 
 # function returns a kthid (fake or not)
+# Note that the name_to_look_for is simple a string of the form: "Lastname, Firstname"
 def augmented_lookup_name(name_to_look_for, augmented_by_kthid):
     # names can either be in "profile": {"firstName": "Gerald Quentin", "lastName": "Maguire Jr"}}
     # or in the list of aliases: {"aliases": [{"Name": "Maguire Jr., Gerald Q.", "PID": [528381, ...]}, {"Name": "Maguire, Gerald Q.", "PID": [561069]}, {"Name": "Maguire Jr., Gerald", "PID": [561509]}, {"Name": "Maguire, Gerald Q., Jr.", "PID": [913155]}]}
@@ -251,7 +252,7 @@ def augmented_lookup_name(name_to_look_for, augmented_by_kthid):
                 if not a.get('Name', False): # sanity check to make sure there is a Name key and value
                     print("a={}".format(a))
                 #
-                if a['Name'] == name_to_look_for ['name']:
+                if a['Name'] == name_to_look_for:
                     list_of_matches.append(e)
 
     return list_of_matches
@@ -338,7 +339,7 @@ def get_column_values(columns, line):
     for c in columns:
         c_start=2*columns[c]
         c_end=c_start+1
-        pid_and_author_entry[c]=line[all_quotemarks[c_start]:all_quotemarks[c_end]+1]
+        pid_and_author_entry[c]=line[all_quotemarks[c_start]+1:all_quotemarks[c_end]]
     return pid_and_author_entry
 
 
@@ -463,7 +464,7 @@ def main():
         return
     print("Finished reading spreadsheet")
 
-    name_to_look_for={'name': 'Gaiarin, Simone'}
+    name_to_look_for='Gaiarin, Simone'
     z1=augmented_lookup_name(name_to_look_for, augmented_by_kthid)
     print("z1={}".format(z1))
 
@@ -472,23 +473,23 @@ def main():
     augmented_pid_and_authors=dict()
     for pna in pid_and_authors:
         pid_str=pna['PID']
-        pid = int(pid_str[1:-1])
+        pid = int(pid_str[:])
 
-        names=get_authors_from_authorsString(pna['Name'])
-        pna['names']=names      # save the parsed authors information
+        name_records=get_authors_from_authorsString(pna['Name'])
+        pna['names']=name_records      # save the parsed authors information
 
-        for name in names:
+        for name_record in name_records:
             if Verbose_Flag:
-                print("pid={0},name={1}".format(pid,name))
+                print("pid={0},name_record={1}".format(pid,name_record))
 
             existing_kthid=False
             existing_orcid=False
 
-            kthid=name.get('kthid',False)
-            orcid=name.get('orcid',False)
-            affiliation=name.get('affiliation',False)
+            kthid=name_record.get('kthid',False)
+            orcid=name_record.get('orcid',False)
+            affiliation=name_record.get('affiliation',False)
 
-            # look for affiliations and skip them
+            # look for lack of affiliations or lack of KTH affiliation and skip such a name_record
             if not affiliation:
                 continue
             elif affiliation and affiliation.find('(KTH') < 0:
@@ -501,12 +502,12 @@ def main():
                 if orcid:       # if there is an orcid, try to look up the user by this
                     possible_id=augmented_lookup_orcid(orcid, augmented_by_kthid)
                     if possible_id:
-                        print("PID={0} has a fake DiVA KTHID of {1}, it should be {2} - found by orcid={3} for name={4}".format(pid, kthid, possible_id, orcid, name))
+                        print("PID={0} has a fake DiVA KTHID of {1}, it should be {2} - found by orcid={3} for name_record={4}".format(pid, kthid, possible_id, orcid, name_record))
                         kthid=possible_id
 
             if not kthid or fake_diva_kthid(kthid):
                 # since the kthid was fake, look up the user by name
-                possible_id=augmented_lookup_name(name, augmented_by_kthid)
+                possible_id=augmented_lookup_name(name_record['name'], augmented_by_kthid)
                 print("id={0}, possible_id={1}".format(pid, possible_id))
                 if not possible_id:
                     print("***** id={0}, possible_id={1}".format(pid, possible_id))
@@ -516,16 +517,16 @@ def main():
                     new_entry=dict()
                     new_entry['kthid']=kthid
                     new_entry['kth']=affiliation
-                    new_entry['aliases']=[{'Name': name['name'], 'PID': [pid]}]
+                    new_entry['aliases']=[{'Name': name_record['name'], 'PID': [pid]}]
                     augmented_by_kthid[kthid]=new_entry
                 
-                    print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name={2}, so made a new entry={3}".format(pid, kthid, name, new_entry))
+                    print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name_record={2}, so made a new entry={3}".format(pid, kthid, name_record, json.dumps(new_entry)))
                 else:           # otherwise there was possible ID
                     if len(possible_id) == 1:
-                        print("PID={0} has a fake DiVA KTHID of {1}, it should be {2} - found by name={3}".format(pid, kthid, possible_id, name))
+                        print("PID={0} has a fake DiVA KTHID of {1}, it should be {2} - found by name_record={3}".format(pid, kthid, possible_id, name_record))
                         kthid=possible_id[0]
                     else:
-                        print("PID={0} has a fake DiVA KTHID of {1}, it should be one of {2} - found by name={3}".format(pid, kthid, possible_id, name))
+                        print("PID={0} has a fake DiVA KTHID of {1}, it should be one of {2} - found by name_record={3}".format(pid, kthid, possible_id, name_record))
                         # there are multiple matches:
                         # they could be the same one
                         if len(possible_id) == 2:
@@ -547,10 +548,10 @@ def main():
                                     new_entry=dict()
                                     new_entry['kthid']=kthid
                                     new_entry['kth']=affiliation
-                                    new_entry['aliases']=[{'Name': name, 'PID': [pid]}]
+                                    new_entry['aliases']=[{'Name': name_record['name'], 'PID': [pid]}]
                                     augmented_by_kthid[kthid]=new_entry
 
-                                    print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name={2}, so made a new entry={3}".format(pid, kthid, name, new_entry))
+                                    print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name_record={2}, so made a new entry={3}".format(pid, kthid, name_record, new_entry))
 
                         else: # length is not 1 or 2, so iterate
                             does_one_affilation_match=False
@@ -559,7 +560,7 @@ def main():
                                 if a1 == affiliation:
                                     kthid=a
                                     does_one_affilation_match=True
-                                    print("found a matching affilation for ({0:{1})".format(a, a1))
+                                    print("found a matching affilation for ({0}:{1})".format(a, a1))
                             if not does_one_affilation_match:
                                 print("none of the KTHIDs had a matching affilations")
                                 # this must be a missing entry
@@ -568,31 +569,31 @@ def main():
                                 new_entry=dict()
                                 new_entry['kthid']=kthid
                                 new_entry['kth']=affiliation
-                                new_entry['aliases']=[{'Name': name, 'PID': [pid]}]
+                                new_entry['aliases']=[{'Name': name_record['name'], 'PID': [pid]}]
                                 augmented_by_kthid[kthid]=new_entry
 
-                                print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name={2}, so made a new entry={3}".format(pid, kthid, name, new_entry))
+                                print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name_record={2}, so made a new entry={3}".format(pid, kthid, name_record, new_entry))
 
                         # or they could be ones with different affilations
                         #kthid=possible_id[0] # take the first - improve this later
 
             if not kthid:
-                print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name={2}".format(pid, kthid, name))
+                print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name_record={2}".format(pid, kthid, name_record))
                 # this must be a missing entry
                 kthid="{0}{1}".format(fakeid_start, fakeid_number)
                 fakeid_number=fakeid_number+1
                 new_entry=dict()
                 new_entry['kthid']=kthid
                 new_entry['kth']=affiliation
-                new_entry['aliases']=[{'Name': name, 'PID': [pid]}]
+                new_entry['aliases']=[{'Name': name_record['name'], 'PID': [pid]}]
                 augmented_by_kthid[kthid]=new_entry
                 
-                print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name={2}, so made a new entry={3}".format(pid, kthid, name, new_entry))
+                print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name_record={2}, so made a new entry={3}".format(pid, kthid, name_record, new_entry))
 
 
             print("kthid we have found is {0}".format(kthid))
             if fake_diva_kthid(kthid):
-                print("*#*#*pid={0},name={1}".format(pid, name))
+                print("*#*#*pid={0},name_record={1}".format(pid, name_record))
 
             # here kthid should be an ID, even if it is one of my fake ones
             existing_entry=augmented_by_kthid.get(kthid, False)
@@ -601,7 +602,7 @@ def main():
                 if existing_kthid == kthid:
                     existing_orcid=existing_entry.get('orcid', False)
                     if kthid and orcid and not existing_orcid:
-                        print("PID={0} for kthid={1} name={2}, existing_orcid={3}, add orcid {4}".format(pid, kthid, name,  existing_orcid, orcid))
+                        print("PID={0} for kthid={1} name_record={2}, existing_orcid={3}, add orcid {4}".format(pid, kthid, name_record,  existing_orcid, orcid))
                         augmented_by_kthid[kthid]['orcid']=orcid
                 else:
                     print("PID={0} has a KTHID of {1} existing entry={2}".format(pid, kthid, existing_kthid))
@@ -610,7 +611,7 @@ def main():
 
 
             if Verbose_Flag:
-                print("Processing {0} name={1}".format(pid, name))
+                print("Processing {0} name_record={1}".format(pid, name_record))
                 print("PID={0} has a KTHID of {1} existing entry={2}".format(pid, kthid, existing_kthid))
             # add more here
 
