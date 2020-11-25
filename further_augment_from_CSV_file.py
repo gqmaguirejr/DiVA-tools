@@ -339,7 +339,11 @@ def get_column_values(columns, line):
     for c in columns:
         c_start=2*columns[c]
         c_end=c_start+1
-        pid_and_author_entry[c]=line[all_quotemarks[c_start]+1:all_quotemarks[c_end]]
+        try:
+            pid_and_author_entry[c]=line[all_quotemarks[c_start]+1:all_quotemarks[c_end]]
+        except:
+            print("line={}".format(line))
+
     return pid_and_author_entry
 
 
