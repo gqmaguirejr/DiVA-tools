@@ -90,6 +90,8 @@ def get_author_from_authorString(author):
                 kth_or_orcid_string=author[firstLeftBracket+1:firstRightBracket]
                 if kth_or_orcid_string.count('-') > 1:
                     entry['orcid']=kth_or_orcid_string
+                elif kth_or_orcid_string.count('@') == 1:
+                    entry['email']=kth_or_orcid_string
                 else:
                     entry['kthid']=kth_or_orcid_string
                 return entry
@@ -101,6 +103,8 @@ def get_author_from_authorString(author):
                 kth_or_orcid_string=author[firstLeftBracket+1:firstRightBracket]
                 if kth_or_orcid_string.count('-') > 1:
                     entry['orcid']=kth_or_orcid_string
+                elif kth_or_orcid_string.count('@') == 1:
+                    entry['email']=kth_or_orcid_string
                 else:
                     entry['kthid']=kth_or_orcid_string
             else:
@@ -113,6 +117,8 @@ def get_author_from_authorString(author):
                 kth_or_orcid_string=author[secondLeftBracket+1:secondRightBracket]
                 if kth_or_orcid_string.count('-') > 1:
                     entry['orcid']=kth_or_orcid_string
+                elif kth_or_orcid_string.count('@') == 1:
+                    entry['email']=kth_or_orcid_string
                 else:
                     entry['kthid']=kth_or_orcid_string
             else:
@@ -147,6 +153,8 @@ def get_author_from_authorString(author):
                 kth_or_orcid_string=author[firstLeftBracket+1:firstRightBracket]
                 if kth_or_orcid_string.count('-') > 1:
                     entry['orcid']=kth_or_orcid_string
+                elif kth_or_orcid_string.count('@') == 1:
+                    entry['email']=kth_or_orcid_string
                 else:
                     entry['kthid']=kth_or_orcid_string
                 return entry
@@ -158,6 +166,8 @@ def get_author_from_authorString(author):
                 kth_or_orcid_string=author[firstLeftBracket+1:firstRightBracket]
                 if kth_or_orcid_string.count('-') > 1:
                     entry['orcid']=kth_or_orcid_string
+                elif kth_or_orcid_string.count('@') == 1:
+                    entry['email']=kth_or_orcid_string
                 else:
                     entry['kthid']=kth_or_orcid_string
             else:
@@ -170,6 +180,8 @@ def get_author_from_authorString(author):
                 kth_or_orcid_string=author[secondLeftBracket+1:secondRightBracket]
                 if kth_or_orcid_string.count('-') > 1:
                     entry['orcid']=kth_or_orcid_string
+                elif kth_or_orcid_string.count('@') == 1:
+                    entry['email']=kth_or_orcid_string
                 else:
                     entry['kthid']=kth_or_orcid_string
             else:
@@ -399,14 +411,14 @@ def main():
     fakeid_start='⚠⚠'
     # read the lines from the JSON file
     with open(augmented_json_file_name, 'r') as augmented_FH:
-        for line in augmented_FH:
+        for idx, line in enumerate(augmented_FH):
             if Verbose_Flag:
                 print(line)
             try:
                 j=json.loads(line)
             except:
-                print("error in line: {}".format(line))
-                print({}.format(sys.exc_info()))
+                print("error in line (#{0}): {1}".format(idx, line))
+                print("{}".format(sys.exc_info()))
                 return
 
             # move the entry dict elements up to the top level
@@ -447,6 +459,31 @@ def main():
 
     print("augmented_by_kthid for u1d13i2c={}".format(augmented_by_kthid['u1d13i2c']))
 
+    number_of_entries_with_KTHIDs=0
+    number_of_entries_with_KTHID_and_ORCID=0
+    number_of_entries_with_fake_KTHIDs=0
+    number_of_entries_with_fake_KTHIDs_with_ORCID=0
+    for i in augmented_by_kthid:
+        id1=augmented_by_kthid[i].get('kthid', False)
+        oid=augmented_by_kthid[i].get('orcid', False)
+        
+        if fake_kthid(i):
+            number_of_entries_with_fake_KTHIDs=number_of_entries_with_fake_KTHIDs + 1
+            if oid:
+                number_of_entries_with_fake_KTHIDs_with_ORCID=number_of_entries_with_fake_KTHIDs_with_ORCID + 1
+        else:
+            number_of_entries_with_KTHIDs=number_of_entries_with_KTHIDs + 1 
+            if oid:
+                number_of_entries_with_KTHID_and_ORCID=number_of_entries_with_KTHID_and_ORCID + 1
+
+
+    print("total entries={0}, number_of_entries_with_KTHIDs={1}, number_of_entries_with_KTHID_and_ORCID={2}, number_of_entries_with_fake_KTHIDs={3}, number_of_entries_with_fake_KTHIDs_with_ORCID={4}".format(len(augmented_by_kthid),
+                                                                                                                                                                                                      number_of_entries_with_KTHIDs,
+                                                                                                                                                                                                      number_of_entries_with_KTHID_and_ORCID,
+                                                                                                                                                                                                      number_of_entries_with_fake_KTHIDs,
+                                                                                                                                                                                                      number_of_entries_with_fake_KTHIDs_with_ORCID))
+
+
     pid_and_authors=[]
     # read the lines from the spreadsheet
     if spreadsheet_file.endswith('.csv'):
@@ -468,9 +505,9 @@ def main():
         return
     print("Finished reading spreadsheet")
 
-    name_to_look_for='Gaiarin, Simone'
-    z1=augmented_lookup_name(name_to_look_for, augmented_by_kthid)
-    print("z1={}".format(z1))
+    # name_to_look_for='Gaiarin, Simone'
+    # z1=augmented_lookup_name(name_to_look_for, augmented_by_kthid)
+    # print("z1={}".format(z1))
 
     # get KTHIDs and ORCID if they exist, output as JSON
     # also keeo track of the alternative names and on which publication they are used
@@ -620,9 +657,20 @@ def main():
             # add more here
 
 
+
+    
+    output_filename=augmented_json_file_name[:-5]+'_further.JSON'
+    with open(output_filename, 'w', encoding='utf-8') as output_FH:
+        for e in sorted(augmented_by_kthid.keys()):
+            j_dict=augmented_by_kthid[e]
+            j_as_string = json.dumps(j_dict, ensure_ascii=False, indent=4)
+            print(j_as_string, file=output_FH)
+
+        output_FH.close()
+
     return                      #  for testing stop here
 
-    output_filename=spreadsheet_file[:-4]+'_pid_name.JSON'
+    output_filename=spreadsheet_file[:-4]+'_pid_name_further.JSON'
     with open(output_filename, 'w', encoding='utf-8') as output_FH:
         for key in sorted(augmented_pid_and_authors.keys()):
             j_dict=dict()
@@ -633,6 +681,8 @@ def main():
 
         output_FH.close()
         
+
+
     # compute all of the aliases
     kthid_dict=dict()
     missing_kthid_records=dict()
