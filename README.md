@@ -557,3 +557,115 @@ The lines "missing id u1xxxxxx in augmented data" mean that this KTHID was not a
 
 KTHIDs, such as "u11w5qab" that are missing user information generally mean that the KTHID string is not valid.
 
+## further_augment_from_CSV_file.py
+
+Purpose: reads in a CSV spreaadsheet of DiVA entries and uses the information to generates update an augmented JSON file
+
+Input:
+```
+# ./further_augment_from_CSV_file.py xxx.csv xxx.augmented.json [extra_orcid_info.txt]
+```
+
+Output: augmented JSON file(s)
+
+
+
+Example:
+```
+./further_augment_from_CSV_file.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected.csv /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented.json
+
+```
+Running a version of the program with the file of ORCID;KTHID values provided by Anders Wändahl of KTHB was done as follows:
+
+```
+./further_augment_from_CSV_file.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected.csv /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented.json /z3/maguire/SemanticScholar/KTH_DiVA/orcid_kth-id_2020-12-04.txt
+
+file_name='/z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected.csv'
+augmented_json_file_name='/z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented.json'
+orcid_fileName='/z3/maguire/SemanticScholar/KTH_DiVA/orcid_kth-id_2020-12-04.txt'
+length of augmented_by_kthid=9467
+augmented_by_kthid for u1d13i2c={'kthid': 'u1d13i2c', 'profile': {'firstName': 'Gerald Quentin', 'lastName': 'Maguire Jr'}, 'kth': '(KTH [177], Skolan för informations- och kommunikationsteknik (ICT) [5994], Kommunikationssystem, CoS [5998])', 'orcid': '0000-0002-6066-746X', 'aliases': [{'Name': 'Maguire Jr., Gerald Q.', 'PID': [528381, 606323, 638177, 675824, 675849, 690825, 690828, 706514, 733621, 852295, 854051, 866222, 866274, 948397, 948549, 948742, 1068493, 1087906, 1177431, 1180496, 1184756, 1230455, 1314634, 1367981, 1416571]}, {'Name': 'Maguire, Gerald Q.', 'PID': [561069]}, {'Name': 'Maguire Jr., Gerald', 'PID': [561509]}, {'Name': 'Maguire, Gerald Q., Jr.', 'PID': [913155]}]}
+total entries=9467, number_of_entries_with_KTHIDs=8846, number_of_entries_with_KTHID_and_ORCID=3553, number_of_entries_with_fake_KTHIDs=621, number_of_entries_with_fake_KTHIDs_with_ORCID=34
+u17jh27g: 0000-0001-5905-8467
+ for user=u18xqygi different ORCID=0000-0001-7020-1551 than existing=0000-0002-4830-7832
+ for user=u1viadzh different ORCID=0000-0001-9314-545X than existing=0000-0001-9314-545x
+ for user=u1b2c0lu different ORCID=0000-0001-9567-155X than existing=0000-0001-9567-155x
+ for user=u165ghxx different ORCID=0000-0002-0697-846X than existing=0000-0002-0697-846x
+u1337frh: 0000-0002-1409-6352
+for id=u1cmhq5l and orcid=0000-0002-3937-9359, found user=⚠⚠277
+ for user=u1opd8t3 different ORCID=0000-0002-4477-971X than existing=0000-0002-4477-971x
+ for user=u145n239 different ORCID=0000-0002-4501-695X than existing=0000-0002-4501-695x
+for id=u1wab1qn and orcid=0000-0002-5050-5176, found user=⚠⚠280
+u1qgi0an: 0000-0002-6461-439X
+u17dwg3s: 0000-0002-7422-3966
+ for user=u1xbdlaj different ORCID=0000-0002-7987-1567 than existing=0000-0003-2432-7617
+ for user=u1i928wd different ORCID=0000-0002-8170-379X than existing=0000-0002-8170-379x
+u1h4jl4h: 0000-0002-9432-254X
+ for user=u1670dm5 different ORCID=0000-0003-1377-565X than existing=0000-0003-1377-565x
+ for user=u1hxruli different ORCID=0000-0003-1443-403X than existing=0000-0003-1443-403x
+ for user=u167dmzs different ORCID=0000-0003-1654-841X than existing=0000-0003-1654-841x
+u1huwj6n: 0000-0003-1693-1320
+ for user=u1dypakr different ORCID=0000-0003-3070-794X than existing=0000-0003-3070-794x
+already_know_orcid=2911, new_orcid=6, differing_orcids=12,new_users=740
+Finished reading extra ORCID info
+
+```
+Note that the above run of the program (which pruposely returns after processing the extra ORCID information) gave me:
+KTHIDs for two users that I did not have:
+    for id=u1cmhq5l and orcid=0000-0002-3937-9359, found user=⚠⚠277
+    for id=u1wab1qn and orcid=0000-0002-5050-5176, found user=⚠⚠280
+
+2911 already known ORCIDs
+
+740 new users
+
+6 new ORCIDs for authors I already had:
+
+    u17jh27g: 0000-0001-5905-8467
+    u1337frh: 0000-0002-1409-6352
+    u1qgi0an: 0000-0002-6461-439X
+    u17dwg3s: 0000-0002-7422-3966
+    u1h4jl4h: 0000-0002-9432-254X
+    u1huwj6n: 0000-0003-1693-1320
+
+12 mis-matches versus what I already had:
+
+   for 10 of these the difference is that the DiVA record(s) had a "x" rather than an "X" in the check character:
+     for user=u1viadzh different ORCID=0000-0001-9314-545X than existing=0000-0001-9314-545x
+     for user=u1b2c0lu different ORCID=0000-0001-9567-155X than existing=0000-0001-9567-155x
+     for user=u165ghxx different ORCID=0000-0002-0697-846X than existing=0000-0002-0697-846x
+     for user=u1opd8t3 different ORCID=0000-0002-4477-971X than existing=0000-0002-4477-971x
+     for user=u145n239 different ORCID=0000-0002-4501-695X than existing=0000-0002-4501-695x
+     for user=u1i928wd different ORCID=0000-0002-8170-379X than existing=0000-0002-8170-379x
+     for user=u1670dm5 different ORCID=0000-0003-1377-565X than existing=0000-0003-1377-565x
+     for user=u1hxruli different ORCID=0000-0003-1443-403X than existing=0000-0003-1443-403x
+     for user=u167dmzs different ORCID=0000-0003-1654-841X than existing=0000-0003-1654-841x
+     for user=u1dypakr different ORCID=0000-0003-3070-794X than existing=0000-0003-3070-794x
+
+Two users where there is a difference:
+    for user=u18xqygi different ORCID=0000-0001-7020-1551 than existing=0000-0002-4830-7832
+    for user=u1xbdlaj different ORCID=0000-0002-7987-1567 than existing=0000-0003-2432-7617
+
+For the first of these the user actually has two ORCIDs. Her KTH profile page  https://www.kth.se/profile/olga points to ORCID: https://orcid.org/0000-0001-7020-1551
+
+However, there are many record in DiVA (such as the following that shows another ORCID for this user):
+
+"1307966","Kordas, Olga [u18xqygi] [0000-0002-4830-7832] (KTH [177], Skolan för arkitektur och samhällsbyggnad (ABE) [5850], Hållbar utveckling, miljövetenskap och teknik [13604]) (UrbanT);
+
+Note that https://orcid.org/0000-0002-4830-7832 - seems to be much more complete.
+
+For the second, kTH profile shows:
+    user={'defaultLanguage': 'en', 'acceptedTerms': True, 'isAdminHidden': False, 'avatar': {'visibility': 'public'}, '_id': 'u1xbdlaj', 'kthId': 'u1xbdlaj', 'username': 'chrdan', 'homeDirectory': '\\\\ug.kth.se\\dfs\\home\\c\\h\\chrdan', 'title': {'sv': 'FORSKARE', 'en': 'RESEARCHER'}, 'streetAddress': 'OSQUARS BACKE 5', 'emailAddress': 'christina.bodin.danielsson@arch.kth.se', 'telephoneNumber': '087908541', 'isStaff': True, 'isStudent': False, 'firstName': 'Christina', 'lastName': 'Bodin Danielsson', 'city': 'Stockholm', 'postalCode': '10044', 'remark': '', 'lastSynced': '2020-09-10T06:29:20.000Z', 'researcher': {'researchGate': '', 'googleScholarId': '', 'scopusId': '', 'researcherId': '', 'orcid': '0000-0002-7987-1567'}, 'courses': {'visibility': 'public', 'codes': [], 'items': []}, 'worksFor': {'items': [{'key': 'app.katalog3.A.AD', 'path': 'a/ad', 'location': 'OSQUARS BACKE 5, 10044 STOCKHOLM', 'name': 'ARKITEKTURSKOLAN', 'nameEn': 'ARCHITECTURE'}, {'key': 'app.katalog3.A.AD.ADE', 'path': 'a/ad/ade', 'location': 'OSQUARS BACKE 5, 10044 STOCKHOLM', 'name': 'ARKITEKTUR FORSKNING EXTERN', 'nameEn': ''}]},  ...
+
+hence I used this in my entry:
+    {"kthid": "u1xbdlaj", "entry": {"orcid": "0000-0003-2432-7617", "kth": "(KTH [177], Skolan för arkitektur och samhällsbyggnad (ABE) [5850], Arkitektur [5851]) (Arc plan)", "aliases": [{"Name": "Bodin Danielsson, Christina", "PID": [704686, 842404, 1055759]}, {"Name": "Danielsson, Christina", "PID": [1359413]}]}, "profile": {"firstName": "Christina", "lastName": "Bodin Danielsson"}}
+
+While https://orcid.org/0000-0002-7987-1567 shows:
+    Given Names Deactivated Family Name Deactivated
+    ORCID iD
+    https://orcid.org/0000-0002-7987-1567
+
+    This account has been deprecated, please see account https://orcid.org/0000-0003-2432-7617 for the latest information
+
+So the one ORCID has been replaced by another and the ORCID I was using was correct.
+

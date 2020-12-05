@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #
-# ./further_augment_from_CSV_file.py xxx.csv xxx.augmented.json
+# ./further_augment_from_CSV_file.py xxx.csv xxx.augmented.json [extra_orcid_info.txt]
 #
 # reads in a CSV spreaadsheet of DiVA entries and uses the information to generates update an augmented JSON file
 #
@@ -11,6 +11,8 @@
 #
 # Example:
 # ./further_augment_from_CSV_file.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected.csv /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented.json
+# or
+#./further_augment_from_CSV_file.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected.csv /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented.json /z3/maguire/SemanticScholar/KTH_DiVA/orcid_kth-id_2020-12-04.txt
 #
 
 import requests, time
@@ -31,6 +33,50 @@ import re
 
 import locale 
 locale.setlocale(locale.LC_ALL, 'sv_SE.UTF-8')
+
+global host	# the base URL
+global header	# the header for all HTML requests
+global payload	# place to store additionally payload when needed for options to HTML requests
+
+# 
+def initialize(options):
+       global host, header, payload
+
+       # styled based upon https://martin-thoma.com/configuration-files-in-python/
+       if options.config_filename:
+              config_file=options.config_filename
+       else:
+              config_file='config.json'
+
+       try:
+              with open(config_file) as json_data_file:
+                     configuration = json.load(json_data_file)
+                     key=configuration["KTH_API"]["key"]
+                     host=configuration["KTH_API"]["host"]
+                     header = {'api_key': key, 'Content-Type': 'application/json', 'Accept': 'application/json' }
+                     payload = {}
+       except:
+              print("Unable to open configuration file named {}".format(config_file))
+              print("Please create a suitable configuration file, the default name is config.json")
+              sys.exit()
+
+
+def get_user_by_kthid(kthid):
+       # Use the KTH API to get the user information give an orcid
+       #"#{$kth_api_host}/profile/v1/kthId/#{kthid}"
+
+       url = "{0}/profile/v1/kthId/{1}".format(host, kthid)
+       if Verbose_Flag:
+              print("url: {}".format(url))
+
+       r = requests.get(url, headers = header)
+       if Verbose_Flag:
+              print("result of getting profile: {}".format(r.text))
+
+       if r.status_code == requests.codes.ok:
+              page_response=r.json()
+              return page_response
+       return []
 
 
 def split_names(names):
@@ -200,6 +246,8 @@ def get_authors_from_authorsString(authors):
 
 # function returns a kthid (fake or not)
 def augmented_lookup_orcid(orcid_to_lookfor, augmented_by_kthid):
+    global Verbose_Flag
+
     # orcid can be at the top level or
     # inside "entry": {"orcid": "0000-0002-6066-746X",
     for e in augmented_by_kthid:
@@ -214,7 +262,8 @@ def augmented_lookup_orcid(orcid_to_lookfor, augmented_by_kthid):
             if orcid and (orcid == orcid_to_lookfor):
                 return e
     #
-    print("augmented_lookup_orcid={} failed to find:".format(orcid_to_lookfor))    
+    if Verbose_Flag:
+        print("augmented_lookup_orcid={} failed to find:".format(orcid_to_lookfor))    
     return False
 
 # function returns a kthid (fake or not)
@@ -359,6 +408,47 @@ def get_column_values(columns, line):
     return pid_and_author_entry
 
 
+def make_new_user(id, new_orcid):
+    global augmented_by_kthid
+    global Verbose_Flag
+
+    found_existing_user_by_orcid=0
+    existing_user=augmented_lookup_orcid(new_orcid, augmented_by_kthid)
+    if existing_user and existing_user == id:
+        found_existing_user_by_orcid=found_existing_user_by_orcid+1
+        return
+    elif existing_user and existing_user != id:
+        print("for id={0} and orcid={1}, found user={2}".format(id, new_orcid, existing_user))
+        return
+    else:
+        user=get_user_by_kthid(id)
+        # returns a response of the form:
+        # user={'defaultLanguage': 'en', 'acceptedTerms': True, 'isAdminHidden': False, 'avatar': {'visibility': 'public'}, '_id': 'u1d13i2c', 'kthId': 'u1d13i2c', 'username': 'maguire', 'homeDirectory': '\\\\ug.kth.se\\dfs\\home\\m\\a\\maguire', 'title': {'sv': 'PROFESSOR', 'en': 'PROFESSOR'}, 'streetAddress': 'ISAFJORDSGATAN 26', 'emailAddress': 'maguire@kth.se', 'telephoneNumber': '', 'isStaff': True, 'isStudent': False, 'firstName': 'Gerald Quentin', 'lastName': 'Maguire Jr', 'city': 'Stockholm', 'postalCode': '10044', 'remark': 'COMPUTER COMMUNICATION LAB', 'lastSynced': '2020-10-28T13:36:56.000Z', 'researcher': {'researchGate': '', 'googleScholarId': 'HJgs_3YAAAAJ', 'scopusId': '8414298400', 'researcherId': 'G-4584-2011', 'orcid': '0000-0002-6066-746X'}, ...
+        firstName=user.get('firstName', False)
+        lastName=user.get('lastName', False)
+        if firstName and lastName:
+            profile={'firstName': firstName, 'lastName': lastName }
+        elif not firstName and lastName:
+            profile={'lastName': lastName }
+        elif firstName and not lastName:
+            profile={'firstName': firstName}
+        else:
+            print("*** KTHID: {0} missing first and last name in {1}".format(id, user))
+
+        user_researcher=user.get('researcher', False)
+        if user_researcher:
+            user_orcid=user_researcher.get('orcid', False)
+            if user_orcid != new_orcid:
+                print("for user {0} existing orcid={1], new orcid {2}".format(user, user_orcid, new_orcid))
+            else:
+                user_orcid=new_orcid
+        #"entry":{"kth":"(KTH [177], Centra [12851], Nordic Institute for Theoretical Physics NORDITA [12850])","orcid":"","aliases":[{"Name":"Anastasiou, Alexandros","PID":[1130981,1255535]},{"Name":"Anastasiou, A.","PID":[1269339]}]}}
+
+        augmented_by_kthid[id]={"kthid": id, "orcid": user_orcid, "profile": profile, "entry": {"kth": False, "orcid": False, "aliases": []}}
+        if Verbose_Flag:
+            print("new user={0}".format(augmented_by_kthid[id]))
+    return
+
 
 def main():
     global Verbose_Flag
@@ -366,6 +456,7 @@ def main():
     global kthid_dict
     global pp
     global fakeid_start
+    global augmented_by_kthid
 
     parser = optparse.OptionParser()
 
@@ -375,6 +466,9 @@ def main():
                       action="store_true",
                       help="Print lots of output to stdout"
     )
+
+    parser.add_option("--config", dest="config_filename",
+                      help="read configuration from FILE", metavar="FILE")
 
     parser.add_option('-p', '--pid',
                       dest="pid",
@@ -392,6 +486,8 @@ def main():
         print('VERBOSE   :', options.verbose)
         print('REMAINING :', remainder)
 
+    initialize(options)
+
     pid_Flag=options.pid
 
     if (len(remainder) < 2):
@@ -403,6 +499,10 @@ def main():
 
     augmented_json_file_name=remainder[1]
     print("augmented_json_file_name='{0}'".format(augmented_json_file_name))
+
+    if (len(remainder) > 2):
+        orcid_fileName=remainder[2]
+        print("orcid_fileName='{0}'".format(orcid_fileName))
 
     pp = pprint.PrettyPrinter(indent=4) # configure prettyprinter
 
@@ -483,6 +583,47 @@ def main():
                                                                                                                                                                                                       number_of_entries_with_fake_KTHIDs,
                                                                                                                                                                                                       number_of_entries_with_fake_KTHIDs_with_ORCID))
 
+    if (len(remainder) > 2):
+        new_users=0
+        already_known_orcid=0
+        new_orcid=0
+        differing_orcids=0
+        # read the lines from the spreadsheet
+        if orcid_fileName.endswith('.txt'):
+            with open(orcid_fileName, 'r') as spreadsheet_FH:
+                for index, line in enumerate(spreadsheet_FH):
+                    # format is orcid;kthid
+                    fields=line.split(';')
+                    if Verbose_Flag:
+                        print("fields={}".format(fields))
+                    kid=fields[1].strip()
+                    noid=fields[0]
+                    entry=augmented_by_kthid.get(kid, False)
+                    if not entry:
+                        if Verbose_Flag:
+                            print("Do not have a KTHID of {0} - add KTHID and Orcid={1}".format(kid, noid))
+                        make_new_user(kid, noid)
+                        new_users=new_users+1
+                    else:
+                        oid=augmented_by_kthid[kid].get('orcid', False)
+                        if oid and (oid == noid):
+                            already_known_orcid=already_known_orcid+1
+                        elif oid and (oid != noid):
+                            differing_orcids=differing_orcids+1
+                            print(" for user={0} different ORCID={1} than existing={2}".format(kid, noid, oid))
+                        elif not oid:
+                            augmented_by_kthid[kid]['orcid']=noid
+                            new_orcid=new_orcid+1
+                            print("Applying new orcid for user {0}: {1}".format(kid, noid))
+                        else:
+                            print("Should not have gotten here")
+
+        print("already_known_orcid={0}, new_orcid={1}, differing_orcids={2},new_users={3}".format(already_known_orcid, new_orcid, differing_orcids,new_users))
+
+
+                
+    print("Finished reading extra ORCID info")
+    return
 
     pid_and_authors=[]
     # read the lines from the spreadsheet
@@ -667,6 +808,32 @@ def main():
             print(j_as_string, file=output_FH)
 
         output_FH.close()
+
+    print("At end of processing (number of entries - represents 'unique' authors):")
+    number_of_entries_with_KTHIDs=0
+    number_of_entries_with_KTHID_and_ORCID=0
+    number_of_entries_with_fake_KTHIDs=0
+    number_of_entries_with_fake_KTHIDs_with_ORCID=0
+    for i in augmented_by_kthid:
+        id1=augmented_by_kthid[i].get('kthid', False)
+        oid=augmented_by_kthid[i].get('orcid', False)
+        
+        if fake_kthid(i):
+            number_of_entries_with_fake_KTHIDs=number_of_entries_with_fake_KTHIDs + 1
+            if oid:
+                number_of_entries_with_fake_KTHIDs_with_ORCID=number_of_entries_with_fake_KTHIDs_with_ORCID + 1
+        else:
+            number_of_entries_with_KTHIDs=number_of_entries_with_KTHIDs + 1 
+            if oid:
+                number_of_entries_with_KTHID_and_ORCID=number_of_entries_with_KTHID_and_ORCID + 1
+
+
+    print("total entries={0}, number_of_entries_with_KTHIDs={1}, number_of_entries_with_KTHID_and_ORCID={2}, number_of_entries_with_fake_KTHIDs={3}, number_of_entries_with_fake_KTHIDs_with_ORCID={4}".format(len(augmented_by_kthid),
+                                                                                                                                                                                                      number_of_entries_with_KTHIDs,
+                                                                                                                                                                                                      number_of_entries_with_KTHID_and_ORCID,
+                                                                                                                                                                                                      number_of_entries_with_fake_KTHIDs,
+                                                                                                                                                                                                      number_of_entries_with_fake_KTHIDs_with_ORCID))
+
 
     return                      #  for testing stop here
 
