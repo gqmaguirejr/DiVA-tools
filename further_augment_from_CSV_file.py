@@ -14,6 +14,8 @@
 # or
 #./further_augment_from_CSV_file.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected.csv /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented.json /z3/maguire/SemanticScholar/KTH_DiVA/orcid_kth-id_2020-12-04.txt
 #
+# If the program is called with the extra information about ORCID and KTHIDs it adds this to the augmented_by_kthid dict.
+#
 
 import requests, time
 import pprint
@@ -272,7 +274,7 @@ def augmented_lookup_name(name_to_look_for, augmented_by_kthid):
     # names can either be in "profile": {"firstName": "Gerald Quentin", "lastName": "Maguire Jr"}}
     # or in the list of aliases: {"aliases": [{"Name": "Maguire Jr., Gerald Q.", "PID": [528381, ...]}, {"Name": "Maguire, Gerald Q.", "PID": [561069]}, {"Name": "Maguire Jr., Gerald", "PID": [561509]}, {"Name": "Maguire, Gerald Q., Jr.", "PID": [913155]}]}
 
-    # because there are some people who share the same name, the code needss to return a list of matches
+    # because there are some people who share the same name, the code needs to return a list of matches
     list_of_matches=[]
 
     print("name_to_look_for={}".format(name_to_look_for))
@@ -309,7 +311,8 @@ def augmented_lookup_name(name_to_look_for, augmented_by_kthid):
                 if Verbose_Flag:
                     print("a={}".format(a))
                 if type(a) is int:
-                    print("the aliast is not a dict, a={}".format(a))
+                    print("the alias {0} a is not a dict, a={1}, e={2}".format(aliases, a, e))
+                    continue
                 if not a.get('Name', False): # sanity check to make sure there is a Name key and value
                     print("a={}".format(a))
                 #
@@ -548,7 +551,12 @@ def main():
                 kthid="{0}{1}".format(fakeid_start, fakeid_number)
                 j['kthid']=kthid
                 fakeid_number=fakeid_number+1
-            augmented_by_kthid[kthid]=j
+
+            existing_entry=augmented_by_kthid.get(kthid, False)
+            if existing_entry:
+                print("existing KTHID={0} and a new entry={1} - old entry kept".format(kthid, line))
+            else:
+                augmented_by_kthid[kthid]=j
 
     print("length of augmented_by_kthid={}".format(len(augmented_by_kthid)))
 
@@ -583,6 +591,8 @@ def main():
                                                                                                                                                                                                       number_of_entries_with_fake_KTHIDs,
                                                                                                                                                                                                       number_of_entries_with_fake_KTHIDs_with_ORCID))
 
+    # note that the following code is only used if there is a third file argument
+    # This file is assumed to contain extra ORCID and KTHID entries 
     if (len(remainder) > 2):
         new_users=0
         already_known_orcid=0
@@ -619,11 +629,7 @@ def main():
                             print("Should not have gotten here")
 
         print("already_known_orcid={0}, new_orcid={1}, differing_orcids={2},new_users={3}".format(already_known_orcid, new_orcid, differing_orcids,new_users))
-
-
-                
-    print("Finished reading extra ORCID info")
-    return
+        print("Finished reading extra ORCID info")
 
     pid_and_authors=[]
     # read the lines from the spreadsheet
@@ -654,7 +660,13 @@ def main():
     # also keeo track of the alternative names and on which publication they are used
     augmented_pid_and_authors=dict()
     for pna in pid_and_authors:
-        pid_str=pna['PID']
+        if Verbose_Flag:
+            print("pna={}".format(pna))
+        
+        pid_str=pna.get('PID', False)
+        if not pid_str:
+            print("pna={0} but has no PID - hence the program must stop")
+            return
         pid = int(pid_str[:])
 
         name_records=get_authors_from_authorsString(pna['Name'])
@@ -691,6 +703,10 @@ def main():
                 # since the kthid was fake, look up the user by name
                 possible_id=augmented_lookup_name(name_record['name'], augmented_by_kthid)
                 print("id={0}, possible_id={1}".format(pid, possible_id))
+                if possible_id and len(possible_id) == 1:
+                    possible_email=augmented_by_kthid[possible_id[0]].get('email', False)
+                    if possible_email:
+                        print("possible_email={}".format(possible_email))
                 if not possible_id:
                     print("***** id={0}, possible_id={1}".format(pid, possible_id))
                     # this must be a missing entry
@@ -775,7 +791,7 @@ def main():
 
             print("kthid we have found is {0}".format(kthid))
             if fake_diva_kthid(kthid):
-                print("*#*#*pid={0},name_record={1}".format(pid, name_record))
+                print("*#*#* fake KTHID in pid={0},name_record={1}".format(pid, name_record))
 
             # here kthid should be an ID, even if it is one of my fake ones
             existing_entry=augmented_by_kthid.get(kthid, False)
@@ -804,7 +820,7 @@ def main():
     with open(output_filename, 'w', encoding='utf-8') as output_FH:
         for e in sorted(augmented_by_kthid.keys()):
             j_dict=augmented_by_kthid[e]
-            j_as_string = json.dumps(j_dict, ensure_ascii=False, indent=4)
+            j_as_string = json.dumps(j_dict, ensure_ascii=False)#, indent=4
             print(j_as_string, file=output_FH)
 
         output_FH.close()
