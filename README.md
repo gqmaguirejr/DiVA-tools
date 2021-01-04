@@ -610,7 +610,7 @@ already_know_orcid=2911, new_orcid=6, differing_orcids=12,new_users=740
 Finished reading extra ORCID info
 
 ```
-Note that the above run of the program (which pruposely returns after processing the extra ORCID information) gave me:
+Note that the above run of the program (which purposely returns after processing the extra ORCID information) gave me:
 KTHIDs for two users that I did not have:
     for id=u1cmhq5l and orcid=0000-0002-3937-9359, found user=⚠⚠277
     for id=u1wab1qn and orcid=0000-0002-5050-5176, found user=⚠⚠280
@@ -668,4 +668,20 @@ While https://orcid.org/0000-0002-7987-1567 shows:
     This account has been deprecated, please see account https://orcid.org/0000-0003-2432-7617 for the latest information
 
 So the one ORCID has been replaced by another and the ORCID I was using was correct.
+
+## yet_further_augment_from_CSV_file.py
+
+Purpose: reads in a CSV spreaadsheet of DiVA entries and uses the information to generate a further updated augmented JSON file
+
+The focus of this program is to add the the aliases the PIDs from the DiVA spreadsheet.
+
+Note that program assumes that all entries in the JSON file have a value for kthid, even if it is fake ID.
+
+
+Input:
+```
+# ./yet_further_augment_from_CSV_file.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected.csv /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented_further.JSON
+```
+
+Output: augmented JSON file
 
