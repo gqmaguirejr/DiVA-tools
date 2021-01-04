@@ -881,6 +881,7 @@ def main():
 
     # of all_PIDs, which have no KTH authors (including fake IDs)
     print("len(all_PIDs)={0} len(all_PIDs_with_KTH_authors)={1}".format(len(all_PIDs), len(all_PIDs_with_KTH_authors)))
-    print("diff={0}".format(all_PIDs.difference(all_PIDs_with_KTH_authors)))
+    print("PIDs not associated with KTHIDs (even fake ones)={0}".format(all_PIDs.difference(all_PIDs_with_KTH_authors)))
+    print("Most of the above PIDs have no authors, but do have contributors; but these have not been processed (yet)")
 
 if __name__ == "__main__": main()
