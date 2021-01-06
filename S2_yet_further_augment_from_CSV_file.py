@@ -1,9 +1,13 @@
 #!/usr/bin/python3
 # -*- mode: python; python-indent-offset: 4 -*-
 #
-# ./yet_further_augment_from_CSV_file.py xxx.csv xxx.augmented_further.json [shard_number path_to_corpus]
+# ./S2_yet_further_augment_from_CSV_file.py xxx.csv xxx.augmented_further.json [shard_number path_to_corpus]
 #
 # reads in a CSV spreaadsheet of DiVA entries and uses the information to generate a further updated augmented JSON file
+# This program assumes that all of the KTH authors have a KTHID in the name_record for the publication, otherwise they are ignored.
+# (This meands that the CSV file has to be corrected or all of the DiVA records have to be corrected.)
+#
+# The shard number N (is the digits indicating the piece of the corpus) - for the file s2-corpus-186 N is 186
 # The focus of this program is to add the the aliases the PIDs from the DiVA spreadsheet.
 #
 # Note that program assumes that all entries in the JSON file have a value for kthid, even if it is fake ID.
@@ -14,7 +18,7 @@
 # 2021-01-04
 #
 # Example:
-# ./yet_further_augment_from_CSV_file.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected.csv /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented_further.JSON
+# ./S2_yet_further_augment_from_CSV_file.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected.csv /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented_further.JSON 186 /z3/maguire/SemanticScholar/SS_corpus_2020-05-27
 #
 
 import requests, time
@@ -527,6 +531,19 @@ def add_PID_for_name(kthid, name, pid):
             print("added aliases for {0} name={1}".format(kthid, name))
     return
 
+def get_diva_authors(pid):
+    global pid_and_authors
+    global Verbose_Flag
+
+    diva_entry=pid_and_authors[pid]
+    if Verbose_Flag:
+        print("diva_entry={}".format(diva_entry))
+               
+    name_records=get_authors_from_authorsString(diva_entry['Name'])
+    return name_records
+
+
+
 def main():
     global Verbose_Flag
     global augmented_pid_and_authors
@@ -535,6 +552,7 @@ def main():
     global fakeid_start
     global fakeid_nonKTH_start
     global augmented_by_kthid
+    global pid_and_authors
 
     parser = optparse.OptionParser()
 
@@ -580,10 +598,8 @@ def main():
     print("augmented_json_file_name='{0}'".format(augmented_json_file_name))
 
     if (len(remainder) > 3):
-        shard_number=remainder[3]
-        path_to_corpus=remainder[4]
-
-        print("orcid_fileName='{0}'".format(orcid_fileName))
+        shard_number=remainder[2]
+        path_to_corpus=remainder[3]
 
     pp = pprint.PrettyPrinter(indent=4) # configure prettyprinter
 
@@ -642,7 +658,11 @@ def main():
 
     print("total entries={0}, number_of_entries_with_KTHIDs={1}, number_of_entries_with_fake_KTHIDs={2} of these number_of_entries_with_fake_nonKTHIDs={3}, thus {4} unknown IDs".format(len(augmented_by_kthid),number_of_entries_with_KTHIDs,number_of_entries_with_fake_KTHIDs,number_of_entries_with_fake_nonKTHIDs,number_of_entries_with_fake_KTHIDs-number_of_entries_with_fake_nonKTHIDs))
 
-    pid_and_authors=[]
+    pid_and_authors=dict()
+    diva_dois=dict()
+    diva_pmis=dict()
+    diva_titles=dict()
+    all_PIDs=set()
     # read the lines from the spreadsheet
     if spreadsheet_file.endswith('.csv'):
         with open(spreadsheet_file, 'r') as spreadsheet_FH:
@@ -657,184 +677,97 @@ def main():
                     for idx, col_name in enumerate(column_headings):
                            columns[col_name]=idx
                     continue
-                pid_and_authors.append(get_column_values(columns, line))
+                col_values=get_column_values(columns, line)
+                pid_str=col_values.get('PID', False)
+                if pid_str:
+                    pid=int(pid_str[:])
+                    all_PIDs.add(pid)       # add this PID to the set of all PIDs processed
+                    pid_and_authors[pid]=col_values
+
+                    # save some information to be able to quickly find if a given DOI, PMI, ... has a DIVA entry
+                    doi=col_values.get('DOI', False)
+                    if doi and len(doi) > 0:
+                        diva_dois[doi]=pid
+
+                    pmi=col_values.get('PMID', False)
+                    if pmi and len(pmi) > 0:
+                        diva_pmis[pmi]=pid
+
+                    title=col_values.get('Title', False)
+                    if title and len(title) > 0:
+                        diva_titles[title]=pid
+
+                else:
+                    print("Error in PID of {}".format(line))
+
     else:
         print("Unknown file extension for the spreadsheet")
         return
 
     print("Finished reading spreadsheet")
 
-    # name_to_look_for='Gaiarin, Simone'
-    # z1=augmented_lookup_name(name_to_look_for, augmented_by_kthid)
-    # print("z1={}".format(z1))
+    if Verbose_Flag:
+        for doi in diva_dois:
+            print("doi={0}: {1}".format(doi, diva_dois[doi]))
 
-    all_PIDs=set()
+        for pmid in diva_pmis:
+            print("pmid={0}: {1}".format(pmid, diva_pmis[pmid]))
 
-    # get KTHIDs and ORCID if they exist, output as JSON
-    # also keep track of the alternative names and on which publication they are used
-    augmented_pid_and_authors=dict()
-    for pna in pid_and_authors:
-        if Verbose_Flag:
-            print("pna={}".format(pna))
-               
-        pid_str=pna.get('PID', False)
-        if not pid_str:
-            print("pna={0} but has no PID - hence the program must stop")
-            return
-        pid = int(pid_str[:])
+        for title in diva_titles:
+            print("title={0}: {1}".format(title, diva_titles[title]))
 
-        all_PIDs.add(pid)       # add this PID to the set of all PIDs processed
+    # get S2 information from a shard
+    shard_filename="{0}/s2-corpus-{1}".format(path_to_corpus, shard_number)
+    print("shard_filename={}".format(shard_filename))
 
-        name_records=get_authors_from_authorsString(pna['Name'])
-        pna['names']=name_records      # save the parsed authors information
+    corpus_shard=[]
+    with open(shard_filename, 'r') as corpus_shard_FH:
+        for line in corpus_shard_FH:
+            corpus_shard.append(json.loads(line))
 
-        for name_record in name_records:
-            if Verbose_Flag:
-                print("pid={0},name_record={1}".format(pid,name_record))
+    print("corpus_shard length={}".format(len(corpus_shard)))
 
-            existing_kthid=False
-            existing_orcid=False
+    matches_corpus_json=[]
+    for ce in corpus_shard:
+        s2_doi=ce.get('doi', False)
+        s2_pmid=ce.get('pmid', False)
+        s2_title=ce.get('title', False)
 
-            kthid=name_record.get('kthid',False)
-            orcid=name_record.get('orcid',False)
-            affiliation=name_record.get('affiliation',False)
-
-            # look for lack of affiliations or lack of KTH affiliation and skip such a name_record
-            if not affiliation:
-                continue
-            elif affiliation and affiliation.find('(KTH') < 0:
-                kth_affiliation_flag=False
-                continue
+        # check for matching doi, pmid, or title; otherwise ignore
+        matching_pid=diva_dois.get(s2_doi, False)
+        if matching_pid:
+            print("matched doi: {0}".format(s2_doi))
+        else:            
+            matching_pid=diva_pmis.get(s2_pmid, False)
+            if matching_pid:
+                print("matched pmid: {0}".format(s2_pmid))
             else:
-                kth_affiliation_flag=True
-
-            if not kthid or fake_diva_kthid(kthid):
-                if orcid:       # if there is an orcid, try to look up the user by this
-                    possible_id=augmented_lookup_orcid(orcid, augmented_by_kthid)
-                    if possible_id:
-                        print("PID={0} has a fake DiVA KTHID of {1}, it should be {2} - found by orcid={3} for name_record={4}".format(pid, kthid, possible_id, orcid, name_record))
-                        kthid=possible_id
-
-            if not kthid or fake_diva_kthid(kthid):
-                # since the kthid was fake, look up the user by name
-                possible_id=augmented_lookup_name(name_record['name'], augmented_by_kthid)
-                print("id={0}, possible_id={1}".format(pid, possible_id))
-                if possible_id and len(possible_id) == 1:
-                    possible_email=augmented_by_kthid[possible_id[0]].get('email', False)
-                    if possible_email:
-                        print("possible_email={}".format(possible_email))
-                if not possible_id:
-                    print("***** id={0}, possible_id={1}".format(pid, possible_id))
-                    # this must be a missing entry
-                    kthid="{0}{1}".format(fakeid_start, fakeid_number)
-                    fakeid_number=fakeid_number+1
-                    new_entry=dict()
-                    new_entry['kthid']=kthid
-                    new_entry['kth']=affiliation
-                    new_entry['aliases']=[{'Name': name_record['name'], 'PID': [pid]}]
-                    augmented_by_kthid[kthid]=new_entry
-                    
-                    print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name_record={2}, so made a new entry={3}".format(pid, kthid, name_record, json.dumps(new_entry)))
-                else:           # otherwise there was possible ID
-                    if len(possible_id) == 1:
-                        print("PID={0} has a fake DiVA KTHID of {1}, it should be {2} - found by name_record={3}".format(pid, kthid, possible_id, name_record))
-                        kthid=possible_id[0]
+                matching_pid=diva_titles.get(s2_title, False)
+                if matching_pid:
+                    diva_doi=pid_and_authors[matching_pid].get('DOI', False)
+                    if diva_doi == s2_doi:
+                        print("matched title: {0}".format(s2_title))
                     else:
-                        print("PID={0} has a fake DiVA KTHID of {1}, it should be one of {2} - found by name_record={3}".format(pid, kthid, possible_id, name_record))
-                        # there are multiple matches:
-                        # they could be the same one
-                        if len(possible_id) == 2:
-                            if possible_id[0] == possible_id[1]:
-                                kthid=possible_id[0]
-                            else: # names do not match check of on affiliation matches what we are looking for
-                                a1=augmented_by_kthid[possible_id[0]].get('kth', False)
-                                a2=augmented_by_kthid[possible_id[1]].get('kth', False)
-                                if a1 == affiliation:
-                                    kthid=possible_id[0]
-                                elif a2 == affiliation:
-                                    kthid=possible_id[1]
-                                else:
-                                    print("neither affiliation ({0}: {1}) or ({2}: {3}) matches what we are looking for {4}".format(possible_id[0], a1, possible_id[1], a2, affiliation))
+                        matching_pid=False
+                        
+        if not matching_pid:
+            continue
 
-                                    # this must be a missing entry
-                                    kthid="{0}{1}".format(fakeid_start, fakeid_number)
-                                    fakeid_number=fakeid_number+1
-                                    new_entry=dict()
-                                    new_entry['kthid']=kthid
-                                    new_entry['kth']=affiliation
-                                    new_entry['aliases']=[{'Name': name_record['name'], 'PID': [pid]}]
-                                    augmented_by_kthid[kthid]=new_entry
+        # found a S2 publication that matches a DiVA prublication, remeber the information
+        pid_and_authors[matching_pid]['S2_publication_ID']=ce['id']
+        pid_and_authors[matching_pid]['S2_authors']=ce['authors']
 
-                                    print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name_record={2}, so made a new entry={3}".format(pid, kthid, name_record, new_entry))
+        name_records=get_diva_authors(matching_pid)
 
-                        else: # length is not 1 or 2, so iterate
-                            does_one_affilation_match=False
-                            for ai, a in enumerate(possible_id):
-                                a1=augmented_by_kthid[a].get('kth', False)
-                                if a1 == affiliation:
-                                    kthid=a
-                                    does_one_affilation_match=True
-                                    print("found a matching affilation for ({0}:{1})".format(a, a1))
-                            if not does_one_affilation_match:
-                                print("none of the KTHIDs had a matching affilations")
-                                # this must be a missing entry
-                                kthid="{0}{1}".format(fakeid_start, fakeid_number)
-                                fakeid_number=fakeid_number+1
-                                new_entry=dict()
-                                new_entry['kthid']=kthid
-                                new_entry['kth']=affiliation
-                                new_entry['aliases']=[{'Name': name_record['name'], 'PID': [pid]}]
-                                augmented_by_kthid[kthid]=new_entry
+        num_s2_authors=len(ce['authors'])
+        num_diva_authors=len(name_records)
+        print("len(ce['authors'])={0} len(name_records)= {1}".format(num_s2_authors,num_diva_authors))
 
-                                print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name_record={2}, so made a new entry={3}".format(pid, kthid, name_record, new_entry))
+        print("{0}:{1} {2} corresponding to {3}".format(matching_pid, ce['id'], ce['authors'], name_records))
 
-                        # or they could be ones with different affilations
-                        #kthid=possible_id[0] # take the first - improve this later
-
-            if not kthid:
-                print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name_record={2}".format(pid, kthid, name_record))
-                # this must be a missing entry
-                kthid="{0}{1}".format(fakeid_start, fakeid_number)
-                fakeid_number=fakeid_number+1
-                new_entry=dict()
-                new_entry['kthid']=kthid
-                new_entry['kth']=affiliation
-                new_entry['aliases']=[{'Name': name_record['name'], 'PID': [pid]}]
-                augmented_by_kthid[kthid]=new_entry
-                
-                print("PID={0} has a missing or fake DiVA KTHID of {1} could not figure it out the real KTHID - name_record={2}, so made a new entry={3}".format(pid, kthid, name_record, new_entry))
-
-
-            print("kthid we have found is {0}".format(kthid))
-            if fake_diva_kthid(kthid):
-                print("*#*#* fake KTHID in pid={0},name_record={1}".format(pid, name_record))
-
-            # here kthid should be an ID, even if it is one of my fake ones
-            existing_entry=augmented_by_kthid.get(kthid, False)
-            if existing_entry:
-                existing_kthid=existing_entry.get('kthid', False)
-                if existing_kthid == kthid:
-                    existing_orcid=existing_entry.get('orcid', False)
-                    if kthid and orcid and not existing_orcid:
-                        if Verbose_Flag:
-                               print("PID={0} for kthid={1} name_record={2}, existing_orcid={3}, add orcid {4}".format(pid, kthid, name_record,  existing_orcid, orcid))
-                               augmented_by_kthid[kthid]['orcid']=orcid
-                               # check that PID is in the user's data under the appropriate name
-                    pid_found=check_PID_for_name(kthid, name_record['name'], pid)
-                    if not pid_found:
-                           add_PID_for_name(kthid, name_record['name'], pid)
-                           if Verbose_Flag:
-                               print("PID {2} not found for {0} for name {1} now added={3}".format(kthid, name_record['name'], pid, augmented_by_kthid[kthid]['aliases']))
-                else:
-                    if Verbose_Flag:
-                        print("PID={0} has a KTHID of {1} existing entry={2}".format(pid, kthid, existing_kthid))
-                    continue
-
-            if Verbose_Flag:
-                   print("Processing {0} name_record={1}".format(pid, name_record))
-                   print("PID={0} has a KTHID of {1} existing entry={2}".format(pid, kthid, existing_kthid))
-                   # add more here
     
+    return
+
     output_filename=augmented_json_file_name[:-5]+'_further.JSON'
     with open(output_filename, 'w', encoding='utf-8') as output_FH:
         for e in sorted(augmented_by_kthid.keys()):
@@ -884,8 +817,8 @@ def main():
 
     # of all_PIDs, which have no KTH authors (including fake IDs)
     print("len(all_PIDs)={0} len(all_PIDs_with_KTH_authors)={1}".format(len(all_PIDs), len(all_PIDs_with_KTH_authors)))
-    diffset=all_PIDs.difference(all_PIDs_with_KTH_authors
-    print("{0} PIDs not associated with KTHIDs (even fake ones)={1}".format(len(diffset), diffset)))
+    diffset=all_PIDs.difference(all_PIDs_with_KTH_authors)
+    print("{0} PIDs not associated with KTHIDs (even fake ones)={1}".format(len(diffset), diffset))
     print("Most of the above PIDs have no authors, but do have contributors; but these have not been processed (yet)")
 
 if __name__ == "__main__": main()

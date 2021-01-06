@@ -414,7 +414,7 @@ Example:
 Adding_Semantic_Scholar_data_to_KTH_ÅBU.docx provides information about my experiments regarding S2 information
 
 # get_pid_and_names.py
-Purpose: using the information from the output of preprocess_for_corpus.py (information extracted from DiVA), find the publications that exist in a particulare shard of the Semantic Scholar (s2)  corpus and outputs a reduced version of the file of informaiton from DiVA.
+Purpose: using the information from the output of preprocess_for_corpus.py (information extracted from DiVA), find the publications that exist in a particulare shard of the Semantic Scholar (s2)  corpus and outputs a reduced version of the file of information from DiVA.
 
 Input:
 ```
@@ -685,3 +685,23 @@ Input:
 
 Output: augmented JSON file
 
+# S2_yet_further_augment_from_CSV_file.py
+
+Input:
+```
+./S2_yet_further_augment_from_CSV_file.py xxx.csv xxx.augmented_further.json [shard_number path_to_corpus]
+```
+
+Purpose: reads in a CSV spreaadsheet of DiVA entries and uses the information to generate a further updated augmented JSON file
+This program assumes that all of the KTH authors have a KTHID in the name_record for the publication, otherwise they are ignored.
+(This meands that the CSV file has to be corrected or all of the DiVA records have to be corrected.)
+
+The shard number N (is the digits indicating the piece of the corpus) - for the file s2-corpus-186 N is 186
+The focus of this program is to add the the aliases the PIDs from the DiVA spreadsheet.
+
+Note that program assumes that all entries in the JSON file have a value for kthid, even if it is fake ID.
+
+Example:
+```
+./S2_yet_further_augment_from_CSV_file.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected.csv /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented_further.JSON 186 /z3/maguire/SemanticScholar/SS_corpus_2020-05-27
+```
