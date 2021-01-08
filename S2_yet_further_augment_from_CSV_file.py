@@ -20,6 +20,7 @@
 # Example:
 # ./S2_yet_further_augment_from_CSV_file.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected.csv /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented_further.JSON 186 /z3/maguire/SemanticScholar/SS_corpus_2020-05-27
 #
+# ./S2_yet_further_augment_from_CSV_file.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected.csv /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented_further_further.JSON 186 /z3/maguire/SemanticScholar/SS_corpus_2020-05-27
 
 import requests, time
 import pprint
@@ -250,31 +251,162 @@ def get_authors_from_authorsString(authors):
         #
     return authors_list
 
-# function returns a kthid (fake or not)
-def augmented_lookup_orcid(orcid_to_lookfor, augmented_by_kthid):
+def add_kthid_to_kthids_per_publication(pid, kthid):
     global Verbose_Flag
+    global kthids_per_publication
 
-    # orcid can be at the top level or
-    # inside "entry": {"orcid": "0000-0002-6066-746X",
-    for e in augmented_by_kthid:
-        item=augmented_by_kthid[e]
+    current_kthids=kthids_per_publication.get(pid, set())
+    current_kthids.add(kthid)
+    kthids_per_publication[pid]=current_kthids
+
+    
+
+def compute_kthids_per_publication():
+    global diva_authors_info
+    global kthids_per_publication
+
+    # each entry of this will contain a set or KTHIDs who are authors for the publication
+    kthids_per_publication=dict()
+
+    for e in diva_authors_info:
+        item=diva_authors_info[e]
+        diva_author_aliases=item.get('aliases', False)
+        if not diva_author_aliases:
+            continue
+        for alias in diva_author_aliases:
+            pids_for_alias=alias.get('PID', False)
+            if pids_for_alias:
+                for p in pids_for_alias:
+                    add_kthid_to_kthids_per_publication(p, e)
+
+
+# function returns a set of kthids (fake or not)
+def lookup_diva_authors_by_pid(pid):
+    global Verbose_Flag
+    global diva_authors_info
+    global kthids_per_publication
+
+    possible_author_kthids=kthids_per_publication.get(pid, [])
+    if Verbose_Flag and not possible_author_kthids:
+        print("lookup_diva_authors_by_pid({}) found not possible authors".format(pid))
+    return possible_author_kthids
+
+# function returns a kthid (fake or not)
+def lookup_diva_author_by_s2_author_ids(s2_author_ids_set):
+    global Verbose_Flag
+    global diva_authors_info
+
+    for e in diva_authors_info:
+        item=diva_authors_info[e]
+        diva_author_s2_ids=item.get('s2_author_ids', [])
+        diva_author_s2_ids_set=set(diva_author_s2_ids)
+        # Is there one or more common ID?
+        common_s2_ids=s2_author_ids_set.intersection(diva_author_s2_ids_set)
+        if len(common_s2_ids) > 0:
+            return e
+    #
+    if Verbose_Flag:
+        print("lookup_diva_author_by_s2_author_ids() failed to find one or more of {}".format(s2_author_ids_set))
+    return False
+
+# function returns a kthid (fake or not)
+def lookup_diva_author_by_orcid(orcid_to_lookfor):
+    global Verbose_Flag
+    global diva_authors_info
+
+    for e in diva_authors_info:
+        item=diva_authors_info[e]
         orcid=item.get('orcid', False)        
         if orcid and (orcid == orcid_to_lookfor):
             return e
-        #
-        entry=item.get('entry', False)
-        if entry:
-            orcid=entry.get('orcid', False)
-            if orcid and (orcid == orcid_to_lookfor):
-                return e
     #
     if Verbose_Flag:
-        print("augmented_lookup_orcid={} failed to find:".format(orcid_to_lookfor))    
+        print("lookup_diva_author_by_orcid={} failed to find".format(orcid_to_lookfor))    
+    return False
+
+def reordered_name_match(s2_name, diva_name):
+    # the s2_name is in normal name order, while the diva_name is in Lastname, Firstname order
+    # the s2_name is in normal name order, while the diva_name is in Lastname, Firstname order
+    num_space_in_name=s2_name.count(' ')
+    if num_space_in_name == 0:  # s2_name is a single string
+        return s2_name == diva_name
+    elif num_space_in_name == 1: # s2_name is firstname lastname
+        split_s2=s2_name.split(' ')
+        reorder_s2="{1}, {0}".format(split_s2[0], split_s2[1])
+        return reorder_s2 == diva_name
+    elif num_space_in_name == 2: # s2_name is firstname middle lastname
+        split_s2=s2_name.split(' ')
+        reorder_s2="{2}, {0} {1}".format(split_s2[0], split_s2[1], split_s2[2])
+        if reorder_s2 == diva_name:
+            return True
+        reorder_s2=" {1} {2}, {0}".format(split_s2[0], split_s2[1], split_s2[2])
+        if reorder_s2 == diva_name:
+            return True
+    elif num_space_in_name == 3: # s2_name is firstname middle lastname postfix
+        split_s2=s2_name.split(' ')
+        if diva_name.count(',') == 1:
+            reorder_s2="{2} {3}, {0} {1}".format(split_s2[0], split_s2[1], split_s2[2], split_s2[3])
+            if reorder_s2 == diva_name:
+                return True
+        if diva_name.count(',') == 2:
+            reorder_s2="{2}, {0} {1}, {3}".format(split_s2[0], split_s2[1], split_s2[2], split_s2[3])
+            if reorder_s2 == diva_name:
+                return True
+    else:
+        print("reordered_name_match({0},{1}) don't know what to do".format(s2_name, diva_name))
+    return False
+
+# function returns a list of kthids (fake or not)
+# Note that the name_to_look_for is in s2 name order, i.e., of the form: "Firstname Lastname"
+def match_s2_author_name_against_diva_author_names(kthid, name_to_look_for):
+    global Verbose_Flag
+    global diva_authors_info
+    # diva names can either be in "profile": {"firstName": "Gerald Quentin", "lastName": "Maguire Jr"}}
+    # or in the list of aliases: {"aliases": [{"Name": "Maguire Jr., Gerald Q.", "PID": [528381, ...]}, {"Name": "Maguire, Gerald Q.", "PID": [561069]}, {"Name": "Maguire Jr., Gerald", "PID": [561509]}, {"Name": "Maguire, Gerald Q., Jr.", "PID": [913155]}]}
+    print("name_to_look_for={}".format(name_to_look_for))
+    item=diva_authors_info.get(kthid, False)
+    if not item:
+        print("Error in match_s2_author_name_against_diva_author_names({0,{1})".format(kthid, name_to_look_for))
+    profile=item.get('profile', False)
+    if profile:
+        firstName=profile.get('firstName', False)
+        lastName=profile.get('lastName', False)
+        if firstName and lastName:
+            combined_name="{0} {1}".format(firstName, lastName)
+            if combined_name == name_to_look_for:
+                return kthid
+        elif firstName and not lastName:
+            combined_name="{0}".format(firstName)
+            if combined_name == name_to_look_for:
+                return kthid
+        elif not firstName and lastName:
+            combined_name="{0}".format(lastName)
+            if combined_name == name_to_look_for:
+                return kthid
+        else:
+            print("Error:: Profile, but no firstname or lastname")
+    # now check each alias
+    aliases=item.get('aliases', False)
+    if aliases:
+        for a in aliases:
+            if Verbose_Flag:
+                print("a={}".format(a))
+            if not a.get('Name', False): # sanity check to make sure there is a Name key and value
+                print("a={}".format(a))
+            #
+            if reordered_name_match(name_to_look_for, a['Name']):
+                return kthid
+            if name_to_look_for.endswith('.'): # try looking for the name without a terminal "."
+                if reordered_name_match(name_to_look_for[:-1], a['Name']):
+                    return kthid
     return False
 
 # function returns a kthid (fake or not)
 # Note that the name_to_look_for is simple a string of the form: "Lastname, Firstname"
-def augmented_lookup_name(name_to_look_for, augmented_by_kthid):
+def lookup_diva_author_by_name(name_to_look_for):
+    global Verbose_Flag
+    global diva_authors_info
+
     # names can either be in "profile": {"firstName": "Gerald Quentin", "lastName": "Maguire Jr"}}
     # or in the list of aliases: {"aliases": [{"Name": "Maguire Jr., Gerald Q.", "PID": [528381, ...]}, {"Name": "Maguire, Gerald Q.", "PID": [561069]}, {"Name": "Maguire Jr., Gerald", "PID": [561509]}, {"Name": "Maguire, Gerald Q., Jr.", "PID": [913155]}]}
 
@@ -283,10 +415,10 @@ def augmented_lookup_name(name_to_look_for, augmented_by_kthid):
 
     print("name_to_look_for={}".format(name_to_look_for))
 
-    for e in augmented_by_kthid:
+    for e in diva_authors_info:
         if Verbose_Flag:
             print("e={}".format(e))
-        item=augmented_by_kthid[e]
+        item=diva_authors_info[e]
         profile=item.get('profile', False)
         if profile:
             firstName=profile.get('firstName', False)
@@ -358,13 +490,13 @@ def fake_nonkthid(possible_kthid):
     return False
 
 def try_to_lookup_orcid(orcid_to_lookfor):
-    global augmented_pid_and_authors
+    global augmented_diva_publications
 
     #print("try_to_lookup_orcid orcid_to_lookfor={}:".format(orcid_to_lookfor))
 
     possible_kthid=False
-    for key in sorted(augmented_pid_and_authors.keys()):
-        entry=augmented_pid_and_authors[key]
+    for key in sorted(augmented_diva_publications.keys()):
+        entry=augmented_diva_publications[key]
         name=entry['Name']
         kthid=entry.get('kthid', False)
         orcid=entry.get('orcid', False)
@@ -380,7 +512,7 @@ def try_to_lookup_orcid(orcid_to_lookfor):
 
 def try_to_lookup_name(name_to_lookfor):
     global kthid_dict
-    global augmented_pid_and_authors
+    global augmented_diva_publications
     global pp
 
     possible_kthid=False
@@ -388,8 +520,8 @@ def try_to_lookup_name(name_to_lookfor):
     #print("try_to_lookup_name ={}:".format(name_to_lookfor))
 
     possible_kthid=False
-    for key in sorted(augmented_pid_and_authors.keys()):
-        entry=augmented_pid_and_authors[key]
+    for key in sorted(augmented_diva_publications.keys()):
+        entry=augmented_diva_publications[key]
         name=entry['Name']
         kthid=entry.get('kthid', False)
         orcid=entry.get('orcid', False)
@@ -425,11 +557,11 @@ def get_column_values(columns, line):
 
 
 def make_new_user(id, new_orcid):
-    global augmented_by_kthid
+    global diva_authors_info
     global Verbose_Flag
 
     found_existing_user_by_orcid=0
-    existing_user=augmented_lookup_orcid(new_orcid, augmented_by_kthid)
+    existing_user=lookup_diva_author_by_orcid(new_orcid)
     if existing_user and existing_user == id:
         found_existing_user_by_orcid=found_existing_user_by_orcid+1
         return
@@ -460,9 +592,9 @@ def make_new_user(id, new_orcid):
                 user_orcid=new_orcid
         #"entry":{"kth":"(KTH [177], Centra [12851], Nordic Institute for Theoretical Physics NORDITA [12850])","orcid":"","aliases":[{"Name":"Anastasiou, Alexandros","PID":[1130981,1255535]},{"Name":"Anastasiou, A.","PID":[1269339]}]}}
 
-        augmented_by_kthid[id]={"kthid": id, "orcid": user_orcid, "profile": profile, "entry": {"kth": False, "orcid": False, "aliases": []}}
+        diva_authors_info[id]={"kthid": id, "orcid": user_orcid, "profile": profile, "entry": {"kth": False, "orcid": False, "aliases": []}}
         if Verbose_Flag:
-            print("new user={0}".format(augmented_by_kthid[id]))
+            print("new user={0}".format(diva_authors_info[id]))
     return
 
 def check_for_PID_in(pid, apids):
@@ -474,7 +606,7 @@ def check_for_PID_in(pid, apids):
     return False
 
 def check_PID_for_name(kthid, name, pid):
-    existing_entry=augmented_by_kthid.get(kthid, False)
+    existing_entry=diva_authors_info.get(kthid, False)
     if existing_entry:
         existing_kthid=existing_entry.get('kthid', False)
         if existing_kthid == kthid:
@@ -500,7 +632,7 @@ def check_PID_for_name(kthid, name, pid):
 def add_PID_for_name(kthid, name, pid):
     global Verbose_Flag
 
-    existing_entry=augmented_by_kthid.get(kthid, False)
+    existing_entry=diva_authors_info.get(kthid, False)
     if existing_entry:
         existing_kthid=existing_entry.get('kthid', False)
         if existing_kthid == kthid:
@@ -516,26 +648,26 @@ def add_PID_for_name(kthid, name, pid):
                             if not apid_found:
                                 apids.append(pid)
                                 existing_aliases[idx]={'Name': name, 'PID': apids}
-                                augmented_by_kthid[kthid]['aliases']=existing_aliases
+                                diva_authors_info[kthid]['aliases']=existing_aliases
                                 return
                 # add a missing alias
                 existing_aliases.append({'Name': name, 'PID': [pid]})
-                augmented_by_kthid[kthid]['aliases']=existing_aliases
+                diva_authors_info[kthid]['aliases']=existing_aliases
                 if Verbose_Flag:
                     print("added alias and pid for {0} name={1}".format(kthid, name))
                 return
     else:
         # add a missing alias
-        augmented_by_kthid[kthid]['aliases']=[{'Name': name, 'PID': [pid]}]
+        diva_authors_info[kthid]['aliases']=[{'Name': name, 'PID': [pid]}]
         if Verbose_Flag:
             print("added aliases for {0} name={1}".format(kthid, name))
     return
 
 def get_diva_authors(pid):
-    global pid_and_authors
+    global diva_publications
     global Verbose_Flag
 
-    diva_entry=pid_and_authors[pid]
+    diva_entry=diva_publications[pid]
     if Verbose_Flag:
         print("diva_entry={}".format(diva_entry))
                
@@ -543,17 +675,230 @@ def get_diva_authors(pid):
     return name_records
 
 
+def update_diva_author_with_s2_author_ids(diva_author_kthid, s2_author_ids_set):
+    global Verbose_Flag
+    global diva_authors_info
+
+    item=diva_authors_info.get(diva_author_kthid, False)
+    if not item:
+        print("No diva author info for diva_author_kthid={}".format(diva_author_kthid))
+        return False
+
+    diva_author_s2_ids=item.get('s2_author_ids', [])
+    diva_author_s2_ids_set=set(diva_author_s2_ids)
+
+    # Is there one or more common ID?
+    common_s2_ids=s2_author_ids_set.intersection(diva_author_s2_ids_set)
+    if diva_author_kthid == 'u101oxae':
+        print("diva_author_kthid={0}, common_s2_ids={1}, diva_author_s2_ids_set={2}".format(diva_author_kthid, common_s2_ids, diva_author_s2_ids_set))
+    if len(common_s2_ids) > 0:
+        new_s2_ids=list(s2_author_ids_set.union(diva_author_s2_ids_set))
+    else:
+        # update the list of IDs
+        new_s2_ids=list(s2_author_ids_set)
+
+    # possibly update the list of IDs
+    diva_authors_info[diva_author_kthid]['s2_author_ids']=new_s2_ids
+    #if Verbose_Flag:
+    print("update_diva_author_with_s2_author_ids({0}, {1})".format(diva_author_kthid, s2_author_ids_set))
+    return {'kthid': diva_author_kthid, 's2_author_ids': new_s2_ids}
+
+# the function returns a dict of KTHID and list of s2_author_ids; or returns False if there is not KTHID
+def match_s2_and_diva_names(pid, s2_author, diva_author):
+    global Verbose_Flag
+    global diva_authors_info
+
+    # diva_author is of the form {'affiliation': '(KTH [177], Skolan för kemi, bioteknologi och hälsa (CBH) [879224], Proteinvetenskap [879309], Protein Engineering [879347])', 'name': 'Westerlund, Kristina', 'kthid': 'u12tu7v5', 'orcid': '0000-0003-4334-9360'}
+
+    # names can either be in "profile": {"firstName": "Gerald Quentin", "lastName": "Maguire Jr"}}
+    # or in the list of aliases: {"aliases": [{"Name": "Maguire Jr., Gerald Q.", "PID": [528381, ...]}, {"Name": "Maguire, Gerald Q.", "PID": [561069]}, {"Name": "Maguire Jr., Gerald", "PID": [561509]}, {"Name": "Maguire, Gerald Q., Jr.", "PID": [913155]}]}
+
+    s2_author_name=s2_author['name']
+    s2_author_ids=s2_author['ids'] # note that this is a list of IDs
+    s2_author_ids_set=set(s2_author_ids)
+
+    # only process KTH affiliated authors
+    diva_author_affiliation=diva_author.get('affiliation', False)
+    if not diva_author_affiliation or diva_author_affiliation.find("(KTH") < 0:
+        if Verbose_Flag:
+            print("NonKTH author={}".format(diva_author))
+        return False
+
+    diva_author_name=diva_author.get('name', False)
+    if not diva_author_name:
+        print("No diva_author name in {}".format(diva_author))
+        return False
+
+    diva_author_kthid=diva_author.get('kthid', False)
+    # if there is a KTHID, then process the S2_author_IDs
+    if diva_author_kthid:
+        if Verbose_Flag:
+            print("found by KTHID: s2_author_name={0}, s2_author_ids={1}, diva_author_kthid={2}, diva_author_name={3}".format(s2_author_name, s2_author_ids, diva_author_kthid, diva_author_name))
+        return update_diva_author_with_s2_author_ids(diva_author_kthid, s2_author_ids_set)
+       
+    diva_author_orcid=diva_author.get('orcid', False)
+    # if there is a orcid, then lookup the diva author by their orcid and then process the S2_author_IDs
+    if diva_author_orcid:
+        diva_author_kthid=lookup_diva_author_by_orcid(diva_author_orcid)
+        if diva_author_kthid:
+            if Verbose_Flag:
+                print("found by ORCID: s2_author_name={0}, s2_author_ids={1}, diva_author_kthid={2}, diva_author_name={3}".format(s2_author_name, s2_author_ids, diva_author_kthid, diva_author_name))
+            return update_diva_author_with_s2_author_ids(diva_author_kthid, s2_author_ids_set)
+       
+    # as there was no KTHID or ORCID, see if there is a diva author with one of the s2_author_ids
+    diva_author_kthid=lookup_diva_author_by_s2_author_ids(s2_author_ids_set)
+    if diva_author_kthid:
+        if Verbose_Flag:
+            print("found by s2_author_id: s2_author_name={0}, s2_author_ids={1}, diva_author_kthid={2}, diva_author_name={3}".format(s2_author_name, s2_author_ids, diva_author_kthid, diva_author_name))
+        return update_diva_author_with_s2_author_ids(diva_author_kthid, s2_author_ids_set)
+
+    # as there was no KTHID or ORCID, we have to match based upon the s2_author_name
+    possible_author_kthids=lookup_diva_authors_by_pid(pid)
+    if possible_author_kthids:
+        for id in possible_author_kthids:
+            matching_id=match_s2_author_name_against_diva_author_names(id, s2_author_name)
+            if matching_id:
+                if Verbose_Flag:
+                    print("found by s2_author_id: s2_author_name={0}, s2_author_ids={1}, diva_author_kthid={2}, diva_author_name={3}".format(s2_author_name, s2_author_ids, diva_author_kthid, diva_author_name))
+                return update_diva_author_with_s2_author_ids(matching_id, s2_author_ids_set)
+    return False
+
+def process_a_shard(shard_number, path_to_corpus, diva_dois, diva_pmis, diva_titles, augmented_json_file_name):
+    global Verbose_Flag
+    global diva_publications
+    global diva_authors_info
+    global per_shard_stats
+
+    print("processing shard_number={}".format(shard_number))
+
+    # get S2 information from a shard
+
+    shard_filename="{0}/s2-corpus-{1:03d}".format(path_to_corpus, shard_number)
+    print("shard_filename={}".format(shard_filename))
+
+    corpus_shard=[]
+    with open(shard_filename, 'r') as corpus_shard_FH:
+        for line in corpus_shard_FH:
+            corpus_shard.append(json.loads(line))
+
+    print("corpus_shard length={}".format(len(corpus_shard)))
+
+    number_of_matching_documents=0
+    matches_corpus_json=[]
+    for ce in corpus_shard:
+        s2_doi=ce.get('doi', False)
+        s2_pmid=ce.get('pmid', False)
+        s2_title=ce.get('title', False)
+
+        # check for matching doi, pmid, or title; otherwise ignore
+        matching_pid=diva_dois.get(s2_doi, False)
+        if matching_pid:
+            print("matched doi: {0}".format(s2_doi))
+        else:            
+            matching_pid=diva_pmis.get(s2_pmid, False)
+            if matching_pid:
+                print("matched pmid: {0}".format(s2_pmid))
+            else:
+                matching_pid=diva_titles.get(s2_title, False)
+                if matching_pid:
+                    diva_doi=diva_publications[matching_pid].get('DOI', False)
+                    if diva_doi == s2_doi:
+                        print("matched title: {0}".format(s2_title))
+                    else:
+                        matching_pid=False
+                        
+        if not matching_pid:
+            continue
+
+        # found a S2 publication that matches a DiVA prublication, remeber the information
+        number_of_matching_documents=number_of_matching_documents+1
+        diva_publications[matching_pid]['S2_publication_ID']=ce['id']
+        diva_publications[matching_pid]['S2_authors']=ce['authors']
+
+        name_records=get_diva_authors(matching_pid)
+
+        num_s2_authors=len(ce['authors'])
+        num_diva_authors=len(name_records)
+        if num_s2_authors == num_diva_authors:
+            print("len(ce['authors'])={0} len(name_records)= {1}".format(num_s2_authors,num_diva_authors))
+        else:
+            print("Mismatchin number of authors: len(ce['authors'])={0} len(name_records)= {1}".format(num_s2_authors,num_diva_authors))
+
+        print("{0}:{1} {2} corresponding to {3}".format(matching_pid, ce['id'], ce['authors'], name_records))
+
+        if num_s2_authors == num_diva_authors:
+            for i in range(0,num_s2_authors):
+                s2_author_id=match_s2_and_diva_names(matching_pid,  ce['authors'][i], name_records[i])
+                if s2_author_id:
+                    print("s2_author_id={0} name_records[{1}]={2}".format(s2_author_id, i, name_records[i]))
+
+    output_filename="{0}_S2_{1}.JSON".format(augmented_json_file_name[:-5], shard_number)
+    with open(output_filename, 'w', encoding='utf-8') as output_FH:
+        for e in sorted(diva_authors_info.keys()):
+            j_dict=diva_authors_info[e]
+            j_as_string = json.dumps(j_dict, ensure_ascii=False)#, indent=4
+            print(j_as_string, file=output_FH)
+        output_FH.close()
+
+    print("At end of processing (number of entries - represents 'unique' authors):")
+    number_of_entries_with_KTHIDs=0
+    number_of_entries_with_KTHID_and_ORCID=0
+    number_of_entries_with_fake_KTHIDs=0
+    number_of_entries_with_fake_KTHIDs_with_ORCID=0
+    number_of_entries_with_fake_nonKTHIDs=0
+    number_of_entries_with_s2_author_ids=0
+
+    all_PIDs_with_KTH_authors=set()
+
+    for i in diva_authors_info:
+        id1=diva_authors_info[i].get('kthid', False)
+        oid=diva_authors_info[i].get('orcid', False)
+           
+        s2_author_id=diva_authors_info[i].get('s2_author_ids', False)
+        if s2_author_id:
+            number_of_entries_with_s2_author_ids=number_of_entries_with_s2_author_ids+1
+
+        if fake_kthid(i):
+            number_of_entries_with_fake_KTHIDs=number_of_entries_with_fake_KTHIDs + 1
+            if oid:
+                number_of_entries_with_fake_KTHIDs_with_ORCID=number_of_entries_with_fake_KTHIDs_with_ORCID + 1
+        else:
+            number_of_entries_with_KTHIDs=number_of_entries_with_KTHIDs + 1 
+            if oid:
+                   number_of_entries_with_KTHID_and_ORCID=number_of_entries_with_KTHID_and_ORCID + 1
+
+        if fake_nonkthid(i):
+            number_of_entries_with_fake_nonKTHIDs=number_of_entries_with_fake_nonKTHIDs+1
+
+        existing_entry=diva_authors_info.get(i, False)
+        if existing_entry:
+            # collect PIDs for aliases
+            existing_aliases=existing_entry.get('aliases', False)
+            if existing_aliases:
+                for alias in existing_aliases:
+                    apids=alias.get('PID', False)
+                    if apids:
+                        for p in apids:
+                            all_PIDs_with_KTH_authors.add(p)
+
+    print("total entries={0}, number_of_entries_with_KTHIDs={1}, number_of_entries_with_KTHID_and_ORCID={2}, number_of_entries_with_fake_KTHIDs={3}, number_of_entries_with_fake_KTHIDs_with_ORCID={4}, number_of_entries_with_fake_nonKTHIDs={5}".format(len(diva_authors_info),number_of_entries_with_KTHIDs,number_of_entries_with_KTHID_and_ORCID,number_of_entries_with_fake_KTHIDs,number_of_entries_with_fake_KTHIDs_with_ORCID,number_of_entries_with_fake_nonKTHIDs))
+
+    print("number_of_entries_with_s2_author_ids={}".format(number_of_entries_with_s2_author_ids))
+    per_shard_stats[shard_number]={'number_of_entries_with_s2_author_ids': number_of_entries_with_s2_author_ids,
+                                   'number_of_matching_documents': number_of_matching_documents}
+
 
 def main():
     global Verbose_Flag
-    global augmented_pid_and_authors
     global kthid_dict
     global pp
     global fakeid_start
     global fakeid_nonKTH_start
-    global augmented_by_kthid
-    global pid_and_authors
-
+    global diva_authors_info
+    global diva_publications
+    global kthids_per_publication
+    global per_shard_stats
+    
     parser = optparse.OptionParser()
 
     parser.add_option('-v', '--verbose',
@@ -566,11 +911,11 @@ def main():
     parser.add_option("--config", dest="config_filename",
                       help="read configuration from FILE", metavar="FILE")
 
-    parser.add_option('-p', '--pid',
-                      dest="pid",
+    parser.add_option('-a', '--all',
+                      dest="all",
                       default=False,
                       action="store_true",
-                      help="If set, removes PID column"
+                      help="If set, processes all shard starting shard on the command line"
                       )
 
 
@@ -583,8 +928,6 @@ def main():
         print('REMAINING :', remainder)
         
     initialize(options)
-
-    pid_Flag=options.pid
 
     if (len(remainder) < 2):
         print("Insuffient arguments must provide file_name.csv fine_name-augmented.json\n")
@@ -603,7 +946,7 @@ def main():
 
     pp = pprint.PrettyPrinter(indent=4) # configure prettyprinter
 
-    augmented_by_kthid=dict()
+    diva_authors_info=dict()
     fakeid_number=100000        # base for fakeIDs created by this program
     fakeid_start='⚠⚠'           # these IDs represent IDs for unknown persons
     fakeid_nonKTH_start='⚑'        # these IDs represent IDs for persons who are not affiliated with KTH
@@ -627,26 +970,30 @@ def main():
                 fakeid_number=fakeid_number+1
                 print("assigned a new fake ID={0} to {1}".format(fakeid_number, line))
 
-            existing_entry=augmented_by_kthid.get(kthid, False)
+            existing_entry=diva_authors_info.get(kthid, False)
             if existing_entry:
                 print("existing KTHID={0} and a new entry={1} - old entry kept".format(kthid, line))
             else:
-                augmented_by_kthid[kthid]=j
+                diva_authors_info[kthid]=j
 
-    print("length of augmented_by_kthid={}".format(len(augmented_by_kthid)))
+    print("length of diva_authors_info={}".format(len(diva_authors_info)))
 
     if Verbose_Flag:
-        for e in augmented_by_kthid:
+        for e in diva_authors_info:
             if e.find(fakeid_start) >= 0:
-                pp.pprint(augmented_by_kthid[e])
+                pp.pprint(diva_authors_info[e])
 
-    print("augmented_by_kthid for u1d13i2c={}".format(augmented_by_kthid['u1d13i2c']))
+    print("diva_authors_info for u1d13i2c={}".format(diva_authors_info['u1d13i2c']))
+    print("diva_authors_info for u101oxae={}".format(diva_authors_info['u101oxae']))
+
+    compute_kthids_per_publication()
+
 
     number_of_entries_with_KTHIDs=0
     number_of_entries_with_fake_KTHIDs=0
     number_of_entries_with_fake_nonKTHIDs=0
-    for i in augmented_by_kthid:
-        id1=augmented_by_kthid[i].get('kthid', False)
+    for i in diva_authors_info:
+        id1=diva_authors_info[i].get('kthid', False)
            
         if fake_kthid(i):
             number_of_entries_with_fake_KTHIDs=number_of_entries_with_fake_KTHIDs + 1
@@ -656,9 +1003,9 @@ def main():
         if fake_nonkthid(i):
             number_of_entries_with_fake_nonKTHIDs=number_of_entries_with_fake_nonKTHIDs+1
 
-    print("total entries={0}, number_of_entries_with_KTHIDs={1}, number_of_entries_with_fake_KTHIDs={2} of these number_of_entries_with_fake_nonKTHIDs={3}, thus {4} unknown IDs".format(len(augmented_by_kthid),number_of_entries_with_KTHIDs,number_of_entries_with_fake_KTHIDs,number_of_entries_with_fake_nonKTHIDs,number_of_entries_with_fake_KTHIDs-number_of_entries_with_fake_nonKTHIDs))
+    print("total entries={0}, number_of_entries_with_KTHIDs={1}, number_of_entries_with_fake_KTHIDs={2} of these number_of_entries_with_fake_nonKTHIDs={3}, thus {4} unknown IDs".format(len(diva_authors_info),number_of_entries_with_KTHIDs,number_of_entries_with_fake_KTHIDs,number_of_entries_with_fake_nonKTHIDs,number_of_entries_with_fake_KTHIDs-number_of_entries_with_fake_nonKTHIDs))
 
-    pid_and_authors=dict()
+    diva_publications=dict()
     diva_dois=dict()
     diva_pmis=dict()
     diva_titles=dict()
@@ -682,7 +1029,7 @@ def main():
                 if pid_str:
                     pid=int(pid_str[:])
                     all_PIDs.add(pid)       # add this PID to the set of all PIDs processed
-                    pid_and_authors[pid]=col_values
+                    diva_publications[pid]=col_values
 
                     # save some information to be able to quickly find if a given DOI, PMI, ... has a DIVA entry
                     doi=col_values.get('DOI', False)
@@ -716,109 +1063,37 @@ def main():
         for title in diva_titles:
             print("title={0}: {1}".format(title, diva_titles[title]))
 
-    # get S2 information from a shard
-    shard_filename="{0}/s2-corpus-{1}".format(path_to_corpus, shard_number)
-    print("shard_filename={}".format(shard_filename))
+    per_shard_stats=dict()
+    all_Flag=options.all
+    shard_number_index=int(shard_number)
 
-    corpus_shard=[]
-    with open(shard_filename, 'r') as corpus_shard_FH:
-        for line in corpus_shard_FH:
-            corpus_shard.append(json.loads(line))
+    while shard_number_index >= 0:
+        process_a_shard(shard_number_index, path_to_corpus, diva_dois, diva_pmis, diva_titles, augmented_json_file_name)
+        print("per_shard_stats={}".format(per_shard_stats))
+        shard_number_index=shard_number_index-1
 
-    print("corpus_shard length={}".format(len(corpus_shard)))
+    if Verbose_Flag:
+        # of all_PIDs, which have no KTH authors (including fake IDs)
+        print("len(all_PIDs)={0} len(all_PIDs_with_KTH_authors)={1}".format(len(all_PIDs), len(all_PIDs_with_KTH_authors)))
+        diffset=all_PIDs.difference(all_PIDs_with_KTH_authors)
+        print("{0} PIDs not associated with KTHIDs (even fake ones)={1}".format(len(diffset), diffset))
+        print("Most of the above PIDs have no authors, but do have contributors; but these have not been processed (yet)")
 
-    matches_corpus_json=[]
-    for ce in corpus_shard:
-        s2_doi=ce.get('doi', False)
-        s2_pmid=ce.get('pmid', False)
-        s2_title=ce.get('title', False)
+    output_filename_stats='cumulative_s2_author_ids_found_with_shards.csv'
+    with open(output_filename_stats, 'w', encoding='utf-8') as output_FH_stats:
+        print("Outputing some statistics")
+        print('shard, cumulative number of s2_author_ids,number_of_matching_documents', file=output_FH_stats)
+        for e in sorted(per_shard_stats.keys()):
+            as_string = "{0},{1},{2}".format(e, per_shard_stats[e]['number_of_entries_with_s2_author_ids'],per_shard_stats[e]['number_of_matching_documents'])
+            print(as_string, file=output_FH_stats)
 
-        # check for matching doi, pmid, or title; otherwise ignore
-        matching_pid=diva_dois.get(s2_doi, False)
-        if matching_pid:
-            print("matched doi: {0}".format(s2_doi))
-        else:            
-            matching_pid=diva_pmis.get(s2_pmid, False)
-            if matching_pid:
-                print("matched pmid: {0}".format(s2_pmid))
-            else:
-                matching_pid=diva_titles.get(s2_title, False)
-                if matching_pid:
-                    diva_doi=pid_and_authors[matching_pid].get('DOI', False)
-                    if diva_doi == s2_doi:
-                        print("matched title: {0}".format(s2_title))
-                    else:
-                        matching_pid=False
-                        
-        if not matching_pid:
-            continue
-
-        # found a S2 publication that matches a DiVA prublication, remeber the information
-        pid_and_authors[matching_pid]['S2_publication_ID']=ce['id']
-        pid_and_authors[matching_pid]['S2_authors']=ce['authors']
-
-        name_records=get_diva_authors(matching_pid)
-
-        num_s2_authors=len(ce['authors'])
-        num_diva_authors=len(name_records)
-        print("len(ce['authors'])={0} len(name_records)= {1}".format(num_s2_authors,num_diva_authors))
-
-        print("{0}:{1} {2} corresponding to {3}".format(matching_pid, ce['id'], ce['authors'], name_records))
-
-    
-    return
-
-    output_filename=augmented_json_file_name[:-5]+'_further.JSON'
+    output_filename=spreadsheet_file[:-4]+'_pubs_S2.JSON'
     with open(output_filename, 'w', encoding='utf-8') as output_FH:
-        for e in sorted(augmented_by_kthid.keys()):
-            j_dict=augmented_by_kthid[e]
+        for e in sorted(diva_publications.keys()):
+            j_dict=diva_publications[e]
             j_as_string = json.dumps(j_dict, ensure_ascii=False)#, indent=4
             print(j_as_string, file=output_FH)
 
-        output_FH.close()
-
-    print("At end of processing (number of entries - represents 'unique' authors):")
-    number_of_entries_with_KTHIDs=0
-    number_of_entries_with_KTHID_and_ORCID=0
-    number_of_entries_with_fake_KTHIDs=0
-    number_of_entries_with_fake_KTHIDs_with_ORCID=0
-    number_of_entries_with_fake_nonKTHIDs=0
-
-    all_PIDs_with_KTH_authors=set()
-
-    for i in augmented_by_kthid:
-        id1=augmented_by_kthid[i].get('kthid', False)
-        oid=augmented_by_kthid[i].get('orcid', False)
-           
-        if fake_kthid(i):
-            number_of_entries_with_fake_KTHIDs=number_of_entries_with_fake_KTHIDs + 1
-            if oid:
-                number_of_entries_with_fake_KTHIDs_with_ORCID=number_of_entries_with_fake_KTHIDs_with_ORCID + 1
-        else:
-            number_of_entries_with_KTHIDs=number_of_entries_with_KTHIDs + 1 
-            if oid:
-                   number_of_entries_with_KTHID_and_ORCID=number_of_entries_with_KTHID_and_ORCID + 1
-
-        if fake_nonkthid(i):
-            number_of_entries_with_fake_nonKTHIDs=number_of_entries_with_fake_nonKTHIDs+1
-
-        existing_entry=augmented_by_kthid.get(i, False)
-        if existing_entry:
-            # collect PIDs for aliases
-            existing_aliases=existing_entry.get('aliases', False)
-            if existing_aliases:
-                for alias in existing_aliases:
-                    apids=alias.get('PID', False)
-                    if apids:
-                        for p in apids:
-                            all_PIDs_with_KTH_authors.add(p)
-
-    print("total entries={0}, number_of_entries_with_KTHIDs={1}, number_of_entries_with_KTHID_and_ORCID={2}, number_of_entries_with_fake_KTHIDs={3}, number_of_entries_with_fake_KTHIDs_with_ORCID={4}, number_of_entries_with_fake_nonKTHIDs={5}".format(len(augmented_by_kthid),number_of_entries_with_KTHIDs,number_of_entries_with_KTHID_and_ORCID,number_of_entries_with_fake_KTHIDs,number_of_entries_with_fake_KTHIDs_with_ORCID,number_of_entries_with_fake_nonKTHIDs))
-
-    # of all_PIDs, which have no KTH authors (including fake IDs)
-    print("len(all_PIDs)={0} len(all_PIDs_with_KTH_authors)={1}".format(len(all_PIDs), len(all_PIDs_with_KTH_authors)))
-    diffset=all_PIDs.difference(all_PIDs_with_KTH_authors)
-    print("{0} PIDs not associated with KTHIDs (even fake ones)={1}".format(len(diffset), diffset))
-    print("Most of the above PIDs have no authors, but do have contributors; but these have not been processed (yet)")
+    print("Finished")
 
 if __name__ == "__main__": main()
