@@ -705,3 +705,31 @@ Example:
 ```
 ./S2_yet_further_augment_from_CSV_file.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected.csv /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented_further.JSON 186 /z3/maguire/SemanticScholar/SS_corpus_2020-05-27
 ```
+
+# coverage-comparison.py 
+
+Purpose: read a JSON file of publication data (for example, output by S2_yet_further_augment_from_CSV_file.py) and compute som simple coverage statistics.
+
+Input:
+```
+./coverage-comparison.py xxxx.JSON
+```
+
+Example:
+```
+./coverage-comparison.py /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected_pubs_S2.JSON
+file_name='/z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected_pubs_S2.JSON'
+Finished reading publication data
+number of documents=41634
+total_num_in_ISI=    29316	70.41%
+total_num_in_Scopus= 32811	78.81%
+total_num_in_S2=     35550	85.39%
+num_in_ISI_Scopus_S2=26506	63.66%
+num_in_ISI_Scopus=   1164	2.80%
+num_in_ISI_S2=       1078	2.59%
+num_in_ISI_only=     568	1.36%
+num_in_Scopus_S2=    3571	8.58%
+num_in_Scopus_only=  1570	3.77%
+num_in_S2_only=      4395	10.56%
+not_in_any=          2782	6.68%
+```
