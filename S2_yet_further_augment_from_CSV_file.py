@@ -366,7 +366,8 @@ def match_s2_author_name_against_diva_author_names(kthid, name_to_look_for):
     print("name_to_look_for={}".format(name_to_look_for))
     item=diva_authors_info.get(kthid, False)
     if not item:
-        print("Error in match_s2_author_name_against_diva_author_names({0,{1})".format(kthid, name_to_look_for))
+        print("Error in match_s2_author_name_against_diva_author_names({0},{1})".format(kthid, name_to_look_for))
+        return False
     profile=item.get('profile', False)
     if profile:
         firstName=profile.get('firstName', False)
@@ -732,25 +733,43 @@ def match_s2_and_diva_names(pid, s2_author, diva_author):
     diva_author_kthid=diva_author.get('kthid', False)
     # if there is a KTHID, then process the S2_author_IDs
     if diva_author_kthid:
-        if Verbose_Flag:
-            print("found by KTHID: s2_author_name={0}, s2_author_ids={1}, diva_author_kthid={2}, diva_author_name={3}".format(s2_author_name, s2_author_ids, diva_author_kthid, diva_author_name))
-        return update_diva_author_with_s2_author_ids(diva_author_kthid, s2_author_ids_set)
+        matching_id=match_s2_author_name_against_diva_author_names(diva_author_kthid, s2_author_name)
+        if matching_id:
+            if Verbose_Flag:
+                print("found by KTHID: s2_author_name={0}, s2_author_ids={1}, diva_author_kthid={2}, diva_author_name={3}".format(s2_author_name, s2_author_ids, diva_author_kthid, diva_author_name))
+            return update_diva_author_with_s2_author_ids(matching_id, s2_author_ids_set)
+
+        # if Verbose_Flag:
+        #     print("found by KTHID: s2_author_name={0}, s2_author_ids={1}, diva_author_kthid={2}, diva_author_name={3}".format(s2_author_name, s2_author_ids, diva_author_kthid, diva_author_name))
+        # return update_diva_author_with_s2_author_ids(diva_author_kthid, s2_author_ids_set)
        
     diva_author_orcid=diva_author.get('orcid', False)
     # if there is a orcid, then lookup the diva author by their orcid and then process the S2_author_IDs
     if diva_author_orcid:
         diva_author_kthid=lookup_diva_author_by_orcid(diva_author_orcid)
         if diva_author_kthid:
-            if Verbose_Flag:
-                print("found by ORCID: s2_author_name={0}, s2_author_ids={1}, diva_author_kthid={2}, diva_author_name={3}".format(s2_author_name, s2_author_ids, diva_author_kthid, diva_author_name))
-            return update_diva_author_with_s2_author_ids(diva_author_kthid, s2_author_ids_set)
+            matching_id=match_s2_author_name_against_diva_author_names(diva_author_kthid, s2_author_name)
+            if matching_id:
+                if Verbose_Flag:
+                    print("found by ORCID: s2_author_name={0}, s2_author_ids={1}, diva_author_kthid={2}, diva_author_name={3}".format(s2_author_name, s2_author_ids, diva_author_kthid, diva_author_name))
+            return update_diva_author_with_s2_author_ids(matching_id, s2_author_ids_set)
+
+            # if Verbose_Flag:
+            #     print("found by ORCID: s2_author_name={0}, s2_author_ids={1}, diva_author_kthid={2}, diva_author_name={3}".format(s2_author_name, s2_author_ids, diva_author_kthid, diva_author_name))
+            # return update_diva_author_with_s2_author_ids(diva_author_kthid, s2_author_ids_set)
        
     # as there was no KTHID or ORCID, see if there is a diva author with one of the s2_author_ids
     diva_author_kthid=lookup_diva_author_by_s2_author_ids(s2_author_ids_set)
     if diva_author_kthid:
-        if Verbose_Flag:
-            print("found by s2_author_id: s2_author_name={0}, s2_author_ids={1}, diva_author_kthid={2}, diva_author_name={3}".format(s2_author_name, s2_author_ids, diva_author_kthid, diva_author_name))
-        return update_diva_author_with_s2_author_ids(diva_author_kthid, s2_author_ids_set)
+        matching_id=match_s2_author_name_against_diva_author_names(diva_author_kthid, s2_author_name)
+        if matching_id:
+            if Verbose_Flag: 
+                print("found by s2_author_id: s2_author_name={0}, s2_author_ids={1}, diva_author_kthid={2}, diva_author_name={3}".format(s2_author_name, s2_author_ids, diva_author_kthid, diva_author_name))
+        return update_diva_author_with_s2_author_ids(matching_id, s2_author_ids_set)
+
+        # if Verbose_Flag:
+        #     print("found by s2_author_id: s2_author_name={0}, s2_author_ids={1}, diva_author_kthid={2}, diva_author_name={3}".format(s2_author_name, s2_author_ids, diva_author_kthid, diva_author_name))
+        # return update_diva_author_with_s2_author_ids(diva_author_kthid, s2_author_ids_set)
 
     # as there was no KTHID or ORCID, we have to match based upon the s2_author_name
     possible_author_kthids=lookup_diva_authors_by_pid(pid)
@@ -810,7 +829,7 @@ def process_a_shard(shard_number, path_to_corpus, diva_dois, diva_pmis, diva_tit
         if not matching_pid:
             continue
 
-        # found a S2 publication that matches a DiVA prublication, remeber the information
+        # found a S2 publication that possibly matches a DiVA prublication, remeber the information
         number_of_matching_documents=number_of_matching_documents+1
         diva_publications[matching_pid]['S2_publication_ID']=ce['id']
         diva_publications[matching_pid]['S2_authors']=ce['authors']
@@ -1067,7 +1086,7 @@ def main():
     all_Flag=options.all
     shard_number_index=int(shard_number)
 
-    while shard_number_index >= 0:
+    while shard_number_index >= 184:
         process_a_shard(shard_number_index, path_to_corpus, diva_dois, diva_pmis, diva_titles, augmented_json_file_name)
         print("per_shard_stats={}".format(per_shard_stats))
         shard_number_index=shard_number_index-1
