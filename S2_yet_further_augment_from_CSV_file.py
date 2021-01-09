@@ -804,6 +804,11 @@ def process_a_shard(shard_number, path_to_corpus, diva_dois, diva_pmis, diva_tit
 
     number_of_matching_documents=0
     matches_corpus_json=[]
+
+    matched_by_doi=False
+    matched_by_pmid=False
+    matched_by_title=False
+
     for ce in corpus_shard:
         s2_doi=ce.get('doi', False)
         s2_pmid=ce.get('pmid', False)
@@ -812,16 +817,19 @@ def process_a_shard(shard_number, path_to_corpus, diva_dois, diva_pmis, diva_tit
         # check for matching doi, pmid, or title; otherwise ignore
         matching_pid=diva_dois.get(s2_doi, False)
         if matching_pid:
+            matched_by_doi=True
             print("matched doi: {0}".format(s2_doi))
         else:            
             matching_pid=diva_pmis.get(s2_pmid, False)
             if matching_pid:
+                matched_by_pmid=True
                 print("matched pmid: {0}".format(s2_pmid))
             else:
                 matching_pid=diva_titles.get(s2_title, False)
                 if matching_pid:
                     diva_doi=diva_publications[matching_pid].get('DOI', False)
                     if diva_doi == s2_doi:
+                        matched_by_title=True
                         print("matched title: {0}".format(s2_title))
                     else:
                         matching_pid=False
@@ -829,14 +837,13 @@ def process_a_shard(shard_number, path_to_corpus, diva_dois, diva_pmis, diva_tit
         if not matching_pid:
             continue
 
-        # found a S2 publication that possibly matches a DiVA prublication, remeber the information
-        number_of_matching_documents=number_of_matching_documents+1
-        diva_publications[matching_pid]['S2_publication_ID']=ce['id']
-        diva_publications[matching_pid]['S2_authors']=ce['authors']
-
         name_records=get_diva_authors(matching_pid)
 
         num_s2_authors=len(ce['authors'])
+        # add the following to handle the fact that in the 2021-01-01 corpus many names have two spaces between the first and last names
+        for a in ce['authors']:
+            a['name']=' '.join(a['name'].split())
+            
         num_diva_authors=len(name_records)
         if num_s2_authors == num_diva_authors:
             print("len(ce['authors'])={0} len(name_records)= {1}".format(num_s2_authors,num_diva_authors))
@@ -845,11 +852,25 @@ def process_a_shard(shard_number, path_to_corpus, diva_dois, diva_pmis, diva_tit
 
         print("{0}:{1} {2} corresponding to {3}".format(matching_pid, ce['id'], ce['authors'], name_records))
 
+        atleast_one_author_with_kthid=False
         if num_s2_authors == num_diva_authors:
             for i in range(0,num_s2_authors):
                 s2_author_id=match_s2_and_diva_names(matching_pid,  ce['authors'][i], name_records[i])
                 if s2_author_id:
                     print("s2_author_id={0} name_records[{1}]={2}".format(s2_author_id, i, name_records[i]))
+                    atleast_one_author_with_kthid=True
+        if matched_by_title and atleast_one_author_with_kthid:
+            # found a S2 publication that possibly matches a DiVA prublication, remeber the information
+            # only include matched by title documents if there was a matching author
+            number_of_matching_documents=number_of_matching_documents+1
+            diva_publications[matching_pid]['S2_publication_ID']=ce['id']
+            diva_publications[matching_pid]['S2_authors']=ce['authors']
+        else:
+            # found a S2 publication that possibly matches a DiVA prublication, remeber the information
+            number_of_matching_documents=number_of_matching_documents+1
+            diva_publications[matching_pid]['S2_publication_ID']=ce['id']
+            diva_publications[matching_pid]['S2_authors']=ce['authors']
+            
 
     output_filename="{0}_S2_{1}.JSON".format(augmented_json_file_name[:-5], shard_number)
     with open(output_filename, 'w', encoding='utf-8') as output_FH:
@@ -1086,7 +1107,7 @@ def main():
     all_Flag=options.all
     shard_number_index=int(shard_number)
 
-    while shard_number_index >= 184:
+    while shard_number_index >= 0:
         process_a_shard(shard_number_index, path_to_corpus, diva_dois, diva_pmis, diva_titles, augmented_json_file_name)
         print("per_shard_stats={}".format(per_shard_stats))
         shard_number_index=shard_number_index-1
