@@ -882,6 +882,13 @@ def process_a_shard(shard_number, path_to_corpus, diva_dois, diva_pmis, diva_tit
             else:
                 print("reason_for_match={0}".format(reason_for_match))
 
+        if matching_pids:
+            if s2_year:
+                print("reason_for_match={0}year={1}|".format(reason_for_match, s2_year))
+            else:
+                print("reason_for_match={0}".format(reason_for_match))
+
+
         if Verbose_Flag:
             print("matching_pids={}".format(matching_pids))
 
@@ -1163,7 +1170,7 @@ def main():
                             diva_pmis[pmi]={pid}
                         else:
                             if Verbose_Flag:
-                                print("duplicate PMID ({0}) in {1} and {2}".format(doi, existing_pids_for_doi, pid))
+                                print("duplicate PMID ({0}) in {1} and {2}".format(doi, existing_pids_for_pmi, pid))
                             diva_pmis[pmi]=existing_pids_for_pmi.add(pid)
 
                     title=col_values.get('Title', False)
