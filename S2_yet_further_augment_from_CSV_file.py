@@ -12,6 +12,7 @@
 #
 # Note that program assumes that all entries in the JSON file have a value for kthid, even if it is fake ID.
 #
+# Note that this program also produces a reduced copus file
 #
 # G. Q. Maguire Jr.
 #
@@ -21,6 +22,9 @@
 # ./S2_yet_further_augment_from_CSV_file.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected.csv /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented_further.JSON 186 /z3/maguire/SemanticScholar/SS_corpus_2020-05-27
 #
 # ./S2_yet_further_augment_from_CSV_file.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected.csv /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented_further_further.JSON 186 /z3/maguire/SemanticScholar/SS_corpus_2020-05-27
+#
+# using the new corpus and initial set of author information
+#./S2_yet_further_augment_from_CSV_file.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected.csv /z3/maguire/SemanticScholar/KTH_DiVA/authors-2012-2019_augmented_by_S2-20210109.JSON 5999 /z3/maguire/SemanticScholar/SS_corpus_2021-01-01
 
 import requests, time
 import pprint
@@ -690,8 +694,9 @@ def update_diva_author_with_s2_author_ids(diva_author_kthid, s2_author_ids_set):
 
     # Is there one or more common ID?
     common_s2_ids=s2_author_ids_set.intersection(diva_author_s2_ids_set)
-    if diva_author_kthid == 'u101oxae':
-        print("diva_author_kthid={0}, common_s2_ids={1}, diva_author_s2_ids_set={2}".format(diva_author_kthid, common_s2_ids, diva_author_s2_ids_set))
+    # if diva_author_kthid == 'u101oxae':
+    #     print("diva_author_kthid={0}, common_s2_ids={1}, diva_author_s2_ids_set={2}".format(diva_author_kthid, common_s2_ids, diva_author_s2_ids_set))
+
     if len(common_s2_ids) > 0:
         new_s2_ids=list(s2_author_ids_set.union(diva_author_s2_ids_set))
     else:
@@ -782,7 +787,14 @@ def match_s2_and_diva_names(pid, s2_author, diva_author):
                 return update_diva_author_with_s2_author_ids(matching_id, s2_author_ids_set)
     return False
 
-def process_a_shard(shard_number, path_to_corpus, diva_dois, diva_pmis, diva_titles, augmented_json_file_name):
+#append the s2 record to the reduced corpus
+def save_s2_record_to_smaller_corpus(shard_number, reduced_corpus_filename, s2_record):
+    with open(reduced_corpus_filename, 'a+', encoding='utf-8') as rc_FH:
+        as_string = json.dumps(s2_record, ensure_ascii=False)
+        print(as_string, file=rc_FH)
+        #rc_FH.close()
+
+def process_a_shard(shard_number, path_to_corpus, diva_dois, diva_pmis, diva_titles, diva_s2_authors, augmented_json_file_name, reduced_corpus_filename):
     global Verbose_Flag
     global diva_publications
     global diva_authors_info
@@ -805,71 +817,109 @@ def process_a_shard(shard_number, path_to_corpus, diva_dois, diva_pmis, diva_tit
     number_of_matching_documents=0
     matches_corpus_json=[]
 
-    matched_by_doi=False
-    matched_by_pmid=False
-    matched_by_title=False
-
     for ce in corpus_shard:
         s2_doi=ce.get('doi', False)
         s2_pmid=ce.get('pmid', False)
         s2_title=ce.get('title', False)
+        s2_authors=ce.get('authors', []) # s2_authors is a list of s2 authors
+        s2_year=ce.get('year', False)
+
+        # compute the set of all the publications author IDs
+        set_of_s2_authors_ids=set()
+        for a in s2_authors:
+            aids=a.get('ids', [])
+            for i in aids:
+                set_of_s2_authors_ids.add(i)
 
         # check for matching doi, pmid, or title; otherwise ignore
-        matching_pid=diva_dois.get(s2_doi, False)
-        if matching_pid:
-            matched_by_doi=True
-            print("matched doi: {0}".format(s2_doi))
-        else:            
-            matching_pid=diva_pmis.get(s2_pmid, False)
-            if matching_pid:
-                matched_by_pmid=True
-                print("matched pmid: {0}".format(s2_pmid))
-            else:
-                matching_pid=diva_titles.get(s2_title, False)
-                if matching_pid:
-                    diva_doi=diva_publications[matching_pid].get('DOI', False)
-                    if diva_doi == s2_doi:
-                        matched_by_title=True
-                        print("matched title: {0}".format(s2_title))
-                    else:
-                        matching_pid=False
-                        
-        if not matching_pid:
+        matched_by_doi=diva_dois.get(s2_doi, False)
+        matched_by_pmid=diva_pmis.get(s2_pmid, False)
+        matched_by_title=diva_titles.get(s2_title, False)
+
+        # if one of the s2_author IDs matches an s2_author_id in the DiVA set, this S2 record is possibly relevant
+        possible_interesting_author=set_of_s2_authors_ids.intersection(diva_s2_authors)
+
+        matching_pids=set()     #  this will be the set of DiVA publications that might match this S2 record
+        if matched_by_doi:
+            matching_pids=matching_pids.union(matched_by_doi)
+        if matched_by_pmid:
+            matching_pids=matching_pids.union(matched_by_pmid)
+        if matched_by_title:
+            matching_pids=matching_pids.union(matched_by_title)
+
+        # if there were no matches with DIVA based on DOI, PMID, or title and
+        # no interesting authors, then simple skip this S2 record
+        
+        if not matching_pids and not possible_interesting_author:
             continue
 
-        name_records=get_diva_authors(matching_pid)
+        reason_for_match=''
+        if matched_by_doi:
+            reason_for_match=reason_for_match+"matched doi: {0}".format(s2_doi)+"|"
+            print("matched_by_doi={0}, matching_pids={1}".format(matched_by_doi, matching_pids))
 
-        num_s2_authors=len(ce['authors'])
-        # add the following to handle the fact that in the 2021-01-01 corpus many names have two spaces between the first and last names
-        for a in ce['authors']:
-            a['name']=' '.join(a['name'].split())
+        if matched_by_pmid:
+            reason_for_match=reason_for_match+"matched pmid: {0}".format(s2_pmid)+"|"
+
+        if matched_by_title:
+            reason_for_match=reason_for_match+"matched title: {0}".format(s2_title)+"|"
+                        
+        if possible_interesting_author:
+            reason_for_match=reason_for_match+"IA: {0}".format(possible_interesting_author)+"|"
+
+        # diva_doi=diva_publications[matching_pid].get('DOI', False)
+        # if diva_doi == s2_doi:
+        #     common_doi=True
+
+        save_s2_record_to_smaller_corpus(shard_number, reduced_corpus_filename, ce)
+
+        
+        # if there is not a matching_pid but there is an interesting author, then perhaps this is a publication missing from DiVA
+        # or a publication done by the author while not at KTH
+        if Verbose_Flag and not matching_pids:
+            if s2_year:
+                print("reason_for_match={0}year={1}|".format(reason_for_match, s2_year))
+            else:
+                print("reason_for_match={0}".format(reason_for_match))
+
+        if Verbose_Flag:
+            print("matching_pids={}".format(matching_pids))
+
+        #process each of the DIVA records that might be relevant
+        for matching_pid in matching_pids:
+            name_records=get_diva_authors(matching_pid)
+
+            num_s2_authors=len(s2_authors)
+            # add the following to handle the fact that in the 2021-01-01 corpus many names have two spaces between the first and last names
+            for a in s2_authors:
+                a['name']=' '.join(a['name'].split())
             
-        num_diva_authors=len(name_records)
-        if num_s2_authors == num_diva_authors:
-            print("len(ce['authors'])={0} len(name_records)= {1}".format(num_s2_authors,num_diva_authors))
-        else:
-            print("Mismatchin number of authors: len(ce['authors'])={0} len(name_records)= {1}".format(num_s2_authors,num_diva_authors))
+            num_diva_authors=len(name_records)
+            if num_s2_authors == num_diva_authors:
+                print("len(s2_authors)={0} len(name_records)= {1}".format(num_s2_authors,num_diva_authors))
+            else:
+                print("Mismatchin number of authors: len(s2_authors)={0} len(name_records)= {1}".format(num_s2_authors,num_diva_authors))
 
-        print("{0}:{1} {2} corresponding to {3}".format(matching_pid, ce['id'], ce['authors'], name_records))
+            print("{0}:{1} {2} corresponding to {3}".format(matching_pid, ce['id'], s2_authors, name_records))
 
-        atleast_one_author_with_kthid=False
-        if num_s2_authors == num_diva_authors:
-            for i in range(0,num_s2_authors):
-                s2_author_id=match_s2_and_diva_names(matching_pid,  ce['authors'][i], name_records[i])
-                if s2_author_id:
-                    print("s2_author_id={0} name_records[{1}]={2}".format(s2_author_id, i, name_records[i]))
-                    atleast_one_author_with_kthid=True
-        if matched_by_title and atleast_one_author_with_kthid:
-            # found a S2 publication that possibly matches a DiVA prublication, remeber the information
-            # only include matched by title documents if there was a matching author
-            number_of_matching_documents=number_of_matching_documents+1
-            diva_publications[matching_pid]['S2_publication_ID']=ce['id']
-            diva_publications[matching_pid]['S2_authors']=ce['authors']
-        else:
-            # found a S2 publication that possibly matches a DiVA prublication, remeber the information
-            number_of_matching_documents=number_of_matching_documents+1
-            diva_publications[matching_pid]['S2_publication_ID']=ce['id']
-            diva_publications[matching_pid]['S2_authors']=ce['authors']
+            atleast_one_author_with_kthid=False
+            if num_s2_authors == num_diva_authors:
+                for i in range(0,num_s2_authors):
+                    s2_author_id=match_s2_and_diva_names(matching_pid,  s2_authors[i], name_records[i])
+                    if s2_author_id:
+                        print("s2_author_id={0} name_records[{1}]={2}".format(s2_author_id, i, name_records[i]))
+                        atleast_one_author_with_kthid=True
+            if matched_by_title and atleast_one_author_with_kthid:
+                # found a S2 publication that possibly matches a DiVA prublication, remeber the information
+                # only include matched by title documents if there was a matching author
+                number_of_matching_documents=number_of_matching_documents+1
+                diva_publications[matching_pid]['S2_publication_ID']=ce['id']
+                diva_publications[matching_pid]['S2_authors']=s2_authors
+            else:
+                # found a S2 publication that possibly matches a DiVA prublication, remeber the information
+                number_of_matching_documents=number_of_matching_documents+1
+                diva_publications[matching_pid]['S2_publication_ID']=ce['id']
+                diva_publications[matching_pid]['S2_authors']=ce['authors']
             
 
     output_filename="{0}_S2_{1}.JSON".format(augmented_json_file_name[:-5], shard_number)
@@ -958,6 +1008,13 @@ def main():
                       help="If set, processes all shard starting shard on the command line"
                       )
 
+    parser.add_option('-t', '--testing',
+                      dest="testing",
+                      default=False,
+                      action="store_true",
+                      help="If set, processes only 10 shards"
+                      )
+
 
     options, remainder = parser.parse_args()
 
@@ -991,6 +1048,8 @@ def main():
     fakeid_start='⚠⚠'           # these IDs represent IDs for unknown persons
     fakeid_nonKTH_start='⚑'        # these IDs represent IDs for persons who are not affiliated with KTH
 
+    diva_s2_authors=set()
+
     # read the lines from the JSON file
     with open(augmented_json_file_name, 'r') as augmented_FH:
         for idx, line in enumerate(augmented_FH):
@@ -1016,7 +1075,13 @@ def main():
             else:
                 diva_authors_info[kthid]=j
 
-    print("length of diva_authors_info={}".format(len(diva_authors_info)))
+            # collect the set of all s2_author_ids
+            s2_author_info=j.get('s2_author_ids', [])
+            if s2_author_info:
+                for s2aid in s2_author_info:
+                    diva_s2_authors.add(s2aid)
+
+    print("length of diva_authors_info={0}; number of diva_s2_authors={1}".format(len(diva_authors_info), len(diva_s2_authors)))
 
     if Verbose_Flag:
         for e in diva_authors_info:
@@ -1045,10 +1110,18 @@ def main():
 
     print("total entries={0}, number_of_entries_with_KTHIDs={1}, number_of_entries_with_fake_KTHIDs={2} of these number_of_entries_with_fake_nonKTHIDs={3}, thus {4} unknown IDs".format(len(diva_authors_info),number_of_entries_with_KTHIDs,number_of_entries_with_fake_KTHIDs,number_of_entries_with_fake_nonKTHIDs,number_of_entries_with_fake_KTHIDs-number_of_entries_with_fake_nonKTHIDs))
 
+    reduced_corpus_filename="{0}_reduced_corpus.JSON".format(augmented_json_file_name[:-5])
+    # initialize an empty file
+    with open(reduced_corpus_filename, 'w', encoding='utf-8') as rc_FH:
+        rc_FH.close()
+
     diva_publications=dict()
+
+    # the following dictionaries contain a set of PIDs associated with a given DOI, PMID, or title
     diva_dois=dict()
     diva_pmis=dict()
     diva_titles=dict()
+
     all_PIDs=set()
     # read the lines from the spreadsheet
     if spreadsheet_file.endswith('.csv'):
@@ -1071,19 +1144,35 @@ def main():
                     all_PIDs.add(pid)       # add this PID to the set of all PIDs processed
                     diva_publications[pid]=col_values
 
-                    # save some information to be able to quickly find if a given DOI, PMI, ... has a DIVA entry
+                    # save some information to be able to quickly find if a given DOI, PMID, ... has a DIVA entry
+                    # note that we do not assume that DOI, PMID, or titles are unique
                     doi=col_values.get('DOI', False)
                     if doi and len(doi) > 0:
-                        diva_dois[doi]=pid
+                        existing_pids_for_doi=diva_dois.get(doi, False)
+                        if not existing_pids_for_doi:
+                            diva_dois[doi]={pid}
+                        else:
+                            if Verbose_Flag:
+                                print("duplicate DOI ({0}) in {1} and {2}".format(doi, existing_pids_for_doi, pid))
+                            diva_dois[doi]=existing_pids_for_doi.add(pid)
 
                     pmi=col_values.get('PMID', False)
                     if pmi and len(pmi) > 0:
-                        diva_pmis[pmi]=pid
+                        existing_pids_for_pmi=diva_pmis.get(doi, False)
+                        if not existing_pids_for_pmi:
+                            diva_pmis[pmi]={pid}
+                        else:
+                            if Verbose_Flag:
+                                print("duplicate PMID ({0}) in {1} and {2}".format(doi, existing_pids_for_doi, pid))
+                            diva_pmis[pmi]=existing_pids_for_pmi.add(pid)
 
                     title=col_values.get('Title', False)
                     if title and len(title) > 0:
-                        diva_titles[title]=pid
-
+                        existing_pids_for_title=diva_titles.get(doi, False)
+                        if not existing_pids_for_title:
+                            diva_titles[title]={pid}
+                        else:
+                            diva_titles[title]=existing_pids_for_title.add(pid)
                 else:
                     print("Error in PID of {}".format(line))
 
@@ -1107,8 +1196,15 @@ def main():
     all_Flag=options.all
     shard_number_index=int(shard_number)
 
-    while shard_number_index >= 0:
-        process_a_shard(shard_number_index, path_to_corpus, diva_dois, diva_pmis, diva_titles, augmented_json_file_name)
+    # if testing only process a small number of shards
+    testing_Flag=options.testing
+    if testing_Flag:
+        end_shard=max(shard_number_index-1, 0)
+    else:
+        end_shard=0
+
+    while shard_number_index >= end_shard:
+        process_a_shard(shard_number_index, path_to_corpus, diva_dois, diva_pmis, diva_titles, diva_s2_authors, augmented_json_file_name, reduced_corpus_filename)
         print("per_shard_stats={}".format(per_shard_stats))
         shard_number_index=shard_number_index-1
 
