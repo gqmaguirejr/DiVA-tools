@@ -706,7 +706,7 @@ Example:
 ./S2_yet_further_augment_from_CSV_file.py  /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected.csv /z3/maguire/SemanticScholar/KTH_DiVA/pubs-2012-2019_augmented_further.JSON 186 /z3/maguire/SemanticScholar/SS_corpus_2020-05-27
 ```
 
-# coverage-comparison.py 
+## coverage-comparison.py 
 
 Purpose: read a JSON file of publication data (for example, output by S2_yet_further_augment_from_CSV_file.py) and compute som simple coverage statistics.
 
@@ -732,4 +732,24 @@ num_in_Scopus_S2=    3571	8.58%
 num_in_Scopus_only=  1570	3.77%
 num_in_S2_only=      4395	10.56%
 not_in_any=          2782	6.68%
+```
+# ./S2_remove_dumplicate_authors.py
+Purpose: reads in a JSON of S2 records and write new file after removing duplicate authors
+
+Input: ./S2_remove_dumplicate_authors.py reduced_corpus.JSON
+```
+# 
+```
+
+Output: augmented JSON file(s)
+prints out information about duplicate entries in the form:
+In 75710ecf5389f5cc68eb5be9e85c0268506f7cb5 duplicate author name=Y  T with same ids={'46761978'}
+In 75710ecf5389f5cc68eb5be9e85c0268506f7cb5 duplicate author name=T  Z with different ids existing_ids={'51135908'}, prior_ids={'2000909863'}
+
+
+Example:
+```
+./S2_remove_dumplicate_authors.py /z3/maguire/SemanticScholar/KTH_DiVA/reduced_corpus-MA.JSON
+
+./S2_remove_dumplicate_authors.py /z3/maguire/SemanticScholar/KTH_DiVA/reduced_corpus-MA.JSON > logfile-20210121.txt
 ```

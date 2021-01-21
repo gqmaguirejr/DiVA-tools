@@ -853,6 +853,7 @@ def process_corpus(corpus_file, diva_dois, diva_pmis, diva_titles, diva_s2_autho
 
     common_titles_to_ignore_for_mismatches_in_authors=[
         'Background',
+        'Change of Editor-in-Chief',
         'Commentary',
         'Conclusions',
         'Editorial',
