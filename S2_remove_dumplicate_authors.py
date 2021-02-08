@@ -138,7 +138,7 @@ def main():
         s2_authors = remove_duplicated_author_names(ce['id'], s2_authors)
         num_s2_authors=len(s2_authors)
 
-        if initial_num_s2_authors < num_s2_authors:
+        if initial_num_s2_authors > num_s2_authors:
             ce['authors']=s2_authors
             
     print("entires in filtered reduced corpus={}".format(len(corpus_shard)))

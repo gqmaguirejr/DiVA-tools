@@ -20,6 +20,9 @@
 #time ./S2_yet_further_augment_from_JSON_file.py /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected_pubs_S2.JSON /z3/maguire/SemanticScholar/KTH_DiVA/authors-2012-2019_augmented_by_S2-20210109_S2_0.JSON /z3/maguire/SemanticScholar/KTH_DiVA/authors-2012-2019_augmented_by_S2-20210109_reduced_corpus.JSON
 #
 #time ./S2_yet_further_augment_from_JSON_file.py /z3/maguire/SemanticScholar/KTH_DiVA/kth-exluding-theses-all-level2-2012-2019-corrected_pubs_S2_augmented_from_reduced_corpus-manually-augmented.JSON /z3/maguire/SemanticScholar/KTH_DiVA/authors-2012-2019_augmented_by_S2-20210109_S2_0_augmented_from_reduced_corpus-manually-augmented.JSON /z3/maguire/SemanticScholar/KTH_DiVA/authors-2012-2019_augmented_by_S2-20210109_reduced_corpus-manually-augmented.JSON > logfile20210109n.txt
+#
+# time ./S2_yet_further_augment_from_JSON_file.py /z3/maguire/SemanticScholar/KTH_DiVA/publications-MA-RC.JSON /z3/maguire/SemanticScholar/KTH_DiVA/authors-MA-RC.JSON /z3/maguire/SemanticScholar/KTH_DiVA/reduced_corpus-MA_deduplicated_of_authors.JSON >logfile20210127a.txt
+
 
 import requests, time
 import pprint
@@ -83,6 +86,35 @@ def get_user_by_kthid(kthid):
         page_response=r.json()
         return page_response
     return []
+
+# the function below is from https://www.guyrutenberg.com/2008/12/15/damerau-levenshtein-distance-in-python/
+# Note that xrange (a python2 function) was replaced by range (a python3 equivalent)
+# Compute the Damerau-Levenshtein distance between two given strings (s1 and s2)
+def damerau_levenshtein_distance(s1, s2):
+    d = {}
+    lenstr1 = len(s1)
+    lenstr2 = len(s2)
+    for i in range(-1,lenstr1+1):
+        d[(i,-1)] = i+1
+    for j in range(-1,lenstr2+1):
+        d[(-1,j)] = j+1
+    #
+    for i in range(lenstr1):
+        for j in range(lenstr2):
+            if s1[i] == s2[j]:
+                cost = 0
+            else:
+                cost = 1
+            d[(i,j)] = min(
+                           d[(i-1,j)] + 1, # deletion
+                           d[(i,j-1)] + 1, # insertion
+                           d[(i-1,j-1)] + cost, # substitution
+                          )
+            if i and j and s1[i]==s2[j-1] and s1[i-1] == s2[j]:
+                d[(i,j)] = min (d[(i,j)], d[i-2,j-2] + cost) # transposition
+    #
+    return d[lenstr1-1,lenstr2-1]
+
 
 def split_names(names):
     name_list=[]
@@ -700,8 +732,8 @@ def update_diva_author_with_s2_author_ids(diva_author_kthid, s2_author_ids_set):
 
     # possibly update the list of IDs
     diva_authors_info[diva_author_kthid]['s2_author_ids']=new_s2_ids
-    #if Verbose_Flag:
-    print("update_diva_author_with_s2_author_ids({0}, {1})".format(diva_author_kthid, s2_author_ids_set))
+    if Verbose_Flag:
+        print("update_diva_author_with_s2_author_ids({0}, {1})".format(diva_author_kthid, s2_author_ids_set))
     return {'kthid': diva_author_kthid, 's2_author_ids': new_s2_ids}
 
 # the function returns a dict of KTHID and list of s2_author_ids; or returns False if there is not KTHID
@@ -783,15 +815,55 @@ def match_s2_and_diva_names(pid, s2_author, diva_author):
     return False
 
 Names_of_collaborations=[
-    'ATLAS Collaboration',
-    'Fermi-LAT Collaboration',
+    'the AGATA collaboration',                                  # {"name": "the AGATA collaboration", "ids": ["103064220"]}
+    # {'name': 'On behalf of the ABIRISK Consortium', 'ids': ['51933856']}
+    'ATLAS Collaboration',                                      # {"name": "ATLAS Collaboration", "ids": ["40952709"]}
+    'The ATLAS Collaboration',
+    'the EUROfusion MST1 Team',                                 # {"name": "the EUROfusion MST1 Team", "ids": ["102379941"]}
+    'Fermi-LAT Collaboration',                                  # {"name": "Fermi-LAT Collaboration", 'ids': ['102511969']}
     'The Fermi LAT Collaboration',
-    'Jet Contributors',
-    'JET-EFDA contributors',
-    'Scoap',
-
-    "The ATLAS Collaboration"
+    # {'name': 'The Fermi-Large Area Telescope Collaboration', 'ids': ['103064247']}
+    'Fermi GBM Collaboration',                                  # {"name": "Fermi GBM Collaboration", 'ids': ['102511663']}
+    'collaboration, JEM-EUSO',                                  # {"name": "JEM-EUSO collaboration", 'ids': ['1410680486']}
+    'Jet Contributors',                                         # {"name": "Jet  contributors", "ids": ["103356309"]}
+    'contributors, JET',
+    'JET-EFDA contributors',                                    # {"name": "Jet Efda Contributors", "ids": ["145711034"]}
+    # {'name': 'JET EFDA Contributors', 'ids': ['46258929']}
+    'NorPM',                                                    # {"name": "NorPM", "ids": ["1404910343"]}
+    'Pax Collaborations',                                       # {"name": "Pax  Collaborations", "ids": ["103176449"]}
+    'Scoap',                                                    # {"name": "Scoap", "ids": ["72845320"]}
+    'SPHiNX Collaboration',                                     # {"name": "SPHiNX Collaboration", "ids": ["148187960"]}
+    'on behalf of the Fermi Large Area Telescope Collaboration', # {"name": "", 'ids': ['1410614768']
+    'Team, M A S T',            				# {"name": "Mast  Team", "ids": ["74424511"]} 
+    'Team, T C V',                                              # {"name": "Tcv  Team", "ids": ["103544287"]},
+    'Team, W E S T',                                            # {"name": "WEST Team", "ids": ["81019456"]}
+    'Team, the EUROfusion-IM',                                  # {"name": "the EUROfusion-IM Team", "ids": ["1975835224"]}
+    'EUROfusion Mst Team', 					# {"name": "EUROfusion Mst Team", "ids": ["152545180"]}
+    'The Euclid Theory Working Group'
 ]
+
+# {"name": "Kth  Royal", "ids": ["93342111"]}
+# suspect S2 author_ids
+# {'name': 'Nordita', 'ids': ['7962106']}
+# {'name': 'KTH Royal Institute of Technology', 'ids': ['102951711']}
+# {'name': 'Stockholm University', 'ids': ['93448948']}
+# {'name': 'Stockholm', 'ids': ['78799120']}
+#
+# {'name': 'Finland', 'ids': ['103287801']},o
+# {'name': 'Sweden', 'ids': ['4102003']}]
+# {'name': 'Russia', 'ids': ['6983197']}
+# {'name': 'Moscow', 'ids': ['73607241']}
+# {'name': 'Spain', 'ids': ['120231217']},
+# {'name': 'UK', 'ids': ['152162130']}
+# {'name': 'USA', 'ids': ['122076749']},
+
+# {'name': 'Universidad de La Laguna', 'ids': ['145562748']},
+# {'name': 'University of Florida', 'ids': ['88740970']}
+# {'name': 'University of Turku', 'ids': ['103371855']},
+# {'name': 'University of Southampton', 'ids': ['152524895']},
+# {'name': 'Universidad de La Laguna', 'ids': ['145562748']},
+# {'name': 'University of Southampton', 'ids': ['152524895']},
+# {"name": "Alfred  Nobels", "ids": ["83146522"]}
 
 # return true of this is a known collaboration
 def handle_collaboration(id, s2_authors, name_records):
@@ -892,12 +964,24 @@ def process_corpus(corpus_file, diva_dois, diva_pmis, diva_titles, diva_s2_autho
     for ce in corpus_shard:
         if Verbose_Flag:
             print("id={0}".format(ce['id']))
-        if ce['id'] == 'e9f0b2305f83313b462e811d57c6f3eea87b446c': # error missing authors in S2
+        id = ce['id']
+        if id == 'e9f0b2305f83313b462e811d57c6f3eea87b446c': # error missing authors in S2
             continue
-        if ce['id'] == '6cdb40461dc7358dc7c122485086c6f9c721a373': # error in 3rd author's name and an affiliation as 4th author in S2
+        if id == '6cdb40461dc7358dc7c122485086c6f9c721a373': # error in 3rd author's name and an affiliation as 4th author in S2
+            continue
+        if id == '4635507943912e402652473254f06afd20185131': # none of the authors are with KTH
+            continue
+        if id == 'bba1c605934e1653456bf0e3d90c1fa4c0e1b550': # abstracts for a meeting - S" author ID known for the one KTH author
+            continue
+        if id == "975334d2f755b2296066fa49a052f7510e308088": # matches the title of 853826 but is a different publication
             continue
 
         s2_doi=ce.get('doi', False)
+
+        if id == 'f1ddbea5d4791ac5b139ea12e382602773fdaffe' and s2_doi == '10.1111/bcpt.13020': # from a volume of abstracts - the DOI is for the volume
+            print("id={0}, DOI: {1} is for a volume of abstract - cannot match authors".format(id, s2_doi))
+            continue
+
         s2_pmid=ce.get('pmid', False)
         s2_title=ce.get('title', False)
         s2_authors=ce.get('authors', []) # s2_authors is a list of s2 authors
@@ -912,6 +996,13 @@ def process_corpus(corpus_file, diva_dois, diva_pmis, diva_titles, diva_s2_autho
 
         # check for matching doi, pmid, or title; otherwise ignore
         matched_by_doi=diva_dois.get(s2_doi, False)
+        if not matched_by_doi:  # some S2 entries have the DOI in uppercase - even if the (DiVA DOI is lowercase
+            # DOIs are not supposed to be changed in case
+            matched_by_doi=diva_dois.get(s2_doi.lower(), False)
+            if matched_by_doi:
+                print("S2 DOI ({0}) in uppercase, while DiVA DOI is lowercase".format(s2_doi))
+                s2_doi=s2_doi.lower()
+
         matched_by_pmid=diva_pmis.get(s2_pmid, False)
         matched_by_title=diva_titles.get(s2_title, False)
 
@@ -973,7 +1064,36 @@ def process_corpus(corpus_file, diva_dois, diva_pmis, diva_titles, diva_s2_autho
 
         #process each of the DIVA records that might be relevant
         for matching_pid in matching_pids:
+            # if both S2 and DiVA documents have a value for Year,
+            # then if the Year of the DiVA publication does not equal the Year of the S2 document - then skip
+            diva_year_check=diva_publications[matching_pid].get('Year', False)
+            if (s2_year and diva_year_check) and (int(s2_year) != int(diva_year_check)):
+                print("S2: {0} year {1} does not match DiVA year {2}".format(id, s2_year, diva_year_check))
+                continue
+
+            # if both S2 and DiVA documents have DOIs,
+            # then if the DOI of the DiVA publication does not equal the DOI of the S2 document - then skip
+            diva_doi_check=diva_publications[matching_pid].get('DOI', False)
+            if (s2_doi and diva_doi_check) and (s2_doi != diva_doi_check):
+                print("S2: {0} DOI {1} does not match DiVA DOI {2}".format(id, s2_doi, diva_doi_check))
+                continue
+
+            # compare the titles
+            diva_title_check=diva_publications[matching_pid].get('Title', False)
+            if (s2_title and diva_title_check):
+                difference_in_titles=damerau_levenshtein_distance(s2_title, diva_title_check)
+                if difference_in_titles > (len(s2_title) * 0.1): # if the difference is greater than this threshold skip
+                    print("{0}:{1} difference_in_titles={2}, s2_title={3}, diva_title_check={4}".format(matching_pid, id, difference_in_titles, s2_title, diva_title_check))
+                    continue
+
             name_records=get_diva_authors(matching_pid)
+
+            # if the year of the S2 publication and DiVA publication do not match, then skip if matched by title
+            diva_year=diva_publications[matching_pid].get('Year', False)
+            if (s2_year and diva_year) and matched_by_title and not matched_by_doi and not matched_by_pmid  and (int(s2_year) != int(diva_year)):
+                if Verbose_Flag:
+                    print("Years do not match= s2_year {0} DiVA year={1}|".format(s2_year, diva_year))
+                continue
 
             num_s2_authors=len(s2_authors)
             # add the following to handle the fact that in the 2021-01-01 corpus many names have two spaces between the first and last names
@@ -1004,12 +1124,33 @@ def process_corpus(corpus_file, diva_dois, diva_pmis, diva_titles, diva_s2_autho
                 num_s2_authors=len(s2_authors)
 
             atleast_one_author_with_kthid=False
+            atleast_one_author_with_kthid_0=False
+            atleast_one_author_with_kthid_1=False
             if num_s2_authors == num_diva_authors:
                 for i in range(0,num_s2_authors):
                     s2_author_id=match_s2_and_diva_names(matching_pid,  s2_authors[i], name_records[i])
                     if s2_author_id:
-                        print("s2_author_id={0} name_records[{1}]={2}".format(s2_author_id, i, name_records[i]))
+                        if Verbose_Flag:
+                            print("s2_author_id={0} name_records[{1}]={2}".format(s2_author_id, i, name_records[i]))
                         atleast_one_author_with_kthid=True
+                # if there are two authors, try them in the reverse order
+                if not atleast_one_author_with_kthid and (num_s2_authors == 2):
+                    s2_author_id=match_s2_and_diva_names(matching_pid,  s2_authors[0], name_records[1])
+                    if s2_author_id:
+                        if Verbose_Flag:
+                            print("s2_author_id={0} name_records[{1}]={2}".format(s2_author_id, 0, name_records[1]))
+                        atleast_one_author_with_kthid_0=True
+
+                    s2_author_id=match_s2_and_diva_names(matching_pid,  s2_authors[1], name_records[0])
+                    if s2_author_id:
+                        if Verbose_Flag:
+                            print("s2_author_id={0} name_records[{1}]={2}".format(s2_author_id, 1, name_records[0]))
+                        atleast_one_author_with_kthid_1=True
+
+                    if atleast_one_author_with_kthid_0 and atleast_one_author_with_kthid_1:
+                        print("authors names were reversed")
+                    atleast_one_author_with_kthid=atleast_one_author_with_kthid_0 or atleast_one_author_with_kthid_1
+
             if matched_by_title and atleast_one_author_with_kthid:
                 # found a S2 publication that possibly matches a DiVA prublication, remeber the information
                 # only include matched by title documents if there was a matching author
@@ -1197,20 +1338,22 @@ def main():
 
             pmi=diva_publications[pid].get('PMID', False)
             if pmi and len(pmi) > 0:
-                existing_pids_for_pmi=diva_pmis.get(doi, False)
+                existing_pids_for_pmi=diva_pmis.get(pmi, False)
                 if not existing_pids_for_pmi:
                     diva_pmis[pmi]={pid}
                 else:
                     if Verbose_Flag:
-                        print("duplicate PMID ({0}) in {1} and {2}".format(doi, existing_pids_for_pmi, pid))
+                        print("duplicate PMID ({0}) in {1} and {2}".format(pmi, existing_pids_for_pmi, pid))
                     diva_pmis[pmi]=existing_pids_for_pmi.add(pid)
 
             title=diva_publications[pid].get('Title', False)
             if title and len(title) > 0:
-                existing_pids_for_title=diva_titles.get(doi, False)
+                existing_pids_for_title=diva_titles.get(title, False)
                 if not existing_pids_for_title:
                     diva_titles[title]={pid}
                 else:
+                    if Verbose_Flag:
+                        print("duplicate title ({0}) in {1} and {2}".format(title, existing_pids_for_title, pid))
                     diva_titles[title]=existing_pids_for_title.add(pid)
 
     print("Finished reading DiVA entries")

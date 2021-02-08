@@ -753,3 +753,29 @@ Example:
 
 ./S2_remove_dumplicate_authors.py /z3/maguire/SemanticScholar/KTH_DiVA/reduced_corpus-MA.JSON > logfile-20210121.txt
 ```
+
+## find_teams_collaborations_etc_in_corpus.py
+Purpose: reads in a corpus in JSON format and extract information about possible teams, collaboration, etc.
+
+Input:
+```
+./find_teams_collaborations_etc_in_corpus.py reduced_corpus.JSON
+```
+
+Example:
+```
+./find_teams_collaborations_etc_in_corpus.py /z3/maguire/SemanticScholar/KTH_DiVA/reduced_corpus-MA_deduplicated_of_authors.JSON
+```
+
+Output:
+```
+entires in reduced corpus=377952
+Potential collaborations, teams, etc.
+key=A.  Group; ids={'1410912208'}, value=['0d56e76911ddce3092256cf486cdfb6661a86b98']
+...
+key=the nTOF Collaboration; ids={'103064449'}, value=['7a01c2e8a0bf32ed74b8252f1eb6a4cfb864024d']
+key=transatlantic  contributors; ids={'1846466409'}, value=['759679cba92d3a20bb3b6e599b247dae73424e02']
+Finished
+
+```
+
