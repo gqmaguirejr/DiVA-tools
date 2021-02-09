@@ -76,9 +76,9 @@ def process_corpus(corpus_file):
                 if author_name.find(target) >= 0:
                     existing_info=colaboration_team_info.get(author_name, False)
                     if existing_info:
-                        existing_info.append(id)
+                        existing_info.add(id)
                     else:
-                        colaboration_team_info[author_name]=[id]
+                        colaboration_team_info[author_name]={id}
 
                     existing_ids=colaboration_team_ids.get(author_name, False)
                     if existing_ids:
@@ -141,11 +141,20 @@ def main():
     process_corpus(corpus_file)
     if len(colaboration_team_info) > 0:
         print("Potential collaborations, teams, etc.")
-        for key in sorted(colaboration_team_info.keys()):
-            print("key={0}; ids={1}, value={2}".format(key, colaboration_team_ids[key], colaboration_team_info[key]))
+        if Verbose_Flag:
+            for key in sorted(colaboration_team_info.keys()):
+                print("key={0}; ids={1}, value={2}".format(key, colaboration_team_ids[key], colaboration_team_info[key]))
 
-    if Verbose_Flag:
-        print("xxx {0}{1}".format())
+    # output collected informatio
+    output_filename=corpus_file[:-5]+'_possible_collaborations_teams_etc.JSON'
+    with open(output_filename, 'w', encoding='utf-8') as output_FH:
+        for key in sorted(colaboration_team_info.keys()):
+            j_dict={'name': key, "author_ids": list(colaboration_team_ids[key]), "instances": list(colaboration_team_info[key])}
+            j_as_string = json.dumps(j_dict, ensure_ascii=False)#, indent=4
+            print(j_as_string, file=output_FH)
+
+
+    print("number of items found {0}".format(len(colaboration_team_info)))
 
     print("Finished")
 
