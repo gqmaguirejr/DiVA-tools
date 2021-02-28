@@ -32,7 +32,41 @@ import re
 import locale 
 locale.setlocale(locale.LC_ALL, 'sv_SE.UTF-8')
 
+target_words=['Collaboration', 'collaboration',
+              'Contributors',  'contributors', 
+              'Group', 'group', 
+              'NorPM',
+              'Scoap',
+              'Project', 'project',
+              'Team', 'team' ]
 
+def process_corpus(corpus_file):
+    global Verbose_Flag
+    global colaboration_team_info
+    global colaboration_team_ids
+    
+    # get S2 information from a shard
+
+    corpus_shard=[]
+    with open(corpus_file, 'r') as corpus_FH:
+        for line in corpus_FH:
+            try:
+                corpus_shard.append(json.loads(line))
+            except:
+                print("line={}".format(line))
+
+    print("entires in reduced corpus={}".format(len(corpus_shard)))
+
+    for ce in corpus_shard:
+        if Verbose_Flag:
+            print("id={0}".format(ce['id']))
+        id = ce['id']
+
+        s2_doi=ce.get('doi', False)
+        s2_pmid=ce.get('pmid', False)
+        s2_title=ce.get('title', False)
+        s2_authors=ce.get('authors', []) # s2_authors is a list of s2 authors
+        s2_year=ce.get('year', False)
 
         # compute the set of all the publications author IDs
         interesting_s2_authors=[]
@@ -95,46 +129,33 @@ def main():
         print('REMAINING :', remainder)
         
     if (len(remainder) < 1):
-        print("Insuffient arguments must provide authors.JSON\n")
+        print("Insuffient arguments must provide corpus.JSON\n")
         return
 
-    file_name=remainder[0]
+    corpus_file=remainder[0]
 
     pp = pprint.PrettyPrinter(indent=4) # configure prettyprinter
 
-    authors=[]
-    with open(file_name, 'r') as authors_FH:
-        for line in authors_FH:
-            try:
-                authors.append(json.loads(line))
-            except:
-                print("line={}".format(line))
-
-    print("entires in authors={}".format(len(authors)))
-
-    for a in authors:
+    colaboration_team_info=dict()
+    colaboration_team_ids=dict()
+    process_corpus(corpus_file)
+    if len(colaboration_team_info) > 0:
+        print("Potential collaborations, teams, etc.")
         if Verbose_Flag:
-            print("kthid={0}".format(a['kthid']))
-        id = a['kthid']
+            for key in sorted(colaboration_team_info.keys()):
+                print("key={0}; ids={1}, value={2}".format(key, colaboration_team_ids[key], colaboration_team_info[key]))
 
-        profile=a.get('profile', False)
-        aliases=a.get('aliases', False)
-
-        if profile:
-            f=profile.get('firstName', False)
-            l=profile.get('lastName', False)
-            if re.findall(r'[\u4e00-\u9fff]+', f):
-                print("kthid={0} firstName={1}".format(id, f))
-            if re.findall(r'[\u4e00-\u9fff]+', l):
-                print("kthid={0} lastName={1}".format(id, l))
-
-        if aliases:
-            for alias in aliases:
-                if re.findall(r'[\u4e00-\u9fff]+', alias):
-                print("kthid={0} alias={1}".format(id, alias))
+    # output collected informatio
+    output_filename=corpus_file[:-5]+'_possible_collaborations_teams_etc.JSON'
+    with open(output_filename, 'w', encoding='utf-8') as output_FH:
+        for key in sorted(colaboration_team_info.keys()):
+            j_dict={'name': key, "author_ids": list(colaboration_team_ids[key]), "instances": list(colaboration_team_info[key])}
+            j_as_string = json.dumps(j_dict, ensure_ascii=False)#, indent=4
+            print(j_as_string, file=output_FH)
 
 
-                
+    print("number of items found {0}".format(len(colaboration_team_info)))
+
     print("Finished")
 
 if __name__ == "__main__": main()
