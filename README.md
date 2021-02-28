@@ -779,3 +779,28 @@ Finished
 
 ```
 
+## find_chinese_characters.py
+Purpose: reads in an author JSON file and check for CJK characters in the names
+
+Input:
+```
+./find_chinese_characters.py authors_file.JSON 
+```
+
+Example:
+```
+time ./find_chinese_characters.py /z3/maguire/SemanticScholar/KTH_DiVA/authors-MA-RC.JSON
+```
+
+Output:
+```
+found CJK in {"kthid": "xxx", "profile": {"firstName": "X", "lastName": "Y"}, "aliases": [{"Name": "Y, X.", "PID": [1313937]}, {"Name": "刘", "PID": [xyz]}]}
+
+entires in authors=10172
+kthid=xxxx alias={'Name': '刘', 'PID': [xyz]}
+...
+key=the nTOF Collaboration; ids={'103064449'}, value=['7a01c2e8a0bf32ed74b8252f1eb6a4cfb864024d']
+key=transatlantic  contributors; ids={'1846466409'}, value=['759679cba92d3a20bb3b6e599b247dae73424e02']
+Finished
+
+```
