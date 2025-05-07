@@ -1,5 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
+# -*- mode: python; python-indent-offset: 4 -*-
 # the above encoding information is as per http://www.python.org/dev/peps/pep-0263/
 #
 # Purpose: To fetch and process publication information from DiVA for an author
@@ -22,10 +23,11 @@
 #
 #
 
-import csv, codecs, cStringIO
+import csv
 import datetime
 #from subprocess import call
-import urllib
+#import urllib
+import urllib.request
 
 import optparse
 import sys
@@ -97,9 +99,9 @@ def main():
 
     Verbose_Flag=options.verbose
     if Verbose_Flag:
-        print 'ARGV      :', sys.argv[1:]
-        print 'VERBOSE   :', options.verbose
-        print 'REMAINING :', remainder
+        print("ARGV      :{}".format(sys.argv[1:]))
+        print("VERBOSE   :{}".format(options.verbose))
+        print("REMAINING :{}".format(remainder))
 
     now = datetime.datetime.now()
 
@@ -121,8 +123,8 @@ def main():
 
         url='http://kth.diva-portal.org/smash/export.jsf?format=mods&addFilename=true&aq=[[{"personId":"' + users_kthid +'"}]]&aqe=[]&aq2=[[{"dateIssued":{"from":"1900","to":"3000"}},{"publicationTypeCode":["bookReview","review","article","artisticOutput","book","chapter","manuscript","collection","other","conferencePaper","patent","conferenceProceedings","report","dataset","dissertation","comprehensiveDoctoralThesis","monographDoctoralThesis","comprehensiveLicentiateThesis","monographLicentiateThesis","studentThesis"]}]]&onlyFullText=false&noOfRows=50000&sortOrder=title_sort_asc&sortOrder2=title_sort_asc'
 
-        print url
-        urllib.urlretrieve(url, users_name+".mods")
+        print("target url is {}".format(url))
+        urllib.request.urlretrieve(url, users_name+".mods")
     except Exception as e:
         print(str(e))
 

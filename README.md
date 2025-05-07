@@ -804,3 +804,631 @@ key=transatlantic  contributors; ids={'1846466409'}, value=['759679cba92d3a20bb3
 Finished
 
 ```
+## ./diva_cora_records.py
+Purpose: reads some information from the new DiVA based on Cora 
+
+Input:
+```
+./diva_cora_records.py
+```
+
+Output:
+```
+r.status_code=200
+recordType information for diva-person
+{'record': {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                     'rel': 'read',
+                                     'requestMethod': 'GET',
+                                     'url': 'https://pre.diva-portal.org/rest/record/recordType/diva-person'},
+                            'read_incoming_links': {'accept': 'application/vnd.uub.recordList+json',
+                                                    'rel': 'read_incoming_links',
+                                                    'requestMethod': 'GET',
+                                                    'url': 'https://pre.diva-portal.org/rest/record/recordType/diva-person/incomingLinks'}},
+            'data': {'children': [{'children': [{'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                                          'rel': 'read',
+                                                                          'requestMethod': 'GET',
+                                                                          'url': 'https://pre.diva-portal.org/rest/record/validationType/recordType'}},
+                                                 'children': [{'name': 'linkedRecordType',
+                                                               'value': 'validationType'},
+                                                              {'name': 'linkedRecordId',
+                                                               'value': 'recordType'}],
+                                                 'name': 'validationType'},
+                                                {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                                          'rel': 'read',
+                                                                          'requestMethod': 'GET',
+                                                                          'url': 'https://pre.diva-portal.org/rest/record/system/diva'}},
+                                                 'children': [{'name': 'linkedRecordType',
+                                                               'value': 'system'},
+                                                              {'name': 'linkedRecordId',
+                                                               'value': 'diva'}],
+                                                 'name': 'dataDivider'},
+                                                {'name': 'id',
+                                                 'value': 'diva-person'},
+                                                {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                                          'rel': 'read',
+                                                                          'requestMethod': 'GET',
+                                                                          'url': 'https://pre.diva-portal.org/rest/record/recordType/recordType'}},
+                                                 'children': [{'name': 'linkedRecordType',
+                                                               'value': 'recordType'},
+                                                              {'name': 'linkedRecordId',
+                                                               'value': 'recordType'}],
+                                                 'name': 'type'},
+                                                {'children': [{'name': 'linkedRecordType',
+                                                               'value': 'user'},
+                                                              {'name': 'linkedRecordId',
+                                                               'value': '161616'}],
+                                                 'name': 'createdBy'},
+                                                {'name': 'tsCreated',
+                                                 'value': '2024-09-17T10:03:45.276089Z'},
+                                                {'children': [{'name': 'tsUpdated',
+                                                               'value': '2025-04-17T12:31:45.366104Z'},
+                                                              {'children': [{'name': 'linkedRecordType',
+                                                                             'value': 'user'},
+                                                                            {'name': 'linkedRecordId',
+                                                                             'value': '161616'}],
+                                                               'name': 'updatedBy'}],
+                                                 'name': 'updated',
+                                                 'repeatId': '0'}],
+                                   'name': 'recordInfo'},
+                                  {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                            'rel': 'read',
+                                                            'requestMethod': 'GET',
+                                                            'url': 'https://pre.diva-portal.org/rest/record/metadata/personUpdateGroup'}},
+                                   'children': [{'name': 'linkedRecordType',
+                                                 'value': 'metadata'},
+                                                {'name': 'linkedRecordId',
+                                                 'value': 'personUpdateGroup'}],
+                                   'name': 'metadataId'},
+                                  {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                            'rel': 'read',
+                                                            'requestMethod': 'GET',
+                                                            'url': 'https://pre.diva-portal.org/rest/record/presentation/personUpdateOutputPGroup'}},
+                                   'children': [{'name': 'linkedRecordType',
+                                                 'value': 'presentation'},
+                                                {'name': 'linkedRecordId',
+                                                 'value': 'personUpdateOutputPGroup'}],
+                                   'name': 'presentationViewId'},
+                                  {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                            'rel': 'read',
+                                                            'requestMethod': 'GET',
+                                                            'url': 'https://pre.diva-portal.org/rest/record/presentation/diva-personMenuPGroup'}},
+                                   'children': [{'name': 'linkedRecordType',
+                                                 'value': 'presentation'},
+                                                {'name': 'linkedRecordId',
+                                                 'value': 'diva-personMenuPGroup'}],
+                                   'name': 'menuPresentationViewId'},
+                                  {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                            'rel': 'read',
+                                                            'requestMethod': 'GET',
+                                                            'url': 'https://pre.diva-portal.org/rest/record/presentation/diva-personListPGroup'}},
+                                   'children': [{'name': 'linkedRecordType',
+                                                 'value': 'presentation'},
+                                                {'name': 'linkedRecordId',
+                                                 'value': 'diva-personListPGroup'}],
+                                   'name': 'listPresentationViewId'},
+                                  {'name': 'userSuppliedId', 'value': 'false'},
+                                  {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                            'rel': 'read',
+                                                            'requestMethod': 'GET',
+                                                            'url': 'https://pre.diva-portal.org/rest/record/text/diva-personText'}},
+                                   'children': [{'name': 'linkedRecordType',
+                                                 'value': 'text'},
+                                                {'name': 'linkedRecordId',
+                                                 'value': 'diva-personText'}],
+                                   'name': 'textId'},
+                                  {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                            'rel': 'read',
+                                                            'requestMethod': 'GET',
+                                                            'url': 'https://pre.diva-portal.org/rest/record/text/diva-personDefText'}},
+                                   'children': [{'name': 'linkedRecordType',
+                                                 'value': 'text'},
+                                                {'name': 'linkedRecordId',
+                                                 'value': 'diva-personDefText'}],
+                                   'name': 'defTextId'},
+                                  {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                            'rel': 'read',
+                                                            'requestMethod': 'GET',
+                                                            'url': 'https://pre.diva-portal.org/rest/record/search/diva-personSearch'}},
+                                   'children': [{'name': 'linkedRecordType',
+                                                 'value': 'search'},
+                                                {'name': 'linkedRecordId',
+                                                 'value': 'diva-personSearch'}],
+                                   'name': 'search'},
+                                  {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                            'rel': 'read',
+                                                            'requestMethod': 'GET',
+                                                            'url': 'https://pre.diva-portal.org/rest/record/presentation/diva-personAutocompletePGroup'}},
+                                   'children': [{'name': 'linkedRecordType',
+                                                 'value': 'presentation'},
+                                                {'name': 'linkedRecordId',
+                                                 'value': 'diva-personAutocompletePGroup'}],
+                                   'name': 'autocompletePresentationView'},
+                                  {'name': 'groupOfRecordType',
+                                   'repeatId': '0',
+                                   'value': 'controlledLists'},
+                                  {'name': 'public', 'value': 'true'},
+                                  {'name': 'storeInArchive', 'value': 'true'},
+                                  {'name': 'usePermissionUnit',
+                                   'value': 'false'},
+                                  {'name': 'useVisibility', 'value': 'false'},
+                                  {'name': 'recordTypeCategory',
+                                   'repeatId': '2',
+                                   'value': 'clientNavigation'}],
+                     'name': 'recordType'}}}
+'{"name":"textSearch","children":[{"name":"include","children":[{"name":"includePart","children":[{"name":"translationSearchTerm","value":"kth"}]}]}]}'| len(search_data_as_string)=149 last char is }
+payload={'searchData': '{"name":"textSearch","children":[{"name":"include","children":[{"name":"includePart","children":[{"name":"translationSearchTerm","value":"kth"}]}]}]}'}
+r.status_code=401
+r.status_code=200
+r.text='<?xml version="1.0" encoding="UTF-8"?><dataList><fromNo>0</fromNo><toNo>0</toNo><totalNo>0</totalNo><containDataOfType>diva-person</containDataOfType><data/></dataList>'
+accessible_data='<?xml version="1.0" encoding="UTF-8"?><dataList><fromNo>0</fromNo><toNo>0</toNo><totalNo>0</totalNo><containDataOfType>diva-person</containDataOfType><data/></dataList>'
+001: pr=''
+r.text='{"record":{"data":{"children":[{"children":[{"name":"id","value":"divaPre"},{"children":[{"name":"linkedRecordType","value":"recordType"},{"name":"linkedRecordId","value":"system"}],"actionLinks":{"read":{"requestMethod":"GET","rel":"read","url":"https://pre.diva-portal.org/rest/record/recordType/system","accept":"application/vnd.uub.record+json"}},"name":"type"},{"children":[{"name":"linkedRecordType","value":"validationType"},{"name":"linkedRecordId","value":"system"}],"actionLinks":{"read":{"requestMethod":"GET","rel":"read","url":"https://pre.diva-portal.org/rest/record/validationType/system","accept":"application/vnd.uub.record+json"}},"name":"validationType"},{"children":[{"name":"linkedRecordType","value":"system"},{"name":"linkedRecordId","value":"divaPre"}],"actionLinks":{"read":{"requestMethod":"GET","rel":"read","url":"https://pre.diva-portal.org/rest/record/system/divaPre","accept":"application/vnd.uub.record+json"}},"name":"dataDivider"},{"repeatId":"0","children":[{"children":[{"name":"linkedRecordType","value":"user"},{"name":"linkedRecordId","value":"161616"}],"name":"updatedBy"},{"name":"tsUpdated","value":"2024-04-22T12:18:16.037653Z"}],"name":"updated"},{"repeatId":"1","children":[{"children":[{"name":"linkedRecordType","value":"user"},{"name":"linkedRecordId","value":"161616"}],"name":"updatedBy"},{"name":"tsUpdated","value":"2024-04-22T12:20:42.663339Z"}],"name":"updated"},{"repeatId":"2","children":[{"children":[{"name":"linkedRecordType","value":"user"},{"name":"linkedRecordId","value":"161616"}],"name":"updatedBy"},{"name":"tsUpdated","value":"2024-04-25T07:28:24.711029Z"}],"name":"updated"},{"children":[{"name":"linkedRecordType","value":"user"},{"name":"linkedRecordId","value":"161616"}],"name":"createdBy"},{"name":"tsCreated","value":"2024-04-22T12:18:16.037653Z"}],"name":"recordInfo"},{"name":"systemName","value":"DiVAPreSystem"},{"children":[{"name":"linkedRecordType","value":"text"},{"name":"linkedRecordId","value":"divaPreText"}],"actionLinks":{"read":{"requestMethod":"GET","rel":"read","url":"https://pre.diva-portal.org/rest/record/text/divaPreText","accept":"application/vnd.uub.record+json"}},"name":"textId"},{"children":[{"name":"linkedRecordType","value":"text"},{"name":"linkedRecordId","value":"divaPreDefText"}],"actionLinks":{"read":{"requestMethod":"GET","rel":"read","url":"https://pre.diva-portal.org/rest/record/text/divaPreDefText","accept":"application/vnd.uub.record+json"}},"name":"defTextId"}],"name":"system"},"actionLinks":{"read":{"requestMethod":"GET","rel":"read","url":"https://pre.diva-portal.org/rest/record/system/divaPre","accept":"application/vnd.uub.record+json"},"read_incoming_links":{"requestMethod":"GET","rel":"read_incoming_links","url":"https://pre.diva-portal.org/rest/record/system/divaPre/incomingLinks","accept":"application/vnd.uub.recordList+json"}}}}'
+record_type='system' id='divaPre': rr={'record': {'data': {'children': [{'children': [{'name': 'id', 'value': 'divaPre'}, {'children': [{'name': 'linkedRecordType', 'value': 'recordType'}, {'name': 'linkedRecordId', 'value': 'system'}], 'actionLinks': {'read': {'requestMethod': 'GET', 'rel': 'read', 'url': 'https://pre.diva-portal.org/rest/record/recordType/system', 'accept': 'application/vnd.uub.record+json'}}, 'name': 'type'}, {'children': [{'name': 'linkedRecordType', 'value': 'validationType'}, {'name': 'linkedRecordId', 'value': 'system'}], 'actionLinks': {'read': {'requestMethod': 'GET', 'rel': 'read', 'url': 'https://pre.diva-portal.org/rest/record/validationType/system', 'accept': 'application/vnd.uub.record+json'}}, 'name': 'validationType'}, {'children': [{'name': 'linkedRecordType', 'value': 'system'}, {'name': 'linkedRecordId', 'value': 'divaPre'}], 'actionLinks': {'read': {'requestMethod': 'GET', 'rel': 'read', 'url': 'https://pre.diva-portal.org/rest/record/system/divaPre', 'accept': 'application/vnd.uub.record+json'}}, 'name': 'dataDivider'}, {'repeatId': '0', 'children': [{'children': [{'name': 'linkedRecordType', 'value': 'user'}, {'name': 'linkedRecordId', 'value': '161616'}], 'name': 'updatedBy'}, {'name': 'tsUpdated', 'value': '2024-04-22T12:18:16.037653Z'}], 'name': 'updated'}, {'repeatId': '1', 'children': [{'children': [{'name': 'linkedRecordType', 'value': 'user'}, {'name': 'linkedRecordId', 'value': '161616'}], 'name': 'updatedBy'}, {'name': 'tsUpdated', 'value': '2024-04-22T12:20:42.663339Z'}], 'name': 'updated'}, {'repeatId': '2', 'children': [{'children': [{'name': 'linkedRecordType', 'value': 'user'}, {'name': 'linkedRecordId', 'value': '161616'}], 'name': 'updatedBy'}, {'name': 'tsUpdated', 'value': '2024-04-25T07:28:24.711029Z'}], 'name': 'updated'}, {'children': [{'name': 'linkedRecordType', 'value': 'user'}, {'name': 'linkedRecordId', 'value': '161616'}], 'name': 'createdBy'}, {'name': 'tsCreated', 'value': '2024-04-22T12:18:16.037653Z'}], 'name': 'recordInfo'}, {'name': 'systemName', 'value': 'DiVAPreSystem'}, {'children': [{'name': 'linkedRecordType', 'value': 'text'}, {'name': 'linkedRecordId', 'value': 'divaPreText'}], 'actionLinks': {'read': {'requestMethod': 'GET', 'rel': 'read', 'url': 'https://pre.diva-portal.org/rest/record/text/divaPreText', 'accept': 'application/vnd.uub.record+json'}}, 'name': 'textId'}, {'children': [{'name': 'linkedRecordType', 'value': 'text'}, {'name': 'linkedRecordId', 'value': 'divaPreDefText'}], 'actionLinks': {'read': {'requestMethod': 'GET', 'rel': 'read', 'url': 'https://pre.diva-portal.org/rest/record/text/divaPreDefText', 'accept': 'application/vnd.uub.record+json'}}, 'name': 'defTextId'}], 'name': 'system'}, 'actionLinks': {'read': {'requestMethod': 'GET', 'rel': 'read', 'url': 'https://pre.diva-portal.org/rest/record/system/divaPre', 'accept': 'application/vnd.uub.record+json'}, 'read_incoming_links': {'requestMethod': 'GET', 'rel': 'read_incoming_links', 'url': 'https://pre.diva-portal.org/rest/record/system/divaPre/incomingLinks', 'accept': 'application/vnd.uub.recordList+json'}}}}
+{'record': {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                     'rel': 'read',
+                                     'requestMethod': 'GET',
+                                     'url': 'https://pre.diva-portal.org/rest/record/system/divaPre'},
+                            'read_incoming_links': {'accept': 'application/vnd.uub.recordList+json',
+                                                    'rel': 'read_incoming_links',
+                                                    'requestMethod': 'GET',
+                                                    'url': 'https://pre.diva-portal.org/rest/record/system/divaPre/incomingLinks'}},
+            'data': {'children': [{'children': [{'name': 'id',
+                                                 'value': 'divaPre'},
+                                                {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                                          'rel': 'read',
+                                                                          'requestMethod': 'GET',
+                                                                          'url': 'https://pre.diva-portal.org/rest/record/recordType/system'}},
+                                                 'children': [{'name': 'linkedRecordType',
+                                                               'value': 'recordType'},
+                                                              {'name': 'linkedRecordId',
+                                                               'value': 'system'}],
+                                                 'name': 'type'},
+                                                {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                                          'rel': 'read',
+                                                                          'requestMethod': 'GET',
+                                                                          'url': 'https://pre.diva-portal.org/rest/record/validationType/system'}},
+                                                 'children': [{'name': 'linkedRecordType',
+                                                               'value': 'validationType'},
+                                                              {'name': 'linkedRecordId',
+                                                               'value': 'system'}],
+                                                 'name': 'validationType'},
+                                                {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                                          'rel': 'read',
+                                                                          'requestMethod': 'GET',
+                                                                          'url': 'https://pre.diva-portal.org/rest/record/system/divaPre'}},
+                                                 'children': [{'name': 'linkedRecordType',
+                                                               'value': 'system'},
+                                                              {'name': 'linkedRecordId',
+                                                               'value': 'divaPre'}],
+                                                 'name': 'dataDivider'},
+                                                {'children': [{'children': [{'name': 'linkedRecordType',
+                                                                             'value': 'user'},
+                                                                            {'name': 'linkedRecordId',
+                                                                             'value': '161616'}],
+                                                               'name': 'updatedBy'},
+                                                              {'name': 'tsUpdated',
+                                                               'value': '2024-04-22T12:18:16.037653Z'}],
+                                                 'name': 'updated',
+                                                 'repeatId': '0'},
+                                                {'children': [{'children': [{'name': 'linkedRecordType',
+                                                                             'value': 'user'},
+                                                                            {'name': 'linkedRecordId',
+                                                                             'value': '161616'}],
+                                                               'name': 'updatedBy'},
+                                                              {'name': 'tsUpdated',
+                                                               'value': '2024-04-22T12:20:42.663339Z'}],
+                                                 'name': 'updated',
+                                                 'repeatId': '1'},
+                                                {'children': [{'children': [{'name': 'linkedRecordType',
+                                                                             'value': 'user'},
+                                                                            {'name': 'linkedRecordId',
+                                                                             'value': '161616'}],
+                                                               'name': 'updatedBy'},
+                                                              {'name': 'tsUpdated',
+                                                               'value': '2024-04-25T07:28:24.711029Z'}],
+                                                 'name': 'updated',
+                                                 'repeatId': '2'},
+                                                {'children': [{'name': 'linkedRecordType',
+                                                               'value': 'user'},
+                                                              {'name': 'linkedRecordId',
+                                                               'value': '161616'}],
+                                                 'name': 'createdBy'},
+                                                {'name': 'tsCreated',
+                                                 'value': '2024-04-22T12:18:16.037653Z'}],
+                                   'name': 'recordInfo'},
+                                  {'name': 'systemName',
+                                   'value': 'DiVAPreSystem'},
+                                  {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                            'rel': 'read',
+                                                            'requestMethod': 'GET',
+                                                            'url': 'https://pre.diva-portal.org/rest/record/text/divaPreText'}},
+                                   'children': [{'name': 'linkedRecordType',
+                                                 'value': 'text'},
+                                                {'name': 'linkedRecordId',
+                                                 'value': 'divaPreText'}],
+                                   'name': 'textId'},
+                                  {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                            'rel': 'read',
+                                                            'requestMethod': 'GET',
+                                                            'url': 'https://pre.diva-portal.org/rest/record/text/divaPreDefText'}},
+                                   'children': [{'name': 'linkedRecordType',
+                                                 'value': 'text'},
+                                                {'name': 'linkedRecordId',
+                                                 'value': 'divaPreDefText'}],
+                                   'name': 'defTextId'}],
+                     'name': 'system'}}}
+r.text='{"record":{"data":{"children":[{"children":[{"name":"id","value":"kthTestDiVAwr"},{"children":[{"name":"linkedRecordType","value":"recordType"},{"name":"linkedRecordId","value":"login"}],"actionLinks":{"read":{"requestMethod":"GET","rel":"read","url":"https://pre.diva-portal.org/rest/record/recordType/login","accept":"application/vnd.uub.record+json"}},"name":"type"},{"children":[{"name":"linkedRecordType","value":"validationType"},{"name":"linkedRecordId","value":"loginWebRedirect"}],"actionLinks":{"read":{"requestMethod":"GET","rel":"read","url":"https://pre.diva-portal.org/rest/record/validationType/loginWebRedirect","accept":"application/vnd.uub.record+json"}},"name":"validationType"},{"children":[{"name":"linkedRecordType","value":"system"},{"name":"linkedRecordId","value":"divaPre"}],"actionLinks":{"read":{"requestMethod":"GET","rel":"read","url":"https://pre.diva-portal.org/rest/record/system/divaPre","accept":"application/vnd.uub.record+json"}},"name":"dataDivider"},{"repeatId":"0","children":[{"children":[{"name":"linkedRecordType","value":"user"},{"name":"linkedRecordId","value":"coraUser:4412982402853626"}],"name":"updatedBy"},{"name":"tsUpdated","value":"2020-10-16T10:47:55.864547Z"}],"name":"updated"},{"repeatId":"1","children":[{"children":[{"name":"linkedRecordType","value":"user"},{"name":"linkedRecordId","value":"coraUser:4412982402853626"}],"name":"updatedBy"},{"name":"tsUpdated","value":"2020-10-16T10:51:16.374927Z"}],"name":"updated"},{"repeatId":"2","children":[{"children":[{"name":"linkedRecordType","value":"user"},{"name":"linkedRecordId","value":"coraUser:490742519075086"}],"name":"updatedBy"},{"name":"tsUpdated","value":"2021-03-04T10:07:20.960605Z"}],"name":"updated"},{"repeatId":"3","children":[{"children":[{"name":"linkedRecordType","value":"user"},{"name":"linkedRecordId","value":"coraUser:490742519075086"}],"name":"updatedBy"},{"name":"tsUpdated","value":"2023-03-03T13:24:51.152890Z"}],"name":"updated"},{"repeatId":"4","children":[{"children":[{"name":"linkedRecordType","value":"user"},{"name":"linkedRecordId","value":"161616"}],"name":"updatedBy"},{"name":"tsUpdated","value":"2024-04-22T13:06:12.198769Z"}],"name":"updated"},{"repeatId":"5","children":[{"children":[{"name":"linkedRecordType","value":"user"},{"name":"linkedRecordId","value":"141414"}],"name":"updatedBy"},{"name":"tsUpdated","value":"2024-05-21T07:06:31.098947Z"}],"name":"updated"},{"children":[{"name":"linkedRecordType","value":"user"},{"name":"linkedRecordId","value":"coraUser:4412982402853626"}],"name":"createdBy"},{"name":"tsCreated","value":"2020-10-16T10:47:55.864547Z"}],"name":"recordInfo"},{"name":"loginName","value":"DiVA Test KTH"},{"name":"url","value":"https://pre.diva-portal.org/Shibboleth.sso/Login/kth?target=https://pre.diva-portal.org/idplogin/login"}],"name":"login","attributes":{"type":"webRedirect"}},"actionLinks":{"read":{"requestMethod":"GET","rel":"read","url":"https://pre.diva-portal.org/rest/record/login/kthTestDiVAwr","accept":"application/vnd.uub.record+json"},"read_incoming_links":{"requestMethod":"GET","rel":"read_incoming_links","url":"https://pre.diva-portal.org/rest/record/login/kthTestDiVAwr/incomingLinks","accept":"application/vnd.uub.recordList+json"}}}}'
+record_type='login' id='kthTestDiVAwr': rr={'record': {'data': {'children': [{'children': [{'name': 'id', 'value': 'kthTestDiVAwr'}, {'children': [{'name': 'linkedRecordType', 'value': 'recordType'}, {'name': 'linkedRecordId', 'value': 'login'}], 'actionLinks': {'read': {'requestMethod': 'GET', 'rel': 'read', 'url': 'https://pre.diva-portal.org/rest/record/recordType/login', 'accept': 'application/vnd.uub.record+json'}}, 'name': 'type'}, {'children': [{'name': 'linkedRecordType', 'value': 'validationType'}, {'name': 'linkedRecordId', 'value': 'loginWebRedirect'}], 'actionLinks': {'read': {'requestMethod': 'GET', 'rel': 'read', 'url': 'https://pre.diva-portal.org/rest/record/validationType/loginWebRedirect', 'accept': 'application/vnd.uub.record+json'}}, 'name': 'validationType'}, {'children': [{'name': 'linkedRecordType', 'value': 'system'}, {'name': 'linkedRecordId', 'value': 'divaPre'}], 'actionLinks': {'read': {'requestMethod': 'GET', 'rel': 'read', 'url': 'https://pre.diva-portal.org/rest/record/system/divaPre', 'accept': 'application/vnd.uub.record+json'}}, 'name': 'dataDivider'}, {'repeatId': '0', 'children': [{'children': [{'name': 'linkedRecordType', 'value': 'user'}, {'name': 'linkedRecordId', 'value': 'coraUser:4412982402853626'}], 'name': 'updatedBy'}, {'name': 'tsUpdated', 'value': '2020-10-16T10:47:55.864547Z'}], 'name': 'updated'}, {'repeatId': '1', 'children': [{'children': [{'name': 'linkedRecordType', 'value': 'user'}, {'name': 'linkedRecordId', 'value': 'coraUser:4412982402853626'}], 'name': 'updatedBy'}, {'name': 'tsUpdated', 'value': '2020-10-16T10:51:16.374927Z'}], 'name': 'updated'}, {'repeatId': '2', 'children': [{'children': [{'name': 'linkedRecordType', 'value': 'user'}, {'name': 'linkedRecordId', 'value': 'coraUser:490742519075086'}], 'name': 'updatedBy'}, {'name': 'tsUpdated', 'value': '2021-03-04T10:07:20.960605Z'}], 'name': 'updated'}, {'repeatId': '3', 'children': [{'children': [{'name': 'linkedRecordType', 'value': 'user'}, {'name': 'linkedRecordId', 'value': 'coraUser:490742519075086'}], 'name': 'updatedBy'}, {'name': 'tsUpdated', 'value': '2023-03-03T13:24:51.152890Z'}], 'name': 'updated'}, {'repeatId': '4', 'children': [{'children': [{'name': 'linkedRecordType', 'value': 'user'}, {'name': 'linkedRecordId', 'value': '161616'}], 'name': 'updatedBy'}, {'name': 'tsUpdated', 'value': '2024-04-22T13:06:12.198769Z'}], 'name': 'updated'}, {'repeatId': '5', 'children': [{'children': [{'name': 'linkedRecordType', 'value': 'user'}, {'name': 'linkedRecordId', 'value': '141414'}], 'name': 'updatedBy'}, {'name': 'tsUpdated', 'value': '2024-05-21T07:06:31.098947Z'}], 'name': 'updated'}, {'children': [{'name': 'linkedRecordType', 'value': 'user'}, {'name': 'linkedRecordId', 'value': 'coraUser:4412982402853626'}], 'name': 'createdBy'}, {'name': 'tsCreated', 'value': '2020-10-16T10:47:55.864547Z'}], 'name': 'recordInfo'}, {'name': 'loginName', 'value': 'DiVA Test KTH'}, {'name': 'url', 'value': 'https://pre.diva-portal.org/Shibboleth.sso/Login/kth?target=https://pre.diva-portal.org/idplogin/login'}], 'name': 'login', 'attributes': {'type': 'webRedirect'}}, 'actionLinks': {'read': {'requestMethod': 'GET', 'rel': 'read', 'url': 'https://pre.diva-portal.org/rest/record/login/kthTestDiVAwr', 'accept': 'application/vnd.uub.record+json'}, 'read_incoming_links': {'requestMethod': 'GET', 'rel': 'read_incoming_links', 'url': 'https://pre.diva-portal.org/rest/record/login/kthTestDiVAwr/incomingLinks', 'accept': 'application/vnd.uub.recordList+json'}}}}
+{'record': {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                     'rel': 'read',
+                                     'requestMethod': 'GET',
+                                     'url': 'https://pre.diva-portal.org/rest/record/login/kthTestDiVAwr'},
+                            'read_incoming_links': {'accept': 'application/vnd.uub.recordList+json',
+                                                    'rel': 'read_incoming_links',
+                                                    'requestMethod': 'GET',
+                                                    'url': 'https://pre.diva-portal.org/rest/record/login/kthTestDiVAwr/incomingLinks'}},
+            'data': {'attributes': {'type': 'webRedirect'},
+                     'children': [{'children': [{'name': 'id',
+                                                 'value': 'kthTestDiVAwr'},
+                                                {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                                          'rel': 'read',
+                                                                          'requestMethod': 'GET',
+                                                                          'url': 'https://pre.diva-portal.org/rest/record/recordType/login'}},
+                                                 'children': [{'name': 'linkedRecordType',
+                                                               'value': 'recordType'},
+                                                              {'name': 'linkedRecordId',
+                                                               'value': 'login'}],
+                                                 'name': 'type'},
+                                                {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                                          'rel': 'read',
+                                                                          'requestMethod': 'GET',
+                                                                          'url': 'https://pre.diva-portal.org/rest/record/validationType/loginWebRedirect'}},
+                                                 'children': [{'name': 'linkedRecordType',
+                                                               'value': 'validationType'},
+                                                              {'name': 'linkedRecordId',
+                                                               'value': 'loginWebRedirect'}],
+                                                 'name': 'validationType'},
+                                                {'actionLinks': {'read': {'accept': 'application/vnd.uub.record+json',
+                                                                          'rel': 'read',
+                                                                          'requestMethod': 'GET',
+                                                                          'url': 'https://pre.diva-portal.org/rest/record/system/divaPre'}},
+                                                 'children': [{'name': 'linkedRecordType',
+                                                               'value': 'system'},
+                                                              {'name': 'linkedRecordId',
+                                                               'value': 'divaPre'}],
+                                                 'name': 'dataDivider'},
+                                                {'children': [{'children': [{'name': 'linkedRecordType',
+                                                                             'value': 'user'},
+                                                                            {'name': 'linkedRecordId',
+                                                                             'value': 'coraUser:4412982402853626'}],
+                                                               'name': 'updatedBy'},
+                                                              {'name': 'tsUpdated',
+                                                               'value': '2020-10-16T10:47:55.864547Z'}],
+                                                 'name': 'updated',
+                                                 'repeatId': '0'},
+                                                {'children': [{'children': [{'name': 'linkedRecordType',
+                                                                             'value': 'user'},
+                                                                            {'name': 'linkedRecordId',
+                                                                             'value': 'coraUser:4412982402853626'}],
+                                                               'name': 'updatedBy'},
+                                                              {'name': 'tsUpdated',
+                                                               'value': '2020-10-16T10:51:16.374927Z'}],
+                                                 'name': 'updated',
+                                                 'repeatId': '1'},
+                                                {'children': [{'children': [{'name': 'linkedRecordType',
+                                                                             'value': 'user'},
+                                                                            {'name': 'linkedRecordId',
+                                                                             'value': 'coraUser:490742519075086'}],
+                                                               'name': 'updatedBy'},
+                                                              {'name': 'tsUpdated',
+                                                               'value': '2021-03-04T10:07:20.960605Z'}],
+                                                 'name': 'updated',
+                                                 'repeatId': '2'},
+                                                {'children': [{'children': [{'name': 'linkedRecordType',
+                                                                             'value': 'user'},
+                                                                            {'name': 'linkedRecordId',
+                                                                             'value': 'coraUser:490742519075086'}],
+                                                               'name': 'updatedBy'},
+                                                              {'name': 'tsUpdated',
+                                                               'value': '2023-03-03T13:24:51.152890Z'}],
+                                                 'name': 'updated',
+                                                 'repeatId': '3'},
+                                                {'children': [{'children': [{'name': 'linkedRecordType',
+                                                                             'value': 'user'},
+                                                                            {'name': 'linkedRecordId',
+                                                                             'value': '161616'}],
+                                                               'name': 'updatedBy'},
+                                                              {'name': 'tsUpdated',
+                                                               'value': '2024-04-22T13:06:12.198769Z'}],
+                                                 'name': 'updated',
+                                                 'repeatId': '4'},
+                                                {'children': [{'children': [{'name': 'linkedRecordType',
+                                                                             'value': 'user'},
+                                                                            {'name': 'linkedRecordId',
+                                                                             'value': '141414'}],
+                                                               'name': 'updatedBy'},
+                                                              {'name': 'tsUpdated',
+                                                               'value': '2024-05-21T07:06:31.098947Z'}],
+                                                 'name': 'updated',
+                                                 'repeatId': '5'},
+                                                {'children': [{'name': 'linkedRecordType',
+                                                               'value': 'user'},
+                                                              {'name': 'linkedRecordId',
+                                                               'value': 'coraUser:4412982402853626'}],
+                                                 'name': 'createdBy'},
+                                                {'name': 'tsCreated',
+                                                 'value': '2020-10-16T10:47:55.864547Z'}],
+                                   'name': 'recordInfo'},
+                                  {'name': 'loginName',
+                                   'value': 'DiVA Test KTH'},
+                                  {'name': 'url',
+                                   'value': 'https://pre.diva-portal.org/Shibboleth.sso/Login/kth?target=https://pre.diva-portal.org/idplogin/login'}],
+                     'name': 'login'}}}
+type of login is webRedirect
+id=kthTestDiVAwr
+type children: [{'name': 'linkedRecordType', 'value': 'recordType'}, {'name': 'linkedRecordId', 'value': 'login'}] actionlinks: {'read': {'requestMethod': 'GET', 'rel': 'read', 'url': 'https://pre.diva-portal.org/rest/record/recordType/login', 'accept': 'application/vnd.uub.record+json'}}
+validationType children: [{'name': 'linkedRecordType', 'value': 'validationType'}, {'name': 'linkedRecordId', 'value': 'loginWebRedirect'}] actionlinks: {'read': {'requestMethod': 'GET', 'rel': 'read', 'url': 'https://pre.diva-portal.org/rest/record/validationType/loginWebRedirect', 'accept': 'application/vnd.uub.record+json'}}
+dataDivider children: [{'name': 'linkedRecordType', 'value': 'system'}, {'name': 'linkedRecordId', 'value': 'divaPre'}] actionlinks: {'read': {'requestMethod': 'GET', 'rel': 'read', 'url': 'https://pre.diva-portal.org/rest/record/system/divaPre', 'accept': 'application/vnd.uub.record+json'}}
+updated children: [{'children': [{'name': 'linkedRecordType', 'value': 'user'}, {'name': 'linkedRecordId', 'value': 'coraUser:4412982402853626'}], 'name': 'updatedBy'}, {'name': 'tsUpdated', 'value': '2020-10-16T10:47:55.864547Z'}] actionlinks: None
+updated children: [{'children': [{'name': 'linkedRecordType', 'value': 'user'}, {'name': 'linkedRecordId', 'value': 'coraUser:4412982402853626'}], 'name': 'updatedBy'}, {'name': 'tsUpdated', 'value': '2020-10-16T10:51:16.374927Z'}] actionlinks: None
+updated children: [{'children': [{'name': 'linkedRecordType', 'value': 'user'}, {'name': 'linkedRecordId', 'value': 'coraUser:490742519075086'}], 'name': 'updatedBy'}, {'name': 'tsUpdated', 'value': '2021-03-04T10:07:20.960605Z'}] actionlinks: None
+updated children: [{'children': [{'name': 'linkedRecordType', 'value': 'user'}, {'name': 'linkedRecordId', 'value': 'coraUser:490742519075086'}], 'name': 'updatedBy'}, {'name': 'tsUpdated', 'value': '2023-03-03T13:24:51.152890Z'}] actionlinks: None
+updated children: [{'children': [{'name': 'linkedRecordType', 'value': 'user'}, {'name': 'linkedRecordId', 'value': '161616'}], 'name': 'updatedBy'}, {'name': 'tsUpdated', 'value': '2024-04-22T13:06:12.198769Z'}] actionlinks: None
+updated children: [{'children': [{'name': 'linkedRecordType', 'value': 'user'}, {'name': 'linkedRecordId', 'value': '141414'}], 'name': 'updatedBy'}, {'name': 'tsUpdated', 'value': '2024-05-21T07:06:31.098947Z'}] actionlinks: None
+createdBy linkedRecordType -- user
+createdBy linkedRecordId -- coraUser:4412982402853626
+ccc name tsCreated 2020-10-16T10:47:55.864547Z
+loginName is 'DiVA Test KTH'
+url is https://pre.diva-portal.org/Shibboleth.sso/Login/kth?target=https://pre.diva-portal.org/idplogin/login
+rr=''
+161616 user information
+{}
+131313 user information
+{}
+user:15433802151162560 user information
+{}
+guest user information
+{}
+['Starting new HTTPS connection (1): pre.diva-portal.org:443',
+ ('send:',
+  "b'GET /rest/record/recordType/diva-person HTTP/1.1\\r\\nHost: "
+  'pre.diva-portal.org\\r\\nUser-Agent: '
+  'python-requests/2.31.0\\r\\naccept-encoding: gzip, deflate, br, '
+  'zstd\\r\\nAccept: application/vnd.uub.record+json\\r\\nConnection: '
+  'keep-alive\\r\\nContent-Type: '
+  'application/vnd.uub.record+json\\r\\naccept-language: '
+  "en-US,en;q=0.9\\r\\n\\r\\n'"),
+ ('reply:', "'HTTP/1.1 200 OK\\r\\n'"),
+ ('header:', 'Date:', 'Wed, 07 May 2025 05:08:09 GMT'),
+ ('header:', 'Server:', 'Apache/2.4.63 (Unix) mod_qos/11.63'),
+ ('header:', 'Content-Type:', 'application/vnd.uub.record+json'),
+ ('header:', 'Content-Length:', '4770'),
+ ('header:', 'Strict-Transport-Security:', 'max-age=31536000'),
+ ('header:', 'X-Varnish:', '88769877'),
+ ('header:', 'Age:', '0'),
+ ('header:', 'Via:', '1.1 varnish (Varnish/7.1)'),
+ ('header:', 'Accept-Ranges:', 'bytes'),
+ ('header:', 'Connection:', 'keep-alive'),
+ 'https://pre.diva-portal.org:443 "GET /rest/record/recordType/diva-person '
+ 'HTTP/1.1" 200 4770',
+ 'Encoding detection: ascii is most likely the one.',
+ 'Starting new HTTPS connection (1): pre.diva-portal.org:443',
+ ('send:',
+  "b'GET "
+  '/rest/record/searchResult/publicTextSearch?searchData=%7B%22name%22%3A%22textSearch%22%2C%22children%22%3A%5B%7B%22name%22%3A%22include%22%2C%22children%22%3A%5B%7B%22name%22%3A%22includePart%22%2C%22children%22%3A%5B%7B%22name%22%3A%22translationSearchTerm%22%2C%22value%22%3A%22kth%22%7D%5D%7D%5D%7D%5D%7D '
+  'HTTP/1.1\\r\\nHost: pre.diva-portal.org\\r\\nUser-Agent: '
+  'python-requests/2.31.0\\r\\naccept-encoding: gzip, deflate, br, '
+  'zstd\\r\\nAccept: application/vnd.uub.recordList+json\\r\\nConnection: '
+  'keep-alive\\r\\nContent-Type: '
+  'application/vnd.uub.recordList+json\\r\\naccept-language: '
+  "en-US,en;q=0.9\\r\\n\\r\\n'"),
+ ('reply:', "'HTTP/1.1 401 Unauthorized\\r\\n'"),
+ ('header:', 'Date:', 'Wed, 07 May 2025 05:08:09 GMT'),
+ ('header:', 'Server:', 'Apache/2.4.63 (Unix) mod_qos/11.63'),
+ ('header:', 'Content-Type:', 'text/html;charset=utf-8'),
+ ('header:', 'Content-Language:', 'en'),
+ ('header:', 'Content-Length:', '720'),
+ ('header:', 'Strict-Transport-Security:', 'max-age=31536000'),
+ ('header:', 'X-Varnish:', '82614534'),
+ ('header:', 'Age:', '0'),
+ ('header:', 'Via:', '1.1 varnish (Varnish/7.1)'),
+ ('header:', 'Connection:', 'keep-alive'),
+ 'https://pre.diva-portal.org:443 "GET '
+ '/rest/record/searchResult/publicTextSearch?searchData=%7B%22name%22%3A%22textSearch%22%2C%22children%22%3A%5B%7B%22name%22%3A%22include%22%2C%22children%22%3A%5B%7B%22name%22%3A%22includePart%22%2C%22children%22%3A%5B%7B%22name%22%3A%22translationSearchTerm%22%2C%22value%22%3A%22kth%22%7D%5D%7D%5D%7D%5D%7D '
+ 'HTTP/1.1" 401 720',
+ 'Starting new HTTPS connection (1): pre.diva-portal.org:443',
+ ('send:',
+  "b'GET /rest/record/diva-person/ HTTP/1.1\\r\\nHost: "
+  'pre.diva-portal.org\\r\\nUser-Agent: '
+  'python-requests/2.31.0\\r\\naccept-encoding: gzip, deflate, br, '
+  'zstd\\r\\nAccept: application/vnd.uub.recordList+xml\\r\\nConnection: '
+  'keep-alive\\r\\nContent-Type: '
+  'application/vnd.uub.recordList+xml\\r\\naccept-language: '
+  "en-US,en;q=0.9\\r\\n\\r\\n'"),
+ ('reply:', "'HTTP/1.1 200 OK\\r\\n'"),
+ ('header:', 'Date:', 'Wed, 07 May 2025 05:08:09 GMT'),
+ ('header:', 'Server:', 'Apache/2.4.63 (Unix) mod_qos/11.63'),
+ ('header:', 'Content-Type:', 'application/vnd.uub.recordList+xml'),
+ ('header:', 'Content-Length:', '168'),
+ ('header:', 'Strict-Transport-Security:', 'max-age=31536000'),
+ ('header:', 'X-Varnish:', '88769880'),
+ ('header:', 'Age:', '0'),
+ ('header:', 'Via:', '1.1 varnish (Varnish/7.1)'),
+ ('header:', 'Accept-Ranges:', 'bytes'),
+ ('header:', 'Connection:', 'keep-alive'),
+ 'https://pre.diva-portal.org:443 "GET /rest/record/diva-person/ HTTP/1.1" 200 '
+ '168',
+ 'Encoding detection: utf_8 is most likely the one.',
+ 'Encoding detection: utf_8 is most likely the one.',
+ 'Starting new HTTPS connection (1): pre.diva-portal.org:443',
+ ('send:',
+  "b'GET /rest/record/diva-person/001 HTTP/1.1\\r\\nHost: "
+  'pre.diva-portal.org\\r\\nUser-Agent: '
+  'python-requests/2.31.0\\r\\naccept-encoding: gzip, deflate, br, '
+  'zstd\\r\\nAccept: application/vnd.uub.recordList+xml\\r\\nConnection: '
+  'keep-alive\\r\\nContent-Type: '
+  'application/vnd.uub.recordList+xml\\r\\naccept-language: '
+  "en-US,en;q=0.9\\r\\n\\r\\n'"),
+ ('reply:', "'HTTP/1.1 406 Not Acceptable\\r\\n'"),
+ ('header:', 'Date:', 'Wed, 07 May 2025 05:08:09 GMT'),
+ ('header:', 'Server:', 'Apache/2.4.63 (Unix) mod_qos/11.63'),
+ ('header:', 'Content-Type:', 'text/html;charset=utf-8'),
+ ('header:', 'Content-Language:', 'en'),
+ ('header:', 'Content-Length:', '846'),
+ ('header:', 'Strict-Transport-Security:', 'max-age=31536000'),
+ ('header:', 'X-Varnish:', '82614537'),
+ ('header:', 'Age:', '0'),
+ ('header:', 'Via:', '1.1 varnish (Varnish/7.1)'),
+ ('header:', 'Connection:', 'keep-alive'),
+ 'https://pre.diva-portal.org:443 "GET /rest/record/diva-person/001 HTTP/1.1" '
+ '406 846',
+ 'Starting new HTTPS connection (1): pre.diva-portal.org:443',
+ ('send:',
+  "b'GET /rest/record/system/divaPre HTTP/1.1\\r\\nHost: "
+  'pre.diva-portal.org\\r\\nUser-Agent: '
+  'python-requests/2.31.0\\r\\naccept-encoding: gzip, deflate, br, '
+  'zstd\\r\\nAccept: application/vnd.uub.record+json\\r\\nConnection: '
+  'keep-alive\\r\\nContent-Type: '
+  'application/vnd.uub.recordList+xml\\r\\naccept-language: '
+  "en-US,en;q=0.9\\r\\n\\r\\n'"),
+ ('reply:', "'HTTP/1.1 200 OK\\r\\n'"),
+ ('header:', 'Date:', 'Wed, 07 May 2025 05:08:09 GMT'),
+ ('header:', 'Server:', 'Apache/2.4.63 (Unix) mod_qos/11.63'),
+ ('header:', 'Content-Type:', 'application/vnd.uub.record+json'),
+ ('header:', 'Content-Length:', '2862'),
+ ('header:', 'Strict-Transport-Security:', 'max-age=31536000'),
+ ('header:', 'X-Varnish:', '88769883'),
+ ('header:', 'Age:', '0'),
+ ('header:', 'Via:', '1.1 varnish (Varnish/7.1)'),
+ ('header:', 'Accept-Ranges:', 'bytes'),
+ ('header:', 'Connection:', 'keep-alive'),
+ 'https://pre.diva-portal.org:443 "GET /rest/record/system/divaPre HTTP/1.1" '
+ '200 2862',
+ 'Encoding detection: ascii is most likely the one.',
+ 'Encoding detection: ascii is most likely the one.',
+ 'Starting new HTTPS connection (1): pre.diva-portal.org:443',
+ ('send:',
+  "b'GET /rest/record/login/kthTestDiVAwr HTTP/1.1\\r\\nHost: "
+  'pre.diva-portal.org\\r\\nUser-Agent: '
+  'python-requests/2.31.0\\r\\naccept-encoding: gzip, deflate, br, '
+  'zstd\\r\\nAccept: application/vnd.uub.record+json\\r\\nConnection: '
+  'keep-alive\\r\\nContent-Type: '
+  'application/vnd.uub.recordList+xml\\r\\naccept-language: '
+  "en-US,en;q=0.9\\r\\n\\r\\n'"),
+ ('reply:', "'HTTP/1.1 200 OK\\r\\n'"),
+ ('header:', 'Date:', 'Wed, 07 May 2025 05:08:09 GMT'),
+ ('header:', 'Server:', 'Apache/2.4.63 (Unix) mod_qos/11.63'),
+ ('header:', 'Content-Type:', 'application/vnd.uub.record+json'),
+ ('header:', 'Content-Length:', '3240'),
+ ('header:', 'Strict-Transport-Security:', 'max-age=31536000'),
+ ('header:', 'X-Varnish:', '82614540'),
+ ('header:', 'Age:', '0'),
+ ('header:', 'Via:', '1.1 varnish (Varnish/7.1)'),
+ ('header:', 'Accept-Ranges:', 'bytes'),
+ ('header:', 'Connection:', 'keep-alive'),
+ 'https://pre.diva-portal.org:443 "GET /rest/record/login/kthTestDiVAwr '
+ 'HTTP/1.1" 200 3240',
+ 'Encoding detection: ascii is most likely the one.',
+ 'Encoding detection: ascii is most likely the one.',
+ 'Starting new HTTPS connection (1): pre.diva-portal.org:443',
+ ('send:',
+  "b'GET /rest/record/diva-organisation/177 HTTP/1.1\\r\\nHost: "
+  'pre.diva-portal.org\\r\\nUser-Agent: '
+  'python-requests/2.31.0\\r\\naccept-encoding: gzip, deflate, br, '
+  'zstd\\r\\nAccept: application/vnd.uub.record+json\\r\\nConnection: '
+  'keep-alive\\r\\nContent-Type: '
+  'application/vnd.uub.recordList+xml\\r\\naccept-language: '
+  "en-US,en;q=0.9\\r\\n\\r\\n'"),
+ ('reply:', "'HTTP/1.1 404 Not Found\\r\\n'"),
+ ('header:', 'Date:', 'Wed, 07 May 2025 05:08:09 GMT'),
+ ('header:', 'Server:', 'Apache/2.4.63 (Unix) mod_qos/11.63'),
+ ('header:', 'Content-Type:', 'text/plain;charset=utf-8'),
+ ('header:', 'Content-Length:', '126'),
+ ('header:', 'Strict-Transport-Security:', 'max-age=31536000'),
+ ('header:', 'X-Varnish:', '88769886'),
+ ('header:', 'Age:', '0'),
+ ('header:', 'Via:', '1.1 varnish (Varnish/7.1)'),
+ ('header:', 'Connection:', 'keep-alive'),
+ 'https://pre.diva-portal.org:443 "GET /rest/record/diva-organisation/177 '
+ 'HTTP/1.1" 404 126',
+ 'Starting new HTTPS connection (1): pre.diva-portal.org:443',
+ ('send:',
+  "b'GET /rest/record/user/161616 HTTP/1.1\\r\\nHost: "
+  'pre.diva-portal.org\\r\\nUser-Agent: '
+  'python-requests/2.31.0\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept: '
+  'application/vnd.uub.record+json\\r\\nConnection: '
+  "keep-alive\\r\\nContent-Type: application/vnd.uub.record+json\\r\\n\\r\\n'"),
+ ('reply:', "'HTTP/1.1 401 Unauthorized\\r\\n'"),
+ ('header:', 'Date:', 'Wed, 07 May 2025 05:08:09 GMT'),
+ ('header:', 'Server:', 'Apache/2.4.63 (Unix) mod_qos/11.63'),
+ ('header:', 'Content-Type:', 'text/html;charset=utf-8'),
+ ('header:', 'Content-Language:', 'en'),
+ ('header:', 'Content-Length:', '720'),
+ ('header:', 'Strict-Transport-Security:', 'max-age=31536000'),
+ ('header:', 'X-Varnish:', '82614543'),
+ ('header:', 'Age:', '0'),
+ ('header:', 'Via:', '1.1 varnish (Varnish/7.1)'),
+ ('header:', 'Connection:', 'keep-alive'),
+ 'https://pre.diva-portal.org:443 "GET /rest/record/user/161616 HTTP/1.1" 401 '
+ '720',
+ 'Starting new HTTPS connection (1): pre.diva-portal.org:443',
+ ('send:',
+  "b'GET /rest/record/user/131313 HTTP/1.1\\r\\nHost: "
+  'pre.diva-portal.org\\r\\nUser-Agent: '
+  'python-requests/2.31.0\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept: '
+  'application/vnd.uub.record+json\\r\\nConnection: '
+  "keep-alive\\r\\nContent-Type: application/vnd.uub.record+json\\r\\n\\r\\n'"),
+ ('reply:', "'HTTP/1.1 401 Unauthorized\\r\\n'"),
+ ('header:', 'Date:', 'Wed, 07 May 2025 05:08:09 GMT'),
+ ('header:', 'Server:', 'Apache/2.4.63 (Unix) mod_qos/11.63'),
+ ('header:', 'Content-Type:', 'text/html;charset=utf-8'),
+ ('header:', 'Content-Language:', 'en'),
+ ('header:', 'Content-Length:', '720'),
+ ('header:', 'Strict-Transport-Security:', 'max-age=31536000'),
+ ('header:', 'X-Varnish:', '88769889'),
+ ('header:', 'Age:', '0'),
+ ('header:', 'Via:', '1.1 varnish (Varnish/7.1)'),
+ ('header:', 'Connection:', 'keep-alive'),
+ 'https://pre.diva-portal.org:443 "GET /rest/record/user/131313 HTTP/1.1" 401 '
+ '720',
+ 'Starting new HTTPS connection (1): pre.diva-portal.org:443',
+ ('send:',
+  "b'GET /rest/record/user/user:15433802151162560 HTTP/1.1\\r\\nHost: "
+  'pre.diva-portal.org\\r\\nUser-Agent: '
+  'python-requests/2.31.0\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept: '
+  'application/vnd.uub.record+json\\r\\nConnection: '
+  "keep-alive\\r\\nContent-Type: application/vnd.uub.record+json\\r\\n\\r\\n'"),
+ ('reply:', "'HTTP/1.1 401 Unauthorized\\r\\n'"),
+ ('header:', 'Date:', 'Wed, 07 May 2025 05:08:10 GMT'),
+ ('header:', 'Server:', 'Apache/2.4.63 (Unix) mod_qos/11.63'),
+ ('header:', 'Content-Type:', 'text/html;charset=utf-8'),
+ ('header:', 'Content-Language:', 'en'),
+ ('header:', 'Content-Length:', '720'),
+ ('header:', 'Strict-Transport-Security:', 'max-age=31536000'),
+ ('header:', 'X-Varnish:', '82614546'),
+ ('header:', 'Age:', '0'),
+ ('header:', 'Via:', '1.1 varnish (Varnish/7.1)'),
+ ('header:', 'Connection:', 'keep-alive'),
+ 'https://pre.diva-portal.org:443 "GET '
+ '/rest/record/user/user:15433802151162560 HTTP/1.1" 401 720',
+ 'Starting new HTTPS connection (1): pre.diva-portal.org:443',
+ ('send:',
+  "b'GET /rest/record/user/guest HTTP/1.1\\r\\nHost: "
+  'pre.diva-portal.org\\r\\nUser-Agent: '
+  'python-requests/2.31.0\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept: '
+  'application/vnd.uub.record+json\\r\\nConnection: '
+  "keep-alive\\r\\nContent-Type: application/vnd.uub.record+json\\r\\n\\r\\n'"),
+ ('reply:', "'HTTP/1.1 401 Unauthorized\\r\\n'"),
+ ('header:', 'Date:', 'Wed, 07 May 2025 05:08:10 GMT'),
+ ('header:', 'Server:', 'Apache/2.4.63 (Unix) mod_qos/11.63'),
+ ('header:', 'Content-Type:', 'text/html;charset=utf-8'),
+ ('header:', 'Content-Language:', 'en'),
+ ('header:', 'Content-Length:', '720'),
+ ('header:', 'Strict-Transport-Security:', 'max-age=31536000'),
+ ('header:', 'X-Varnish:', '88769892'),
+ ('header:', 'Age:', '0'),
+ ('header:', 'Via:', '1.1 varnish (Varnish/7.1)'),
+ ('header:', 'Connection:', 'keep-alive'),
+ 'https://pre.diva-portal.org:443 "GET /rest/record/user/guest HTTP/1.1" 401 '
+ '720']
+```

@@ -1,5 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
+# -*- mode: python; python-indent-offset: 4 -*-
 # the above encoding information is as per http://www.python.org/dev/peps/pep-0263/
 #
 # Purpose: To fetch and process thesis information from DiVA for yearA to yearB
@@ -18,10 +19,12 @@
 #
 #
 
-import csv, codecs, cStringIO
+import csv
 import datetime
 #from subprocess import call
-import urllib
+#import urllib
+import urllib.request
+
 
 class UnicodeWriter:
     """
@@ -90,12 +93,13 @@ options, remainder = parser.parse_args()
 
 Verbose_Flag=options.verbose
 if Verbose_Flag:
-    print 'ARGV      :', sys.argv[1:]
-    print 'VERBOSE   :', options.verbose
-    print 'START     :', options.starting_year
-    print 'END       :', options.ending_year
-    print 'OUTPUT    :', options.output_filename
-    print 'REMAINING :', remainder
+        print("ARGV      :{}".format(sys.argv[1:]))
+        print("VERBOSE   :{}".format(options.verbose))
+        print("REMAINING :{}".format(remainder))
+        print("START     :{}".format(options.starting_year))
+        print("END       :{}".format(options.ending_year))
+        print("OUTPUT    :{}".format(options.output_filename))
+
 
                
 #    headings = ['Year', 'School', 'Thesis_count', 'Abstracts_eng_swe', 'Abstracts_eng', 'Abstracts_swe', 'Abstracts_missing', 'Abstracts_nor', 'Abstracts_ger', 'Keywords_eng_swe', 'Keywords_eng', 'Keywords_swe', 'Keywords_missing']
@@ -134,7 +138,7 @@ for year in range(starting_year,ending_year+1):
 
     try:
         url = 'http://kth.diva-portal.org/smash/export.jsf?format=mods&aq=[[]]&aqe=[]&aq2=[[{"dateIssued":{"from":' + quoted_year + ',"to":' + quoted_year + '}},{"publicationTypeCode":["studentThesis"]}]]&onlyFullText=false&noOfRows=5000&sortOrder=title_sort_asc'
-        print url
-        urllib.urlretrieve(url, str(year)+".mods")
+        print("target url is {}".format(url))
+        urllib.request.urlretrieve(url, str(year)+".mods")
     except Exception as e:
         print(str(e))
